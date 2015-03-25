@@ -9,8 +9,8 @@ namespace CobaltFrame.Common
 {
     public class ScreenFrameContext:FrameContextBase
     {
-        public ScreenFrameContext(GameTime gameTime)
-            : base(gameTime)
+        public ScreenFrameContext(Game game)
+            : base(game)
         {
 
         }
