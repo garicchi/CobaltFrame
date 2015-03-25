@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\FrameContextBase.cs" />
     <Compile Include="Common\GameContextBase.cs" />
     <Compile Include="Common\ObjectContext.cs" />
     <Compile Include="Common\ScreenContext.cs" />
