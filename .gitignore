@@ -1,3 +1,4 @@
 bin/
 obj/
 *.suo
+!MonoGame.Framework.dll
