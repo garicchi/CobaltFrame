@@ -42,6 +42,7 @@
     <Compile Include="Common\ScreenFrameContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleComponent.cs" />
+    <Compile Include="Screen\IScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -51,7 +52,6 @@
   <ItemGroup>
     <Folder Include="Animation\" />
     <Folder Include="Object\" />
-    <Folder Include="Screen\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
