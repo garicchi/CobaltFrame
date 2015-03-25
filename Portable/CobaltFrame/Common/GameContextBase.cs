@@ -11,6 +11,7 @@ namespace CobaltFrame.Common
     {
         private Game _game;
 
+        public Game Game { get { return this._game; } }
         public GameContextBase(Game game)
         {
             this._game = game;
