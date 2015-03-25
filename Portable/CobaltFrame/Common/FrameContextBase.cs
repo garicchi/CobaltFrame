@@ -9,12 +9,12 @@ namespace CobaltFrame.Common
 {
     public abstract class FrameContextBase
     {
-        Game _game;
+        GameTime _gameTime;
 
-        public Game Game { get { return this._game; } }
-        public FrameContextBase(Game game)
+        public GameTime GameTime { get { return this._gameTime; } }
+        public FrameContextBase(GameTime gameTime)
         {
-            this._game = game;
+            this._gameTime = gameTime;
         }
     }
 }
