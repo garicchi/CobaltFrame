@@ -14,17 +14,17 @@ namespace CobaltFrame.Object
         {
             this._objectContext = objectContext;
         }
-        public void Initialize()
+        public void Initialize(ObjectContext objectContext)
         {
             
         }
 
-        public void LoadContent()
+        public void LoadObject()
         {
             
         }
 
-        public void UnloadContent()
+        public void UnloadObject()
         {
             
         }
