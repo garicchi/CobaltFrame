@@ -9,7 +9,7 @@ namespace CobaltFrame.Object
 {
     public interface IGameObject
     {
-        public void Initialize(ObjectContext objectContext);
+        public void Initialize();
         public void LoadContent();
         public void UnloadContent();
         public void Update(ObjectFrameContext frameContext);

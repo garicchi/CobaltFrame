@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Common;
+using CobaltFrame.Object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,15 @@ namespace CobaltFrame.Screen
     {
         protected ScreenContext _screenContext;
 
+        protected IList<GameObject> _gameObjects;
+
         public ScreenBase(ScreenContext screenContext)
         {
             this._screenContext = screenContext;
+            this._gameObjects = new List<GameObject>();
         }
 
-        public void Initialize(ScreenContext screenContext)
+        public void Initialize()
         {
            
         }
@@ -39,6 +43,25 @@ namespace CobaltFrame.Screen
         public void Draw(ScreenFrameContext frameContext)
         {
            
+        }
+
+
+        public void AddObject(GameObject gameObject)
+        {
+            this._gameObjects.Add(gameObject);
+        }
+
+        public void RemoveObject(GameObject gameObject)
+        {
+            if (this._gameObjects.Contains(gameObject))
+            {
+                this._gameObjects.Remove(gameObject);
+            }
+        }
+
+        public bool HasObject(GameObject gameObject)
+        {
+            return this._gameObjects.Contains(gameObject);
         }
     }
 }

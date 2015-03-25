@@ -14,7 +14,7 @@ namespace CobaltFrame.Object
         {
             this._objectContext = objectContext;
         }
-        public void Initialize(ObjectContext objectContext)
+        public void Initialize()
         {
             
         }
