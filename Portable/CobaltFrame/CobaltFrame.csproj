@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Common\GameContext.cs" />
+    <Compile Include="Common\GameContextBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleComponent.cs" />
   </ItemGroup>

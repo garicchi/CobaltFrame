@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Common
 {
-    public class GameContext
+    public abstract class GameContextBase
     {
         private Game _game;
 
-        public GameContext(Game game)
+        public GameContextBase(Game game)
         {
             this._game = game;
         }
