@@ -119,7 +119,6 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="Content\face.png" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\CobaltFrame.Universal.Test.Shared\Content\Content.mgcb">

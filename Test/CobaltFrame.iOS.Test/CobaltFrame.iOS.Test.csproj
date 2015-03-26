@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="Info.plist" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +105,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\face.png" />
     <Content Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
