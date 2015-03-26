@@ -89,6 +89,10 @@
       <Project>{332A0CC4-0D48-448E-B664-815C60CC1DC0}</Project>
       <Name>CobaltFrame</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CobaltFrame.Test\CobaltFrame.Test.csproj">
+      <Project>{3326f6cb-9c95-4f25-b99d-a7ba9d8aa1a8}</Project>
+      <Name>CobaltFrame.Test</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

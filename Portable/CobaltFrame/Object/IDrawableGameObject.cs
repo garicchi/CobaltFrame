@@ -9,8 +9,8 @@ namespace CobaltFrame.Object
 {
     public interface IDrawableGameObject:IGameObject
     {
-        
         void Draw(ObjectFrameContext frameContext);
-        
+
+        void ChangeObjectDrawDepth(DrawableObjectUpdater obj, float depth);
     }
 }

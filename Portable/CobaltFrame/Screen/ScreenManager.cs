@@ -12,45 +12,58 @@ namespace CobaltFrame.Screen
     {
         protected ScreenBase _currentScreen;
 
-        
+        private ComponentState _componentState;
         public ScreenManager(Game game,ScreenBase initScreen)
             :base(game)
         {
-            ChangeScreen(initScreen,null);
+            this._componentState = ComponentState.Non;
             
+            ChangeScreen(initScreen,null);
+
+            this._componentState = ComponentState.ConstractorCalled;
         }
 
         public override void Initialize()
         {
-            //CurrentScreenのInitializeはChangeScreenで呼ぶ
             base.Initialize();
+            if (_currentScreen != null)
+                _currentScreen.Initialize();
+
+            this._componentState = ComponentState.Initialized;
         }
 
         protected override void LoadContent()
         {
-            //CurrentScreenのLoadContentはChangeScreenで呼ぶ
             base.LoadContent();
+            if (_currentScreen != null)
+                _currentScreen.LoadObject();
+
+            this._componentState = ComponentState.Loaded;
         }
 
         protected override void UnloadContent()
         {
-            if(_currentScreen!=null)
-            _currentScreen.UnloadScreen();
             base.UnloadContent();
+            if(_currentScreen!=null)
+            _currentScreen.UnloadObject();
+
+            this._componentState = ComponentState.Unloaded;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (_currentScreen != null)
-            _currentScreen.Update(new ScreenFrameContext(gameTime));
             base.Update(gameTime);
-        }
+
+            if (_currentScreen != null)
+                _currentScreen.Update(new ObjectFrameContext(gameTime));
+        }    
 
         public override void Draw(GameTime gameTime)
         {
-            if (_currentScreen != null)
-            _currentScreen.Draw(new ScreenFrameContext(gameTime));
             base.Draw(gameTime);
+            if (_currentScreen != null)
+            _currentScreen.Draw(new ObjectFrameContext(gameTime));
+            
         }
 
         /// <summary>
@@ -62,13 +75,23 @@ namespace CobaltFrame.Screen
         {
             if (_currentScreen != null)
             {
-                _currentScreen.UnloadScreen();
+                if (this._componentState >= ComponentState.Unloaded)
+                {
+                    _currentScreen.UnloadObject();
+                }
                 _currentScreen.OnNavigate-=OnNavigateHandler;
                 _currentScreen = null;
             }
 
-            nextScreen.Initialize(navigationParameter);
-            nextScreen.LoadScreen();
+            if (this._componentState >= ComponentState.Initialized)
+            {
+                nextScreen.Initialize();
+                nextScreen.NavigateTo(navigationParameter);
+            }
+            if (this._componentState >= ComponentState.Loaded)
+            {
+                nextScreen.LoadObject();
+            }
             
             nextScreen.OnNavigate += OnNavigateHandler;
 

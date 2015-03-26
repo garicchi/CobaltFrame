@@ -1,4 +1,6 @@
 ﻿using CobaltFrame.Common;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Object
 {
-    public abstract class DrawableGameObject:GameObject,IDrawableGameObject
+    public abstract class DrawableGameObject:DrawableObjectUpdater
     {
 
-        public bool IsVisible { get; set; }
+        protected SpriteBatch _spriteBatch;
+
+        protected Game _game;
 
         public DrawableGameObject(ObjectContext objectContext)
-            :base(objectContext)
+            :base()
         {
-            this.IsVisible = true;
-            
+            this._game = objectContext.Game;
+
         }
 
         public override void Initialize()
@@ -27,6 +31,7 @@ namespace CobaltFrame.Object
         public override void LoadObject()
         {
             base.LoadObject();
+            this._spriteBatch = new SpriteBatch(this._game.GraphicsDevice);
         }
 
         public override void UnloadObject()
@@ -34,14 +39,15 @@ namespace CobaltFrame.Object
             base.UnloadObject();
         }
 
+
         public override void Update(ObjectFrameContext frameContext)
         {
             base.Update(frameContext);
         }
 
-        public virtual void Draw(ObjectFrameContext frameContext)
+        public override void Draw(ObjectFrameContext frameContext)
         {
-
+            base.Draw(frameContext);
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using CobaltFrame.Common;
+﻿using CobaltFrame.Animation;
+using CobaltFrame.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,68 +10,42 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Object
 {
-    public abstract class GameObject:IGameObject,IComparable
+    public abstract class GameObject:ObjectUpdater
     {
         protected ObjectContext _objectContext;
 
-        private float _layerDepth;
+        protected Game _game;
+        
 
-        protected GraphicsDevice _graphicsDevice;
-        public float LayerDepth
-        {
-            get { return this._layerDepth; }
-        }
         public GameObject(ObjectContext context)
+            :base()
         {
+            
             this._objectContext = context;
-            this._layerDepth = 0.0f;
-            this._graphicsDevice = context.Game.GraphicsDevice;
-        }
-        public virtual void Initialize()
-        {
-            
+            this._game = context.Game;
+
         }
 
-        public virtual void LoadObject()
+        public override void Initialize()
         {
-            
+            base.Initialize();
         }
 
-        public virtual void UnloadObject()
+        public override void LoadObject()
         {
+            base.LoadObject();
+
             
+        }
+        public override void UnloadObject()
+        {
+            base.UnloadObject();
         }
 
-        public virtual void Update(Common.ObjectFrameContext frameContext)
+        public override void Update(ObjectFrameContext frameContext)
         {
-            
+            base.Update(frameContext);
         }
 
-        public int CompareTo(object obj)
-        {
-            DrawableGameObject gObj = obj as DrawableGameObject;
-            if (gObj.LayerDepth < this.LayerDepth) { return -1; }
-            if (gObj.LayerDepth > this.LayerDepth) { return 1; }
-            if (gObj.LayerDepth == this.LayerDepth) { return 0; }
-            
-            return 0;
-        }
-
-        /// <summary>
-        /// このメソッドを呼ばないでくださいScreenBaseから内部的に呼ばれます
-        /// </summary>
-        /// <param name="depth"></param>
-        public void SetDrawDepth(float depth)
-        {
-            if (depth >= 0.0f && depth <= 1.0f)
-            {
-                this._layerDepth = depth;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("depth","レイヤーの深さは0.0f~1.0fの範囲で指定してください");
-            }
-            
-        }
     }
 }
