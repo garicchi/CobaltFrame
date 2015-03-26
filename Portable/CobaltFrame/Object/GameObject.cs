@@ -7,65 +7,31 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Object
 {
-    public abstract class GameObject:IGameObject,IComparable
+    public abstract class GameObject:IGameObject
     {
         protected ObjectContext _objectContext;
-
-        /// <summary>
-        /// 0.0f～1.0f
-        /// </summary>
-        public float DrawDepth { get; private set; }
-
-        public bool IsVisible { get; set; }
-
-        public GameObject(ObjectContext objectContext)
+        public GameObject(ObjectContext context)
         {
-            this._objectContext = objectContext;
-            this.IsVisible = true;
-            this.DrawDepth = 0.0f;
+            this._objectContext = context;
         }
-        public void Initialize()
+        public virtual void Initialize()
         {
             
         }
 
-        public void LoadObject()
+        public virtual void LoadObject()
         {
             
         }
 
-        public void UnloadObject()
+        public virtual void UnloadObject()
         {
             
         }
 
-        public void Update(Common.ObjectFrameContext frameContext)
+        public virtual void Update(Common.ObjectFrameContext frameContext)
         {
             
-        }
-
-        public void Draw(Common.ObjectFrameContext frameContext)
-        {
-            
-        }
-
-        public int CompareTo(object obj)
-        {
-            GameObject gObj = obj as GameObject;
-            if (gObj.DrawDepth < this.DrawDepth) { return -1; }
-            if (gObj.DrawDepth > this.DrawDepth) { return 1; }
-            if (gObj.DrawDepth == this.DrawDepth) { return 0; }
-
-            return 0;
-        }
-
-        /// <summary>
-        /// このメソッドを呼ばないでくださいScreenBaseから内部的に呼ばれます
-        /// </summary>
-        /// <param name="depth"></param>
-        public void SetDrawDepth(float depth)
-        {
-            this.DrawDepth = depth;
         }
     }
 }

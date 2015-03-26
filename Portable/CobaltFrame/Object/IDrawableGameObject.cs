@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Object
 {
-    public interface IGameObject
+    public interface IDrawableGameObject:IGameObject
     {
-        void Initialize();
-        void LoadObject();
-        void UnloadObject();
-        void Update(ObjectFrameContext frameContext);
         
-        
+        void Draw(ObjectFrameContext frameContext);
+        void SetDrawDepth(float depth);
     }
 }

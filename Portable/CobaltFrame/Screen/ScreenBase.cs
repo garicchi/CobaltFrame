@@ -59,10 +59,10 @@ namespace CobaltFrame.Screen
             if (this.isObjectDrawDepthChanged)
                 this._gameObjects.Sort();
 
-            foreach (GameObject obj in this._gameObjects)
+            foreach (DrawableGameObject obj in this._gameObjects.Where(q=>q is DrawableGameObject))
             {
                 if(obj.IsVisible)
-                obj.Draw(new ObjectFrameContext(frameContext.GameTime));
+                    obj.Draw(new ObjectFrameContext(frameContext.GameTime));
             }
             
         }
@@ -99,7 +99,7 @@ namespace CobaltFrame.Screen
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="depth"></param>
-        public void ChangeObjectDrawDepth(GameObject obj,float depth)
+        public void ChangeObjectDrawDepth(DrawableGameObject obj,float depth)
         {
             //オブジェクトのレイヤー変更時にオブジェクトコレクションのソートを行うが
             //頻繁にソートを行えないのでレイヤ変更時のみソートのフラグをたててソート
