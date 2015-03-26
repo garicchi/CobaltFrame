@@ -119,6 +119,7 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Content\face.png" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\CobaltFrame.Universal.Test.Shared\Content\Content.mgcb">
@@ -134,6 +135,10 @@
     <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
       <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
       <Name>CobaltFrame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CobaltFrame.Test\CobaltFrame.Test.csproj">
+      <Project>{3326f6cb-9c95-4f25-b99d-a7ba9d8aa1a8}</Project>
+      <Name>CobaltFrame.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

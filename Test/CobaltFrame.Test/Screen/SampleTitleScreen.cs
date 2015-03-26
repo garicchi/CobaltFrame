@@ -1,5 +1,7 @@
 ﻿using CobaltFrame.Common;
 using CobaltFrame.Screen;
+using CobaltFrame.Test.Object;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +12,18 @@ namespace CobaltFrame.Test.Screen
 {
     public class SampleTitleScreen:ScreenBase
     {
+        private SampleTexture2DObject _sampleObject1;
         public SampleTitleScreen(ScreenContext context)
             : base(context)
         {
-
+            this._sampleObject1 = new SampleTexture2DObject(new ObjectContext(context.Game),Vector2.Zero,"face");
+            this.AddObject(_sampleObject1);
         }
 
         public override void Initialize(object navigationParameter)
         {
             base.Initialize(navigationParameter);
+            
         }
 
         public override void LoadScreen()
@@ -38,7 +43,9 @@ namespace CobaltFrame.Test.Screen
 
         public override void Draw(ScreenFrameContext frameContext)
         {
+            this._game.GraphicsDevice.Clear(Color.SteelBlue);
             base.Draw(frameContext);
+            
         }
 
         protected override void Navigate(ScreenBase screen, object parameter)

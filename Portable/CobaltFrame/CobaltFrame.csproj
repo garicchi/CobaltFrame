@@ -37,6 +37,7 @@
     <Compile Include="Animation\AnimationBase.cs" />
     <Compile Include="Animation\AnimationState.cs" />
     <Compile Include="Animation\IAnimation.cs" />
+    <Compile Include="Common\ComponentState.cs" />
     <Compile Include="Common\FrameContextBase.cs" />
     <Compile Include="Common\GameContextBase.cs" />
     <Compile Include="Common\ObjectContext.cs" />

@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Common;
 using CobaltFrame.Object;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -24,29 +25,46 @@ namespace CobaltFrame.Screen
 
         public event Action<ScreenBase,object> OnNavigate;
 
-        protected GraphicsDevice _graphicsDevice;
+        protected Game _game;
+
+        private ComponentState _componentState;
 
         public ScreenBase(ScreenContext screenContext)
         {
+            this._componentState = ComponentState.Non;
             this._screenContext = screenContext;
             this._gameObjects = new List<GameObject>();
             this.isObjectDrawDepthChanged = false;
-            this._graphicsDevice = screenContext.Game.GraphicsDevice;
+            this._game = _screenContext.Game;
+            this._componentState = ComponentState.ConstractorCalled;
         }
 
         public virtual void Initialize(object navigationParameter)
         {
-            //AddObjectで呼ぶ
+            foreach (GameObject obj in this._gameObjects)
+            {
+                obj.Initialize();
+            }
+            this._componentState = ComponentState.Initialized;
         }
 
         public virtual void LoadScreen()
         {
-            //AddObjectで呼ぶ
+            foreach (GameObject obj in this._gameObjects)
+            {
+                obj.LoadObject();
+            }
+
+            this._componentState = ComponentState.Loaded;
         }
 
         public virtual void UnloadScreen()
         {
-            //RemoveObjectで呼ぶ
+            foreach (GameObject obj in this._gameObjects)
+            {
+                obj.UnloadObject();
+            }
+            this._componentState = ComponentState.Unloaded;
         }
 
         public virtual void Update(ScreenFrameContext frameContext)
@@ -73,8 +91,15 @@ namespace CobaltFrame.Screen
 
         protected void AddObject(GameObject gameObject)
         {
-            gameObject.Initialize();
-            gameObject.LoadObject();
+            if (this._componentState >= ComponentState.Initialized)
+            {
+                gameObject.Initialize();
+            }
+            if (this._componentState >= ComponentState.Loaded)
+            {
+                gameObject.LoadObject();
+            }
+            
             this._gameObjects.Add(gameObject);
         }
 
@@ -82,7 +107,11 @@ namespace CobaltFrame.Screen
         {
             if (this._gameObjects.Contains(gameObject))
             {
-                gameObject.UnloadObject();
+                if (this._componentState >= ComponentState.Unloaded)
+                {
+                    gameObject.UnloadObject();
+                }
+
                 this._gameObjects.Remove(gameObject);
             }
         }

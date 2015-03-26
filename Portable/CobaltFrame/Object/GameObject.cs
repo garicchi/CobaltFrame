@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,13 @@ namespace CobaltFrame.Object
 
         private float _layerDepth;
 
-        protected GraphicsDevice _graphicsDevice;
+        protected Game _game;
+        protected SpriteBatch _spriteBatch;
+
+        public bool IsInitialized { get; private set; }
+        public bool IsLoaded { get; private set; }
+        public bool IsUnLoaded { get; private set; }
+
         public float LayerDepth
         {
             get { return this._layerDepth; }
@@ -23,21 +30,26 @@ namespace CobaltFrame.Object
         {
             this._objectContext = context;
             this._layerDepth = 0.0f;
-            this._graphicsDevice = context.Game.GraphicsDevice;
+            
+            this._game = context.Game;
+            this.IsInitialized = false;
+            this.IsLoaded = false;
+            this.IsUnLoaded = false;
         }
         public virtual void Initialize()
         {
-            
+            if (!this.IsInitialized) { this.IsInitialized = true; }
         }
 
         public virtual void LoadObject()
         {
-            
+            if (!this.IsLoaded) { this.IsLoaded = true; }
+            this._spriteBatch = new SpriteBatch(this._game.GraphicsDevice);
         }
 
         public virtual void UnloadObject()
         {
-            
+            if (!this.IsUnLoaded) { this.IsUnLoaded = true; }
         }
 
         public virtual void Update(Common.ObjectFrameContext frameContext)
