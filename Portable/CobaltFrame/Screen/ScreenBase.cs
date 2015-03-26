@@ -12,7 +12,14 @@ namespace CobaltFrame.Screen
     {
         protected ScreenContext _screenContext;
 
-        protected IList<GameObject> _gameObjects;
+        private List<GameObject> _gameObjects;
+
+        public List<GameObject> GameObjects
+        {
+            get { return this._gameObjects; }
+        }
+
+        private bool isObjectDrawDepthChanged;
 
         public event Action<ScreenBase,object> OnNavigate;
 
@@ -20,37 +27,46 @@ namespace CobaltFrame.Screen
         {
             this._screenContext = screenContext;
             this._gameObjects = new List<GameObject>();
+            this.isObjectDrawDepthChanged = false;
         }
 
         public void Initialize(object navigationParameter)
         {
-           
+            //AddObjectで呼ぶ
         }
 
         public void LoadScreen()
         {
-            
+            //AddObjectで呼ぶ
         }
 
         public void UnloadScreen()
         {
-            
+            //RemoveObjectで呼ぶ
         }
 
         public void Update(ScreenFrameContext frameContext)
         {
-            
+            foreach (GameObject obj in this._gameObjects)
+            {
+                obj.Update(new ObjectFrameContext(frameContext.GameTime));
+            }
         }
 
         public void Draw(ScreenFrameContext frameContext)
         {
-           
+            foreach (GameObject obj in this._gameObjects)
+            {
+                if(obj.IsVisible)
+                obj.Draw(new ObjectFrameContext(frameContext.GameTime));
+            }
+            this.isObjectDrawDepthChanged = false;
         }
-
-        
 
         public void AddObject(GameObject gameObject)
         {
+            gameObject.Initialize();
+            gameObject.LoadObject();
             this._gameObjects.Add(gameObject);
         }
 
@@ -58,6 +74,7 @@ namespace CobaltFrame.Screen
         {
             if (this._gameObjects.Contains(gameObject))
             {
+                gameObject.UnloadObject();
                 this._gameObjects.Remove(gameObject);
             }
         }
@@ -71,6 +88,16 @@ namespace CobaltFrame.Screen
         protected virtual void Navigate(ScreenBase screen,object parameter)
         {
             OnNavigate(screen,parameter);
+        }
+
+        public void ChangeObjectDrawDepth(GameObject obj,float depth)
+        {
+            if (this._gameObjects.Contains(obj))
+            {
+                obj.SetDrawDepth(depth);
+                this._gameObjects.Sort();
+                this.isObjectDrawDepthChanged = true;
+            }
         }
     }
 }
