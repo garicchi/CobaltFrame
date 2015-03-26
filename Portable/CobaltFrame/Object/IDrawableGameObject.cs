@@ -11,6 +11,6 @@ namespace CobaltFrame.Object
     {
         
         void Draw(ObjectFrameContext frameContext);
-        void SetDrawDepth(float depth);
+        
     }
 }

@@ -99,7 +99,7 @@ namespace CobaltFrame.Screen
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="depth"></param>
-        public void ChangeObjectDrawDepth(DrawableGameObject obj,float depth)
+        public void ChangeObjectDrawDepth(GameObject obj,float depth)
         {
             //オブジェクトのレイヤー変更時にオブジェクトコレクションのソートを行うが
             //頻繁にソートを行えないのでレイヤ変更時のみソートのフラグをたててソート
