@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Common;
 using CobaltFrame.Object;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,14 @@ namespace CobaltFrame.Screen
 
         public event Action<ScreenBase,object> OnNavigate;
 
+        protected GraphicsDevice _graphicsDevice;
+
         public ScreenBase(ScreenContext screenContext)
         {
             this._screenContext = screenContext;
             this._gameObjects = new List<GameObject>();
             this.isObjectDrawDepthChanged = false;
+            this._graphicsDevice = screenContext.Game.GraphicsDevice;
         }
 
         public virtual void Initialize(object navigationParameter)

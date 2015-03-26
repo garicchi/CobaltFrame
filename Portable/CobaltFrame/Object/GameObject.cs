@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Common;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace CobaltFrame.Object
         protected ObjectContext _objectContext;
 
         private float _layerDepth;
+
+        protected GraphicsDevice _graphicsDevice;
         public float LayerDepth
         {
             get { return this._layerDepth; }
@@ -20,6 +23,7 @@ namespace CobaltFrame.Object
         {
             this._objectContext = context;
             this._layerDepth = 0.0f;
+            this._graphicsDevice = context.Game.GraphicsDevice;
         }
         public virtual void Initialize()
         {
