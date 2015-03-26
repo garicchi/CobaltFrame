@@ -27,7 +27,7 @@ namespace CobaltFrame.Screen
         {
             base.Initialize();
             if (_currentScreen != null)
-                _currentScreen.Initialize(null);
+                _currentScreen.Initialize();
 
             this._componentState = ComponentState.Initialized;
         }
@@ -36,7 +36,7 @@ namespace CobaltFrame.Screen
         {
             base.LoadContent();
             if (_currentScreen != null)
-                _currentScreen.LoadScreen();
+                _currentScreen.LoadObject();
 
             this._componentState = ComponentState.Loaded;
         }
@@ -45,7 +45,7 @@ namespace CobaltFrame.Screen
         {
             base.UnloadContent();
             if(_currentScreen!=null)
-            _currentScreen.UnloadScreen();
+            _currentScreen.UnloadObject();
 
             this._componentState = ComponentState.Unloaded;
         }
@@ -55,14 +55,14 @@ namespace CobaltFrame.Screen
             base.Update(gameTime);
 
             if (_currentScreen != null)
-                _currentScreen.Update(new ScreenFrameContext(gameTime));
+                _currentScreen.Update(new ObjectFrameContext(gameTime));
         }    
 
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             if (_currentScreen != null)
-            _currentScreen.Draw(new ScreenFrameContext(gameTime));
+            _currentScreen.Draw(new ObjectFrameContext(gameTime));
             
         }
 
@@ -77,7 +77,7 @@ namespace CobaltFrame.Screen
             {
                 if (this._componentState >= ComponentState.Unloaded)
                 {
-                    _currentScreen.UnloadScreen();
+                    _currentScreen.UnloadObject();
                 }
                 _currentScreen.OnNavigate-=OnNavigateHandler;
                 _currentScreen = null;
@@ -85,11 +85,12 @@ namespace CobaltFrame.Screen
 
             if (this._componentState >= ComponentState.Initialized)
             {
-                nextScreen.Initialize(navigationParameter);
+                nextScreen.Initialize();
+                nextScreen.NavigateTo(navigationParameter);
             }
             if (this._componentState >= ComponentState.Loaded)
             {
-                nextScreen.LoadScreen();
+                nextScreen.LoadObject();
             }
             
             nextScreen.OnNavigate += OnNavigateHandler;

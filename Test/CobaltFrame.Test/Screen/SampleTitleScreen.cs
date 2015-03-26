@@ -20,37 +20,37 @@ namespace CobaltFrame.Test.Screen
             this.AddObject(_sampleObject1);
         }
 
-        public override void Initialize(object navigationParameter)
+        public override void Initialize()
         {
-            base.Initialize(navigationParameter);
+            base.Initialize();
             
         }
 
-        public override void LoadScreen()
+        public override void LoadObject()
         {
-            base.LoadScreen();
+            base.LoadObject();
         }
 
-        public override void UnloadScreen()
+        public override void UnloadObject()
         {
-            base.UnloadScreen();
+            base.UnloadObject();
         }
 
-        public override void Update(ScreenFrameContext frameContext)
+        public override void Update(ObjectFrameContext frameContext)
         {
             base.Update(frameContext);
         }
 
-        public override void Draw(ScreenFrameContext frameContext)
+        public override void Draw(ObjectFrameContext frameContext)
         {
             this._game.GraphicsDevice.Clear(Color.SteelBlue);
             base.Draw(frameContext);
             
         }
 
-        protected override void Navigate(ScreenBase screen, object parameter)
+        public override void NavigateTo(object parameter)
         {
-            base.Navigate(screen, parameter);
+            base.NavigateTo(parameter);
         }
     }
 }

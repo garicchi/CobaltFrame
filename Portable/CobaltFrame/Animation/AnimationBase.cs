@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Common;
+using CobaltFrame.Object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Animation
 {
-    public abstract class AnimationBase:IAnimation
+    public abstract class AnimationBase:GameObject,IAnimation
     {
-        private ObjectContext _objectContext;
+        
 
         public AnimationState State { get; private set; }
         public TimeSpan Duration { get; private set; }
@@ -23,14 +24,15 @@ namespace CobaltFrame.Animation
         private AnimationState _beforeState;
 
         public AnimationBase(ObjectContext context)
+            :base(context)
         {
-            this._objectContext = context;
+            
             this._beforeState = AnimationState.Stop;
             this.State = AnimationState.Stop;
             
         }
 
-        public virtual void Update(ObjectFrameContext frameContext)
+        public override void Update(ObjectFrameContext frameContext)
         {
             if (this.State == AnimationState.Active)
             {
@@ -88,20 +90,7 @@ namespace CobaltFrame.Animation
             this.State = AnimationState.Stop;
         }
 
-        public virtual void Initialize()
-        {
-            
-        }
-
-        public virtual void LoadObject()
-        {
-            
-        }
-
-        public virtual void UnloadObject()
-        {
-            
-        }
+        
 
         
 
