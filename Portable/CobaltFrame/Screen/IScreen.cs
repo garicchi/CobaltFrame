@@ -17,9 +17,6 @@ namespace CobaltFrame.Screen
         void Update(ScreenFrameContext frameContext);
         void Draw(ScreenFrameContext frameContext);
 
-        void AddObject(DrawableGameObject gameObject);
-
-        void RemoveObject(DrawableGameObject gameObject);
-        bool HasObject(DrawableGameObject gameObject);
+        
     }
 }

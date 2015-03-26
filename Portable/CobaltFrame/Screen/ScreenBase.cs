@@ -30,22 +30,22 @@ namespace CobaltFrame.Screen
             this.isObjectDrawDepthChanged = false;
         }
 
-        public void Initialize(object navigationParameter)
+        public virtual void Initialize(object navigationParameter)
         {
             //AddObjectで呼ぶ
         }
 
-        public void LoadScreen()
+        public virtual void LoadScreen()
         {
             //AddObjectで呼ぶ
         }
 
-        public void UnloadScreen()
+        public virtual void UnloadScreen()
         {
             //RemoveObjectで呼ぶ
         }
 
-        public void Update(ScreenFrameContext frameContext)
+        public virtual void Update(ScreenFrameContext frameContext)
         {
             foreach (GameObject obj in this._gameObjects)
             {
@@ -53,7 +53,7 @@ namespace CobaltFrame.Screen
             }
         }
 
-        public void Draw(ScreenFrameContext frameContext)
+        public virtual void Draw(ScreenFrameContext frameContext)
         {
             //レイヤー変更時のみソートする
             if (this.isObjectDrawDepthChanged)
@@ -67,14 +67,14 @@ namespace CobaltFrame.Screen
             
         }
 
-        public void AddObject(GameObject gameObject)
+        protected void AddObject(GameObject gameObject)
         {
             gameObject.Initialize();
             gameObject.LoadObject();
             this._gameObjects.Add(gameObject);
         }
 
-        public void RemoveObject(GameObject gameObject)
+        protected void RemoveObject(GameObject gameObject)
         {
             if (this._gameObjects.Contains(gameObject))
             {
@@ -83,7 +83,7 @@ namespace CobaltFrame.Screen
             }
         }
 
-        public bool HasObject(GameObject gameObject)
+        protected bool HasObject(GameObject gameObject)
         {
             return this._gameObjects.Contains(gameObject);
         }
@@ -109,5 +109,7 @@ namespace CobaltFrame.Screen
                 this.isObjectDrawDepthChanged = true;
             }
         }
+
+
     }
 }
