@@ -46,6 +46,7 @@
     <Compile Include="SampleComponent.cs" />
     <Compile Include="Screen\IScreen.cs" />
     <Compile Include="Screen\ScreenBase.cs" />
+    <Compile Include="Screen\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

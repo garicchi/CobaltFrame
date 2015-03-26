@@ -10,10 +10,11 @@ namespace CobaltFrame.Screen
 {
     public interface IScreen
     {
-        public void Initialize();
+
+        public void Initialize(object navigationParameter);
         public void LoadScreen();
         public void UnloadScreen();
-        public IScreen Update(ScreenFrameContext frameContext);
+        public void Update(ScreenFrameContext frameContext);
         public void Draw(ScreenFrameContext frameContext);
 
         public void AddObject(GameObject gameObject);

@@ -14,13 +14,15 @@ namespace CobaltFrame.Screen
 
         protected IList<GameObject> _gameObjects;
 
+        public event Action<ScreenBase,object> OnNavigate;
+
         public ScreenBase(ScreenContext screenContext)
         {
             this._screenContext = screenContext;
             this._gameObjects = new List<GameObject>();
         }
 
-        public void Initialize()
+        public void Initialize(object navigationParameter)
         {
            
         }
@@ -35,9 +37,9 @@ namespace CobaltFrame.Screen
             
         }
 
-        public IScreen Update(ScreenFrameContext frameContext)
+        public void Update(ScreenFrameContext frameContext)
         {
-            return this;
+            
         }
 
         public void Draw(ScreenFrameContext frameContext)
@@ -45,6 +47,7 @@ namespace CobaltFrame.Screen
            
         }
 
+        
 
         public void AddObject(GameObject gameObject)
         {
@@ -62,6 +65,12 @@ namespace CobaltFrame.Screen
         public bool HasObject(GameObject gameObject)
         {
             return this._gameObjects.Contains(gameObject);
+        }
+
+
+        protected virtual void Navigate(ScreenBase screen,object parameter)
+        {
+            OnNavigate(screen,parameter);
         }
     }
 }
