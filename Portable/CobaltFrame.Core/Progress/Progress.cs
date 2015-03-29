@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
-    public abstract class Progress:GameObject,IProgress
+    public abstract class Progress:UpdatableObject,IProgress
     {
         public event Action OnCompleted;
 

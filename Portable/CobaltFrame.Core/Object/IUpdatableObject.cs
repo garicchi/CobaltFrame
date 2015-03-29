@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public interface IGameObject
+    public interface IUpdatableObject
     {
         IGameContext GameContext { get; }
         ObjectLoadState LoadState { get; }
@@ -16,7 +16,7 @@ namespace CobaltFrame.Core.Object
         /// このObjectにぶら下がる子オブジェクトのリスト
         /// 描画はされない
         /// </summary>
-        List<IGameObject> GameObjects { get; }
+        List<IUpdatableObject> GameObjects { get; }
         bool IsActive { get; set; }
         void Initialize();
         void LoadObject();

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public abstract class DrawableGameObject:GameObject,IDrawableGameObject,IComparable
+    public abstract class DrawableObject:UpdatableObject,IDrawableObject,IComparable
     {
-        public DrawableGameObject(IGameContext context)
+        public DrawableObject(IGameContext context)
             :base(context)
         {
             this._isVisible = true;
             this._layerDepth = 0.5f;
-            this._drawableObjects = new List<IDrawableGameObject>();
+            this._drawableObjects = new List<IDrawableObject>();
             this._isObjectLayerChanged = false;
         }
         protected bool _isVisible;
@@ -30,8 +30,8 @@ namespace CobaltFrame.Core.Object
             }
         }
 
-        private List<IDrawableGameObject> _drawableObjects;
-        public List<IDrawableGameObject> DrawableObjects
+        private List<IDrawableObject> _drawableObjects;
+        public List<IDrawableObject> DrawableObjects
         {
             get { return _drawableObjects; }
         }
@@ -57,7 +57,7 @@ namespace CobaltFrame.Core.Object
             this._isObjectLayerChanged = false;
         }
 
-        public void ChangeChildDrawableObjectLayer(IDrawableGameObject obj, float layer)
+        public void ChangeChildDrawableObjectLayer(IDrawableObject obj, float layer)
         {
             if (this._drawableObjects.Contains(obj))
             {
@@ -76,7 +76,7 @@ namespace CobaltFrame.Core.Object
 
         public int CompareTo(object obj)
         {
-            var gObj = (IDrawableGameObject)obj;
+            var gObj = (IDrawableObject)obj;
             if (gObj.LayerDepth < this.LayerDepth) { return -1; }
             if (gObj.LayerDepth > this.LayerDepth) { return 1; }
             if (gObj.LayerDepth == this.LayerDepth) { return 0; }

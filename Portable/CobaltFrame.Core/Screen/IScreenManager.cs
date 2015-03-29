@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Screen
 {
-    interface IScreenManager:IDrawableGameObject
+    interface IScreenManager:IDrawableObject
     {
         int ScreenChacheSize { get; set; }
         Queue<IScreen> PreviousScreenQueue { get; }

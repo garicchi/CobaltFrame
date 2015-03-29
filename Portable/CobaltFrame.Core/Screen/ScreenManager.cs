@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Screen
 {
-    public abstract class ScreenManager:DrawableGameObject,IScreenManager,IDisposable
+    public abstract class ScreenManager:DrawableObject,IScreenManager,IDisposable
     {
 
         protected int _screenChacheSize;

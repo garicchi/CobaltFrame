@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public interface IDrawableGameObject:IGameObject
+    public interface IDrawableObject:IUpdatableObject
     {
         bool IsVisible { get; set; }
         float LayerDepth { get; }
@@ -15,8 +15,8 @@ namespace CobaltFrame.Core.Object
         /// このオブジェクトにぶら下がる子オブジェクト
         /// 描画される
         /// </summary>
-        List<IDrawableGameObject> DrawableObjects { get; }
+        List<IDrawableObject> DrawableObjects { get; }
         void Draw(IFrameContext context);
-        void ChangeChildDrawableObjectLayer(IDrawableGameObject obj,float layer);
+        void ChangeChildDrawableObjectLayer(IDrawableObject obj,float layer);
     }
 }

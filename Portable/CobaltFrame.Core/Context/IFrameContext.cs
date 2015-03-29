@@ -8,6 +8,6 @@ namespace CobaltFrame.Core.Context
 {
     public interface IFrameContext
     {
-        TimeSpan TotalGameTime { get; set; }
+        TimeSpan TotalGameTime { get; }
     }
 }

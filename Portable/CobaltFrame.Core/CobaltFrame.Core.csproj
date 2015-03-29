@@ -37,13 +37,15 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\AnimationBase.cs" />
+    <Compile Include="Animation\InstantAnimation.cs" />
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />
     <Compile Include="Context\IGameContext.cs" />
-    <Compile Include="Object\DrawableGameObject.cs" />
-    <Compile Include="Object\GameObject.cs" />
-    <Compile Include="Object\IDrawableGameObject.cs" />
-    <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="Object\DrawableObject.cs" />
+    <Compile Include="Object\UpdatableObject.cs" />
+    <Compile Include="Object\IDrawableObject.cs" />
+    <Compile Include="Object\IUpdatableObject.cs" />
     <Compile Include="Progress\Progress.cs" />
     <Compile Include="Progress\ProgressState.cs" />
     <Compile Include="Progress\IProgress.cs" />
