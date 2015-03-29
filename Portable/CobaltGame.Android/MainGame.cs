@@ -14,7 +14,7 @@ namespace CobaltGame.Android
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            
             component = new SampleComponent(this);
             Components.Add(component);
         }

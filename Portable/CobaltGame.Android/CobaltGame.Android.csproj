@@ -88,12 +88,6 @@
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CobaltFrame\CobaltFrame.csproj">
-      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
-      <Name>CobaltFrame</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

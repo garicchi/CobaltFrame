@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Animation
+namespace CobaltFrame.Core.Context
 {
-    public enum AnimationState
+    public interface IFrameContext
     {
-        Active,Pause,Stop
+        TimeSpan TotalGameTime { get; set; }
     }
 }
