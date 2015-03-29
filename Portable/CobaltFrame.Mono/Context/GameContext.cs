@@ -10,7 +10,12 @@ namespace CobaltFrame.Context
 {
     public class GameContext:IGameContext
     {
-        protected Game _game;
+        private Game _game;
+
+        public Game Game
+        {
+            get { return _game; }
+        }
         public GameContext(Game game)
         {
             this._game = game;

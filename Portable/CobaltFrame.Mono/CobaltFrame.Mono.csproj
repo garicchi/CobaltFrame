@@ -41,6 +41,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameScreenManager.cs" />
+    <Compile Include="Sound\SoundObject.cs" />
+    <Compile Include="UI\ButtonObject.cs" />
+    <Compile Include="UI\ButtonState.cs" />
+    <Compile Include="UI\UIObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -51,7 +55,6 @@
     <Folder Include="Animation\" />
     <Folder Include="Common\" />
     <Folder Include="Input\" />
-    <Folder Include="Sound\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CobaltFrame.Core\CobaltFrame.Core.csproj">

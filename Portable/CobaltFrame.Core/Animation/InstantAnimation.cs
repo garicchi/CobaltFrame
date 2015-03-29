@@ -19,11 +19,12 @@ namespace CobaltFrame.Core.Animation
             get { return _value; }
         }
 
-        public InstantAnimation(IGameContext context,T begin,T end,TimeSpan duration,Func<T,T,T> expression)
+        public InstantAnimation(IGameContext context,T begin,T end,TimeSpan duration,Func<T,T,float,T> expression)
             : base(context, duration)
         {
             this._begin = begin;
             this._end = end;
+            this._expression = expression;
         }
 
         public override void Update(Core.Context.IFrameContext frameContext)

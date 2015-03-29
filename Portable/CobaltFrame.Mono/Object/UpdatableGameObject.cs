@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Context;
 using CobaltFrame.Core.Object;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,11 @@ namespace CobaltFrame.Object
 {
     public class UpdatableGameObject:UpdatableObject
     {
+        protected Game _game;
         public UpdatableGameObject(GameContext context)
             : base(context)
         {
-
+            this._game = context.Game;
         }
     }
 }
