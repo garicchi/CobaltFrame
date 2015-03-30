@@ -20,5 +20,30 @@ namespace CobaltFrame.UI
         {
 
         }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        public override void LoadObject()
+        {
+            base.LoadObject();
+        }
+
+        public override void UnloadObject()
+        {
+            base.UnloadObject();
+        }
+
+        public override void Update(Core.Context.IFrameContext context)
+        {
+            base.Update(context);
+        }
+
+        public override void Draw(Core.Context.IFrameContext context)
+        {
+            base.Draw(context);
+        }
     }
 }

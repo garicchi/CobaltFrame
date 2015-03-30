@@ -43,7 +43,7 @@ namespace CobaltFrame.Core.Object
         }
         private bool _isObjectLayerChanged;
 
-        public void Draw(IFrameContext context)
+        public virtual void Draw(IFrameContext context)
         {
             if (this._isObjectLayerChanged)
                 this.SortObject();
