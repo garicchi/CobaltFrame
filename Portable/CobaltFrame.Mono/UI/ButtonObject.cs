@@ -1,4 +1,8 @@
 ﻿using CobaltFrame.Context;
+using CobaltFrame.Position;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +19,35 @@ namespace CobaltFrame.UI
         {
             get { return _state; }
         }
-        public ButtonObject(GameContext context)
-            : base(context)
-        {
 
+        protected ButtonState _beforeState;
+
+        protected Texture2D _pressedTexture;
+        protected Texture2D _releasedTexture;
+
+        private string _pressedTexturePath;
+
+        protected string PressedTexturePath
+        {
+            get { return _pressedTexturePath; }
+        }
+
+        private string _releasedTexturePath;
+
+        protected string ReleasedTexturePath
+        {
+            get { return _releasedTexturePath; }
+            set { _releasedTexturePath = value; }
+        }
+
+        public event Action<ButtonObject, Vector2> OnClick;
+        public ButtonObject(GameContext context,Position2D position,string pressedTexturePath,string releasedTexturePath)
+            : base(context,position)
+        {
+            this._pressedTexturePath = pressedTexturePath;
+            this._releasedTexturePath = releasedTexturePath;
+            this._state = ButtonState.Released;
+            this._beforeState = ButtonState.Released;
         }
 
         public override void Initialize()
@@ -29,21 +58,61 @@ namespace CobaltFrame.UI
         public override void LoadObject()
         {
             base.LoadObject();
+            this._pressedTexture = this._game.Content.Load<Texture2D>(this._pressedTexturePath);
+            this._releasedTexture = this._game.Content.Load<Texture2D>(this._releasedTexturePath);
         }
 
         public override void UnloadObject()
         {
             base.UnloadObject();
+            this._pressedTexture.Dispose();
+            this._releasedTexture.Dispose();
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
             base.Update(context);
+
+            this._state = ButtonState.Released;
+            TouchCollection collection = TouchPanel.GetState();
+            foreach (TouchLocation state in collection)
+            {
+                int id = state.Id;
+                float tPosX = state.Position.X;
+                float tPosY = state.Position.Y;
+                TouchLocationState tLState = state.State;
+                if (tLState == TouchLocationState.Pressed)
+                {
+                    if (this._position.Contains((int)tPosX, (int)tPosY))
+                    {
+                        this._state = ButtonState.Pressed;
+                        if (this._beforeState == ButtonState.Released)
+                        {
+                            OnClick(this, state.Position);
+                        }
+                        break;
+                    }
+                }
+
+            }
+
+            this._beforeState = this._state;
         }
 
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
+            this._spriteBatch.Begin();
+            switch (this._state)
+            {
+                case ButtonState.Released:
+                    this._spriteBatch.Draw(this._releasedTexture,this._position.GetPosition(),Color.White);
+                    break;
+                case ButtonState.Pressed:
+                    this._spriteBatch.Draw(this._pressedTexture, this._position.GetPosition(), Color.White);
+                    break;
+            }
+            this._spriteBatch.End();
         }
     }
 }

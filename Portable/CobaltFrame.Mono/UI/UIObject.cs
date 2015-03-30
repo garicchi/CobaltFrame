@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Context;
 using CobaltFrame.Object;
+using CobaltFrame.Position;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace CobaltFrame.UI
 {
     public abstract class UIObject:DrawableGameObject
     {
-        public UIObject(GameContext context)
-            : base(context)
+        public UIObject(GameContext context,Position2D position)
+            : base(context,position)
         {
 
         }

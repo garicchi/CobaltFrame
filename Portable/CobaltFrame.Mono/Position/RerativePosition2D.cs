@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Position
 {
-    public class GameRerativePosition:GamePosition
+    public class RerativePosition2D:Position2D
     {
-        private GamePosition _sourcePosition;
+        private Position2D _sourcePosition;
         
-        protected GamePosition SourcePosition
+        protected Position2D SourcePosition
         {
             get { return _sourcePosition; }
         }
 
-        public GameRerativePosition(Rectangle position,GamePosition sourcePosition)
+        public RerativePosition2D(Rectangle position,Position2D sourcePosition)
             :base(position)
         {
             this._sourcePosition = sourcePosition;
@@ -35,6 +35,11 @@ namespace CobaltFrame.Position
         }
         public override Rectangle GetPosition()
         {
+            return base.GetPosition();
+        }
+
+        public Rectangle GetRelativePosition()
+        {
             var absoluteRect = base.GetPosition();
             return new Rectangle(
                 absoluteRect.X - this._sourcePosition.GetPosition().X,
@@ -42,11 +47,6 @@ namespace CobaltFrame.Position
                 absoluteRect.Width,
                 absoluteRect.Height
                 );
-        }
-
-        public Rectangle GetAbsolutePosition()
-        {
-            return base.GetPosition();
         }
     }
 }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Position
 {
-    public class GamePosition
+    public class Position2D
     {
         private Rectangle _drawRect;
 
         
-        public GamePosition(Rectangle drawRect)
+        public Position2D(Rectangle drawRect)
         {
             this._drawRect = drawRect;
         }
@@ -26,5 +26,22 @@ namespace CobaltFrame.Position
         {
             return this._drawRect;
         }
+
+        public bool Contains(Position2D position)
+        {
+            return this._drawRect.Contains(position.GetPosition());
+        }
+
+        public bool Contains(int x,int y)
+        {
+            return this._drawRect.Contains((float)x, (float)y);
+        }
+
+        public bool Intersects(Position2D position)
+        {
+            return this._drawRect.Intersects(position.GetPosition());
+        }
+
+
     }
 }

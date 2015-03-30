@@ -39,8 +39,8 @@
     <Compile Include="Object\DrawableGameObject.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
-    <Compile Include="Position\GamePosition.cs" />
-    <Compile Include="Position\GameRerativePosition.cs" />
+    <Compile Include="Position\Position2D.cs" />
+    <Compile Include="Position\RerativePosition2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameScreenManager.cs" />
