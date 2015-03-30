@@ -19,12 +19,19 @@ namespace CobaltFrame.Object
         {
             this._game = context.Game;
             this._spriteBatch = new SpriteBatch(_game.GraphicsDevice);
+            
         }
 
         public override void LoadObject()
         {
             base.LoadObject();
             
+        }
+
+        public override void Draw(Core.Context.IFrameContext context)
+        {
+            
+            base.Draw(context);
         }
     }
 }

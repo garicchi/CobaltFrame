@@ -37,7 +37,10 @@
     <Compile Include="Context\FrameContext.cs" />
     <Compile Include="Context\GameContext.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
+    <Compile Include="Object\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
+    <Compile Include="Position\GamePosition.cs" />
+    <Compile Include="Position\GameRerativePosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameScreenManager.cs" />
