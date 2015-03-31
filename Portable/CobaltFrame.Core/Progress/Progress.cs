@@ -2,13 +2,14 @@
 using CobaltFrame.Core.Object;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
-    public abstract class Progress:UpdatableObject,IProgress
+    public abstract class Progress<T>:UpdatableObject,IProgress<T>
     {
         public event Action OnCompleted;
 
@@ -36,6 +37,7 @@ namespace CobaltFrame.Core.Progress
         public float CurrentProgress
         {
             get { return this._currentProgress; }
+            set { this._currentProgress = value; }
         }
         private bool _isLoop;
         public bool IsLoop
@@ -57,7 +59,56 @@ namespace CobaltFrame.Core.Progress
 
         private ProgressState _beforeState;
 
-        public Progress(IGameContext context, TimeSpan duration)
+        private IProgress<T> _nextProgress;
+
+        public IProgress<T> NextProgress
+        {
+            get { return _nextProgress; }
+            set { _nextProgress = value; }
+        }
+
+        protected T _beginValue;
+
+
+        public T BeginValue
+        {
+            get
+            {
+                return this._beginValue;
+            }
+            set
+            {
+                this._beginValue = value;
+            }
+        }
+
+        protected T _endValue;
+        public T EndValue
+        {
+            get
+            {
+                return this._endValue;
+            }
+            set
+            {
+                this._endValue = value;
+            }
+        }
+
+        protected T _currentValue;
+        public T CurrentValue
+        {
+            get
+            {
+                return this._currentValue;
+            }
+            set
+            {
+                this._currentValue = value;
+            }
+        }
+        
+        public Progress(IGameContext context, TimeSpan duration,T begin,T end)
             :base(context)
         {
             
@@ -66,10 +117,15 @@ namespace CobaltFrame.Core.Progress
             this._isLoop = false;
             this._duration = duration;
             this._isChain = false;
+            this.OnCompleted += () => { };
+            this._beginValue = begin;
+            this._endValue = end;
+            this._currentValue = begin;
         }
 
         public override void Update(IFrameContext frameContext)
         {
+            base.Update(frameContext);
             if (this.State == ProgressState.Active)
             {
                 if (this._beforeState == ProgressState.Stop && this.State == ProgressState.Active)
@@ -85,7 +141,7 @@ namespace CobaltFrame.Core.Progress
 
                 this._elapsedTime = frameContext.TotalGameTime - this.BeginTime;
                 this._currentProgress = (float)(this.ElapsedTime.TotalSeconds / this.Duration.TotalSeconds);
-
+                this._currentValue = this.UpdateExpression(this._beginValue,this._endValue,this._currentProgress);
                 if (this._currentProgress >= 1.0f)
                 {
                     if (this.IsLoop)
@@ -100,7 +156,17 @@ namespace CobaltFrame.Core.Progress
                         this.OnCompleted();
                     }
                 }
+
+                 
             }
+
+            
+
+            if (IsChain)
+            {
+                this._currentValue = this._nextProgress.CurrentValue;
+            }
+
             this._beforeState = State;
         }
 
@@ -127,7 +193,7 @@ namespace CobaltFrame.Core.Progress
             this._state = ProgressState.Stop;
         }
 
-        public IProgress Chain(IProgress nextProgress, Action<IProgress> onCompleted)
+        public IProgress<T> Chain(IProgress<T> nextProgress, Action<IProgress<T>> onCompleted)
         {
             this.OnCompleted += () =>
             {
@@ -135,8 +201,14 @@ namespace CobaltFrame.Core.Progress
                 {
                     onCompleted(nextProgress);
                 }
-                nextProgress.Start();
+                
+                this._isChain = true;
+                
+                this._nextProgress.Start();
+                
             };
+            this._nextProgress = nextProgress;
+            this.AddObject(this._nextProgress);
             return nextProgress;
         }
 
@@ -150,7 +222,11 @@ namespace CobaltFrame.Core.Progress
                 }
                 
             };
-            
         }
+
+
+        protected abstract T UpdateExpression(T begin, T end, float currentProgress);
+
+       
     }
 }

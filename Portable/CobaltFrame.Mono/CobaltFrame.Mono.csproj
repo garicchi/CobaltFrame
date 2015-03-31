@@ -34,9 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation\Position2DAnimation.cs" />
+    <Compile Include="Animation\WaitPosition2DAnimation.cs" />
     <Compile Include="Context\FrameContext.cs" />
     <Compile Include="Context\GameContext.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
+    <Compile Include="Object\PositionUpdateMode.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
     <Compile Include="Position\Position2D.cs" />
@@ -55,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Animation\" />
     <Folder Include="Common\" />
     <Folder Include="Input\" />
   </ItemGroup>

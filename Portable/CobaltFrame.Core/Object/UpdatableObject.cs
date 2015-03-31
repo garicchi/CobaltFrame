@@ -92,6 +92,7 @@ namespace CobaltFrame.Core.Object
             {
                 obj.LoadObject();
             }
+            this._gameObjects.Add(obj);
         }
 
         protected void RemoveObject(IUpdatableObject obj)

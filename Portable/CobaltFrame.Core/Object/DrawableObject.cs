@@ -1,4 +1,5 @@
-﻿using CobaltFrame.Core.Context;
+﻿using CobaltFrame.Core.Common;
+using CobaltFrame.Core.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,44 @@ namespace CobaltFrame.Core.Object
             get { return this._layerDepth; }
         }
         private bool _isObjectLayerChanged;
+
+        public override void Initialize()
+        {
+            foreach (var obj in this._drawableObjects)
+            {
+                obj.Initialize();
+            }
+            base.Initialize();
+            
+        }
+
+        public override void LoadObject()
+        {
+            foreach (var obj in this._drawableObjects)
+            {
+                obj.LoadObject();
+            }
+            base.LoadObject();
+        }
+
+        public override void UnloadObject()
+        {
+            foreach (var obj in this._drawableObjects)
+            {
+                obj.UnloadObject();
+            }
+            base.UnloadObject();
+        }
+
+        public override void Update(IFrameContext context)
+        {
+            foreach (var obj in this._drawableObjects)
+            {
+                if (obj.IsActive)
+                    obj.Update(context);
+            }
+            base.Update(context);
+        }
 
         public virtual void Draw(IFrameContext context)
         {
@@ -87,6 +126,32 @@ namespace CobaltFrame.Core.Object
         protected void SortObject()
         {
             this._drawableObjects.Sort();
+        }
+
+        protected void AddDrawableObject(IDrawableObject obj)
+        {
+            if (this._loadState >= ObjectLoadState.Initialized)
+            {
+                obj.Initialize();
+            }
+            if (this._loadState >= ObjectLoadState.Loaded)
+            {
+                obj.LoadObject();
+            }
+            this._drawableObjects.Add(obj);
+        }
+
+
+        protected void RemoveDrawableObject(IDrawableObject obj)
+        {
+            if (this._drawableObjects.Contains(obj))
+            {
+                if (this._loadState >= ObjectLoadState.Unloaded)
+                {
+                    obj.UnloadObject();
+                }
+                this._drawableObjects.Remove(obj);
+            }
         }
     }
 }

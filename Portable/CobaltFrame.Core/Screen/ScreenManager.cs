@@ -50,7 +50,7 @@ namespace CobaltFrame.Core.Screen
             this._screenChacheSize = 3;
             this._firstScreen = firstScreen;
             this.ChangeScreen(firstScreen,param);
-            this.AddObject(this._currentScreen);
+            this.AddDrawableObject(this._currentScreen);
         }
 
         protected void ChangeScreen(IScreen nextScreen, object parameter)

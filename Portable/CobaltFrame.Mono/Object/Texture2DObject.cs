@@ -44,6 +44,11 @@ namespace CobaltFrame.Object
             this._texture.Dispose();
         }
 
+        public override void Update(Core.Context.IFrameContext context)
+        {
+            base.Update(context);
+        }
+
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
@@ -51,5 +56,7 @@ namespace CobaltFrame.Object
             this._spriteBatch.Draw(this._texture,this._position.GetPosition(),Color.White);
             this._spriteBatch.End();
         }
+
+        
     }
 }
