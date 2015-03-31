@@ -3,6 +3,8 @@ using CobaltFrame.Context;
 using CobaltFrame.Object;
 using CobaltFrame.Position;
 using CobaltFrame.Screen;
+using CobaltFrame.Sound;
+using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,25 +22,41 @@ namespace CobaltFrame.Test.Screen
         public SampleScreen(GameContext context)
             : base(context)
         {
+            //2Dオブジェクトの作成
             this._texture2DObj = new Texture2DObject(context,new Position2D(new Rectangle(100,100,100,100)),"face");
-
-            Position2DAnimation animation = new Position2DAnimation(context, TimeSpan.FromSeconds(2), new Position2D(new Rectangle(0, 0, 100, 100)), new Position2D(new Rectangle(200, 200, 100, 100)));
+            var sound = new SoundObject(context, "warp2");
+            this.AddObject(sound);
+            //2秒間(0,0)→(200,200)に移動するアニメーション
+            var animation = new Position2DAnimation(context, TimeSpan.FromSeconds(2), new Position2D(new Rectangle(0, 0, 100, 100)), new Position2D(new Rectangle(200, 200, 100, 100)));
+            //1秒間(200,200)で待つアニメーションをチェイン
             animation.Chain(new WaitPosition2DAnimation(context, TimeSpan.FromSeconds(1), new Position2D(new Rectangle(200, 200, 100, 100))), (progress) =>
             {
                 Debug.WriteLine("Wait");
             })
+            //3秒間(200,200)→(400,100)に移動するアニメーションをチェイン
             .Chain(new Position2DAnimation(context, TimeSpan.FromSeconds(3), new Position2D(new Rectangle(200, 200, 100, 100)), new Position2D(new Rectangle(400, 100, 100, 100))), (progress) =>
             {
+                sound.Play();
             })
+            //すべてのアニメーション終了時の処理をチェイン
             .Chain(() =>
             {
                 Debug.WriteLine("Complete");
             });
 
-
+            //アニメーションをオブジェクトにアタッチ
             this._texture2DObj.AttachAnimation(animation);
+            //オブジェクトをスクリーンに追加
             this.AddDrawableObject(this._texture2DObj);
-            animation.Start();
+
+            var button = new ButtonObject(context,new RelativePosition2D(new Rectangle(50,50,120,80),_texture2DObj.Position),"button_on","button_off");
+            this.AddDrawableObject(button);
+            button.OnClick += (btn,pos) =>
+            {
+                //アニメーションを開始
+                animation.Start();
+            };
+            
         }
 
         

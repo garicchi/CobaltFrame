@@ -26,7 +26,7 @@ namespace CobaltFrame.Object
             get { return _positionUpdateMode; }
         }
 
-        protected Position2D Position
+        public Position2D Position
         {
             get { return _position; }
             set { _position = value; }

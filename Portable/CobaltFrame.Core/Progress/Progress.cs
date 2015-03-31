@@ -199,7 +199,10 @@ namespace CobaltFrame.Core.Progress
             {
                 if (onCompleted != null)
                 {
-                    onCompleted(nextProgress);
+                    nextProgress.OnCompleted += () =>
+                    {
+                        onCompleted(nextProgress);
+                    };
                 }
                 
                 this._isChain = true;
@@ -219,6 +222,7 @@ namespace CobaltFrame.Core.Progress
                 if (onCompleted != null)
                 {
                     onCompleted();
+                    
                 }
                 
             };

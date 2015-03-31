@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,7 @@ namespace CobaltFrame.UI
             this._releasedTexturePath = releasedTexturePath;
             this._state = ButtonState.Released;
             this._beforeState = ButtonState.Released;
+            this.OnClick += (s, pos) => { };
         }
 
         public override void Initialize()
@@ -72,28 +74,35 @@ namespace CobaltFrame.UI
         public override void Update(Core.Context.IFrameContext context)
         {
             base.Update(context);
-
-            this._state = ButtonState.Released;
+            
             TouchCollection collection = TouchPanel.GetState();
+            
             foreach (TouchLocation state in collection)
             {
+                
                 int id = state.Id;
                 float tPosX = state.Position.X;
                 float tPosY = state.Position.Y;
                 TouchLocationState tLState = state.State;
-                if (tLState == TouchLocationState.Pressed)
+                
+                if (tLState == TouchLocationState.Pressed || tLState==TouchLocationState.Moved)
                 {
                     if (this._position.Contains((int)tPosX, (int)tPosY))
                     {
-                        this._state = ButtonState.Pressed;
-                        if (this._beforeState == ButtonState.Released)
+                        
+                        if (tLState==TouchLocationState.Pressed)
                         {
                             OnClick(this, state.Position);
                         }
+                        this._state = ButtonState.Pressed;
                         break;
                     }
                 }
-
+                else
+                {
+                    this._state = ButtonState.Released;
+                }
+                
             }
 
             this._beforeState = this._state;
@@ -103,10 +112,12 @@ namespace CobaltFrame.UI
         {
             base.Draw(context);
             this._spriteBatch.Begin();
+            
             switch (this._state)
             {
                 case ButtonState.Released:
                     this._spriteBatch.Draw(this._releasedTexture,this._position.GetPosition(),Color.White);
+                    
                     break;
                 case ButtonState.Pressed:
                     this._spriteBatch.Draw(this._pressedTexture, this._position.GetPosition(), Color.White);

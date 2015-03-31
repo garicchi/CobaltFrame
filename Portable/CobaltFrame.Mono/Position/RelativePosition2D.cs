@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Position
 {
-    public class RerativePosition2D:Position2D
+    public class RelativePosition2D:Position2D
     {
         private Position2D _sourcePosition;
         
@@ -16,7 +16,7 @@ namespace CobaltFrame.Position
             get { return _sourcePosition; }
         }
 
-        public RerativePosition2D(Rectangle position,Position2D sourcePosition)
+        public RelativePosition2D(Rectangle position,Position2D sourcePosition)
             :base(position)
         {
             this._sourcePosition = sourcePosition;
@@ -37,7 +37,10 @@ namespace CobaltFrame.Position
         {
             return base.GetPosition();
         }
-
+        public void UpdatePosition()
+        {
+            this.SetPosition(this.GetRelativePosition());
+        }
         public Rectangle GetRelativePosition()
         {
             var absoluteRect = base.GetPosition();
