@@ -82,5 +82,7 @@ namespace CobaltFrame.Object
             this._positionUpdateMode = PositionUpdateMode.Manual;
             this.RemoveObject(this._attachedAnimation);
         }
+
+        
     }
 }

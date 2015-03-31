@@ -37,10 +37,13 @@ namespace CobaltFrame.Position
         {
             return base.GetPosition();
         }
-        public void UpdatePosition()
+
+        public void UpdatePosition(Position2D newSourceposition)
         {
+            this._sourcePosition = newSourceposition;
             this.SetPosition(this.GetRelativePosition());
         }
+        
         public Rectangle GetRelativePosition()
         {
             var absoluteRect = base.GetPosition();
