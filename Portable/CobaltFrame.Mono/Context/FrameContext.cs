@@ -16,6 +16,7 @@ namespace CobaltFrame.Context
             this._gameTime = gameTime;
         }
 
+        public Matrix ScreenScale { get; set; }
 
         public TimeSpan TotalGameTime
         {

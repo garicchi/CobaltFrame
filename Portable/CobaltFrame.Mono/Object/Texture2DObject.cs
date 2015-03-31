@@ -52,7 +52,8 @@ namespace CobaltFrame.Object
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
-            this._spriteBatch.Begin();
+            
+            this._spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,(context as FrameContext).ScreenScale);
             this._spriteBatch.Draw(this._texture,this._position.GetPosition(),Color.White);
             this._spriteBatch.End();
         }

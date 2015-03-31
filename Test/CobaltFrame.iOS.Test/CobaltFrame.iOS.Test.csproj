@@ -109,6 +109,14 @@
     <Content Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
+      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
+      <Name>CobaltFrame.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
+      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
+      <Name>CobaltFrame.Mono</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CobaltFrame.Test\CobaltFrame.Test.csproj">
       <Project>{3326f6cb-9c95-4f25-b99d-a7ba9d8aa1a8}</Project>
       <Name>CobaltFrame.Test</Name>

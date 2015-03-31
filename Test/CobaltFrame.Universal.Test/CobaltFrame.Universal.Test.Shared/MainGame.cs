@@ -6,6 +6,7 @@ using CobaltFrame;
 using CobaltFrame.Screen;
 using CobaltFrame.Test.Screen;
 using CobaltFrame.Context;
+using CobaltFrame.Core.Screen;
 
 namespace CobaltFrame.Universal.Test
 {
@@ -19,7 +20,7 @@ namespace CobaltFrame.Universal.Test
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this._gameContext = new GameContext(this);
-            this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null);
+            this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null,new Vector2(800,600),ScaleMode.Fill);
             
         }
 

@@ -111,7 +111,7 @@ namespace CobaltFrame.UI
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
-            this._spriteBatch.Begin();
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenScale);
             
             switch (this._state)
             {

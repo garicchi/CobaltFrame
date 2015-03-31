@@ -5,29 +5,55 @@ using System.Text;
 using CobaltFrame;
 using CobaltFrame.Screen;
 using CobaltFrame.Test.Screen;
-using CobaltFrame.Common;
+using CobaltFrame.Context;
+using CobaltFrame.Core.Screen;
 
 namespace CobaltFrame.Universal.Test
 {
-    class MainGame:Game
+    class MainGame : Game
     {
         GraphicsDeviceManager graphics;
-        ScreenManager _screenManager;
+        GameScreenManager _screenManager;
+        GameContext _gameContext;
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this._gameContext = new GameContext(this);
+            this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null, new Vector2(800, 600), ScaleMode.None);
 
-            _screenManager = new ScreenManager(this,new SampleTitleScreen(new ScreenContext(this)));
-            this.Components.Add(_screenManager);
         }
 
         protected override void Initialize()
         {
-            
             base.Initialize();
+            this._screenManager.Initialize();
         }
 
-        
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+            this._screenManager.LoadObject();
+        }
+
+        protected override void UnloadContent()
+        {
+            base.UnloadContent();
+            this._screenManager.UnloadObject();
+        }
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            this._screenManager.Update(new FrameContext(gameTime));
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+            this._screenManager.Draw(new FrameContext(gameTime));
+        }
+
+
+
     }
 }

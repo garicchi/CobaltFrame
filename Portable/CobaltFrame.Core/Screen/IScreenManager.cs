@@ -13,5 +13,7 @@ namespace CobaltFrame.Core.Screen
         Queue<IScreen> PreviousScreenQueue { get; }
         IScreen FirstScreen { get; }
         IScreen CurrentScreen { get; }
+
+        void ScreenResolutionChanged();
     }
 }

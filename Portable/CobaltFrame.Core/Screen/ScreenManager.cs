@@ -140,5 +140,8 @@ namespace CobaltFrame.Core.Screen
         {
             this.RemoveObject(this._currentScreen);
         }
+
+
+        public abstract void ScreenResolutionChanged();
     }
 }
