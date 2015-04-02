@@ -18,6 +18,26 @@ namespace CobaltFrame.Context
 
         public Matrix ScreenScale { get; set; }
 
+        public Matrix ScreenMargin { get; set; }
+
+        public Matrix ScreenTrans
+        {
+            get
+            {
+                return ScreenScale * ScreenMargin;
+            }
+        }
+
+        public Matrix GetScreenTrans()
+        {
+            return ScreenScale * ScreenMargin;
+        }
+
+        public Matrix GetScreenTransInvert()
+        {
+            return Matrix.Invert(ScreenScale * ScreenMargin);
+        }
+
         public TimeSpan TotalGameTime
         {
             get { return this._gameTime.TotalGameTime; }

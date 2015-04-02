@@ -23,7 +23,7 @@ namespace CobaltFrame.Test.Screen
             : base(context)
         {
             //2Dオブジェクトの作成
-            this._texture2DObj = new Texture2DObject(context,new Position2D(new Rectangle(100,100,100,100)),"face");
+            /*this._texture2DObj = new Texture2DObject(context,new Position2D(new Rectangle(100,100,100,100)),"face");
             var sound = new SoundObject(context, "warp2");
             this.AddObject(sound);
             //2秒間(0,0)→(200,200)に移動するアニメーション
@@ -48,13 +48,13 @@ namespace CobaltFrame.Test.Screen
             this._texture2DObj.AttachAnimation(animation);
             //オブジェクトをスクリーンに追加
             this.AddDrawableObject(this._texture2DObj);
-
-            var button = new ButtonObject(context,new RelativePosition2D(new Rectangle(50,50,120,60),_texture2DObj.Position),"button_on","button_off");
+            */
+            var button = new ButtonObject(context,new Position2D(new Rectangle(0,0,600,600)),"button_on","button_off");
             this.AddDrawableObject(button);
             button.OnClick += (btn,pos) =>
             {
                 //アニメーションを開始
-                animation.Start();
+                //animation.Start();
             };
             
         }

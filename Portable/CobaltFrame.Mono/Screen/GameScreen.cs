@@ -20,6 +20,7 @@ namespace CobaltFrame.Screen
         public override void Draw(Core.Context.IFrameContext context)
         {
             this._game.GraphicsDevice.Clear(Color.Cyan);
+            
             base.Draw(context);
         }
     }

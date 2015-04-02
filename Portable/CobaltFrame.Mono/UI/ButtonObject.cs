@@ -81,13 +81,11 @@ namespace CobaltFrame.UI
             {
                 
                 int id = state.Id;
-                float tPosX = state.Position.X;
-                float tPosY = state.Position.Y;
                 TouchLocationState tLState = state.State;
-                
+                var input = Vector2.Transform(state.Position,(context as FrameContext).GetScreenTransInvert());
                 if (tLState == TouchLocationState.Pressed || tLState==TouchLocationState.Moved)
                 {
-                    if (this._position.Contains((int)tPosX, (int)tPosY))
+                    if (this._position.Contains((int)input.X, (int)input.Y))
                     {
                         
                         if (tLState==TouchLocationState.Pressed)
@@ -111,7 +109,7 @@ namespace CobaltFrame.UI
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenScale);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenTrans);
             
             switch (this._state)
             {

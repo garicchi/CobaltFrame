@@ -105,7 +105,11 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Content\button_off.png" />
+    <BundleResource Include="Content\button_on.png" />
     <Content Include="Content\face.png" />
+    <Content Include="Content\warp1.mp3" />
+    <Content Include="Content\warp2.wav" />
     <Content Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
