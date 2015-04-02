@@ -173,7 +173,7 @@ namespace CobaltFrame.Core.Progress
         public virtual void Start()
         {
             this._currentProgress = 0.0f;
-            
+            this._isChain = false;
             this._state = ProgressState.Active;
             
         }
