@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
-    public abstract class Progress<T>:UpdatableObject,IProgress<T>
+    public abstract class TimeProgress<T>:UpdatableObject,ITimeProgress<T>
     {
         public event Action OnCompleted;
+
+        public event Action OnStarted;
 
         private ProgressState _state;
         public ProgressState State
@@ -59,12 +61,12 @@ namespace CobaltFrame.Core.Progress
 
         private ProgressState _beforeState;
 
-        private IProgress<T> _nextProgress;
+        private ITimeProgress<T> _nextProgress;
 
-        public IProgress<T> NextProgress
+        public ITimeProgress<T> NextProgress
         {
-            get { return _nextProgress; }
-            set { _nextProgress = value; }
+            get { return this._nextProgress; }
+            set { this._nextProgress = value; }
         }
 
         protected T _beginValue;
@@ -108,7 +110,7 @@ namespace CobaltFrame.Core.Progress
             }
         }
         
-        public Progress(IGameContext context, TimeSpan duration,T begin,T end)
+        public TimeProgress(IGameContext context, TimeSpan duration,T begin,T end)
             :base(context)
         {
             
@@ -118,6 +120,7 @@ namespace CobaltFrame.Core.Progress
             this._duration = duration;
             this._isChain = false;
             this.OnCompleted += () => { };
+            this.OnStarted += () => { };
             this._beginValue = begin;
             this._endValue = end;
             this._currentValue = begin;
@@ -131,6 +134,7 @@ namespace CobaltFrame.Core.Progress
                 if (this._beforeState == ProgressState.Stop && this.State == ProgressState.Active)
                 {
                     this._beginTime = frameContext.TotalGameTime;
+                    this.OnStarted();
                 }
 
                 if (this._beforeState == ProgressState.Pause && this.State == ProgressState.Active)
@@ -193,7 +197,7 @@ namespace CobaltFrame.Core.Progress
             this._state = ProgressState.Stop;
         }
 
-        public IProgress<T> Chain(IProgress<T> nextProgress, Action<IProgress<T>> onCompleted)
+        public ITimeProgress<T> Chain(ITimeProgress<T> nextProgress, Action<ITimeProgress<T>> onCompleted)
         {
             this.OnCompleted += () =>
             {
@@ -231,6 +235,8 @@ namespace CobaltFrame.Core.Progress
 
         protected abstract T UpdateExpression(T begin, T end, float currentProgress);
 
-       
+
+
+
     }
 }

@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Animation\Position2DAnimation.cs" />
+    <Compile Include="Animation\Position2DTimeAnimation.cs" />
     <Compile Include="Animation\WaitPosition2DAnimation.cs" />
     <Compile Include="Context\FrameContext.cs" />
     <Compile Include="Context\GameContext.cs" />

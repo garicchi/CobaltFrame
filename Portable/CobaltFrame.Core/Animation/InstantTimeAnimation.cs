@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Animation
 {
-    public class InstantAnimation<T>:AnimationBase<T>
+    public class InstantTimeAnimation<T>:TimeAnimationBase<T>
     {
 
         private Func<T, T,float, T> _expression;
 
 
-        public InstantAnimation(IGameContext context,T begin,T end,TimeSpan duration,Func<T,T,float,T> expression)
+        public InstantTimeAnimation(IGameContext context,T begin,T end,TimeSpan duration,Func<T,T,float,T> expression)
             : base(context, duration,begin,end)
         {
 

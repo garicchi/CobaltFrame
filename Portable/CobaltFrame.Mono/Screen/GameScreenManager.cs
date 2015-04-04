@@ -51,7 +51,7 @@ namespace CobaltFrame.Screen
             this._defaultResolution = defaultResolution;
             this._game = context.Game;
             this._screenScaleMode = screenScaleMode;
-            
+            this._game.IsMouseVisible = true;
         }
         public override void Initialize()
         {
