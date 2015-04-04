@@ -46,6 +46,8 @@ namespace CobaltFrame.Position
                 );
         }
 
+        
+
         public static Position2D operator* (Position2D left, float right)
         {
             return new Position2D(
@@ -68,22 +70,27 @@ namespace CobaltFrame.Position
             return this._drawRect;
         }
 
+        public virtual Rectangle GetPosition(Vector2 origin)
+        {
+            return new Rectangle(this.GetPosition().X + (int)origin.X, this.GetPosition().Y + (int)origin.Y, this.GetPosition().Width, this.GetPosition().Height);
+        }
+
         public virtual Vector2 GetLocation()
         {
             return new Vector2(this._drawRect.X,this._drawRect.Y);
         }
 
-        public bool Contains(Position2D position)
+        public virtual bool Contains(Position2D position)
         {
             return this.GetPosition().Contains(position.GetPosition());
         }
 
-        public bool Contains(int x,int y)
+        public virtual bool Contains(int x,int y)
         {
             return this.GetPosition().Contains((float)x, (float)y);
         }
 
-        public bool Intersects(Position2D position)
+        public virtual bool Intersects(Position2D position)
         {
             return this.GetPosition().Intersects(position.GetPosition());
         }

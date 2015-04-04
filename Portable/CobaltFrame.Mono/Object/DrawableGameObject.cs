@@ -31,6 +31,33 @@ namespace CobaltFrame.Object
             get { return _position; }
             set { _position = value; }
         }
+
+
+        protected float _rotation;
+
+        public float Rotation
+        {
+            get { return _rotation; }
+            set { _rotation = value; }
+        }
+
+        protected Vector2 _origin;
+
+        public Vector2 Origin
+        {
+            get { return _origin; }
+            set { _origin = value; }
+        }
+
+        protected Color _drawColor;
+
+        public Color DrawColor
+        {
+            get { return _drawColor; }
+            set { _drawColor = value; }
+        }
+
+        
         public DrawableGameObject(GameContext context,Position2D position)
             : base(context)
         {
@@ -38,6 +65,10 @@ namespace CobaltFrame.Object
             
             this._position = position;
             this._positionUpdateMode = PositionUpdateMode.Manual;
+            this._rotation = 0.0f;
+            this._origin = Vector2.Zero;
+            
+            this._drawColor = Color.White;
         }
 
         public override void LoadObject()

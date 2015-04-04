@@ -25,6 +25,14 @@ namespace CobaltFrame.Object
         {
             get { return _texture; }
         }
+
+        private Vector2 _textureScale;
+
+        private Vector2 TextureScale
+        {
+            get { return _textureScale; }
+        }
+
         public Texture2DObject(GameContext context,Position2D position,string texturePath)
             :base(context,position)
         {
@@ -35,7 +43,8 @@ namespace CobaltFrame.Object
         {
             base.LoadObject();
             this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
-            
+            this._origin = new Vector2(this._texture.Width/2.0f,this._texture.Height/2.0f);
+            this._textureScale = new Vector2((float)this._position.GetPosition().Width / (float)this._texture.Width, (float)this._position.GetPosition().Height / (float)this._texture.Height);
         }
 
         public override void UnloadObject()
@@ -46,6 +55,8 @@ namespace CobaltFrame.Object
 
         public override void Update(Core.Context.IFrameContext context)
         {
+            this._rotation+=0.1f;
+            
             base.Update(context);
         }
 
@@ -53,8 +64,8 @@ namespace CobaltFrame.Object
         {
             base.Draw(context);
             
-            this._spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,(context as FrameContext).ScreenScale);
-            this._spriteBatch.Draw(this._texture,this._position.GetPosition(),Color.White);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,(context as FrameContext).ScreenTrans);
+            this._spriteBatch.Draw(this._texture, null, this._position.GetPosition(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
             
             this._spriteBatch.End();
         }

@@ -49,6 +49,20 @@ namespace CobaltFrame.Position
                 );
         }
 
+        public override bool Contains(int x, int y)
+        {
+            return this.GetPosition().Contains((float)x, (float)y);
+        }
+
+        public override bool Contains(Position2D position)
+        {
+            return this.GetPosition().Contains(position.GetPosition());
+        }
+
+        public override bool Intersects(Position2D position)
+        {
+            return this.GetPosition().Intersects(position.GetPosition());
+        }
         
     }
 }

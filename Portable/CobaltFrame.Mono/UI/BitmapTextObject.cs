@@ -39,15 +39,7 @@ namespace CobaltFrame.UI
 
         protected Dictionary<char, FontChar> _charactorDic;
 
-        private Color _fontColor;
-
-        public Color FontColor
-        {
-            get { return _fontColor; }
-            set { _fontColor = value; }
-        }
-
-        private float _fontScale;
+        protected float _fontScale;
 
         public float FontScale
         {
@@ -55,9 +47,7 @@ namespace CobaltFrame.UI
             set { _fontScale = value; }
         }
 
-        
-        
-        public BitmapTextObject(GameContext context,Position2D pos,string fontPath,string text,float scale,Color color)
+        public BitmapTextObject(GameContext context,Position2D pos,string fontPath,string text,float fontScale,Color color)
             : base(context,pos)
         {
             this._fontPath = fontPath;
@@ -65,10 +55,10 @@ namespace CobaltFrame.UI
 
             this._fontTextureSize = 1;
             this._fontTextures = new List<Texture2D>();
-            
+            this._origin = Vector2.Zero;
             this._charactorDic = new Dictionary<char, FontChar>();
-            this._fontColor = color;
-            this._fontScale = scale;
+            this._drawColor = color;
+            this._fontScale = fontScale;
         }
 
         public override void Initialize()
@@ -129,7 +119,7 @@ namespace CobaltFrame.UI
         {
             base.Draw(context);
 
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenScale);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenTrans);
 
             var charPos = this._position.GetLocation();
             foreach (var c in this._text)
@@ -140,8 +130,8 @@ namespace CobaltFrame.UI
                     var texture = this._fontTextures.ElementAt(fc.Page);
                     this._spriteBatch.Draw(texture,
                         new Rectangle((int)(charPos.X + fc.XOffset * this._fontScale), (int)(charPos.Y + fc.YOffset * this._fontScale), (int)(fc.Width * this._fontScale), (int)(fc.Height * this._fontScale)),
-                        new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._fontColor);
-                    charPos.X += fc.XAdvance*this._fontScale;
+                        new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._drawColor);
+                    charPos.X += fc.XAdvance * this._fontScale;
                 }
             }
             this._spriteBatch.End();
