@@ -113,12 +113,26 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="CobaltFrame.Universal.Test.Windows_TemporaryKey.pfx" />
+    <Content Include="Content\Font\meiryo.fnt" />
+    <None Include="Content\Font\meiryo_0.mgcontent" />
+    <Content Include="Content\Font\meiryo_0.xnb" />
+    <None Include="Content\Sound\warp1.mgcontent" />
+    <Content Include="Content\Sound\warp1.xnb" />
+    <None Include="Content\Sound\warp2.mgcontent" />
+    <Content Include="Content\Sound\warp2.xnb" />
+    <None Include="Content\Texture\button_off.mgcontent" />
+    <Content Include="Content\Texture\button_off.xnb" />
+    <None Include="Content\Texture\button_on.mgcontent" />
+    <Content Include="Content\Texture\button_on.xnb" />
+    <None Include="Content\Texture\face.mgcontent" />
+    <Content Include="Content\Texture\face.xnb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Content\Sound\warp1.wma" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\CobaltFrame.Universal.Test.Shared\Content\Content.mgcb">
@@ -144,6 +158,7 @@
       <Name>CobaltFrame.Test</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

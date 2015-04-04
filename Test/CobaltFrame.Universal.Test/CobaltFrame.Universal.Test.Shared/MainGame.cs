@@ -27,6 +27,7 @@ namespace CobaltFrame.Universal.Test
         protected override void Initialize()
         {
             base.Initialize();
+            
             this._screenManager.Initialize();
         }
 

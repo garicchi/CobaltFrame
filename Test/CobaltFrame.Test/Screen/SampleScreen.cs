@@ -23,7 +23,7 @@ namespace CobaltFrame.Test.Screen
             : base(context)
         {
             //2Dオブジェクトの作成
-            this._texture2DObj = new Texture2DObject(context,new Position2D(new Rectangle(100,100,100,100)),"face");
+            this._texture2DObj = new Texture2DObject(context,new Position2D(new Rectangle(100,100,100,100)),"Texture/face");
             //var sound = new SoundObject(context, "warp2");
             //this.AddObject(sound);
             //2秒間(0,0)→(200,200)に移動するアニメーション
@@ -49,7 +49,7 @@ namespace CobaltFrame.Test.Screen
             //オブジェクトをスクリーンに追加
             this.AddDrawableObject(this._texture2DObj);
             
-            var button = new ButtonObject(context,new Position2D(new Rectangle(120,120,120,80)),"button_on","button_off");
+            var button = new ButtonObject(context,new Position2D(new Rectangle(120,120,120,80)),"Texture/button_on","Texture/button_off");
             this.AddDrawableObject(button);
             button.OnClick += (btn,pos) =>
             {
@@ -57,8 +57,12 @@ namespace CobaltFrame.Test.Screen
                 animation.Start();
             };
 
-            TextObject text = new TextObject(context,new Position2D(new Rectangle(300,300,0,0)),"font/meirio","今日も１日がんばるぞい！",95);
+            BitmapTextObject text = new BitmapTextObject(context,new Position2D(new Rectangle(0,300,0,0)),"Font/meiryo","今日も1日がんばるぞい!",0.8f,Color.Red);
             this.AddDrawableObject(text);
+            BitmapTextObject text1 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 350, 0, 0)), "Font/meiryo", "今日も1日がんばるぞい!", 1.0f, Color.White);
+            this.AddDrawableObject(text1);
+            BitmapTextObject text2 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 450, 0, 0)), "Font/meiryo", "今日も1日がんばるぞい!", 4.0f, Color.Green);
+            this.AddDrawableObject(text2);
             
         }
 

@@ -51,7 +51,7 @@
     <Compile Include="Sound\SoundObject.cs" />
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\ButtonState.cs" />
-    <Compile Include="UI\TextObject.cs" />
+    <Compile Include="UI\BitmapTextObject.cs" />
     <Compile Include="UI\UIObject.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,8 @@ namespace CobaltFrame.Core.Screen
         public Screen(IGameContext context)
             :base(context)
         {
-            
+            this.OnNavigate += (sc,obj) => { };
+            this.OnNavigatePrevious += (num,obj) => { };
         }
 
         public void Navigate(IScreen screen, object parameter)
