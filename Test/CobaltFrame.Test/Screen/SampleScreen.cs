@@ -27,14 +27,14 @@ namespace CobaltFrame.Test.Screen
             var sound = new SoundObject(context, "warp2");
             this.AddObject(sound);
             //2秒間(0,0)→(200,200)に移動するアニメーション
-            var animation = new Position2DAnimation(context, TimeSpan.FromSeconds(2), new Position2D(new Rectangle(0, 0, 100, 100)), new Position2D(new Rectangle(200, 200, 100, 100)));
+            var animation = new Position2DTimeAnimation(context, TimeSpan.FromSeconds(2), new Position2D(new Rectangle(0, 0, 100, 100)), new Position2D(new Rectangle(200, 200, 100, 100)));
             //1秒間(200,200)で待つアニメーションをチェイン
             animation.Chain(new WaitPosition2DAnimation(context, TimeSpan.FromSeconds(1), new Position2D(new Rectangle(200, 200, 100, 100))), (progress) =>
             {
                 Debug.WriteLine("Wait");
             })
             //3秒間(200,200)→(400,100)に移動するアニメーションをチェイン
-            .Chain(new Position2DAnimation(context, TimeSpan.FromSeconds(3), new Position2D(new Rectangle(200, 200, 100, 100)), new Position2D(new Rectangle(400, 100, 100, 100))), (progress) =>
+            .Chain(new Position2DTimeAnimation(context, TimeSpan.FromSeconds(3), new Position2D(new Rectangle(200, 200, 100, 100)), new Position2D(new Rectangle(400, 100, 100, 100))), (progress) =>
             {
                 sound.Play();
             })

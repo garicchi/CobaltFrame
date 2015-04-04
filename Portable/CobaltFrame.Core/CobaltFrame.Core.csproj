@@ -37,8 +37,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animation\AnimationBase.cs" />
-    <Compile Include="Animation\InstantAnimation.cs" />
+    <Compile Include="Animation\ConditionAnimationBase.cs" />
+    <Compile Include="Animation\TimeAnimationBase.cs" />
+    <Compile Include="Animation\InstantTimeAnimation.cs" />
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />
     <Compile Include="Context\IGameContext.cs" />
@@ -46,9 +47,12 @@
     <Compile Include="Object\UpdatableObject.cs" />
     <Compile Include="Object\IDrawableObject.cs" />
     <Compile Include="Object\IUpdatableObject.cs" />
-    <Compile Include="Progress\Progress.cs" />
-    <Compile Include="Progress\ProgressState.cs" />
+    <Compile Include="Progress\ConditionProgress.cs" />
+    <Compile Include="Progress\IConditionProgress.cs" />
     <Compile Include="Progress\IProgress.cs" />
+    <Compile Include="Progress\TimeProgress.cs" />
+    <Compile Include="Progress\ProgressState.cs" />
+    <Compile Include="Progress\ITimeProgress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\IScreen.cs" />
     <Compile Include="Screen\IScreenManager.cs" />

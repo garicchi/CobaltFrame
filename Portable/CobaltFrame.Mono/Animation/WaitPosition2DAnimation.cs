@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Animation
 {
-    public class WaitPosition2DAnimation:AnimationBase<Position2D>
+    public class WaitPosition2DAnimation:TimeAnimationBase<Position2D>
     {
         public WaitPosition2DAnimation(GameContext context, TimeSpan duration, Position2D begin)
             : base(context, duration, begin, begin)

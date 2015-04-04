@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Animation
 {
-    public abstract class AnimationBase<T>:CobaltFrame.Core.Progress.Progress<T>
+    public abstract class TimeAnimationBase<T>:CobaltFrame.Core.Progress.TimeProgress<T>
     {
-        public AnimationBase(IGameContext context,TimeSpan duration,T begin,T end)
+        public TimeAnimationBase(IGameContext context,TimeSpan duration,T begin,T end)
             : base(context,duration,begin,end)
         {
 

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Animation
 {
-    public class Position2DAnimation:AnimationBase<Position2D>
+    public class Position2DTimeAnimation:TimeAnimationBase<Position2D>
     {
 
         
-        public Position2DAnimation(GameContext context,TimeSpan duration,Position2D begin,Position2D end)
+        public Position2DTimeAnimation(GameContext context,TimeSpan duration,Position2D begin,Position2D end)
             : base(context, duration,begin,end)
         {
 

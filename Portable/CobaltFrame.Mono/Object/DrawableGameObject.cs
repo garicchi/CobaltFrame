@@ -20,7 +20,7 @@ namespace CobaltFrame.Object
         protected SpriteBatch _spriteBatch;
         protected Position2D _position;
         private PositionUpdateMode _positionUpdateMode;
-        protected Position2DAnimation _attachedAnimation;
+        protected Position2DTimeAnimation _attachedAnimation;
         protected PositionUpdateMode PositionUpdateMode
         {
             get { return _positionUpdateMode; }
@@ -69,7 +69,7 @@ namespace CobaltFrame.Object
             base.Draw(context);
         }
 
-        public void AttachAnimation(Position2DAnimation animation)
+        public void AttachAnimation(Position2DTimeAnimation animation)
         {
             this._attachedAnimation = animation;
             this._positionUpdateMode=PositionUpdateMode.AttachedAnimation;
