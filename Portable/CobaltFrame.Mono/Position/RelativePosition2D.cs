@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,39 +26,29 @@ namespace CobaltFrame.Position
 
         public override void SetPosition(Rectangle newRect)
         {
-            var absoluteRect = new Rectangle(
-                newRect.X+ this._sourcePosition.GetPosition().X,
-                newRect.Y + this._sourcePosition.GetPosition().Y,
-                newRect.Width,
-                newRect.Height);
-            base.SetPosition(absoluteRect);
+            base.SetPosition(newRect);
             
         }
         public override Rectangle GetPosition()
         {
-            return base.GetPosition();
+            var relativeRect = base.GetPosition();
+            return new Rectangle(
+                relativeRect.X + this._sourcePosition.GetPosition().X,
+                relativeRect.Y + this._sourcePosition.GetPosition().Y,
+                relativeRect.Width,
+                relativeRect.Height
+                );
         }
 
         public override Vector2 GetLocation()
         {
-            return base.GetLocation();
-        }
-
-        public void UpdatePosition(Position2D newSourceposition)
-        {
-            this._sourcePosition = newSourceposition;
-            this.SetPosition(this.GetRelativePosition());
-        }
-        
-        public Rectangle GetRelativePosition()
-        {
-            var absoluteRect = base.GetPosition();
-            return new Rectangle(
-                absoluteRect.X - this._sourcePosition.GetPosition().X,
-                absoluteRect.Y - this._sourcePosition.GetPosition().Y,
-                absoluteRect.Width,
-                absoluteRect.Height
+            var relativeRect = base.GetLocation();
+            return new Vector2(
+                relativeRect.X + this._sourcePosition.GetPosition().X,
+                relativeRect.Y + this._sourcePosition.GetPosition().Y
                 );
         }
+
+        
     }
 }

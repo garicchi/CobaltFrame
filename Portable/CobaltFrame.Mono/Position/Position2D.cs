@@ -75,17 +75,17 @@ namespace CobaltFrame.Position
 
         public bool Contains(Position2D position)
         {
-            return this._drawRect.Contains(position.GetPosition());
+            return this.GetPosition().Contains(position.GetPosition());
         }
 
         public bool Contains(int x,int y)
         {
-            return this._drawRect.Contains((float)x, (float)y);
+            return this.GetPosition().Contains((float)x, (float)y);
         }
 
         public bool Intersects(Position2D position)
         {
-            return this._drawRect.Intersects(position.GetPosition());
+            return this.GetPosition().Intersects(position.GetPosition());
         }
 
 

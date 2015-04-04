@@ -49,7 +49,7 @@ namespace CobaltFrame.Test.Screen
             //オブジェクトをスクリーンに追加
             this.AddDrawableObject(this._texture2DObj);
             
-            var button = new ButtonObject(context,new Position2D(new Rectangle(120,120,120,80)),"Texture/button_on","Texture/button_off");
+            var button = new ButtonObject(context,new RelativePosition2D(new Rectangle(120,120,120,80),this._texture2DObj.Position),"Texture/button_on","Texture/button_off");
             this.AddDrawableObject(button);
             button.OnClick += (btn,pos) =>
             {
