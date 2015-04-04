@@ -1,8 +1,19 @@
-﻿<Properties StartupItem="CobaltFrame.iOS.Test/CobaltFrame.iOS.Test.csproj">
+﻿<Properties StartupItem="CobaltFrame.Mac/CobaltFrame.Mac.csproj" MonoDevelop.MonoMac.LastXamMacNagTime="2015/04/03 4:09:51">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Portable/CobaltFrame/SampleComponent.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CobaltFrame.Test/Screen/SampleScreen.cs">
     <Files>
-      <File FileName="../Portable/CobaltFrame/SampleComponent.cs" Line="1" Column="7" />
+      <File FileName="CobaltFrame.iOS.Test/Info.plist" />
+      <File FileName="CobaltFrame.iOS.Test/MainGame.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.iOS.Test/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.Mac/MainGame.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.iOS.Test/Main.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.Mac/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.Mac/Main.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.iOS.Test/Content/Content.mgcb" Line="1" Column="1" />
+      <File FileName="CobaltFrame.Mac/Content/Content.mgcb" Line="10" Column="1" />
+      <File FileName="../Portable/CobaltFrame.Mono/Object/Texture2DObject.cs" Line="37" Column="1" />
+      <File FileName="../Portable/CobaltFrame.Mono/Sound/SoundObject.cs" Line="26" Column="1" />
+      <File FileName="CobaltFrame.Test/Screen/SampleScreen.cs" Line="30" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

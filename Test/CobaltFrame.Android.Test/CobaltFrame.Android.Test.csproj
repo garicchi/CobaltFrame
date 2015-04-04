@@ -87,15 +87,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
-      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
+      <Project>{75004A46-CF8C-4E1A-A4A8-92CFE8E95561}</Project>
       <Name>CobaltFrame.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
-      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
+      <Project>{332A0CC4-0D48-448E-B664-815C60CC1DC0}</Project>
       <Name>CobaltFrame.Mono</Name>
     </ProjectReference>
     <ProjectReference Include="..\CobaltFrame.Test\CobaltFrame.Test.csproj">
-      <Project>{3326f6cb-9c95-4f25-b99d-a7ba9d8aa1a8}</Project>
+      <Project>{3326F6CB-9C95-4F25-B99D-A7BA9D8AA1A8}</Project>
       <Name>CobaltFrame.Test</Name>
     </ProjectReference>
   </ItemGroup>

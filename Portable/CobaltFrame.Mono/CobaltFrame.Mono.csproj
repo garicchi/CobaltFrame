@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CobaltFrame.Core\CobaltFrame.Core.csproj">
-      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
+      <Project>{75004A46-CF8C-4E1A-A4A8-92CFE8E95561}</Project>
       <Name>CobaltFrame.Core</Name>
     </ProjectReference>
   </ItemGroup>
