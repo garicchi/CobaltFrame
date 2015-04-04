@@ -75,6 +75,9 @@ namespace CobaltFrame.Screen
         {
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
+
+            this._game.GraphicsDevice.Clear(Color.FromNonPremultiplied(10,10,10,255));
+
             base.Draw(context);
         }
         public override void ScreenResolutionChanged()

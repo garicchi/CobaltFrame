@@ -54,7 +54,7 @@ namespace CobaltFrame.Test.Screen
             button.OnClick += (btn,pos) =>
             {
                 //アニメーションを開始
-                //animation.Start();
+                animation.Start();
             };
 
             BitmapTextObject text = new BitmapTextObject(context,new Position2D(new Rectangle(0,300,0,0)),"Font/meiryo","今日も1日がんばるぞい!",0.8f,Color.Red);
