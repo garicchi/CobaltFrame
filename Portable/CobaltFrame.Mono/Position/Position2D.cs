@@ -68,6 +68,11 @@ namespace CobaltFrame.Position
             return this._drawRect;
         }
 
+        public virtual Vector2 GetLocation()
+        {
+            return new Vector2(this._drawRect.X,this._drawRect.Y);
+        }
+
         public bool Contains(Position2D position)
         {
             return this._drawRect.Contains(position.GetPosition());

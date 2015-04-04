@@ -38,6 +38,11 @@ namespace CobaltFrame.Position
             return base.GetPosition();
         }
 
+        public override Vector2 GetLocation()
+        {
+            return base.GetLocation();
+        }
+
         public void UpdatePosition(Position2D newSourceposition)
         {
             this._sourcePosition = newSourceposition;

@@ -38,6 +38,7 @@
     <Compile Include="Animation\WaitPosition2DAnimation.cs" />
     <Compile Include="Context\FrameContext.cs" />
     <Compile Include="Context\GameContext.cs" />
+    <Compile Include="Font\FontLoader.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
     <Compile Include="Object\PositionUpdateMode.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Sound\SoundObject.cs" />
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\ButtonState.cs" />
+    <Compile Include="UI\TextObject.cs" />
     <Compile Include="UI\UIObject.cs" />
   </ItemGroup>
   <ItemGroup>

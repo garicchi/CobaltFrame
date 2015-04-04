@@ -56,6 +56,9 @@ namespace CobaltFrame.Test.Screen
                 //アニメーションを開始
                 animation.Start();
             };
+
+            TextObject text = new TextObject(context,new Position2D(new Rectangle(300,300,0,0)),"font/meirio","今日も１日がんばるぞい！",95);
+            this.AddDrawableObject(text);
             
         }
 
