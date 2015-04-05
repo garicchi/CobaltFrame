@@ -43,6 +43,7 @@
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />
     <Compile Include="Context\IGameContext.cs" />
+    <Compile Include="Data\SaveDataStore.cs" />
     <Compile Include="Object\DrawableObject.cs" />
     <Compile Include="Object\UpdatableObject.cs" />
     <Compile Include="Object\IDrawableObject.cs" />

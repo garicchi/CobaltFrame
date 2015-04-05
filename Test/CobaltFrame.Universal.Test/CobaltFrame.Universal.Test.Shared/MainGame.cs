@@ -8,13 +8,13 @@ using CobaltFrame.Test.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Core.Screen;
 using CobaltFrame.Test.Data;
-using CobaltFrame.Mono.Data;
 using Windows.Storage;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage.Streams;
 using System.IO;
 using System.Linq;
+using CobaltFrame.Core.Data;
 
 namespace CobaltFrame.Universal.Test
 {
@@ -30,7 +30,7 @@ namespace CobaltFrame.Universal.Test
             this._gameContext = new GameContext(this);
             this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null,new Vector2(1366,768),ScaleMode.None);
             
-            SaveDataFactory<SaveData>.Setup("savedata", (name) =>
+            SaveDataStore<SaveData>.Setup("savedata", (name) =>
             {
                 SaveData data=null;
                 var task=Task.Run(async () =>
