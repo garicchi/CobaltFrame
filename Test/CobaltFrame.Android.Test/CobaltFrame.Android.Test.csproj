@@ -60,6 +60,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Content\Font\meiryo.fnt" />
+    <None Include="Content\Font\meiryo_0.mgcontent" />
+    <AndroidAsset Include="Content\Font\meiryo_0.xnb" />
+    <None Include="Content\Sound\warp1.mgcontent" />
+    <AndroidAsset Include="Content\Sound\warp1.xnb" />
+    <None Include="Content\Sound\warp2.mgcontent" />
+    <AndroidAsset Include="Content\Sound\warp2.xnb" />
+    <None Include="Content\Texture\button_off.mgcontent" />
+    <AndroidAsset Include="Content\Texture\button_off.xnb" />
+    <None Include="Content\Texture\button_on.mgcontent" />
+    <AndroidAsset Include="Content\Texture\button_on.xnb" />
+    <None Include="Content\Texture\face.mgcontent" />
+    <AndroidAsset Include="Content\Texture\face.xnb" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -82,7 +95,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\face.png" />
+    <Content Include="Content\Sound\warp1.mp4" />
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>

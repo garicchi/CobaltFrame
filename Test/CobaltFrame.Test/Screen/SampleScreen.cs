@@ -1,11 +1,14 @@
 ﻿using CobaltFrame.Animation;
 using CobaltFrame.Context;
+using CobaltFrame.Mono.Data;
 using CobaltFrame.Object;
 using CobaltFrame.Position;
 using CobaltFrame.Screen;
 using CobaltFrame.Sound;
+using CobaltFrame.Test.Data;
 using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Storage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -55,8 +58,9 @@ namespace CobaltFrame.Test.Screen
             {
                 //アニメーションを開始
                 animation.Start();
+                
             };
-
+            
             BitmapTextObject text = new BitmapTextObject(context,new Position2D(new Rectangle(0,300,0,0)),"Font/meiryo","今日も1日がんばるぞい!",0.8f,Color.Red);
             this.AddDrawableObject(text);
             BitmapTextObject text1 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 350, 0, 0)), "Font/meiryo", "今日も1日がんばるぞい!", 1.0f, Color.White);

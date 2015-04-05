@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Ryota/Projects/CobaltFrame/Test/CobaltFrame.Android.Test/Content/../../Content/Sound/warp1.mp3</SourceFile>
+  <SourceTime>2015-03-31T11:14:50.383261+09:00</SourceTime>
+  <DestFile>C:/Users/Ryota/Projects/CobaltFrame/Test/CobaltFrame.Android.Test/Content/bin/Android/../../Content/Sound/warp1.xnb</DestFile>
+  <DestTime>2015-04-05T07:44:41.107034+09:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2015-03-16T12:01:46+09:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2015-03-16T12:01:46+09:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Ryota/Projects/CobaltFrame/Test/CobaltFrame.Android.Test/Content/bin/Android/../../Content/Sound/warp1.mp4</string>
+  </BuildOutput>
+</PipelineBuildEvent>

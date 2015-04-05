@@ -20,7 +20,7 @@ namespace CobaltFrame.Universal.Test
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this._gameContext = new GameContext(this);
-            this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null, new Vector2(800, 600), ScaleMode.None);
+            this._screenManager = new GameScreenManager(this._gameContext, new SampleScreen(this._gameContext), null, new Vector2(1366, 768), ScaleMode.Fill);
 
         }
 

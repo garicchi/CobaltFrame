@@ -8,6 +8,6 @@ namespace CobaltFrame.Core.Context
 {
     public interface IGameContext
     {
-
+        
     }
 }
