@@ -47,6 +47,14 @@ namespace CobaltFrame.UI
             set { _fontScale = value; }
         }
 
+        private float _rowOffset;
+
+        public float RowOffset
+        {
+            get { return _rowOffset; }
+            set { _rowOffset = value; }
+        }
+
         public BitmapTextObject(GameContext context,Position2D pos,string fontPath,string text,float fontScale,Color color)
             : base(context,pos)
         {
@@ -59,6 +67,7 @@ namespace CobaltFrame.UI
             this._charactorDic = new Dictionary<char, FontChar>();
             this._drawColor = color;
             this._fontScale = fontScale;
+            this._rowOffset = 5.0f;
         }
 
         public override void Initialize()
@@ -132,6 +141,11 @@ namespace CobaltFrame.UI
                         new Rectangle((int)(charPos.X + fc.XOffset * this._fontScale), (int)(charPos.Y + fc.YOffset * this._fontScale), (int)(fc.Width * this._fontScale), (int)(fc.Height * this._fontScale)),
                         new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._drawColor);
                     charPos.X += fc.XAdvance * this._fontScale;
+                    if (charPos.X > this.Position.GetPosition().Width)
+                    {
+                        charPos.Y+=fc.Height * this._fontScale+_rowOffset;
+                        charPos.X = this.Position.GetPosition().X;
+                    }
                 }
             }
             this._spriteBatch.End();

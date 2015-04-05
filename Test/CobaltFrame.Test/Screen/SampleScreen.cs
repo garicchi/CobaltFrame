@@ -1,6 +1,5 @@
 ﻿using CobaltFrame.Animation;
 using CobaltFrame.Context;
-using CobaltFrame.Mono.Data;
 using CobaltFrame.Object;
 using CobaltFrame.Position;
 using CobaltFrame.Screen;
@@ -61,11 +60,12 @@ namespace CobaltFrame.Test.Screen
                 
             };
             
-            BitmapTextObject text = new BitmapTextObject(context,new Position2D(new Rectangle(0,300,0,0)),"Font/meiryo","今日も1日がんばるぞい!",0.8f,Color.Red);
+
+            BitmapTextObject text = new BitmapTextObject(context,new Position2D(new Rectangle(0,300,200,100)),"Font/meiryo","今日も1日がんばるぞい!",0.8f,Color.Red);
             this.AddDrawableObject(text);
-            BitmapTextObject text1 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 350, 0, 0)), "Font/meiryo", "今日も1日がんばるぞい!", 1.0f, Color.White);
+            BitmapTextObject text1 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 350, 80, 200)), "Font/meiryo", "今日も1日がんばるぞい!", 1.0f, Color.White);
             this.AddDrawableObject(text1);
-            BitmapTextObject text2 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 450, 0, 0)), "Font/meiryo", "今日も1日がんばるぞい!", 4.0f, Color.Green);
+            BitmapTextObject text2 = new BitmapTextObject(context, new Position2D(new Rectangle(0, 450, 150, 400)), "Font/meiryo", "今日も1日がんばるぞい!", 4.0f, Color.Green);
             this.AddDrawableObject(text2);
             
         }
