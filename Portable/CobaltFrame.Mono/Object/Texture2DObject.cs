@@ -55,8 +55,7 @@ namespace CobaltFrame.Object
 
         public override void Update(Core.Context.IFrameContext context)
         {
-            this._rotation+=0.1f;
-            
+
             base.Update(context);
         }
 

@@ -11,7 +11,10 @@ namespace CobaltFrame.Position
     {
         private Rectangle _drawRect;
 
-        
+        public Position2D(int x,int y,int width,int height)
+        {
+            this._drawRect = new Rectangle(x,y,width,height);
+        }
         public Position2D(Rectangle drawRect)
         {
             this._drawRect = drawRect;

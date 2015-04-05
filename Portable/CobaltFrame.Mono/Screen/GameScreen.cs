@@ -11,6 +11,7 @@ namespace CobaltFrame.Screen
     public class GameScreen:CobaltFrame.Core.Screen.Screen
     {
         protected Game _game;
+        protected TimeSpan _screenElapsedTime;
         public GameScreen(GameContext context)
             : base(context)
         {
@@ -23,5 +24,13 @@ namespace CobaltFrame.Screen
             
             base.Draw(context);
         }
+
+        public override void NavigateTo(object parameter)
+        {
+            base.NavigateTo(parameter);
+            this._screenElapsedTime = this._game.TargetElapsedTime;
+        }
+
+        
     }
 }

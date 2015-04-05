@@ -42,8 +42,14 @@ namespace CobaltFrame.Screen
             get { return _screenMargin; }
             set { _screenMargin = value; }
         }
-        
 
+        private Color _backgroundColor;
+
+        public Color BackgroundColor
+        {
+            get { return _backgroundColor; }
+            set { _backgroundColor = value; }
+        }
         protected Game _game;
         public GameScreenManager(GameContext context,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode)
             : base(context,firstScreen,param)
@@ -52,6 +58,7 @@ namespace CobaltFrame.Screen
             this._game = context.Game;
             this._screenScaleMode = screenScaleMode;
             this._game.IsMouseVisible = true;
+            this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
         }
         public override void Initialize()
         {
@@ -76,7 +83,7 @@ namespace CobaltFrame.Screen
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
 
-            this._game.GraphicsDevice.Clear(Color.FromNonPremultiplied(10,10,10,255));
+            this._game.GraphicsDevice.Clear(this._backgroundColor);
 
             base.Draw(context);
         }
