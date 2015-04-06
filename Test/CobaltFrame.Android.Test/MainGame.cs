@@ -7,6 +7,7 @@ using CobaltFrame.Screen;
 using CobaltFrame.Test.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Core.Screen;
+using Microsoft.Xna.Framework.Input;
 
 namespace CobaltFrame.Universal.Test
 {
@@ -45,6 +46,7 @@ namespace CobaltFrame.Universal.Test
         {
             base.Update(gameTime);
             this._screenManager.Update(new FrameContext(gameTime));
+            
         }
 
         protected override void Draw(GameTime gameTime)

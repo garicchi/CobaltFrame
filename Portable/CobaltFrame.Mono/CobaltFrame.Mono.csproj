@@ -39,6 +39,9 @@
     <Compile Include="Context\FrameContext.cs" />
     <Compile Include="Context\GameContext.cs" />
     <Compile Include="Font\FontLoader.cs" />
+    <Compile Include="Input\GameInput.cs" />
+    <Compile Include="Input\GameTouchPanel.cs" />
+    <Compile Include="Input\InputCondition.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
     <Compile Include="Object\PositionUpdateMode.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
@@ -61,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Input\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CobaltFrame.Core\CobaltFrame.Core.csproj">

@@ -27,7 +27,7 @@ namespace HorizontalShootingGame
             Content.RootDirectory = "Content";
             this._gameContext = new GameContext(this);
             this._screenManager = new GameScreenManager(this._gameContext, new TitleScreen(this._gameContext), null, new Vector2(1366, 768), ScaleMode.Fill);
-
+            
             SaveDataStore<SaveData>.Setup("savedata", (name) =>
             {
                 SaveData data = null;

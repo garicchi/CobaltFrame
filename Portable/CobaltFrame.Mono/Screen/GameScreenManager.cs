@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace CobaltFrame.Screen
 {
@@ -75,6 +77,7 @@ namespace CobaltFrame.Screen
         {
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
+            
             base.Update(context);
         }
 
