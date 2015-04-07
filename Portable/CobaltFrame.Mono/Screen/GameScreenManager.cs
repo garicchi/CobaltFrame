@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using System.Diagnostics;
 
 namespace CobaltFrame.Screen
 {
@@ -61,6 +62,12 @@ namespace CobaltFrame.Screen
             this._screenScaleMode = screenScaleMode;
             this._game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
+            
+            this._game.Window.ClientSizeChanged+=(s,e)=>
+            {
+                ScreenResolutionChanged();
+            };
+            
         }
         public override void Initialize()
         {
