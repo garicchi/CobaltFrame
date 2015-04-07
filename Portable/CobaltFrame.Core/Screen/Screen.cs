@@ -23,7 +23,12 @@ namespace CobaltFrame.Core.Screen
 
         public void Navigate(IScreen screen, object parameter)
         {
-            throw new NotImplementedException();
+            this.OnNavigate(screen,parameter);
+        }
+
+        public void NavigatePrevious(int oldNum,object parameter)
+        {
+            this.OnNavigatePrevious(oldNum,parameter);
         }
 
 
