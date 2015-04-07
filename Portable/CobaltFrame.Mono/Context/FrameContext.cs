@@ -14,6 +14,7 @@ namespace CobaltFrame.Context
         public FrameContext(GameTime gameTime)
         {
             this._gameTime = gameTime;
+            
         }
 
         public Matrix ScreenScale { get; set; }
@@ -41,6 +42,11 @@ namespace CobaltFrame.Context
         public TimeSpan TotalGameTime
         {
             get { return this._gameTime.TotalGameTime; }
+        }
+
+        public TimeSpan ElapsedGameTime
+        {
+            get { return this._gameTime.ElapsedGameTime; }
         }
     }
 }

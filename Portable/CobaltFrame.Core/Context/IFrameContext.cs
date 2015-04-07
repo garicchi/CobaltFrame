@@ -9,5 +9,7 @@ namespace CobaltFrame.Core.Context
     public interface IFrameContext
     {
         TimeSpan TotalGameTime { get; }
+
+        TimeSpan ElapsedGameTime { get; }
     }
 }
