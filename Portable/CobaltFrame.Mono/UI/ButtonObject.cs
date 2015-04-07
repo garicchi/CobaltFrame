@@ -1,7 +1,9 @@
 ﻿using CobaltFrame.Context;
+using CobaltFrame.Input;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
@@ -71,6 +73,43 @@ namespace CobaltFrame.UI
             this._releasedTexture = this._game.Content.Load<Texture2D>(this._releasedTexturePath);
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._position.GetPosition().Width / (float)this._releasedTexture.Width, (float)this._position.GetPosition().Height / (float)this._releasedTexture.Height);
+
+            GameInput.RegisterInputState("_ButtonObjectOnClick",
+                () =>
+                {
+                    if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed).Count()!=0
+                        && GameInput.TouchCollection.Where(q => this.Position.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
+                },
+                ()=>GameInput.MouseState.LeftButton==ButtonState.Pressed
+                    && GameInput.MouseStatePrev.LeftButton == ButtonState.Released
+                    && this.Position.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
+            );
+
+            GameInput.RegisterInputState("_ButtonObjectPressed",
+                () =>
+                {
+                    if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed||q.State==TouchLocationState.Moved).Count() != 0
+                        && GameInput.TouchCollection.Where(q => this.Position.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                },
+                () => GameInput.MouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed
+                    && this.Position.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
+            );
         }
 
         public override void UnloadObject()
@@ -78,42 +117,28 @@ namespace CobaltFrame.UI
             base.UnloadObject();
             this._pressedTexture.Dispose();
             this._releasedTexture.Dispose();
+
+            GameInput.UnregisterInputState("_ButtonObjectOnClick");
+            GameInput.UnregisterInputState("_ButtonObjectPressed");
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
             base.Update(context);
-            
-            TouchCollection collection = TouchPanel.GetState();
-            
-            foreach (TouchLocation state in collection)
+
+            if (GameInput.IsInput("_ButtonObjectOnClick"))
             {
-                
-                int id = state.Id;
-                TouchLocationState tLState = state.State;
-                var input = Vector2.Transform(state.Position,(context as FrameContext).GetScreenTransInvert());
-                if (tLState == TouchLocationState.Pressed || tLState==TouchLocationState.Moved)
-                {
-                    
-                    if (this._position.Contains((int)input.X, (int)input.Y))
-                    {
-                        
-                        if (tLState==TouchLocationState.Pressed)
-                        {
-                            OnClick(this, state.Position);
-                        }
-                        this._state = ButtonState.Pressed;
-                        break;
-                    }
-                }
-                else
-                {
-                    this._state = ButtonState.Released;
-                }
-                
+                OnClick(this,this.Position.GetLocation());
             }
 
-            this._beforeState = this._state;
+            if (GameInput.IsInput("_ButtonObjectPressed"))
+            {
+                this._state = ButtonState.Pressed;
+            }
+            else
+            {
+                this._state = ButtonState.Released;
+            }
         }
 
         public override void Draw(Core.Context.IFrameContext context)
