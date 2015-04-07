@@ -13,6 +13,8 @@ using System.IO;
 using System.Linq;
 using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
+using CobaltFrame.Input;
+using Windows.Devices.Sensors;
 
 namespace HorizontalShootingGame
 {
@@ -78,7 +80,13 @@ namespace HorizontalShootingGame
 
             });
 
+            /*
+            GameInput.SetupAccelState(() =>
+            {
 
+                return new AccelerometerState(new Vector3(1,0,0));
+            });
+            */
         }
 
         protected override void Initialize()

@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Context;
 using CobaltFrame.Core.Context;
+using CobaltFrame.Input;
 using CobaltFrame.Object;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
@@ -16,35 +17,49 @@ namespace HorizontalShootingGame.Portable.Object
 {
     public class Player:Texture2DObject
     {
-        private Vector2 touchInputDelta;
-        private Vector2 prevTouchPoint;
+
         public Player(GameContext context,Position2D position,string texturePath)
             : base(context, position, texturePath)
         {
-            touchInputDelta = Vector2.Zero;
-            prevTouchPoint = Vector2.Zero;
+
+            //プレイヤーを上に動かすという入力概念を登録
+            GameInput.RegisterInputState("PlayerMove", () =>
+            {
+                //タッチ入力条件
+                foreach (var touch in GameInput.TouchCollection)
+                {
+                    if (touch.State == TouchLocationState.Moved)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }, 
+            //ゲームパッド入力は必要ないのでnull
+            null, 
+            //マウス入力も必要ないのでnull
+            null, 
+            () =>
+            {   //キーボード入力条件
+                return GameInput.KeyboardState.IsKeyDown(Keys.Up);
+            }, () =>
+            {
+                //加速度センサー入力条件
+                return GameInput.AccelState.Accel.X > 0;
+            });
+            
         }
 
         public override void Update(IFrameContext context)
         {
             base.Update(context);
-            TouchCollection collection = TouchPanel.GetState();
 
-            foreach (TouchLocation state in collection)
+            //プレイヤーを上に動かす入力条件のどれかがOKなら
+            if (GameInput.IsInput("PlayerMove"))
             {
-                var prev = new TouchLocation();
-                if (prev.TryGetPreviousLocation(out prev))
-                {
-                    Debug.WriteLine(prev);
-                }
-                TouchLocationState tLState = state.State;
-                var input = Vector2.Transform(state.Position, (context as FrameContext).GetScreenTransInvert());
-                if (tLState == TouchLocationState.Moved)
-                {
-                    
-                }
+                //プレイヤーを上に動かす
+                this.Position.SetLocation(new Vector2(this.Position.GetLocation().X,this.Position.GetLocation().Y-1));
             }
-
             
         }
     }

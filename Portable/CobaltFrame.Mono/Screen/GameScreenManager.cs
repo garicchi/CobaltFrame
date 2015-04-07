@@ -77,7 +77,7 @@ namespace CobaltFrame.Screen
         {
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
-            
+            GameInput.Update(context as FrameContext);
             base.Update(context);
         }
 

@@ -68,6 +68,16 @@ namespace CobaltFrame.Position
             this._drawRect = newRect;
         }
 
+        public virtual void SetLocation(Vector2 newPos)
+        {
+            this._drawRect = new Rectangle(
+                (int)newPos.X,
+                (int)newPos.Y,
+                this._drawRect.Width,
+                this._drawRect.Height
+                );
+        }
+
         public virtual Rectangle GetPosition()
         {
             return this._drawRect;
