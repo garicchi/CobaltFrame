@@ -52,6 +52,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameScreenManager.cs" />
+    <Compile Include="Screen\ScreenTransition.cs" />
+    <Compile Include="Screen\SimpleColorTransition.cs" />
     <Compile Include="Sound\SoundObject.cs" />
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\BitmapTextObject.cs" />

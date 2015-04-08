@@ -48,7 +48,7 @@ namespace CobaltFrame.Screen
 
         private Color _backgroundColor;
 
-        public Color BackgroundColor
+        public Color DisplayBackgroundColor
         {
             get { return _backgroundColor; }
             set { _backgroundColor = value; }
