@@ -43,25 +43,23 @@ namespace CobaltFrame.Core.Screen
             get { return this._currentScreen; }
         }
 
-        public ScreenManager(IGameContext context,IScreen firstScreen,object param)
+        public ScreenManager(IGameContext context,IScreen firstScreen,object param,IScreenTransition trans = null)
             : base(context)
         {
             this._previousScreenQueue = new Queue<IScreen>();
             this._screenChacheSize = 3;
             this._firstScreen = firstScreen;
-            this.ChangeScreen(firstScreen,param);
-            this.AddDrawableObject(this._currentScreen);
+            this.ChangeScreen(firstScreen,param,trans);
+            
+            this._loadState = ObjectLoadState.Created;
         }
 
-        protected void ChangeScreen(IScreen nextScreen, object parameter)
+        protected void ChangeScreen(IScreen nextScreen, object parameter, IScreenTransition transition)
         {
             if (this._currentScreen != null)
             {
-                if (this._loadState >= ObjectLoadState.Unloaded)
-                {
-                    this._currentScreen.UnloadObject();
-                }
-
+                this.RemoveDrawableObject(this._currentScreen);
+                
                 UnRegisterScreenEvent();
 
                 this._previousScreenQueue.Enqueue(_currentScreen);
@@ -75,21 +73,13 @@ namespace CobaltFrame.Core.Screen
                 this._currentScreen = null;
             }
 
-            if (this._loadState >= ObjectLoadState.Initialized)
-            {
-                nextScreen.Initialize();
-                
-            }
-            if (this._loadState >=ObjectLoadState.Loaded)
-            {
-                nextScreen.LoadObject();
-            }
-
-            nextScreen.NavigateTo(parameter);
-
-            RegisterScreenEvent(nextScreen);
-
             this._currentScreen = nextScreen;
+            this.AddDrawableObject(this._currentScreen);
+            RegisterScreenEvent(this._currentScreen);
+
+            this._currentScreen.NavigateTo(parameter,transition);
+
+
             
         }
 
@@ -106,13 +96,13 @@ namespace CobaltFrame.Core.Screen
 
         }
 
-        protected void ChangePreviousScreen(int prevCount,object parameter)
+        protected void ChangePreviousScreen(int prevCount,object parameter,IScreenTransition transition)
         {
             if (prevCount <= this._screenChacheSize)
             {
                 var targetIndex = (this.PreviousScreenQueue.Count - 1) - prevCount;
                 var nextScreen = this.PreviousScreenQueue.ElementAt(targetIndex);
-                this.ChangeScreen(nextScreen,parameter);
+                this.ChangeScreen(nextScreen,parameter,transition);
             }
             else
             {
@@ -125,14 +115,14 @@ namespace CobaltFrame.Core.Screen
         /// </summary>
         /// <param name="screen"></param>
         /// <param name="parameter"></param>
-        private void OnNavigateHandler(IScreen screen, object parameter)
+        private void OnNavigateHandler(IScreen screen, object parameter, IScreenTransition transition)
         {
-            this.ChangeScreen(screen, parameter);
+            this.ChangeScreen(screen, parameter,transition);
         }
 
-        private void OnNavigatePreviousHandler(int prevCount, object parameter)
+        private void OnNavigatePreviousHandler(int prevCount, object parameter, IScreenTransition transition)
         {
-            this.ChangePreviousScreen(prevCount,parameter);
+            this.ChangePreviousScreen(prevCount,parameter,transition);
         }
 
 
@@ -143,5 +133,24 @@ namespace CobaltFrame.Core.Screen
 
 
         public abstract void ScreenResolutionChanged();
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            this._loadState = ObjectLoadState.Initialized;
+        }
+
+        public override void LoadObject()
+        {
+            base.LoadObject();
+            this._loadState = ObjectLoadState.Loaded;
+        }
+
+        public override void UnloadObject()
+        {
+            base.UnloadObject();
+            this._loadState = ObjectLoadState.Unloaded;
+        }
+        
     }
 }

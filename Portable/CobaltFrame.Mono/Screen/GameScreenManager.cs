@@ -54,8 +54,8 @@ namespace CobaltFrame.Screen
             set { _backgroundColor = value; }
         }
         protected Game _game;
-        public GameScreenManager(GameContext context,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode)
-            : base(context,firstScreen,param)
+        public GameScreenManager(GameContext context,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
+            : base(context,firstScreen,param,trans)
         {
             this._defaultResolution = defaultResolution;
             this._game = context.Game;
@@ -85,6 +85,8 @@ namespace CobaltFrame.Screen
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
             GameInput.Update(context as FrameContext);
+
+            
             base.Update(context);
         }
 
@@ -94,7 +96,7 @@ namespace CobaltFrame.Screen
             (context as FrameContext).ScreenMargin = ScreenMargin;
 
             this._game.GraphicsDevice.Clear(this._backgroundColor);
-
+            
             base.Draw(context);
         }
         public override void ScreenResolutionChanged()
@@ -158,6 +160,8 @@ namespace CobaltFrame.Screen
             this._screenScale = Matrix.CreateScale(scaleX,scaleY,1.0f);
             this._screenMargin = marginMatrix;
         }
+
+        
 
         
     }

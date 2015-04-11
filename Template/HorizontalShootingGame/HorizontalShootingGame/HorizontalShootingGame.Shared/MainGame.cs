@@ -15,6 +15,7 @@ using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
 using CobaltFrame.Input;
 using Windows.Devices.Sensors;
+using System.Diagnostics;
 
 namespace HorizontalShootingGame
 {
@@ -91,21 +92,24 @@ namespace HorizontalShootingGame
 
         protected override void Initialize()
         {
+            this._screenManager.Initialize();
             base.Initialize();
 
-            this._screenManager.Initialize();
+            
         }
 
         protected override void LoadContent()
         {
-            base.LoadContent();
             this._screenManager.LoadObject();
+            base.LoadContent();
+            
         }
 
         protected override void UnloadContent()
         {
-            base.UnloadContent();
             this._screenManager.UnloadObject();
+            base.UnloadContent();
+            
         }
         protected override void Update(GameTime gameTime)
         {

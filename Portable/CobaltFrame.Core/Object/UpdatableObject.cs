@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public abstract class UpdatableObject:IUpdatableObject
+    public abstract class UpdatableObject : IUpdatableObject
     {
         public UpdatableObject(IGameContext context)
         {
@@ -45,40 +45,46 @@ namespace CobaltFrame.Core.Object
             get { return _gameObjects; }
         }
 
-        
+
         public virtual void Initialize()
         {
-            foreach (var obj in this._gameObjects)
+            for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                obj.Initialize();
+                this._gameObjects[i].Initialize();
             }
             this._loadState = ObjectLoadState.Initialized;
         }
 
         public virtual void LoadObject()
         {
-            foreach (var obj in this._gameObjects)
+            for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                obj.LoadObject();
+                this._gameObjects[i].LoadObject();
             }
             this._loadState = ObjectLoadState.Loaded;
         }
 
         public virtual void UnloadObject()
         {
-            foreach (var obj in this._gameObjects)
+            for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                obj.UnloadObject();
+                this._gameObjects[i].UnloadObject();
             }
             this._loadState = ObjectLoadState.Unloaded;
         }
 
         public virtual void Update(IFrameContext context)
         {
-            foreach (var obj in this._gameObjects)
+            int beforeObjectCount = this._gameObjects.Count;
+            for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                if (this._isActive)
-                    obj.Update(context);
+                if (this._isActive && this._gameObjects[i].LoadState >= ObjectLoadState.Loaded)
+                    this._gameObjects[i].Update(context);
+
+                if (beforeObjectCount != this._gameObjects.Count)
+                {
+                    break;
+                }
             }
         }
 
@@ -99,10 +105,8 @@ namespace CobaltFrame.Core.Object
         {
             if (this._gameObjects.Contains(obj))
             {
-                if (this._loadState >= ObjectLoadState.Unloaded)
-                {
-                    obj.UnloadObject();
-                }
+                obj.UnloadObject();
+
                 this._gameObjects.Remove(obj);
             }
         }

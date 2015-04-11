@@ -50,7 +50,8 @@ namespace CobaltFrame.Object
         public override void UnloadObject()
         {
             base.UnloadObject();
-            this._texture.Dispose();
+            
+            
         }
 
         public override void Update(Core.Context.IFrameContext context)

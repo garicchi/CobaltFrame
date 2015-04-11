@@ -62,5 +62,10 @@ namespace HorizontalShootingGame.Portable.Object
             }
 
         }
+
+        public override void Draw(IFrameContext context)
+        {
+            base.Draw(context);
+        }
     }
 }

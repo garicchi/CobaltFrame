@@ -10,29 +10,29 @@ namespace CobaltFrame.Core.Screen
 {
     public abstract class Screen:DrawableObject,IScreen
     {
-        public event Action<IScreen, object> OnNavigate;
-        public event Action<int, object> OnNavigatePrevious;
+        public event Action<IScreen, object,IScreenTransition> OnNavigate;
+        public event Action<int, object,IScreenTransition> OnNavigatePrevious;
         
 
         public Screen(IGameContext context)
             :base(context)
         {
-            this.OnNavigate += (sc,obj) => { };
-            this.OnNavigatePrevious += (num,obj) => { };
+            this.OnNavigate += (sc,obj,trans) => { };
+            this.OnNavigatePrevious += (num,obj,trans) => { };
         }
 
-        public void Navigate(IScreen screen, object parameter)
+        public virtual void Navigate(IScreen screen, object parameter, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
         {
-            this.OnNavigate(screen,parameter);
+            this.OnNavigate(screen,parameter,toTrans);
         }
 
-        public void NavigatePrevious(int oldNum,object parameter)
+        public virtual void NavigatePrevious(int oldNum, object parameter, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
         {
-            this.OnNavigatePrevious(oldNum,parameter);
+            this.OnNavigatePrevious(oldNum,parameter,toTrans);
         }
 
 
-        public virtual void NavigateTo(object parameter)
+        public virtual void NavigateTo(object parameter,IScreenTransition transition = null)
         {
             
         }

@@ -2,16 +2,17 @@
 using CobaltFrame.Core.Context;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public abstract class DrawableObject:UpdatableObject,IDrawableObject,IComparable
+    public abstract class DrawableObject : UpdatableObject, IDrawableObject, IComparable
     {
         public DrawableObject(IGameContext context)
-            :base(context)
+            : base(context)
         {
             this._isVisible = true;
             this._layerDepth = 0.5f;
@@ -46,38 +47,49 @@ namespace CobaltFrame.Core.Object
 
         public override void Initialize()
         {
-            foreach (var obj in this._drawableObjects)
+            for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                obj.Initialize();
+                this._drawableObjects[i].Initialize();
             }
             base.Initialize();
-            
+
         }
 
         public override void LoadObject()
         {
-            foreach (var obj in this._drawableObjects)
+            for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                obj.LoadObject();
+                this._drawableObjects[i].LoadObject();
             }
             base.LoadObject();
         }
 
         public override void UnloadObject()
         {
-            foreach (var obj in this._drawableObjects)
+            for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                obj.UnloadObject();
+                this._drawableObjects[i].UnloadObject();
             }
             base.UnloadObject();
         }
 
         public override void Update(IFrameContext context)
         {
-            foreach (var obj in this._drawableObjects)
+            int beforeObjectCount = this._drawableObjects.Count;
+            for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                if (obj.IsActive)
-                    obj.Update(context);
+
+                if (this._drawableObjects[i].IsActive
+                    && this._drawableObjects[i].LoadState >= ObjectLoadState.Loaded
+                     && this._drawableObjects[i].LoadState < ObjectLoadState.Unloaded
+                    )
+                {
+                    this._drawableObjects[i].Update(context);
+                }
+                if (beforeObjectCount != this._drawableObjects.Count)
+                {
+                    break;
+                }
             }
             base.Update(context);
         }
@@ -87,10 +99,22 @@ namespace CobaltFrame.Core.Object
             if (this._isObjectLayerChanged)
                 this.SortObject();
 
-            foreach (var obj in this._drawableObjects)
+            int beforeObjectCount = this._drawableObjects.Count;
+            for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                if (obj.IsVisible)
-                    obj.Draw(context);
+                if (this._drawableObjects[i].IsVisible
+                    && this._drawableObjects[i].LoadState >= ObjectLoadState.Loaded
+                    && this._drawableObjects[i].LoadState < ObjectLoadState.Unloaded
+                    )
+                {
+                    this._drawableObjects[i].Draw(context);
+                }
+                
+
+                if (beforeObjectCount != this._drawableObjects.Count)
+                {
+                    break;
+                }
             }
 
             this._isObjectLayerChanged = false;
@@ -139,6 +163,7 @@ namespace CobaltFrame.Core.Object
                 obj.LoadObject();
             }
             this._drawableObjects.Add(obj);
+            this.ChangeChildDrawableObjectLayer(obj,obj.LayerDepth);
         }
 
 
@@ -146,10 +171,7 @@ namespace CobaltFrame.Core.Object
         {
             if (this._drawableObjects.Contains(obj))
             {
-                if (this._loadState >= ObjectLoadState.Unloaded)
-                {
-                    obj.UnloadObject();
-                }
+                obj.UnloadObject();
                 this._drawableObjects.Remove(obj);
             }
         }

@@ -1,4 +1,6 @@
 ﻿using CobaltFrame.Context;
+using CobaltFrame.Core.Screen;
+using CobaltFrame.Transition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -70,6 +72,8 @@ namespace CobaltFrame.Screen
                 this._firstUpdate = false;
             }
             this._screenElapsedTime = fContext.TotalGameTime - this._screenElapsedTime;
+
+            
         }
 
         public override void Draw(Core.Context.IFrameContext context)
@@ -77,17 +81,72 @@ namespace CobaltFrame.Screen
             
             
             base.Draw(context);
+            
         }
 
 
 
-        public override void NavigateTo(object parameter)
+        public override void NavigateTo(object parameter,IScreenTransition transition = null)
         {
-            base.NavigateTo(parameter);
-            
+            if (transition != null)
+            {
+                var sTransition = transition as ScreenTransition;
+                this.AddDrawableObject(sTransition);
+                
+                sTransition.Start();
+                sTransition.OnCompleted += () =>
+                {
+                    base.NavigateTo(parameter, transition);
+                    this.RemoveDrawableObject(sTransition);
+                };
+            }
+            else
+            {
+                base.NavigateTo(parameter,transition);
+            }
             this._firstUpdate = true;
         }
 
+        public override void Navigate(Core.Screen.IScreen screen, object parameter,IScreenTransition fromTrans=null,IScreenTransition toTrans=null)
+        {
+            if (fromTrans != null)
+            {
+                var sFromTrans = fromTrans as ScreenTransition;
+                AddDrawableObject(sFromTrans);
+                
+                sFromTrans.OnCompleted += () =>
+                {
+                    base.Navigate(screen, parameter,fromTrans,toTrans);
+                    RemoveDrawableObject(sFromTrans);
+                };
+                sFromTrans.Start();
+            }
+            else
+            {
+                base.Navigate(screen, parameter, fromTrans, toTrans);
+            }
+            
+        }
+
+        public override void NavigatePrevious(int oldNum, object parameter, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
+        {
+            if (fromTrans != null)
+            {
+                var sFromTrans = fromTrans as ScreenTransition;
+                AddDrawableObject(sFromTrans);
+                
+                sFromTrans.OnCompleted += () =>
+                {
+                    base.NavigatePrevious(oldNum, parameter, fromTrans, toTrans);
+                    RemoveDrawableObject(sFromTrans);
+                };
+                sFromTrans.Start();
+            }
+            else
+            {
+                base.NavigatePrevious(oldNum, parameter, fromTrans, toTrans);
+            }
+        }
         
     }
 }
