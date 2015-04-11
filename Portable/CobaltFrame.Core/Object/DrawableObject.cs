@@ -42,9 +42,16 @@ namespace CobaltFrame.Core.Object
         public float LayerDepth
         {
             get { return this._layerDepth; }
-            set { this._layerDepth = value; }
+            set { this._layerDepth = value; _isObjectLayerChanged = true; }
         }
+
         private bool _isObjectLayerChanged;
+
+        public bool IsObjectLayerChanged
+        {
+            get { return _isObjectLayerChanged; }
+            
+        }
 
         public override void Initialize()
         {
@@ -97,8 +104,10 @@ namespace CobaltFrame.Core.Object
 
         public virtual void Draw(IFrameContext context)
         {
-            if (this._isObjectLayerChanged)
+            if (this._drawableObjects.Any(q => q.IsObjectLayerChanged))
+            {
                 this.SortObject();
+            }
 
             int beforeObjectCount = this._drawableObjects.Count;
             for (int i = 0; i < this._drawableObjects.Count; i++)
@@ -121,22 +130,7 @@ namespace CobaltFrame.Core.Object
             this._isObjectLayerChanged = false;
         }
 
-        public void ChangeChildDrawableObjectLayer(IDrawableObject obj, float layer)
-        {
-            if (this._drawableObjects.Contains(obj))
-            {
-                if (layer >= 0.0f && layer <= 1.0f)
-                {
-                    obj.LayerDepth = layer;
-                    this._isObjectLayerChanged = true;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("layer depth range is 0.0f~1.0f");
-                }
-
-            }
-        }
+        
 
         public int CompareTo(object obj)
         {
@@ -166,7 +160,7 @@ namespace CobaltFrame.Core.Object
                 obj.LoadObject();
             }
             this._drawableObjects.Add(obj);
-            this.ChangeChildDrawableObjectLayer(obj,obj.LayerDepth);
+            
         }
 
 

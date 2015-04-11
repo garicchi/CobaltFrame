@@ -11,12 +11,13 @@ namespace CobaltFrame.Core.Object
     {
         bool IsVisible { get; set; }
         float LayerDepth { get; set; }
+
+        bool IsObjectLayerChanged { get; }
         /// <summary>
         /// このオブジェクトにぶら下がる子オブジェクト
         /// 描画される
         /// </summary>
         List<IDrawableObject> DrawableObjects { get; }
         void Draw(IFrameContext context);
-        void ChangeChildDrawableObjectLayer(IDrawableObject obj,float layer);
     }
 }
