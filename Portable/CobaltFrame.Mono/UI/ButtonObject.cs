@@ -115,9 +115,7 @@ namespace CobaltFrame.UI
         public override void UnloadObject()
         {
             base.UnloadObject();
-            this._pressedTexture.Dispose();
-            this._releasedTexture.Dispose();
-
+            
             GameInput.UnregisterInputState("_ButtonObjectOnClick");
             GameInput.UnregisterInputState("_ButtonObjectPressed");
         }

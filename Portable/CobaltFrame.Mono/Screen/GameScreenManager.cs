@@ -80,6 +80,8 @@ namespace CobaltFrame.Screen
             base.LoadObject();
         }
 
+        
+
         public override void Update(Core.Context.IFrameContext context)
         {
             (context as FrameContext).ScreenScale = ScreenScale;

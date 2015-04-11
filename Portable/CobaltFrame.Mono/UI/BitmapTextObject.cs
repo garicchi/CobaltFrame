@@ -118,10 +118,7 @@ namespace CobaltFrame.UI
         public override void UnloadObject()
         {
             base.UnloadObject();
-            foreach (var tex in this._fontTextures)
-            {
-                tex.Dispose();
-            }
+            
         }
 
         public override void Draw(Core.Context.IFrameContext context)
