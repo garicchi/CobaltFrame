@@ -1,4 +1,4 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Screen;
 using Microsoft.Xna.Framework;
 using System;
@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CobaltFrame.Input;
+using CobaltFrame.Mono.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
 
-namespace CobaltFrame.Screen
+namespace CobaltFrame.Mono.Screen
 {
     public class GameScreenManager:ScreenManager
     {

@@ -1,7 +1,7 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Context;
-using CobaltFrame.Input;
-using CobaltFrame.Object;
+using CobaltFrame.Mono.Input;
+using CobaltFrame.Mono.Object;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;

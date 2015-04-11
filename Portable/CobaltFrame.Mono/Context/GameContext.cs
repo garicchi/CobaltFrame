@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Context
+namespace CobaltFrame.Mono.Context
 {
     public class GameContext:IGameContext
     {

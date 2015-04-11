@@ -1,6 +1,6 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Screen;
-using CobaltFrame.Transition;
+using CobaltFrame.Mono.Transition;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Screen
+namespace CobaltFrame.Mono.Screen
 {
     public class GameScreen:CobaltFrame.Core.Screen.Screen
     {

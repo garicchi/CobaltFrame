@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Object
+namespace CobaltFrame.Mono.Object
 {
     public enum PositionUpdateMode
     {

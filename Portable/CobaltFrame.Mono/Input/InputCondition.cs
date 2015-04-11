@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Input
+namespace CobaltFrame.Mono.Input
 {
     public class InputCondition
     {

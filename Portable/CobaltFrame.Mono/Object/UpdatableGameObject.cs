@@ -1,4 +1,4 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Object;
 using Microsoft.Xna.Framework;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Object
+namespace CobaltFrame.Mono.Object
 {
     public class UpdatableGameObject:UpdatableObject
     {

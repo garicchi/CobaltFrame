@@ -1,6 +1,6 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Screen;
-using CobaltFrame.Screen;
+using CobaltFrame.Mono.Screen;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Transition
+namespace CobaltFrame.Mono.Transition
 {
     public class FadeColorTransition:ScreenTransition
     {

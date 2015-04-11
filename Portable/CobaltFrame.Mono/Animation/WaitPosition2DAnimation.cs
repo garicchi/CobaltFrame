@@ -1,4 +1,4 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Position;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Animation
+namespace CobaltFrame.Mono.Animation
 {
     public class WaitPosition2DAnimation:TimeAnimationBase<Position2D>
     {

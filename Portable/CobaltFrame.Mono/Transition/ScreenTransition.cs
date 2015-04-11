@@ -1,8 +1,8 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Core.Object;
 using CobaltFrame.Core.Screen;
-using CobaltFrame.Object;
+using CobaltFrame.Mono.Object;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Transition
+namespace CobaltFrame.Mono.Transition
 {
     public abstract class ScreenTransition:DrawableGameObject,IScreenTransition
     {

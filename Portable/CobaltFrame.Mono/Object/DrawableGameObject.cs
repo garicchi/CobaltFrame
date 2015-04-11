@@ -1,5 +1,5 @@
-﻿using CobaltFrame.Animation;
-using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Animation;
+using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Core.Object;
 using CobaltFrame.Position;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Object
+namespace CobaltFrame.Mono.Object
 {
     public abstract class DrawableGameObject:DrawableObject
     {

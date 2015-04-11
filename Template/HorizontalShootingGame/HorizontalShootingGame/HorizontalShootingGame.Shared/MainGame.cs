@@ -1,6 +1,6 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Data;
-using CobaltFrame.Screen;
+using CobaltFrame.Mono.Screen;
 using HorizontalShootingGame.Portable.Data;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,7 +13,7 @@ using System.IO;
 using System.Linq;
 using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
-using CobaltFrame.Input;
+using CobaltFrame.Mono.Input;
 using Windows.Devices.Sensors;
 using System.Diagnostics;
 

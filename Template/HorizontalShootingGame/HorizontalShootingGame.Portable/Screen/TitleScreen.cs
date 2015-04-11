@@ -1,9 +1,9 @@
-﻿using CobaltFrame.Context;
-using CobaltFrame.Input;
-using CobaltFrame.Object;
+﻿using CobaltFrame.Mono.Context;
+using CobaltFrame.Mono.Input;
+using CobaltFrame.Mono.Object;
 using CobaltFrame.Position;
-using CobaltFrame.Screen;
-using CobaltFrame.Transition;
+using CobaltFrame.Mono.Screen;
+using CobaltFrame.Mono.Transition;
 using HorizontalShootingGame.Portable.Object;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -24,7 +24,7 @@ namespace HorizontalShootingGame.Portable.Screen
         {
             player = new Player(context,new Position2D(50,300,200,200),"Texture/Player");
             this.AddDrawableObject(player);
-            var player2 = new Texture2DObject(context, new Position2D(65, 315, 200, 200), "Texture/Player");
+            var player2 = new Player(context, new Position2D(65, 315, 200, 200), "Texture/Player");
             player2.LayerDepth = 0.0f;
             this.AddDrawableObject(player2);
             
@@ -46,6 +46,7 @@ namespace HorizontalShootingGame.Portable.Screen
         {
             base.Update(context);
             
+            
             if (GameInput.IsInput("input1"))
             {
                 var gContext = this._gameContext as GameContext;
@@ -53,6 +54,7 @@ namespace HorizontalShootingGame.Portable.Screen
                     new FadeColorTransition(gContext,Color.Black,0,255,TimeSpan.FromSeconds(0.8)),
                     new FadeColorTransition(gContext,Color.Black,255,0,TimeSpan.FromSeconds(0.8)));
             }
+            
         }
 
         public override void Draw(CobaltFrame.Core.Context.IFrameContext context)

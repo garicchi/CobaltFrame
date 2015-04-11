@@ -1,5 +1,5 @@
-﻿using CobaltFrame.Context;
-using CobaltFrame.Object;
+﻿using CobaltFrame.Mono.Context;
+using CobaltFrame.Mono.Object;
 using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Sound
+namespace CobaltFrame.Mono.Sound
 {
     public class SoundObject:UpdatableGameObject
     {

@@ -1,7 +1,7 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Object;
 using CobaltFrame.Mono.Font;
-using CobaltFrame.Object;
+using CobaltFrame.Mono.Object;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.UI
+namespace CobaltFrame.Mono.UI
 {
     public class BitmapTextObject:DrawableGameObject
     {

@@ -1,5 +1,5 @@
-﻿using CobaltFrame.Context;
-using CobaltFrame.Input;
+﻿using CobaltFrame.Mono.Context;
+using CobaltFrame.Mono.Input;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.UI
+namespace CobaltFrame.Mono.UI
 {
     public class ButtonObject:UIObject
     {

@@ -1,6 +1,6 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Position;
-using CobaltFrame.Screen;
+using CobaltFrame.Mono.Screen;
 using HorizontalShootingGame.Portable.Object;
 using Microsoft.Xna.Framework;
 using System;
