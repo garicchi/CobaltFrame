@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Context;
 using CobaltFrame.Input;
+using CobaltFrame.Object;
 using CobaltFrame.Position;
 using CobaltFrame.Screen;
 using CobaltFrame.Transition;
@@ -23,6 +24,10 @@ namespace HorizontalShootingGame.Portable.Screen
         {
             player = new Player(context,new Position2D(50,300,200,200),"Texture/Player");
             this.AddDrawableObject(player);
+            var player2 = new Texture2DObject(context, new Position2D(65, 315, 200, 200), "Texture/Player");
+            
+            this.AddDrawableObject(player2);
+            this.ChangeChildDrawableObjectLayer(player2, 0.0f);
             GameInput.RegisterInputState("input1", () =>
             {
                 if(GameInput.TouchCollection.Count>0)

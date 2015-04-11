@@ -10,7 +10,7 @@ namespace CobaltFrame.Core.Object
     public interface IDrawableObject:IUpdatableObject
     {
         bool IsVisible { get; set; }
-        float LayerDepth { get; }
+        float LayerDepth { get; set; }
         /// <summary>
         /// このオブジェクトにぶら下がる子オブジェクト
         /// 描画される

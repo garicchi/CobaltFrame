@@ -30,6 +30,7 @@ namespace HorizontalShootingGame.Portable.Object
         {
             base.LoadObject();
             //プレイヤーを上に動かすという入力概念を登録
+            
             GameInput.RegisterInputState("PlayerMove",
                 //タッチ入力条件
                 () => GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Moved).Count() != 0,
@@ -42,6 +43,7 @@ namespace HorizontalShootingGame.Portable.Object
                 //加速度センサー入力条件
                 () => GameInput.AccelState.Accel.X > 0
             );
+            
         }
 
         public override void UnloadObject()

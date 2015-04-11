@@ -42,6 +42,7 @@ namespace CobaltFrame.Core.Object
         public float LayerDepth
         {
             get { return this._layerDepth; }
+            set { this._layerDepth = value; }
         }
         private bool _isObjectLayerChanged;
 
@@ -126,7 +127,7 @@ namespace CobaltFrame.Core.Object
             {
                 if (layer >= 0.0f && layer <= 1.0f)
                 {
-                    this._layerDepth = layer;
+                    obj.LayerDepth = layer;
                     this._isObjectLayerChanged = true;
                 }
                 else
@@ -149,7 +150,9 @@ namespace CobaltFrame.Core.Object
 
         protected void SortObject()
         {
+
             this._drawableObjects.Sort();
+
         }
 
         protected void AddDrawableObject(IDrawableObject obj)

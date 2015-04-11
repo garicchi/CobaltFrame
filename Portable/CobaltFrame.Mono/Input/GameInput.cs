@@ -41,19 +41,19 @@ namespace CobaltFrame.Input
             Func<bool> accelCondition = null
             )
         {
-            if(_inputConditions.Any(q => q.StateName == stateName))
+            if(!_inputConditions.Any(q => q.StateName == stateName))
             {
-                throw new ArgumentException("StateNameが重複しています");
+                _inputConditions.Add(new InputCondition(
+                 stateName,
+                 touchCondition,
+                 mouseCondition,
+                 gamePadCondition,
+                 keyboardCondition,
+                 accelCondition
+                 )
+                 );
             }
-            _inputConditions.Add(new InputCondition(
-                stateName,
-                touchCondition,
-                mouseCondition,
-                gamePadCondition,
-                keyboardCondition,
-                accelCondition
-                )
-                );
+            
             
         }
 
