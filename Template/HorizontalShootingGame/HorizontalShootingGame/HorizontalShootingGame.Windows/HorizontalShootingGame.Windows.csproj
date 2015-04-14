@@ -134,8 +134,8 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Content\Texture\bullet.png" />
     <Content Include="Content\Texture\player.png" />
-    <Content Include="Content\Texture\TransTexture.png" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\HorizontalShootingGame.Shared\Content\Content.mgcb">

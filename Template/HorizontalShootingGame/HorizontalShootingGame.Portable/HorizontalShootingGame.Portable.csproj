@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\SaveData.cs" />
+    <Compile Include="Object\Bullet.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\MainScreenManager.cs" />

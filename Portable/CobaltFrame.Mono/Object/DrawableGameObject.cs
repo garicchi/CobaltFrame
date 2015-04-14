@@ -114,6 +114,9 @@ namespace CobaltFrame.Mono.Object
             this.RemoveObject(this._attachedAnimation);
         }
 
-        
+        public void MovePosition(int up = 0, int down = 0, int right = 0, int left = 0)
+        {
+            this.Position.SetLocation(new Vector2(this.Position.GetLocation().X+right-left, this.Position.GetLocation().Y +down-up));
+        }
     }
 }
