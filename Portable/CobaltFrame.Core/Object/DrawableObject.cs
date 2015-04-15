@@ -163,7 +163,6 @@ namespace CobaltFrame.Core.Object
             
         }
 
-
         protected void RemoveDrawableObject(IDrawableObject obj)
         {
             if (this._drawableObjects.Contains(obj))
@@ -172,5 +171,11 @@ namespace CobaltFrame.Core.Object
                 this._drawableObjects.Remove(obj);
             }
         }
+
+
+        
+
+        
+
     }
 }

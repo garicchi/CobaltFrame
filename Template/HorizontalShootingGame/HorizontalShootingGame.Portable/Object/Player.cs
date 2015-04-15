@@ -25,9 +25,19 @@ namespace HorizontalShootingGame.Portable.Object
         public Player(GameContext context, Position2D position, string texturePath)
             : base(context, position, texturePath)
         {
-
-            this._bulletList = Enumerable.Repeat(new Bullet(context,new Position2D(this.Position),"Texture/bullet"),10).ToList();
-            
+            this._bulletList = new List<Bullet>();
+            for (int i = 0; i < 10;i++ )
+            {
+                Bullet bullet = new Bullet(context,new Position2D(
+                    this.Position.GetPosition().X,
+                    this.Position.GetPosition().Y + this.Position.GetPosition().Height / 2,
+                    100,
+                    10)
+                    ,"Texture/bullet");
+                
+                this.AddDrawableObject(bullet);
+                this._bulletList.Add(bullet);
+            }
         }
         public override void Initialize()
         {
@@ -71,7 +81,7 @@ namespace HorizontalShootingGame.Portable.Object
                 null,
                 null,
                 null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Space),
+                () => GameInput.KeyboardState.IsKeyDown(Keys.Space)&&!GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
                 null
             );
         }
@@ -108,7 +118,14 @@ namespace HorizontalShootingGame.Portable.Object
             }
             if (GameInput.IsInput("PlayerShot"))
             {
-                this._bulletList.Where(q => q.IsVisible == false).First().Shot();
+                if (this._bulletList.Any(q => q.IsVisible == false))
+                {
+
+                    Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
+                    bullet.Position.SetLocation(new Vector2(this.Position.GetLocation().X,this.Position.GetLocation().Y+this.Position.GetPosition().Height/2));
+                    bullet.Shot();
+
+                }
             }
         }
 

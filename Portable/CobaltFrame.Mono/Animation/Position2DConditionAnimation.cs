@@ -22,5 +22,6 @@ namespace CobaltFrame.Mono.Animation
         {
             return this.Expression(currentValue, elapsedTime);
         }
+
     }
 }
