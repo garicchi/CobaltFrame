@@ -29,8 +29,8 @@ namespace HorizontalShootingGame.Portable.Object
             for (int i = 0; i < 10;i++ )
             {
                 Bullet bullet = new Bullet(context,new Box2(
-                    this.Position.GetRect().X,
-                    this.Position.GetRect().Y + this.Position.GetRect().Height / 2,
+                    this.Box.GetRect().X,
+                    this.Box.GetRect().Y + this.Box.GetRect().Height / 2,
                     100,
                     10)
                     ,"Texture/bullet");
@@ -122,7 +122,7 @@ namespace HorizontalShootingGame.Portable.Object
                 {
 
                     Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
-                    bullet.Position.SetLocation(new Vector2(this.Position.GetLocation().X,this.Position.GetLocation().Y+this.Position.GetRect().Height/2));
+                    bullet.Box.SetLocation(new Vector2(this.Box.GetLocation().X,this.Box.GetLocation().Y+this.Box.GetRect().Height/2));
                     bullet.Shot();
 
                 }

@@ -72,13 +72,13 @@ namespace CobaltFrame.Mono.UI
             this._pressedTexture = this._game.Content.Load<Texture2D>(this._pressedTexturePath);
             this._releasedTexture = this._game.Content.Load<Texture2D>(this._releasedTexturePath);
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
-            this._textureScale = new Vector2((float)this._position.GetRect().Width / (float)this._releasedTexture.Width, (float)this._position.GetRect().Height / (float)this._releasedTexture.Height);
+            this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._releasedTexture.Width, (float)this._box.GetRect().Height / (float)this._releasedTexture.Height);
 
             GameInput.RegisterInputState("_ButtonObjectOnClick",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed).Count()!=0
-                        && GameInput.TouchCollection.Where(q => this.Position.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                        && GameInput.TouchCollection.Where(q => this._box.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
                     {
                         return true;
                     }
@@ -90,14 +90,14 @@ namespace CobaltFrame.Mono.UI
                 },
                 ()=>GameInput.MouseState.LeftButton==ButtonState.Pressed
                     && GameInput.MouseStatePrev.LeftButton == ButtonState.Released
-                    && this.Position.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
+                    && this._box.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
             );
 
             GameInput.RegisterInputState("_ButtonObjectPressed",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed||q.State==TouchLocationState.Moved).Count() != 0
-                        && GameInput.TouchCollection.Where(q => this.Position.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                        && GameInput.TouchCollection.Where(q => this._box.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
                     {
                         return true;
                     }
@@ -108,7 +108,7 @@ namespace CobaltFrame.Mono.UI
 
                 },
                 () => GameInput.MouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed
-                    && this.Position.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
+                    && this._box.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
             );
         }
 
@@ -126,7 +126,7 @@ namespace CobaltFrame.Mono.UI
 
             if (GameInput.IsInput("_ButtonObjectOnClick"))
             {
-                OnClick(this,this.Position.GetLocation());
+                OnClick(this,this._box.GetLocation());
             }
 
             if (GameInput.IsInput("_ButtonObjectPressed"))
@@ -147,11 +147,11 @@ namespace CobaltFrame.Mono.UI
             switch (this._state)
             {
                 case ButtonState.Released:
-                    this._spriteBatch.Draw(this._releasedTexture, null, this._position.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                    this._spriteBatch.Draw(this._releasedTexture, null, this._box.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
                     
                     break;
                 case ButtonState.Pressed:
-                    this._spriteBatch.Draw(this._pressedTexture, null, this._position.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                    this._spriteBatch.Draw(this._pressedTexture, null, this._box.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
                     break;
             }
             this._spriteBatch.End();

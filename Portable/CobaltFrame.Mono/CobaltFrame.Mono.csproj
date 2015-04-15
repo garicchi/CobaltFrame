@@ -45,7 +45,6 @@
     <Compile Include="Input\InputCondition.cs" />
     <Compile Include="Input\TouchInputCollection.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
-    <Compile Include="Object\PositionUpdateMode.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
     <Compile Include="Position\Box2.cs" />

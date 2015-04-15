@@ -52,7 +52,7 @@ namespace HorizontalShootingGame.Portable.Object
         public override void Update(CobaltFrame.Core.Context.IFrameContext context)
         {
             base.Update(context);
-            this.Position.SetLocation(this.Animation.CurrentValue.GetLocation());
+            this.Box.SetLocation(this.Animation.CurrentValue.GetLocation());
         }
     }
 }

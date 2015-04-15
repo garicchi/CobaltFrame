@@ -127,7 +127,7 @@ namespace CobaltFrame.Mono.UI
 
             this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenTrans);
 
-            var charPos = this._position.GetLocation();
+            var charPos = this._box.GetLocation();
             foreach (var c in this._text)
             {
                 FontChar fc = null;
@@ -138,10 +138,10 @@ namespace CobaltFrame.Mono.UI
                         new Rectangle((int)(charPos.X + fc.XOffset * this._fontScale), (int)(charPos.Y + fc.YOffset * this._fontScale), (int)(fc.Width * this._fontScale), (int)(fc.Height * this._fontScale)),
                         new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._drawColor);
                     charPos.X += fc.XAdvance * this._fontScale;
-                    if (charPos.X > this.Position.GetRect().Width)
+                    if (charPos.X > this._box.GetRect().Width)
                     {
                         charPos.Y+=fc.Height * this._fontScale+_rowOffset;
-                        charPos.X = this.Position.GetRect().X;
+                        charPos.X = this._box.GetRect().X;
                     }
                 }
             }

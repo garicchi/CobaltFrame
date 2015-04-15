@@ -44,7 +44,7 @@ namespace CobaltFrame.Mono.Object
             base.Load();
             this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
             this._origin = new Vector2(this._texture.Width/2.0f,this._texture.Height/2.0f);
-            this._textureScale = new Vector2((float)this._position.GetRect().Width / (float)this._texture.Width, (float)this._position.GetRect().Height / (float)this._texture.Height);
+            this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._texture.Width, (float)this._box.GetRect().Height / (float)this._texture.Height);
         }
 
         public override void Unload()
@@ -64,7 +64,7 @@ namespace CobaltFrame.Mono.Object
             base.Draw(context);
             
             this._spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,(context as FrameContext).ScreenTrans);
-            this._spriteBatch.Draw(this._texture, null, this._position.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+            this._spriteBatch.Draw(this._texture, null, this._box.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
             
             this._spriteBatch.End();
         }
