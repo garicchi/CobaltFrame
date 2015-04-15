@@ -49,35 +49,35 @@ namespace HorizontalShootingGame.Portable.Object
         {
             base.Load();
 
-            GameInput.RegisterInputState("PlayerUp",
+            GameInput.RegisterInput("PlayerUp",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Up),
                 null
             );
-            GameInput.RegisterInputState("PlayerDown",
+            GameInput.RegisterInput("PlayerDown",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Down),
                 null
             );
-            GameInput.RegisterInputState("PlayerLeft",
+            GameInput.RegisterInput("PlayerLeft",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Left),
                 null
             );
-            GameInput.RegisterInputState("PlayerRight",
+            GameInput.RegisterInput("PlayerRight",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Right),
                 null
             );
-            GameInput.RegisterInputState("PlayerShot",
+            GameInput.RegisterInput("PlayerShot",
                 null,
                 null,
                 null,
@@ -89,11 +89,11 @@ namespace HorizontalShootingGame.Portable.Object
         public override void Unload()
         {
             base.Unload();
-            GameInput.UnregisterInputState("PlayerUp");
-            GameInput.UnregisterInputState("PlayerDown");
-            GameInput.UnregisterInputState("PlayerLeft");
-            GameInput.UnregisterInputState("PlayerRight");
-            GameInput.UnregisterInputState("PlayerShot");
+            GameInput.UnregisterInput("PlayerUp");
+            GameInput.UnregisterInput("PlayerDown");
+            GameInput.UnregisterInput("PlayerLeft");
+            GameInput.UnregisterInput("PlayerRight");
+            GameInput.UnregisterInput("PlayerShot");
         }
 
         public override void Update(IFrameContext context)

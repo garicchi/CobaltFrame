@@ -32,7 +32,7 @@ namespace CobaltFrame.Mono.Input
         //入力概念のリスト
         private static List<InputCondition> _inputConditions = new List<InputCondition>();
 
-        public static void RegisterInputState(
+        public static void RegisterInput(
             string stateName,
             Func<bool> touchCondition = null,
             Func<bool> mouseCondition = null,
@@ -57,7 +57,7 @@ namespace CobaltFrame.Mono.Input
             
         }
 
-        public static void UnregisterInputState(string stateName)
+        public static void UnregisterInput(string stateName)
         {
             if (_inputConditions.Any(q => q.StateName == stateName))
             {
@@ -66,7 +66,7 @@ namespace CobaltFrame.Mono.Input
             }
         }
 
-        public static void UnregisterAllInputState()
+        public static void UnregisterAllInput()
         {
             _inputConditions.Clear();
         }

@@ -73,8 +73,7 @@ namespace CobaltFrame.Mono.Screen
 
         public override void Draw(Core.Context.IFrameContext context)
         {
-            
-            
+
             base.Draw(context);
             
         }
