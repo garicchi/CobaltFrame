@@ -70,16 +70,16 @@ namespace CobaltFrame.Mono.UI
             this._rowOffset = 5.0f;
         }
 
-        public override void Initialize()
+        public override void Init()
         {
             
-            base.Initialize();
+            base.Init();
             
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._fontTextures.Clear();
             
             var fontFilePath = Path.Combine(this._game.Content.RootDirectory, this._fontPath+".fnt");
@@ -115,9 +115,9 @@ namespace CobaltFrame.Mono.UI
             
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             
         }
 

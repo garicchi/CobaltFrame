@@ -134,21 +134,21 @@ namespace CobaltFrame.Core.Screen
 
         public abstract void ScreenResolutionChanged();
 
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
             this._loadState = ObjectLoadState.Initialized;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._loadState = ObjectLoadState.Loaded;
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             this._loadState = ObjectLoadState.Unloaded;
         }
         

@@ -92,7 +92,7 @@ namespace HorizontalShootingGame
 
         protected override void Initialize()
         {
-            this._screenManager.Initialize();
+            this._screenManager.Init();
             base.Initialize();
 
             
@@ -100,14 +100,14 @@ namespace HorizontalShootingGame
 
         protected override void LoadContent()
         {
-            this._screenManager.LoadObject();
+            this._screenManager.Load();
             base.LoadContent();
             
         }
 
         protected override void UnloadContent()
         {
-            this._screenManager.UnloadObject();
+            this._screenManager.Unload();
             base.UnloadContent();
             
         }

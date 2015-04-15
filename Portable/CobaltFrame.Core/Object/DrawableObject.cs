@@ -53,32 +53,32 @@ namespace CobaltFrame.Core.Object
             
         }
 
-        public override void Initialize()
+        public override void Init()
         {
             for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                this._drawableObjects[i].Initialize();
+                this._drawableObjects[i].Init();
             }
-            base.Initialize();
+            base.Init();
 
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
             for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                this._drawableObjects[i].LoadObject();
+                this._drawableObjects[i].Load();
             }
-            base.LoadObject();
+            base.Load();
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
             for (int i = 0; i < this._drawableObjects.Count; i++)
             {
-                this._drawableObjects[i].UnloadObject();
+                this._drawableObjects[i].Unload();
             }
-            base.UnloadObject();
+            base.Unload();
         }
 
         public override void Update(IFrameContext context)
@@ -153,11 +153,11 @@ namespace CobaltFrame.Core.Object
         {
             if (this._loadState >= ObjectLoadState.Initialized)
             {
-                obj.Initialize();
+                obj.Init();
             }
             if (this._loadState >= ObjectLoadState.Loaded)
             {
-                obj.LoadObject();
+                obj.Load();
             }
             this._drawableObjects.Add(obj);
             
@@ -167,7 +167,7 @@ namespace CobaltFrame.Core.Object
         {
             if (this._drawableObjects.Contains(obj))
             {
-                obj.UnloadObject();
+                obj.Unload();
                 this._drawableObjects.Remove(obj);
             }
         }

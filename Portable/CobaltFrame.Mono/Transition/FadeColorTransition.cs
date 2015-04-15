@@ -52,9 +52,9 @@ namespace CobaltFrame.Mono.Transition
             this.AddObject(this._animation);
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             int width = this._game.GraphicsDevice.Viewport.Width;
             int height = this._game.GraphicsDevice.Viewport.Height;
             this.Texture = new Texture2D(this._game.GraphicsDevice,width,height);
@@ -63,9 +63,9 @@ namespace CobaltFrame.Mono.Transition
                 );
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             this.RemoveObject(this._animation);
             Texture.Dispose();
         }

@@ -69,15 +69,15 @@ namespace CobaltFrame.Mono.Screen
             };
             
         }
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
             ScreenResolutionChanged();
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
         }
 
         

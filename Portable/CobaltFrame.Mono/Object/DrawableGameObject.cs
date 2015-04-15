@@ -71,15 +71,15 @@ namespace CobaltFrame.Mono.Object
             this._drawColor = Color.White;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._spriteBatch = new SpriteBatch(_game.GraphicsDevice);
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             this._spriteBatch.Dispose();
         }
 

@@ -13,8 +13,8 @@ namespace CobaltFrame.Core.Object
         IGameContext GameContext { get; }
         ObjectLoadState LoadState { get; }
 
-        void Initialize();
-        void LoadObject();
-        void UnloadObject();
+        void Init();
+        void Load();
+        void Unload();
     }
 }

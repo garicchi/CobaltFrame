@@ -39,17 +39,17 @@ namespace CobaltFrame.Mono.Object
             this._texturePath = texturePath;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
             this._origin = new Vector2(this._texture.Width/2.0f,this._texture.Height/2.0f);
             this._textureScale = new Vector2((float)this._position.GetRect().Width / (float)this._texture.Width, (float)this._position.GetRect().Height / (float)this._texture.Height);
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
 
         }
 

@@ -38,9 +38,9 @@ namespace HorizontalShootingGame.Portable.Object
             this.AddObject(Animation);
         }
 
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
             this.IsVisible = false;
         }
         public void Shot()

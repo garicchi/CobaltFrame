@@ -61,14 +61,14 @@ namespace CobaltFrame.Mono.UI
             this.OnClick += (s, pos) => { };
         }
 
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._pressedTexture = this._game.Content.Load<Texture2D>(this._pressedTexturePath);
             this._releasedTexture = this._game.Content.Load<Texture2D>(this._releasedTexturePath);
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
@@ -112,9 +112,9 @@ namespace CobaltFrame.Mono.UI
             );
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             
             GameInput.UnregisterInputState("_ButtonObjectOnClick");
             GameInput.UnregisterInputState("_ButtonObjectPressed");

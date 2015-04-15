@@ -20,9 +20,9 @@ namespace CobaltFrame.Mono.Sound
             this._soundContentPath = soundContentPath;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             this._soundEffect = this._game.Content.Load<SoundEffect>(this._soundContentPath);
 
             this._soundInstance = this._soundEffect.CreateInstance();

@@ -39,15 +39,15 @@ namespace HorizontalShootingGame.Portable.Object
                 this._bulletList.Add(bullet);
             }
         }
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
             this._speed = 2;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
 
             GameInput.RegisterInputState("PlayerUp",
                 null,
@@ -86,9 +86,9 @@ namespace HorizontalShootingGame.Portable.Object
             );
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             GameInput.UnregisterInputState("PlayerUp");
             GameInput.UnregisterInputState("PlayerDown");
             GameInput.UnregisterInputState("PlayerLeft");

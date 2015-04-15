@@ -20,9 +20,9 @@ namespace HorizontalShootingGame.Portable.Screen
             
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
             var player = new Player(this._gameContext as GameContext, new Box2(0, 0, 200, 200), "Texture/Player");
             
             this.AddDrawableObject(player);

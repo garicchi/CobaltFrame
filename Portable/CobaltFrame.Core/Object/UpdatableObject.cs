@@ -46,29 +46,29 @@ namespace CobaltFrame.Core.Object
         }
 
 
-        public virtual void Initialize()
+        public virtual void Init()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                this._gameObjects[i].Initialize();
+                this._gameObjects[i].Init();
             }
             this._loadState = ObjectLoadState.Initialized;
         }
 
-        public virtual void LoadObject()
+        public virtual void Load()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                this._gameObjects[i].LoadObject();
+                this._gameObjects[i].Load();
             }
             this._loadState = ObjectLoadState.Loaded;
         }
 
-        public virtual void UnloadObject()
+        public virtual void Unload()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
             {
-                this._gameObjects[i].UnloadObject();
+                this._gameObjects[i].Unload();
             }
             this._loadState = ObjectLoadState.Unloaded;
         }
@@ -92,11 +92,11 @@ namespace CobaltFrame.Core.Object
         {
             if (this._loadState >= ObjectLoadState.Initialized)
             {
-                obj.Initialize();
+                obj.Init();
             }
             if (this._loadState >= ObjectLoadState.Loaded)
             {
-                obj.LoadObject();
+                obj.Load();
             }
             this._gameObjects.Add(obj);
         }
@@ -105,7 +105,7 @@ namespace CobaltFrame.Core.Object
         {
             if (this._gameObjects.Contains(obj))
             {
-                obj.UnloadObject();
+                obj.Unload();
 
                 this._gameObjects.Remove(obj);
             }

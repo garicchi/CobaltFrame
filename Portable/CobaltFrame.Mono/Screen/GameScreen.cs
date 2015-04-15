@@ -37,22 +37,22 @@ namespace CobaltFrame.Mono.Screen
             
         }
 
-        public override void Initialize()
+        public override void Init()
         {
-            base.Initialize();
+            base.Init();
             this._firstUpdate = false;
         }
 
-        public override void LoadObject()
+        public override void Load()
         {
-            base.LoadObject();
+            base.Load();
 
             
         }
 
-        public override void UnloadObject()
+        public override void Unload()
         {
-            base.UnloadObject();
+            base.Unload();
             //現在のスクリーンで読み込まれているコンテンツをアンロード
             this._game.Content.Unload();
         }
