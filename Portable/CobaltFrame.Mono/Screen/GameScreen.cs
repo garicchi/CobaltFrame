@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Mono.Input;
 
 namespace CobaltFrame.Mono.Screen
 {
@@ -29,12 +30,14 @@ namespace CobaltFrame.Mono.Screen
             get { return _screenBackgroundColor; }
             set { _screenBackgroundColor = value; }
         }
+
+        protected GameInputCollection InputStates { get; set; }
         
         public GameScreen(GameContext context)
             : base(context)
         {
             this._game = context.Game;
-            
+            this.InputStates = new GameInputCollection();
         }
 
         public override void Init()
@@ -59,6 +62,8 @@ namespace CobaltFrame.Mono.Screen
 
         public override void Update(Core.Context.IFrameContext context)
         {
+            this.InputStates.Update();
+
             base.Update(context);
             var fContext = context as FrameContext;
             if (this._firstUpdate)

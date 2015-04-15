@@ -78,6 +78,8 @@ namespace CobaltFrame.Core.Object
             {
                 this._drawableObjects[i].Unload();
             }
+
+            
             base.Unload();
         }
 

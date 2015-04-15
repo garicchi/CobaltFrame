@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using CobaltFrame.Mono.UI;
 
 namespace HorizontalShootingGame.Portable.Object
 {
@@ -49,35 +50,35 @@ namespace HorizontalShootingGame.Portable.Object
         {
             base.Load();
 
-            GameInput.RegisterInput("PlayerUp",
+            this.Inputs.RegisterInput("PlayerUp",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Up),
                 null
             );
-            GameInput.RegisterInput("PlayerDown",
+            this.Inputs.RegisterInput("PlayerDown",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Down),
                 null
             );
-            GameInput.RegisterInput("PlayerLeft",
+            this.Inputs.RegisterInput("PlayerLeft",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Left),
                 null
             );
-            GameInput.RegisterInput("PlayerRight",
+            this.Inputs.RegisterInput("PlayerRight",
                 null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Right),
                 null
             );
-            GameInput.RegisterInput("PlayerShot",
+            this.Inputs.RegisterInput("PlayerShot",
                 null,
                 null,
                 null,
@@ -89,34 +90,30 @@ namespace HorizontalShootingGame.Portable.Object
         public override void Unload()
         {
             base.Unload();
-            GameInput.UnregisterInput("PlayerUp");
-            GameInput.UnregisterInput("PlayerDown");
-            GameInput.UnregisterInput("PlayerLeft");
-            GameInput.UnregisterInput("PlayerRight");
-            GameInput.UnregisterInput("PlayerShot");
+            
         }
 
         public override void Update(IFrameContext context)
         {
             base.Update(context);
 
-            if (GameInput.IsInput("PlayerUp"))
+            if (this.Inputs.IsInput("PlayerUp"))
             {
                 this.MovePosition(this._speed);
             }
-            if (GameInput.IsInput("PlayerDown"))
+            if (this.Inputs.IsInput("PlayerDown"))
             {
                 this.MovePosition(0,this._speed);
             }
-            if (GameInput.IsInput("PlayerLeft"))
+            if (this.Inputs.IsInput("PlayerLeft"))
             {
                 this.MovePosition(0,0,0,this._speed);
             }
-            if (GameInput.IsInput("PlayerRight"))
+            if (this.Inputs.IsInput("PlayerRight"))
             {
                 this.MovePosition(0,0,this._speed);
             }
-            if (GameInput.IsInput("PlayerShot"))
+            if (this.Inputs.IsInput("PlayerShot"))
             {
                 if (this._bulletList.Any(q => q.IsVisible == false))
                 {

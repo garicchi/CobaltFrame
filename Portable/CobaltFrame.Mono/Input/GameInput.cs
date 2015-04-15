@@ -29,57 +29,6 @@ namespace CobaltFrame.Mono.Input
 
         private static bool _isFirstUpdate = true;
 
-        //入力概念のリスト
-        private static List<InputCondition> _inputConditions = new List<InputCondition>();
-
-        public static void RegisterInput(
-            string stateName,
-            Func<bool> touchCondition = null,
-            Func<bool> mouseCondition = null,
-            Func<bool> gamePadCondition = null,
-            Func<bool> keyboardCondition = null,
-            Func<bool> accelCondition = null
-            )
-        {
-            if(!_inputConditions.Any(q => q.StateName == stateName))
-            {
-                _inputConditions.Add(new InputCondition(
-                 stateName,
-                 touchCondition,
-                 mouseCondition,
-                 gamePadCondition,
-                 keyboardCondition,
-                 accelCondition
-                 )
-                 );
-            }
-            
-            
-        }
-
-        public static void UnregisterInput(string stateName)
-        {
-            if (_inputConditions.Any(q => q.StateName == stateName))
-            {
-                var condition = _inputConditions.Where(q => q.StateName == stateName).First();
-                _inputConditions.Remove(condition);
-            }
-        }
-
-        public static void UnregisterAllInput()
-        {
-            _inputConditions.Clear();
-        }
-
-        public static bool IsInput(string stateName)
-        {
-            if (!_inputConditions.Any(q => q.StateName == stateName))
-            {
-                return false;
-            }
-            return _inputConditions.Where(q => q.StateName == stateName).First().IsInput;
-        }
-
         public static void SetupAccelState(Func<AccelerometerState> accelFunc)
         {
             IsAccelEnable = true;
@@ -145,36 +94,7 @@ namespace CobaltFrame.Mono.Input
                 AccelState = _accelFunc();
             }
 
-            foreach (var condition in _inputConditions)
-            {
-                var inputTouch = false;
-                var inputKeyboard = false;
-                var inputMouse = false;
-                var inputPad = false;
-                var inputAccel =false;
-                if (TouchPanel.GetCapabilities().IsConnected&&condition.TouchCondition!=null)
-                {
-                    inputTouch = condition.TouchCondition();
-                }
-                if (condition.KeyboardCondition != null)
-                {
-                    inputKeyboard = condition.KeyboardCondition();
-                }
-                if (condition.MouseCondition != null)
-                {
-                    inputMouse = condition.MouseCondition();
-                }
-                if (GamePad.GetCapabilities(PlayerIndex.One).IsConnected && condition.GamePadCondition != null)
-                {
-                    inputPad = condition.GamePadCondition();
-                }
-                if (IsAccelEnable && condition.AccelCondition != null)
-                {
-                    inputAccel = condition.AccelCondition();
-                }
-
-                condition.IsInput = inputTouch || inputKeyboard || inputMouse || inputPad || inputAccel ;
-            }
+            
             
         }
     }

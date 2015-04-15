@@ -43,9 +43,11 @@
     <Compile Include="Input\AccelerometerState.cs" />
     <Compile Include="Input\GameInput.cs" />
     <Compile Include="Input\InputCondition.cs" />
+    <Compile Include="Input\GameInputCollection.cs" />
     <Compile Include="Input\TouchInputCollection.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
-    <Compile Include="Object\Texture2DObject.cs" />
+    <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="UI\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
     <Compile Include="Position\Box2.cs" />
     <Compile Include="Position\RelativeBox2.cs" />

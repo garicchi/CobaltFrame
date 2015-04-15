@@ -11,10 +11,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Mono.Input;
 
 namespace CobaltFrame.Mono.Object
 {
-    public abstract class DrawableGameObject:DrawableObject
+    public abstract class DrawableGameObject:DrawableObject,IGameObject
     {
         protected Game _game;
         protected SpriteBatch _spriteBatch;
@@ -52,6 +53,7 @@ namespace CobaltFrame.Mono.Object
             set { _drawColor = value; }
         }
 
+        public GameInputCollection Inputs { get; set; }
         
         public DrawableGameObject(GameContext context,Box2 box)
             : base(context)
@@ -63,6 +65,8 @@ namespace CobaltFrame.Mono.Object
             this._origin = Vector2.Zero;
             
             this._drawColor = Color.White;
+
+            this.Inputs = new GameInputCollection();
         }
 
         public override void Load()
@@ -74,11 +78,13 @@ namespace CobaltFrame.Mono.Object
         public override void Unload()
         {
             base.Unload();
+            this.Inputs.UnregisterAllInput();
             this._spriteBatch.Dispose();
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
+            this.Inputs.Update();
             base.Update(context);
 
         }
@@ -93,5 +99,8 @@ namespace CobaltFrame.Mono.Object
         {
             this._box.SetLocation(new Vector2(this._box.GetLocation().X+right-left, this._box.GetLocation().Y +down-up));
         }
+
+
+        
     }
 }

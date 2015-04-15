@@ -74,7 +74,7 @@ namespace CobaltFrame.Mono.UI
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._releasedTexture.Width, (float)this._box.GetRect().Height / (float)this._releasedTexture.Height);
 
-            GameInput.RegisterInput("_ButtonObjectOnClick",
+            this.Inputs.RegisterInput("ButtonObjectOnClick",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed).Count()!=0
@@ -93,7 +93,7 @@ namespace CobaltFrame.Mono.UI
                     && this._box.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
             );
 
-            GameInput.RegisterInput("_ButtonObjectPressed",
+            this.Inputs.RegisterInput("ButtonObjectPressed",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed||q.State==TouchLocationState.Moved).Count() != 0
@@ -116,20 +116,18 @@ namespace CobaltFrame.Mono.UI
         {
             base.Unload();
             
-            GameInput.UnregisterInput("_ButtonObjectOnClick");
-            GameInput.UnregisterInput("_ButtonObjectPressed");
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
             base.Update(context);
 
-            if (GameInput.IsInput("_ButtonObjectOnClick"))
+            if (this.Inputs.IsInput("ButtonObjectOnClick"))
             {
                 OnClick(this,this._box.GetLocation());
             }
 
-            if (GameInput.IsInput("_ButtonObjectPressed"))
+            if (this.Inputs.IsInput("ButtonObjectPressed"))
             {
                 this._state = ButtonState.Pressed;
             }

@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Mono.Context;
+using CobaltFrame.Mono.Object;
 using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Mono.Object
+namespace CobaltFrame.Mono.UI
 {
     public class Texture2DObject:DrawableGameObject
     {
