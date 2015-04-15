@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public abstract class UpdatableObject : IUpdatableObject
+    public abstract class UpdatableObject : IUpdatable
     {
         public UpdatableObject(IGameContext context)
         {
             this._gameContext = context;
             this._isActive = true;
             this._loadState = ObjectLoadState.Created;
-            this._gameObjects = new List<IUpdatableObject>();
+            this._gameObjects = new List<IUpdatable>();
         }
         protected bool _isActive;
         public bool IsActive
@@ -39,8 +39,8 @@ namespace CobaltFrame.Core.Object
         {
             get { return this._loadState; }
         }
-        private List<IUpdatableObject> _gameObjects;
-        public List<IUpdatableObject> GameObjects
+        private List<IUpdatable> _gameObjects;
+        public List<IUpdatable> GameObjects
         {
             get { return _gameObjects; }
         }
@@ -88,7 +88,7 @@ namespace CobaltFrame.Core.Object
             }
         }
 
-        protected void AddObject(IUpdatableObject obj)
+        protected void AddObject(IUpdatable obj)
         {
             if (this._loadState >= ObjectLoadState.Initialized)
             {
@@ -101,7 +101,7 @@ namespace CobaltFrame.Core.Object
             this._gameObjects.Add(obj);
         }
 
-        protected void RemoveObject(IUpdatableObject obj)
+        protected void RemoveObject(IUpdatable obj)
         {
             if (this._gameObjects.Contains(obj))
             {

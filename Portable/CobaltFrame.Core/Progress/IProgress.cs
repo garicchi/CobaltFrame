@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
-    public interface IProgress<T>:IUpdatableObject
+    public interface IProgress<T>:IUpdatable
     {
         event Action OnCompleted;
         event Action OnStarted;

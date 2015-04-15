@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public abstract class DrawableObject : UpdatableObject, IDrawableObject, IComparable
+    public abstract class DrawableObject : UpdatableObject, IDrawable, IComparable
     {
         public DrawableObject(IGameContext context)
             : base(context)
         {
             this._isVisible = true;
             this._layerDepth = 0.5f;
-            this._drawableObjects = new List<IDrawableObject>();
+            this._drawableObjects = new List<IDrawable>();
             this._isObjectLayerChanged = false;
         }
         protected bool _isVisible;
@@ -32,8 +32,8 @@ namespace CobaltFrame.Core.Object
             }
         }
 
-        private List<IDrawableObject> _drawableObjects;
-        public List<IDrawableObject> DrawableObjects
+        private List<IDrawable> _drawableObjects;
+        public List<IDrawable> DrawableObjects
         {
             get { return _drawableObjects; }
         }
@@ -134,7 +134,7 @@ namespace CobaltFrame.Core.Object
 
         public int CompareTo(object obj)
         {
-            var gObj = (IDrawableObject)obj;
+            var gObj = (IDrawable)obj;
             if (gObj.LayerDepth < this.LayerDepth) { return -1; }
             if (gObj.LayerDepth > this.LayerDepth) { return 1; }
             if (gObj.LayerDepth == this.LayerDepth) { return 0; }
@@ -149,7 +149,7 @@ namespace CobaltFrame.Core.Object
 
         }
 
-        protected void AddDrawableObject(IDrawableObject obj)
+        protected void AddDrawableObject(IDrawable obj)
         {
             if (this._loadState >= ObjectLoadState.Initialized)
             {
@@ -163,7 +163,7 @@ namespace CobaltFrame.Core.Object
             
         }
 
-        protected void RemoveDrawableObject(IDrawableObject obj)
+        protected void RemoveDrawableObject(IDrawable obj)
         {
             if (this._drawableObjects.Contains(obj))
             {

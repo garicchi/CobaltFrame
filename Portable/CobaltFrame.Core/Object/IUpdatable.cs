@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public interface IUpdatableObject:IObject
+    public interface IUpdatable:IObject
     {
         /// <summary>
         /// このObjectにぶら下がる子オブジェクトのリスト
         /// 描画はされない
         /// </summary>
-        List<IUpdatableObject> GameObjects { get; }
+        List<IUpdatable> GameObjects { get; }
         bool IsActive { get; set; }
         
         void Update(IFrameContext context);

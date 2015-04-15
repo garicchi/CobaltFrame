@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public interface IDrawableObject:IUpdatableObject
+    public interface IDrawable:IUpdatable
     {
         bool IsVisible { get; set; }
         float LayerDepth { get; set; }
@@ -17,7 +17,7 @@ namespace CobaltFrame.Core.Object
         /// このオブジェクトにぶら下がる子オブジェクト
         /// 描画される
         /// </summary>
-        List<IDrawableObject> DrawableObjects { get; }
+        List<IDrawable> DrawableObjects { get; }
         void Draw(IFrameContext context);
     }
 }

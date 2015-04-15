@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Screen
 {
-    public interface IScreen:IDrawableObject
+    public interface IScreen:IDrawable
     {
         event Action<IScreen, object, IScreenTransition> OnNavigate;
         event Action<int, object, IScreenTransition> OnNavigatePrevious;

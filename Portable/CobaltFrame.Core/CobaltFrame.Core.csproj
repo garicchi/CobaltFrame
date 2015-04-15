@@ -47,8 +47,8 @@
     <Compile Include="Object\DrawableObject.cs" />
     <Compile Include="Object\IObject.cs" />
     <Compile Include="Object\UpdatableObject.cs" />
-    <Compile Include="Object\IDrawableObject.cs" />
-    <Compile Include="Object\IUpdatableObject.cs" />
+    <Compile Include="Object\IDrawable.cs" />
+    <Compile Include="Object\IUpdatable.cs" />
     <Compile Include="Progress\ConditionProgress.cs" />
     <Compile Include="Progress\IConditionProgress.cs" />
     <Compile Include="Progress\IProgress.cs" />
