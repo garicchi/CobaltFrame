@@ -11,8 +11,8 @@ namespace CobaltFrame.Mono.UI
 {
     public abstract class UIObject:DrawableGameObject
     {
-        public UIObject(GameContext context,Box2 position)
-            : base(context,position)
+        public UIObject(Box2 position)
+            : base(position)
         {
 
         }

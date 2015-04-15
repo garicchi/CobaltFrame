@@ -13,19 +13,30 @@ namespace CobaltFrame.Mono.Object
     public class UpdatableGameObject:UpdatableObject,IGameObject
     {
         protected Game _game;
-        public UpdatableGameObject(GameContext context)
-            : base(context)
+        public UpdatableGameObject()
+            : base()
         {
-            this._game = context.Game;
-            this.Inputs = new GameInputCollection();
+            this._game = GameContext.Game;
+            this._inputs = new GameInputCollection();
         }
 
         public override void Unload()
         {
-            this.Inputs.UnregisterAllInput();
+            this._inputs.UnregisterAllInput();
             base.Unload();
         }
-        public GameInputCollection Inputs { get; set; }
 
+        public override void Update(Core.Context.IFrameContext context)
+        {
+            this._inputs.Update();
+            base.Update(context);
+        }
+        private GameInputCollection _inputs;
+
+        public GameInputCollection Inputs
+        {
+            get { return _inputs; }
+            set { _inputs = value; }
+        }
     }
 }

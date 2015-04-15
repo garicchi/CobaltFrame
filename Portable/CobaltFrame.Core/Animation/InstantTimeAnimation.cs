@@ -14,8 +14,8 @@ namespace CobaltFrame.Core.Animation
         private Func<T, T,float, T> _expression;
 
 
-        public InstantTimeAnimation(IGameContext context,T begin,T end,TimeSpan duration,Func<T,T,float,T> expression)
-            : base(context, duration,begin,end)
+        public InstantTimeAnimation(T begin,T end,TimeSpan duration,Func<T,T,float,T> expression)
+            : base(duration,begin,end)
         {
 
             this._expression = expression;

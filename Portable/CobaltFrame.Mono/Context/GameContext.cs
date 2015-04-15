@@ -8,17 +8,8 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.Context
 {
-    public class GameContext:IGameContext
+    public static class GameContext
     {
-        private Game _game;
-
-        public Game Game
-        {
-            get { return _game; }
-        }
-        public GameContext(Game game)
-        {
-            this._game = game;
-        }
+        public static Game Game { get; set; }
     }
 }

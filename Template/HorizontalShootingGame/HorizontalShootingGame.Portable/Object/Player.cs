@@ -20,16 +20,22 @@ namespace HorizontalShootingGame.Portable.Object
     
     public class Player : Texture2DObject
     {
-        private int _speed;
+        private int _moveSpeed;
+
+        public int MoveSpeed
+        {
+            get { return _moveSpeed; }
+            set { _moveSpeed = value; }
+        }
         private List<Bullet> _bulletList;
 
-        public Player(GameContext context, Box2 position, string texturePath)
-            : base(context, position, texturePath)
+        public Player(Box2 position, string texturePath)
+            : base(position, texturePath)
         {
             this._bulletList = new List<Bullet>();
             for (int i = 0; i < 10;i++ )
             {
-                Bullet bullet = new Bullet(context,new Box2(
+                Bullet bullet = new Bullet(new Box2(
                     this.Box.GetRect().X,
                     this.Box.GetRect().Y + this.Box.GetRect().Height / 2,
                     100,
@@ -43,48 +49,14 @@ namespace HorizontalShootingGame.Portable.Object
         public override void Init()
         {
             base.Init();
-            this._speed = 2;
+            this._moveSpeed = 4;
         }
 
         public override void Load()
         {
             base.Load();
 
-            this.Inputs.RegisterInput("PlayerUp",
-                null,
-                null,
-                null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Up),
-                null
-            );
-            this.Inputs.RegisterInput("PlayerDown",
-                null,
-                null,
-                null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Down),
-                null
-            );
-            this.Inputs.RegisterInput("PlayerLeft",
-                null,
-                null,
-                null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Left),
-                null
-            );
-            this.Inputs.RegisterInput("PlayerRight",
-                null,
-                null,
-                null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Right),
-                null
-            );
-            this.Inputs.RegisterInput("PlayerShot",
-                null,
-                null,
-                null,
-                () => GameInput.KeyboardState.IsKeyDown(Keys.Space)&&!GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
-                null
-            );
+            
         }
 
         public override void Unload()
@@ -97,38 +69,24 @@ namespace HorizontalShootingGame.Portable.Object
         {
             base.Update(context);
 
-            if (this.Inputs.IsInput("PlayerUp"))
-            {
-                this.Box.MoveRect(this._speed);
-            }
-            if (this.Inputs.IsInput("PlayerDown"))
-            {
-                this.Box.MoveRect(0, this._speed);
-            }
-            if (this.Inputs.IsInput("PlayerLeft"))
-            {
-                this.Box.MoveRect(0, 0, 0, this._speed);
-            }
-            if (this.Inputs.IsInput("PlayerRight"))
-            {
-                this.Box.MoveRect(0, 0, this._speed);
-            }
-            if (this.Inputs.IsInput("PlayerShot"))
-            {
-                if (this._bulletList.Any(q => q.IsVisible == false))
-                {
-
-                    Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
-                    bullet.Box.SetLocation(new Vector2(this.Box.GetLocation().X,this.Box.GetLocation().Y+this.Box.GetRect().Height/2));
-                    bullet.Shot();
-
-                }
-            }
+            
         }
 
         public override void Draw(IFrameContext context)
         {
             base.Draw(context);
+        }
+
+        public void Shot()
+        {
+            if (this._bulletList.Any(q => q.IsVisible == false))
+            {
+
+                Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
+                bullet.Box.SetLocation(new Vector2(this.Box.GetLocation().X, this.Box.GetLocation().Y + this.Box.GetRect().Height / 2));
+                bullet.Shot();
+
+            }
         }
     }
 }

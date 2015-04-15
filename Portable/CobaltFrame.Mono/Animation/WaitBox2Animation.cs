@@ -12,8 +12,8 @@ namespace CobaltFrame.Mono.Animation
 {
     public class WaitBox2Animation:TimeProgress<Box2>
     {
-        public WaitBox2Animation(GameContext context, TimeSpan duration, Box2 begin)
-            : base(context, duration, begin, begin)
+        public WaitBox2Animation(TimeSpan duration, Box2 begin)
+            : base(duration, begin, begin)
         {
 
         }

@@ -51,8 +51,8 @@ namespace CobaltFrame.Mono.UI
         }
 
         public event Action<ButtonObject, Vector2> OnClick;
-        public ButtonObject(GameContext context,Box2 position,string pressedTexturePath,string releasedTexturePath)
-            : base(context,position)
+        public ButtonObject(Box2 position,string pressedTexturePath,string releasedTexturePath)
+            : base(position)
         {
             this._pressedTexturePath = pressedTexturePath;
             this._releasedTexturePath = releasedTexturePath;
@@ -74,7 +74,7 @@ namespace CobaltFrame.Mono.UI
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._releasedTexture.Width, (float)this._box.GetRect().Height / (float)this._releasedTexture.Height);
 
-            this.Inputs.RegisterInput("ButtonObjectOnClick",
+            this.Inputs.RegisterInput("_ButtonObjectOnClick",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed).Count()!=0
@@ -93,7 +93,7 @@ namespace CobaltFrame.Mono.UI
                     && this._box.Contains(GameInput.MouseState.Position.X, GameInput.MouseState.Position.Y)
             );
 
-            this.Inputs.RegisterInput("ButtonObjectPressed",
+            this.Inputs.RegisterInput("_ButtonObjectPressed",
                 () =>
                 {
                     if (GameInput.TouchCollection.Where(q => q.State == TouchLocationState.Pressed||q.State==TouchLocationState.Moved).Count() != 0
@@ -114,6 +114,8 @@ namespace CobaltFrame.Mono.UI
 
         public override void Unload()
         {
+            this.Inputs.UnregisterInput("_ButtonObjectOnClick");
+            this.Inputs.UnregisterInput("_ButtonObjectPressed");
             base.Unload();
             
         }
@@ -122,12 +124,12 @@ namespace CobaltFrame.Mono.UI
         {
             base.Update(context);
 
-            if (this.Inputs.IsInput("ButtonObjectOnClick"))
+            if (this.Inputs.IsInput("_ButtonObjectOnClick"))
             {
                 OnClick(this,this._box.GetLocation());
             }
 
-            if (this.Inputs.IsInput("ButtonObjectPressed"))
+            if (this.Inputs.IsInput("_ButtonObjectPressed"))
             {
                 this._state = ButtonState.Pressed;
             }

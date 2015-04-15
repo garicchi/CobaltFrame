@@ -136,6 +136,9 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Content\Texture\bullet.png" />
     <Content Include="Content\Texture\player.png" />
+    <Content Include="Content\Texture\progress_frame.png" />
+    <Content Include="Content\Texture\progress_inner.png" />
+    <Content Include="Content\Texture\spaceback.png" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\HorizontalShootingGame.Shared\Content\Content.mgcb">

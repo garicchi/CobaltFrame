@@ -17,10 +17,10 @@ namespace HorizontalShootingGame.Portable.Object
         protected Box2ConditionAnimation Animation { get; set; }
 
 
-        public Bullet(GameContext context,Box2 pos,string texturePath)
-            :base(context,pos,texturePath)
+        public Bullet(Box2 pos,string texturePath)
+            :base(pos,texturePath)
         {
-            this.Animation = new Box2ConditionAnimation(context, pos, (current, time) =>
+            this.Animation = new Box2ConditionAnimation(pos, (current, time) =>
             {
                 current.MoveRect(0,0,40,0);
                 return current;

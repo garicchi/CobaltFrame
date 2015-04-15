@@ -43,8 +43,8 @@ namespace CobaltFrame.Core.Screen
             get { return this._currentScreen; }
         }
 
-        public ScreenManager(IGameContext context,IScreen firstScreen,object param,IScreenTransition trans = null)
-            : base(context)
+        public ScreenManager(IScreen firstScreen,object param,IScreenTransition trans = null)
+            : base()
         {
             this._previousScreenQueue = new Queue<IScreen>();
             this._screenChacheSize = 3;

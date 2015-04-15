@@ -47,6 +47,7 @@
     <Compile Include="Input\TouchInputCollection.cs" />
     <Compile Include="Object\DrawableGameObject.cs" />
     <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="UI\ProgressBarObject.cs" />
     <Compile Include="UI\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
     <Compile Include="Position\Box2.cs" />

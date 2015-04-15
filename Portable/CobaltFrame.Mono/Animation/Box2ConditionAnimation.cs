@@ -13,8 +13,8 @@ namespace CobaltFrame.Mono.Animation
     public class Box2ConditionAnimation:ConditionProgress<Box2>
     {
         protected Func<Box2, TimeSpan, Box2> Expression { get; private set; }
-        public Box2ConditionAnimation(GameContext context,Box2 beginValue,Func<Box2,TimeSpan,Box2> expression)
-            : base(context,beginValue)
+        public Box2ConditionAnimation(Box2 beginValue,Func<Box2,TimeSpan,Box2> expression)
+            : base(beginValue)
         {
             this.Expression = expression;
         }

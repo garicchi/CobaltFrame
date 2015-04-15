@@ -53,12 +53,18 @@ namespace CobaltFrame.Mono.Object
             set { _drawColor = value; }
         }
 
-        public GameInputCollection Inputs { get; set; }
-        
-        public DrawableGameObject(GameContext context,Box2 box)
-            : base(context)
+        private GameInputCollection _inputs;
+
+        public GameInputCollection Inputs
         {
-            this._game = context.Game;
+            get { return _inputs; }
+            set { _inputs = value; }
+        }
+        
+        public DrawableGameObject(Box2 box)
+            : base()
+        {
+            this._game = GameContext.Game;
             
             this._box = box;
             this._rotation = 0.0f;
@@ -66,7 +72,7 @@ namespace CobaltFrame.Mono.Object
             
             this._drawColor = Color.White;
 
-            this.Inputs = new GameInputCollection();
+            this._inputs = new GameInputCollection();
         }
 
         public override void Load()
@@ -78,13 +84,13 @@ namespace CobaltFrame.Mono.Object
         public override void Unload()
         {
             base.Unload();
-            this.Inputs.UnregisterAllInput();
+            this._inputs.UnregisterAllInput();
             this._spriteBatch.Dispose();
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
-            this.Inputs.Update();
+            this._inputs.Update();
             base.Update(context);
 
         }

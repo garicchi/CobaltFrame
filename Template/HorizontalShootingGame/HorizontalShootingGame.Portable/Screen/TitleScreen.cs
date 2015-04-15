@@ -19,14 +19,19 @@ namespace HorizontalShootingGame.Portable.Screen
     public class TitleScreen:GameScreen
     {
         Player player;
-        public TitleScreen(GameContext context)
-            : base(context)
+        public TitleScreen()
+            : base()
         {
-            player = new Player(context,new Box2(50,300,200,200),"Texture/Player");
+            player = new Player(new Box2(50,300,200,200),"Texture/Player");
             this.AddDrawableObject(player);
             
         }
+        public override void Load()
+        {
+            base.Load();
 
+            
+        }
         public override void Update(CobaltFrame.Core.Context.IFrameContext context)
         {
             base.Update(context);

@@ -10,10 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Mono.Input;
+using CobaltFrame.Mono.Object;
+using CobaltFrame.Position;
 
 namespace CobaltFrame.Mono.Screen
 {
-    public class GameScreen:CobaltFrame.Core.Screen.Screen
+    public class GameScreen:CobaltFrame.Core.Screen.Screen,IGameObject
     {
         protected Game _game;
 
@@ -25,19 +27,32 @@ namespace CobaltFrame.Mono.Screen
 
         private Color _screenBackgroundColor;
 
+
         public Color ScreenBackgroundColor
         {
             get { return _screenBackgroundColor; }
             set { _screenBackgroundColor = value; }
         }
 
-        protected GameInputCollection InputStates { get; set; }
-        
-        public GameScreen(GameContext context)
-            : base(context)
+        private GameInputCollection _inputs;
+
+        public GameInputCollection Inputs
         {
-            this._game = context.Game;
-            this.InputStates = new GameInputCollection();
+            get { return _inputs; }
+            set { _inputs = value; }
+        }
+
+
+        public Box2 Box
+        {
+            get { return new Box2(this._game.GraphicsDevice.Viewport.Bounds); }
+        }
+        
+        public GameScreen()
+            : base()
+        {
+            this._game = GameContext.Game;
+            this._inputs = new GameInputCollection();
         }
 
         public override void Init()
@@ -58,11 +73,12 @@ namespace CobaltFrame.Mono.Screen
             base.Unload();
             //現在のスクリーンで読み込まれているコンテンツをアンロード
             this._game.Content.Unload();
+            this._inputs.UnregisterAllInput();
         }
 
         public override void Update(Core.Context.IFrameContext context)
         {
-            this.InputStates.Update();
+            this._inputs.Update();
 
             base.Update(context);
             var fContext = context as FrameContext;
@@ -146,6 +162,7 @@ namespace CobaltFrame.Mono.Screen
                 base.NavigatePrevious(oldNum, parameter, fromTrans, toTrans);
             }
         }
-        
+
+
     }
 }

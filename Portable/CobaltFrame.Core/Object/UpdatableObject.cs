@@ -10,9 +10,8 @@ namespace CobaltFrame.Core.Object
 {
     public abstract class UpdatableObject : IUpdatable
     {
-        public UpdatableObject(IGameContext context)
+        public UpdatableObject()
         {
-            this._gameContext = context;
             this._isActive = true;
             this._loadState = ObjectLoadState.Created;
             this._gameObjects = new List<IUpdatable>();
@@ -29,11 +28,7 @@ namespace CobaltFrame.Core.Object
                 this._isActive = value;
             }
         }
-        protected IGameContext _gameContext;
-        public IGameContext GameContext
-        {
-            get { return this._gameContext; }
-        }
+        
         protected ObjectLoadState _loadState;
         public ObjectLoadState LoadState
         {

@@ -14,8 +14,8 @@ namespace CobaltFrame.Mono.Animation
     {
 
         
-        public Box2TimeAnimation(GameContext context,TimeSpan duration,Box2 begin,Box2 end)
-            : base(context, duration,begin,end)
+        public Box2TimeAnimation(TimeSpan duration,Box2 begin,Box2 end)
+            : base(duration,begin,end)
         {
 
         }

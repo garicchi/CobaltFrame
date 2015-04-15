@@ -10,7 +10,6 @@ namespace CobaltFrame.Core.Object
 {
     public interface IObject
     {
-        IGameContext GameContext { get; }
         ObjectLoadState LoadState { get; }
 
         void Init();

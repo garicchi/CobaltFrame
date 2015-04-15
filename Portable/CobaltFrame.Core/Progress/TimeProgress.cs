@@ -110,8 +110,8 @@ namespace CobaltFrame.Core.Progress
             }
         }
         
-        public TimeProgress(IGameContext context, TimeSpan duration,T begin,T end)
-            :base(context)
+        public TimeProgress(TimeSpan duration,T begin,T end)
+            :base()
         {
             
             this._beforeState = ProgressState.Stop;

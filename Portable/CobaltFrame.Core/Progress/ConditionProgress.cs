@@ -17,8 +17,8 @@ namespace CobaltFrame.Core.Progress
 
         private ProgressState _beforeState;
 
-        public ConditionProgress(IGameContext context,T beginValue)
-            : base(context)
+        public ConditionProgress(T beginValue)
+            : base()
         {
             this.OnCompleted+=()=>{};
             this.OnStarted += () => { };

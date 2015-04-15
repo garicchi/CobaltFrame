@@ -55,8 +55,8 @@ namespace CobaltFrame.Mono.UI
             set { _rowOffset = value; }
         }
 
-        public BitmapTextObject(GameContext context,Box2 pos,string fontPath,string text,float fontScale,Color color)
-            : base(context,pos)
+        public BitmapTextObject(Box2 pos,string fontPath,string text,float fontScale,Color color)
+            : base(pos)
         {
             this._fontPath = fontPath;
             this._text = text;

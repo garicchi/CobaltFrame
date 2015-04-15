@@ -17,8 +17,8 @@ namespace CobaltFrame.Mono.Transition
     public abstract class ScreenTransition:DrawableGameObject,IScreenTransition
     {
         
-        public ScreenTransition(GameContext context,Box2 pos)
-            :base(context,pos)
+        public ScreenTransition(Box2 pos)
+            :base(pos)
         {
             this.OnCompleted += () => { };
         }

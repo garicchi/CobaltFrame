@@ -11,8 +11,8 @@ namespace CobaltFrame.Core.Object
 {
     public abstract class DrawableObject : UpdatableObject, IDrawable, IComparable
     {
-        public DrawableObject(IGameContext context)
-            : base(context)
+        public DrawableObject()
+            : base()
         {
             this._isVisible = true;
             this._layerDepth = 0.5f;

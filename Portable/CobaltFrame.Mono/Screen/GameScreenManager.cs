@@ -54,11 +54,11 @@ namespace CobaltFrame.Mono.Screen
             set { _backgroundColor = value; }
         }
         protected Game _game;
-        public GameScreenManager(GameContext context,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
-            : base(context,firstScreen,param,trans)
+        public GameScreenManager(GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
+            : base(firstScreen,param,trans)
         {
             this._defaultResolution = defaultResolution;
-            this._game = context.Game;
+            this._game = GameContext.Game;
             this._screenScaleMode = screenScaleMode;
             this._game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);

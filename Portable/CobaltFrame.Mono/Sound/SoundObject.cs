@@ -14,8 +14,8 @@ namespace CobaltFrame.Mono.Sound
         protected SoundEffect _soundEffect;
         protected SoundEffectInstance _soundInstance;
         protected string _soundContentPath;
-        public SoundObject(GameContext context,string soundContentPath)
-            :base(context)
+        public SoundObject(string soundContentPath)
+            :base()
         {
             this._soundContentPath = soundContentPath;
         }

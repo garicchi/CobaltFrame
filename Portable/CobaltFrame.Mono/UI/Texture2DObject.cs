@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.UI
 {
-    public class Texture2DObject:UIObject
+    public class Texture2DObject : UIObject
     {
         private string _texturePath;
 
@@ -34,17 +34,26 @@ namespace CobaltFrame.Mono.UI
             get { return _textureScale; }
         }
 
-        public Texture2DObject(GameContext context,Box2 position,string texturePath)
-            :base(context,position)
+        private bool _isRepeat;
+
+        public bool IsRepeat
+        {
+            get { return _isRepeat; }
+            set { _isRepeat = value; }
+        }
+
+        public Texture2DObject(Box2 position, string texturePath, bool isRepeat = false)
+            : base(position)
         {
             this._texturePath = texturePath;
+            this._isRepeat = isRepeat;
         }
 
         public override void Load()
         {
             base.Load();
             this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
-            this._origin = new Vector2(this._texture.Width/2.0f,this._texture.Height/2.0f);
+            this._origin = new Vector2(this._texture.Width / 2.0f, this._texture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._texture.Width, (float)this._box.GetRect().Height / (float)this._texture.Height);
         }
 
@@ -63,13 +72,28 @@ namespace CobaltFrame.Mono.UI
         public override void Draw(Core.Context.IFrameContext context)
         {
             base.Draw(context);
-            
-            this._spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,(context as FrameContext).ScreenTrans);
-            this._spriteBatch.Draw(this._texture, null, this._box.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
-            
+
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenTrans);
+            if (this._isRepeat)
+            {
+                int texW = (int)this._texture.Bounds.Width;
+                int texH = (int)this._texture.Bounds.Height;
+
+                for (int y = this.Box.GetRect().Y; y < this.Box.GetRect().Height + texH; y += texH)
+                {
+                    for (int x = this.Box.GetRect().X; x < this.Box.GetRect().Width + texW; x += texW)
+                    {
+                        this._spriteBatch.Draw(this._texture,new Vector2(x,y),null,this._texture.Bounds, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                    }
+                }
+            }
+            else
+            {
+                this._spriteBatch.Draw(this._texture, null, this._box.GetRect(this._origin * this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+            }
             this._spriteBatch.End();
         }
 
-        
+
     }
 }
