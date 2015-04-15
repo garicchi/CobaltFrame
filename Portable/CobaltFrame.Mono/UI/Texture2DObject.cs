@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.UI
 {
-    public class Texture2DObject:DrawableGameObject
+    public class Texture2DObject:UIObject
     {
         private string _texturePath;
 
