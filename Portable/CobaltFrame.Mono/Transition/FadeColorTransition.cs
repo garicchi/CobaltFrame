@@ -32,7 +32,7 @@ namespace CobaltFrame.Mono.Transition
         public Color TextureColor { get; private set; }
 
         public FadeColorTransition(GameContext context,Color color,int alphaFrom,int alphaTo,TimeSpan duration)
-            :base(context,new Position2D(0,0,0,0))
+            :base(context,new Box2(0,0,0,0))
         {
             this.TextureColor = color;
             this._animation = new InstantTimeAnimation<int>(context, alphaFrom, alphaTo, duration, (from, to, progress) =>

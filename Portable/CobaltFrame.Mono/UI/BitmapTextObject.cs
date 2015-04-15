@@ -55,7 +55,7 @@ namespace CobaltFrame.Mono.UI
             set { _rowOffset = value; }
         }
 
-        public BitmapTextObject(GameContext context,Position2D pos,string fontPath,string text,float fontScale,Color color)
+        public BitmapTextObject(GameContext context,Box2 pos,string fontPath,string text,float fontScale,Color color)
             : base(context,pos)
         {
             this._fontPath = fontPath;
@@ -138,10 +138,10 @@ namespace CobaltFrame.Mono.UI
                         new Rectangle((int)(charPos.X + fc.XOffset * this._fontScale), (int)(charPos.Y + fc.YOffset * this._fontScale), (int)(fc.Width * this._fontScale), (int)(fc.Height * this._fontScale)),
                         new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._drawColor);
                     charPos.X += fc.XAdvance * this._fontScale;
-                    if (charPos.X > this.Position.GetPosition().Width)
+                    if (charPos.X > this.Position.GetRect().Width)
                     {
                         charPos.Y+=fc.Height * this._fontScale+_rowOffset;
-                        charPos.X = this.Position.GetPosition().X;
+                        charPos.X = this.Position.GetRect().X;
                     }
                 }
             }

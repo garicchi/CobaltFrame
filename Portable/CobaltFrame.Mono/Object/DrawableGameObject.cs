@@ -18,15 +18,15 @@ namespace CobaltFrame.Mono.Object
     {
         protected Game _game;
         protected SpriteBatch _spriteBatch;
-        protected Position2D _position;
+        protected Box2 _position;
         private PositionUpdateMode _positionUpdateMode;
-        protected Position2DTimeAnimation _attachedAnimation;
+        protected Box2TimeAnimation _attachedAnimation;
         protected PositionUpdateMode PositionUpdateMode
         {
             get { return _positionUpdateMode; }
         }
 
-        public Position2D Position
+        public Box2 Position
         {
             get { return _position; }
             set { _position = value; }
@@ -58,7 +58,7 @@ namespace CobaltFrame.Mono.Object
         }
 
         
-        public DrawableGameObject(GameContext context,Position2D position)
+        public DrawableGameObject(GameContext context,Box2 position)
             : base(context)
         {
             this._game = context.Game;
@@ -89,7 +89,7 @@ namespace CobaltFrame.Mono.Object
             switch (this._positionUpdateMode)
             {
                 case PositionUpdateMode.AttachedAnimation:
-                    this.Position.SetPosition(this._attachedAnimation.CurrentValue.GetPosition());
+                    this.Position.SetRect(this._attachedAnimation.CurrentValue.GetRect());
                     
                     break;
             }
@@ -100,7 +100,7 @@ namespace CobaltFrame.Mono.Object
             base.Draw(context);
         }
 
-        public void AttachAnimation(Position2DTimeAnimation animation)
+        public void AttachAnimation(Box2TimeAnimation animation)
         {
             this._attachedAnimation = animation;
             this._positionUpdateMode=PositionUpdateMode.AttachedAnimation;

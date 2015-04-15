@@ -22,7 +22,7 @@ namespace HorizontalShootingGame.Portable.Screen
         public TitleScreen(GameContext context)
             : base(context)
         {
-            player = new Player(context,new Position2D(50,300,200,200),"Texture/Player");
+            player = new Player(context,new Box2(50,300,200,200),"Texture/Player");
             this.AddDrawableObject(player);
             
         }

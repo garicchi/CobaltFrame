@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.Animation
 {
-    public class Position2DTimeAnimation:TimeAnimationBase<Position2D>
+    public class Box2TimeAnimation:TimeAnimationBase<Box2>
     {
 
         
-        public Position2DTimeAnimation(GameContext context,TimeSpan duration,Position2D begin,Position2D end)
+        public Box2TimeAnimation(GameContext context,TimeSpan duration,Box2 begin,Box2 end)
             : base(context, duration,begin,end)
         {
 
         }
 
 
-        protected override Position2D UpdateExpression(Position2D begin, Position2D end, float currentProgress)
+        protected override Box2 UpdateExpression(Box2 begin, Box2 end, float currentProgress)
         {
             return ((end - begin) * currentProgress) + begin;
         }

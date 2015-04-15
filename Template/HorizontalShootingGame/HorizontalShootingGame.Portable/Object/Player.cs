@@ -22,15 +22,15 @@ namespace HorizontalShootingGame.Portable.Object
         private int _speed;
         private List<Bullet> _bulletList;
 
-        public Player(GameContext context, Position2D position, string texturePath)
+        public Player(GameContext context, Box2 position, string texturePath)
             : base(context, position, texturePath)
         {
             this._bulletList = new List<Bullet>();
             for (int i = 0; i < 10;i++ )
             {
-                Bullet bullet = new Bullet(context,new Position2D(
-                    this.Position.GetPosition().X,
-                    this.Position.GetPosition().Y + this.Position.GetPosition().Height / 2,
+                Bullet bullet = new Bullet(context,new Box2(
+                    this.Position.GetRect().X,
+                    this.Position.GetRect().Y + this.Position.GetRect().Height / 2,
                     100,
                     10)
                     ,"Texture/bullet");
@@ -122,7 +122,7 @@ namespace HorizontalShootingGame.Portable.Object
                 {
 
                     Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
-                    bullet.Position.SetLocation(new Vector2(this.Position.GetLocation().X,this.Position.GetLocation().Y+this.Position.GetPosition().Height/2));
+                    bullet.Position.SetLocation(new Vector2(this.Position.GetLocation().X,this.Position.GetLocation().Y+this.Position.GetRect().Height/2));
                     bullet.Shot();
 
                 }

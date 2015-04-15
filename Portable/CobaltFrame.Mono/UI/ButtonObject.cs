@@ -51,7 +51,7 @@ namespace CobaltFrame.Mono.UI
         }
 
         public event Action<ButtonObject, Vector2> OnClick;
-        public ButtonObject(GameContext context,Position2D position,string pressedTexturePath,string releasedTexturePath)
+        public ButtonObject(GameContext context,Box2 position,string pressedTexturePath,string releasedTexturePath)
             : base(context,position)
         {
             this._pressedTexturePath = pressedTexturePath;
@@ -72,7 +72,7 @@ namespace CobaltFrame.Mono.UI
             this._pressedTexture = this._game.Content.Load<Texture2D>(this._pressedTexturePath);
             this._releasedTexture = this._game.Content.Load<Texture2D>(this._releasedTexturePath);
             this._origin = new Vector2(this._releasedTexture.Width / 2.0f, this._releasedTexture.Height / 2.0f);
-            this._textureScale = new Vector2((float)this._position.GetPosition().Width / (float)this._releasedTexture.Width, (float)this._position.GetPosition().Height / (float)this._releasedTexture.Height);
+            this._textureScale = new Vector2((float)this._position.GetRect().Width / (float)this._releasedTexture.Width, (float)this._position.GetRect().Height / (float)this._releasedTexture.Height);
 
             GameInput.RegisterInputState("_ButtonObjectOnClick",
                 () =>
@@ -147,11 +147,11 @@ namespace CobaltFrame.Mono.UI
             switch (this._state)
             {
                 case ButtonState.Released:
-                    this._spriteBatch.Draw(this._releasedTexture, null, this._position.GetPosition(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                    this._spriteBatch.Draw(this._releasedTexture, null, this._position.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
                     
                     break;
                 case ButtonState.Pressed:
-                    this._spriteBatch.Draw(this._pressedTexture, null, this._position.GetPosition(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                    this._spriteBatch.Draw(this._pressedTexture, null, this._position.GetRect(this._origin*this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
                     break;
             }
             this._spriteBatch.End();

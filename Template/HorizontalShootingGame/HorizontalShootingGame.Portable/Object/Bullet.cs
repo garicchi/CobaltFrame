@@ -13,15 +13,15 @@ namespace HorizontalShootingGame.Portable.Object
 {
     public class Bullet:Texture2DObject
     {
-        protected Position2DConditionAnimation Animation { get; set; }
+        protected Box2ConditionAnimation Animation { get; set; }
 
 
-        public Bullet(GameContext context,Position2D pos,string texturePath)
+        public Bullet(GameContext context,Box2 pos,string texturePath)
             :base(context,pos,texturePath)
         {
-            this.Animation = new Position2DConditionAnimation(context, pos, (current, time) =>
+            this.Animation = new Box2ConditionAnimation(context, pos, (current, time) =>
             {
-                var newPos=new Position2D(current);
+                var newPos=new Box2(current);
                 newPos.SetLocation(new Vector2((float)(current.GetLocation().X + 40), current.GetLocation().Y));
                 return newPos;
             });

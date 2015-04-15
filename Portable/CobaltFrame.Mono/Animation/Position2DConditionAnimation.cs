@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.Animation
 {
-    public class Position2DConditionAnimation:ConditionAnimationBase<Position2D>
+    public class Box2ConditionAnimation:ConditionAnimationBase<Box2>
     {
-        protected Func<Position2D, TimeSpan, Position2D> Expression { get; private set; }
-        public Position2DConditionAnimation(GameContext context,Position2D beginValue,Func<Position2D,TimeSpan,Position2D> expression)
+        protected Func<Box2, TimeSpan, Box2> Expression { get; private set; }
+        public Box2ConditionAnimation(GameContext context,Box2 beginValue,Func<Box2,TimeSpan,Box2> expression)
             : base(context,beginValue)
         {
             this.Expression = expression;
         }
         
-        protected override Position2D UpdateExpression(Position2D currentValue, TimeSpan elapsedTime)
+        protected override Box2 UpdateExpression(Box2 currentValue, TimeSpan elapsedTime)
         {
             return this.Expression(currentValue, elapsedTime);
         }

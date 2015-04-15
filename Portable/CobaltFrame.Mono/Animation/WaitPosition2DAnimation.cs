@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Mono.Animation
 {
-    public class WaitPosition2DAnimation:TimeAnimationBase<Position2D>
+    public class WaitBox2Animation:TimeAnimationBase<Box2>
     {
-        public WaitPosition2DAnimation(GameContext context, TimeSpan duration, Position2D begin)
+        public WaitBox2Animation(GameContext context, TimeSpan duration, Box2 begin)
             : base(context, duration, begin, begin)
         {
 
         }
 
-        protected override Position2D UpdateExpression(Position2D begin, Position2D end, float currentProgress)
+        protected override Box2 UpdateExpression(Box2 begin, Box2 end, float currentProgress)
         {
             return begin;
         }
