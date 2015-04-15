@@ -48,8 +48,8 @@
     <Compile Include="Object\PositionUpdateMode.cs" />
     <Compile Include="Object\Texture2DObject.cs" />
     <Compile Include="Object\UpdatableGameObject.cs" />
-    <Compile Include="Position\Position2D.cs" />
-    <Compile Include="Position\RelativePosition2D.cs" />
+    <Compile Include="Position\Box2.cs" />
+    <Compile Include="Position\RelativeBox2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameScreenManager.cs" />

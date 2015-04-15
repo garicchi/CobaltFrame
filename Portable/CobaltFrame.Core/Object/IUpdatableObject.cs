@@ -8,19 +8,15 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
-    public interface IUpdatableObject
+    public interface IUpdatableObject:IObject
     {
-        IGameContext GameContext { get; }
-        ObjectLoadState LoadState { get; }
         /// <summary>
         /// このObjectにぶら下がる子オブジェクトのリスト
         /// 描画はされない
         /// </summary>
         List<IUpdatableObject> GameObjects { get; }
         bool IsActive { get; set; }
-        void Initialize();
-        void LoadObject();
-        void UnloadObject();
+        
         void Update(IFrameContext context);
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="Context\IGameContext.cs" />
     <Compile Include="Data\SaveDataStore.cs" />
     <Compile Include="Object\DrawableObject.cs" />
+    <Compile Include="Object\IObject.cs" />
     <Compile Include="Object\UpdatableObject.cs" />
     <Compile Include="Object\IDrawableObject.cs" />
     <Compile Include="Object\IUpdatableObject.cs" />
