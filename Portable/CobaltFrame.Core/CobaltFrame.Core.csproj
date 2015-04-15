@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation\InstantTimeAnimation.cs" />
+    <Compile Include="Common\Margin.cs" />
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />
     <Compile Include="Data\SaveDataStore.cs" />

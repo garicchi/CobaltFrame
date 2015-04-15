@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CobaltFrame.Core.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,16 @@ namespace CobaltFrame.Position
         public virtual Vector2 GetLocation()
         {
             return new Vector2(this._drawRect.X,this._drawRect.Y);
+        }
+
+        public Box2 GetBox2WithMargin(Margin margin)
+        {
+            return new Box2(
+                this.GetRect().X+margin.Left,
+                this.GetRect().Y+margin.Top,
+                this.GetRect().Width-margin.Right,
+                this.GetRect().Height-margin.Bottom
+                );
         }
 
         public virtual bool Contains(Box2 position)

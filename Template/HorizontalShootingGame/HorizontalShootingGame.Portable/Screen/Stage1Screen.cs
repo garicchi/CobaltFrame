@@ -34,6 +34,10 @@ namespace HorizontalShootingGame.Portable.Screen
             var background = new Texture2DObject(this.Box,"Texture/spaceback",true);
             background.LayerDepth = 1.0f;
             this.AddDrawableObject(background);
+
+            var progress = new ProgressBarObject(new Box2(300,100,400,50),"Texture/progress_frame","Texture/progress_inner");
+            this.AddDrawableObject(progress);
+
             this.Inputs.RegisterInput("PlayerUp",
                 null,
                 null,
