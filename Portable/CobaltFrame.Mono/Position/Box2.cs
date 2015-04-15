@@ -41,7 +41,10 @@ namespace CobaltFrame.Position
                 this._drawRect.Height
                 );
         }
-
+        public virtual void MoveRect(int up = 0, int down = 0, int right = 0, int left = 0)
+        {
+            this.SetLocation(new Vector2(this.GetLocation().X + right - left, this.GetLocation().Y + down - up));
+        }
         public virtual Rectangle GetRect()
         {
             return this._drawRect;

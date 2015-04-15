@@ -94,13 +94,5 @@ namespace CobaltFrame.Mono.Object
             base.Draw(context);
         }
 
-
-        public void MovePosition(int up = 0, int down = 0, int right = 0, int left = 0)
-        {
-            this._box.SetLocation(new Vector2(this._box.GetLocation().X+right-left, this._box.GetLocation().Y +down-up));
-        }
-
-
-        
     }
 }

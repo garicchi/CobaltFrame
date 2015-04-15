@@ -22,9 +22,8 @@ namespace HorizontalShootingGame.Portable.Object
         {
             this.Animation = new Box2ConditionAnimation(context, pos, (current, time) =>
             {
-                var newPos=new Box2(current);
-                newPos.SetLocation(new Vector2((float)(current.GetLocation().X + 40), current.GetLocation().Y));
-                return newPos;
+                current.MoveRect(0,0,40,0);
+                return current;
             });
             this.Animation.StopTriggers.Add((current) =>
             {

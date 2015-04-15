@@ -26,5 +26,6 @@ namespace CobaltFrame.Mono.Object
             base.Unload();
         }
         public GameInputCollection Inputs { get; set; }
+
     }
 }

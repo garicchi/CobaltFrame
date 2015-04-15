@@ -1,5 +1,6 @@
 ﻿using CobaltFrame.Core.Object;
 using CobaltFrame.Mono.Input;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

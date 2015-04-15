@@ -99,19 +99,19 @@ namespace HorizontalShootingGame.Portable.Object
 
             if (this.Inputs.IsInput("PlayerUp"))
             {
-                this.MovePosition(this._speed);
+                this.Box.MoveRect(this._speed);
             }
             if (this.Inputs.IsInput("PlayerDown"))
             {
-                this.MovePosition(0,this._speed);
+                this.Box.MoveRect(0, this._speed);
             }
             if (this.Inputs.IsInput("PlayerLeft"))
             {
-                this.MovePosition(0,0,0,this._speed);
+                this.Box.MoveRect(0, 0, 0, this._speed);
             }
             if (this.Inputs.IsInput("PlayerRight"))
             {
-                this.MovePosition(0,0,this._speed);
+                this.Box.MoveRect(0, 0, this._speed);
             }
             if (this.Inputs.IsInput("PlayerShot"))
             {
