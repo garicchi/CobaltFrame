@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Core.Progress;
 
 namespace CobaltFrame.Mono.Transition
 {
@@ -22,9 +23,9 @@ namespace CobaltFrame.Mono.Transition
             set { _texture = value; }
         }
 
-        private TimeAnimationBase<int> _animation;
+        private InstantTimeAnimation<int> _animation;
 
-        public TimeAnimationBase<int> Animation
+        public InstantTimeAnimation<int> Animation
         {
             get { return _animation; }
             set { _animation = value; }

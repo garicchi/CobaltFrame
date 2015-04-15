@@ -37,8 +37,6 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animation\ConditionAnimationBase.cs" />
-    <Compile Include="Animation\TimeAnimationBase.cs" />
     <Compile Include="Animation\InstantTimeAnimation.cs" />
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />

@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Core.Progress;
 
 namespace CobaltFrame.Mono.Animation
 {
-    public class WaitBox2Animation:TimeAnimationBase<Box2>
+    public class WaitBox2Animation:TimeProgress<Box2>
     {
         public WaitBox2Animation(GameContext context, TimeSpan duration, Box2 begin)
             : base(context, duration, begin, begin)

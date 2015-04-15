@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Core.Progress;
 
 namespace CobaltFrame.Mono.Animation
 {
-    public class Box2TimeAnimation:TimeAnimationBase<Box2>
+    public class Box2TimeAnimation:TimeProgress<Box2>
     {
 
         

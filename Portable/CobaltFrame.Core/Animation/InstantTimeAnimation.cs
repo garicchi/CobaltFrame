@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Core.Context;
+using CobaltFrame.Core.Progress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Animation
 {
-    public class InstantTimeAnimation<T>:TimeAnimationBase<T>
+    public class InstantTimeAnimation<T>:TimeProgress<T>
     {
 
         private Func<T, T,float, T> _expression;
