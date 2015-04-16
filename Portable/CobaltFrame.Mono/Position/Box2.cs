@@ -88,6 +88,11 @@ namespace CobaltFrame.Position
             return this.GetRect().Contains((float)x, (float)y);
         }
 
+        public virtual bool Contains(Vector2 vec)
+        {
+            return this.GetRect().Contains(vec);
+        }
+
         public virtual bool Intersects(Box2 position)
         {
             return this.GetRect().Intersects(position.GetRect());

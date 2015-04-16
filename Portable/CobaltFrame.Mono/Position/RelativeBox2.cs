@@ -59,6 +59,11 @@ namespace CobaltFrame.Position
             return this.GetRect().Contains(position.GetRect());
         }
 
+        public override bool Contains(Vector2 vec)
+        {
+            return this.GetRect().Contains(vec);
+        }
+
         public override bool Intersects(Box2 position)
         {
             return this.GetRect().Intersects(position.GetRect());

@@ -138,6 +138,8 @@
     <Content Include="Content\Texture\player.png" />
     <Content Include="Content\Texture\progress_frame.png" />
     <Content Include="Content\Texture\progress_inner.png" />
+    <Content Include="Content\Texture\slidepad_back.png" />
+    <Content Include="Content\Texture\slidepad_pad.png" />
     <Content Include="Content\Texture\spaceback.png" />
   </ItemGroup>
   <ItemGroup>
