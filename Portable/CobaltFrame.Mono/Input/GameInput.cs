@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,10 +34,12 @@ namespace CobaltFrame.Mono.Input
         {
             IsAccelEnable = true;
             _accelFunc = accelFunc;
+
         }
 
         public static void Update(FrameContext context)
         {
+            
             if (_isFirstUpdate)
             {
                 _isFirstUpdate = false;
@@ -45,7 +48,7 @@ namespace CobaltFrame.Mono.Input
             {
                 GamePadStatePrev = GamePadState;
                 MouseStatePrev = MouseState;
-                TouchCollectionPrev = TouchCollection;
+                TouchCollectionPrev = new TouchInputCollection(TouchCollection);
                 KeyboardStatePrev = KeyboardState;
                 AccelStatePrev = AccelState;
             }
@@ -94,7 +97,7 @@ namespace CobaltFrame.Mono.Input
                 AccelState = _accelFunc();
             }
 
-            
+
             
         }
     }

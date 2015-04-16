@@ -40,6 +40,17 @@ namespace CobaltFrame.Position
                 );
         }
 
+        public Rectangle GetRect(Rectangle source)
+        {
+            var relativeRect = base.GetRect();
+            return new Rectangle(
+                relativeRect.X + source.X,
+                relativeRect.Y + source.Y,
+                relativeRect.Width,
+                relativeRect.Height
+                );
+        }
+
         public override Vector2 GetLocation()
         {
             var relativeRect = base.GetLocation();
@@ -48,6 +59,8 @@ namespace CobaltFrame.Position
                 relativeRect.Y + this._sourceBox.GetRect().Y
                 );
         }
+
+        
 
         public override bool Contains(int x, int y)
         {
@@ -68,6 +81,13 @@ namespace CobaltFrame.Position
         {
             return this.GetRect().Intersects(position.GetRect());
         }
+
+        public override CobaltFrame.Position.Box2 TryMoveRect(int up = 0, int down = 0, int right = 0, int left = 0)
+        {
+            var box = base.TryMoveRect(up,down,right,left);
+            return new RelativeBox2(box.GetRect(),_sourceBox);
+        }
+        
         
     }
 }

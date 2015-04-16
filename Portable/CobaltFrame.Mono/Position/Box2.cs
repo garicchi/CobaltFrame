@@ -44,13 +44,13 @@ namespace CobaltFrame.Position
         }
         public virtual void MoveRect(int up = 0, int down = 0, int right = 0, int left = 0)
         {
-            this.SetLocation(new Vector2(this.GetLocation().X + right - left, this.GetLocation().Y + down - up));
+            this.SetLocation(new Vector2(this._drawRect.X + right - left, this._drawRect.Y + down - up));
         }
 
         public virtual Box2 TryMoveRect(int up = 0, int down = 0, int right = 0, int left = 0)
         {
             var box = new Box2(this);
-            box.SetLocation(new Vector2(this.GetLocation().X + right - left, this.GetLocation().Y + down - up));
+            box.SetLocation(new Vector2(this._drawRect.X + right - left, this._drawRect.Y + down - up));
             return box;
         }
         public virtual Rectangle GetRect()

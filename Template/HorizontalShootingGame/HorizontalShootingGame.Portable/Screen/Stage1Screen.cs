@@ -38,7 +38,7 @@ namespace HorizontalShootingGame.Portable.Screen
             var progress = new ProgressBarObject(new Box2(300,100,400,50),"Texture/progress_frame","Texture/progress_inner");
             this.AddDrawableObject(progress);
 
-            var slidePad = new SlidePadObject(new Box2(400,400,200,200),"Texture/slidepad_pad","Texture/slidepad_back");
+            var slidePad = new SlidePadObject(new Box2(400,400,100,100),"Texture/slidepad_pad","Texture/slidepad_back");
             this.AddDrawableObject(slidePad);
 
             this.Inputs.RegisterInput("PlayerUp",

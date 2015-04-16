@@ -10,9 +10,19 @@ namespace CobaltFrame.Mono.Input
     public class TouchInputCollection:ICollection<TouchLocation>
     {
         public List<TouchLocation> Items { get; private set; }
+
         public TouchInputCollection()
         {
             Items = new List<TouchLocation>();
+        }
+
+        public TouchInputCollection(TouchInputCollection collection)
+        {
+            Items = new List<TouchLocation>();
+            foreach (var location in collection)
+            {
+                Items.Add(location);
+            }
         }
 
         public bool IsTouch
@@ -38,6 +48,7 @@ namespace CobaltFrame.Mono.Input
 
         public void Clear()
         {
+
             Items.Clear();
         }
 

@@ -27,7 +27,7 @@ namespace CobaltFrame.Mono.UI
             this.InnerObject = new Texture2DObject(box.GetBox2WithMargin(this.InnerMargin),innerTexturePath);
             this.AddDrawableObject(this.FrameObject);
             this.AddDrawableObject(this.InnerObject);
-            this.CurrentProgress = 0.0f;
+            this.CurrentProgress = 0.5f;
         }
 
         public override void Load()

@@ -29,7 +29,7 @@ namespace HorizontalShootingGame
             Content.RootDirectory = "Content";
             GameContext.Game = this;
 
-            this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(1366, 768), ScaleMode.Fill);
+            this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(1366, 768), ScaleMode.None);
             
             SaveDataStore<SaveData>.Setup("savedata", (name) =>
             {
