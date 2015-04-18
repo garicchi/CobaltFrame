@@ -1,6 +1,6 @@
 ﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -42,7 +42,7 @@ namespace CobaltFrame.Mono.UI
             set { _isRepeat = value; }
         }
 
-        public Texture2DObject(Box2 position, string texturePath, bool isRepeat = false)
+        public Texture2DObject(IBox2 position, string texturePath, bool isRepeat = false)
             : base(position)
         {
             this._texturePath = texturePath;

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Mono.Input;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 
 namespace CobaltFrame.Mono.Screen
 {

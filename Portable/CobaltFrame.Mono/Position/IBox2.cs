@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CobaltFrame.Core.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace CobaltFrame.Mono.Position
     {
         void SetRect(Rectangle rect);
         Rectangle GetRect();
+        Rectangle GetRect(Vector2 origin);
         void SetLocation(Vector2 vec);
         Vector2 GetLocation();
         Vector2 GetCenter();
@@ -21,5 +23,7 @@ namespace CobaltFrame.Mono.Position
         bool Contains(Vector2 vec);
         bool Contains(IBox2 box);
         bool Intersects(IBox2 box);
+
+        RelativeBox2 GetRelativeBox(Margin margin);
     }
 }

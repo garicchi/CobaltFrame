@@ -1,6 +1,6 @@
 ﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Input;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -51,7 +51,7 @@ namespace CobaltFrame.Mono.UI
         }
 
         public event Action<ButtonObject, Vector2> OnClick;
-        public ButtonObject(Box2 position,string pressedTexturePath,string releasedTexturePath)
+        public ButtonObject(IBox2 position,string pressedTexturePath,string releasedTexturePath)
             : base(position)
         {
             this._pressedTexturePath = pressedTexturePath;

@@ -2,7 +2,6 @@
 using CobaltFrame.Core.Object;
 using CobaltFrame.Mono.Font;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,10 +11,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CobaltFrame.Mono.Position;
 
 namespace CobaltFrame.Mono.UI
 {
-    public class BitmapTextObject:DrawableGameObject
+    public class BitmapTextObject:UIObject
     {
         protected string _fontPath;
 
@@ -55,7 +55,7 @@ namespace CobaltFrame.Mono.UI
             set { _rowOffset = value; }
         }
 
-        public BitmapTextObject(Box2 pos,string fontPath,string text,float fontScale,Color color)
+        public BitmapTextObject(IBox2 pos,string fontPath,string text,float fontScale,Color color)
             : base(pos)
         {
             this._fontPath = fontPath;

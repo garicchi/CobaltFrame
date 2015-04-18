@@ -1,12 +1,12 @@
 ﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
-using CobaltFrame.Position;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Core.Progress;
+using CobaltFrame.Mono.Position;
 
 namespace CobaltFrame.Mono.Animation
 {

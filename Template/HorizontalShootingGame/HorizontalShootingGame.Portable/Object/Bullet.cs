@@ -1,8 +1,8 @@
 ﻿using CobaltFrame.Mono.Animation;
 using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Object;
+using CobaltFrame.Mono.Position;
 using CobaltFrame.Mono.UI;
-using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,12 +17,12 @@ namespace HorizontalShootingGame.Portable.Object
         protected Box2ConditionAnimation Animation { get; set; }
 
 
-        public Bullet(Box2 pos,string texturePath)
+        public Bullet(IBox2 pos,string texturePath)
             :base(pos,texturePath)
         {
             this.Animation = new Box2ConditionAnimation(pos, (current, time) =>
             {
-                current.MoveRect(0,0,40,0);
+                current.MoveRect(0,0,0,40);
                 return current;
             });
             this.Animation.StopTriggers.Add((current) =>

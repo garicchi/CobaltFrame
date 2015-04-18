@@ -1,6 +1,6 @@
 ﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace CobaltFrame.Mono.UI
 {
     public abstract class UIObject:DrawableGameObject
     {
-        public UIObject(Box2 position)
+        public UIObject(IBox2 position)
             : base(position)
         {
 

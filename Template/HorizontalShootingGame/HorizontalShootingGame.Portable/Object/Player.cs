@@ -2,7 +2,6 @@
 using CobaltFrame.Core.Context;
 using CobaltFrame.Mono.Input;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -14,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using CobaltFrame.Mono.UI;
+using CobaltFrame.Mono.Position;
 
 namespace HorizontalShootingGame.Portable.Object
 {
@@ -29,7 +29,7 @@ namespace HorizontalShootingGame.Portable.Object
         }
         private List<Bullet> _bulletList;
 
-        public Player(Box2 position, string texturePath)
+        public Player(IBox2 position, string texturePath)
             : base(position, texturePath)
         {
             this._bulletList = new List<Bullet>();
@@ -38,7 +38,7 @@ namespace HorizontalShootingGame.Portable.Object
                 Bullet bullet = new Bullet(new Box2(
                     this.Box.GetRect().X,
                     this.Box.GetRect().Y + this.Box.GetRect().Height / 2,
-                    100,
+                    80,
                     10)
                     ,"Texture/bullet");
                 

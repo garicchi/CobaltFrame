@@ -1,5 +1,4 @@
 ﻿using CobaltFrame.Mono.Context;
-using CobaltFrame.Position;
 using CobaltFrame.Mono.Screen;
 using HorizontalShootingGame.Portable.Object;
 using Microsoft.Xna.Framework;
@@ -12,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using CobaltFrame.Mono.Input;
 using CobaltFrame.Mono.UI;
+using CobaltFrame.Mono.Position;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -28,7 +28,7 @@ namespace HorizontalShootingGame.Portable.Screen
         public override void Load()
         {
             base.Load();
-            player = new Player(new Box2(0, 0, 200, 200), "Texture/Player");
+            player = new Player(new Box2(0, 0, 100, 100), "Texture/Player");
             
             this.AddDrawableObject(player);
 
@@ -39,7 +39,7 @@ namespace HorizontalShootingGame.Portable.Screen
             var progress = new ProgressBarObject(new Box2(300,100,400,50),"Texture/progress_frame","Texture/progress_inner");
             this.AddDrawableObject(progress);
 
-            slidePad = new SlidePadObject(new Box2(400,400,100,100),"Texture/slidepad_pad","Texture/slidepad_back");
+            slidePad = new SlidePadObject(new Box2(50,this.Box.GetRect().Height-150,100,100),"Texture/slidepad_pad","Texture/slidepad_back");
             this.AddDrawableObject(slidePad);
 
             this.Inputs.RegisterInput("PlayerUp",
@@ -93,28 +93,33 @@ namespace HorizontalShootingGame.Portable.Screen
                 this.player.Box.MoveRect(this.player.MoveSpeed);
             }
             if (this.Inputs.IsInput("PlayerDown")
+                && this.Box.Contains(this.player.Box.TryMoveRect(0,0,this.player.MoveSpeed)))
+            {
+                this.player.Box.MoveRect(0,0, this.player.MoveSpeed);
+            }
+            if (this.Inputs.IsInput("PlayerLeft")
                 && this.Box.Contains(this.player.Box.TryMoveRect(0,this.player.MoveSpeed)))
             {
                 this.player.Box.MoveRect(0, this.player.MoveSpeed);
             }
-            if (this.Inputs.IsInput("PlayerLeft")
+            if (this.Inputs.IsInput("PlayerRight")
                 && this.Box.Contains(this.player.Box.TryMoveRect(0,0,0,this.player.MoveSpeed)))
             {
-                this.player.Box.MoveRect(0, 0, 0, this.player.MoveSpeed);
-            }
-            if (this.Inputs.IsInput("PlayerRight")
-                && this.Box.Contains(this.player.Box.TryMoveRect(0,0,this.player.MoveSpeed)))
-            {
-                this.player.Box.MoveRect(0, 0, this.player.MoveSpeed);
+                this.player.Box.MoveRect(0, 0,0, this.player.MoveSpeed);
             }
             if (this.Inputs.IsInput("PlayerShot"))
             {
                 this.player.Shot();
             }
-            if (this.Box.Contains(this.player.Box.TryMoveRect(0,(int)slidePad.CurrentValue.Y,(int)slidePad.CurrentValue.X)))
+            if (this.Box.Contains(this.player.Box.TryMoveRect(0,0,(int)slidePad.CurrentValue.Y,0)))
             {
-                this.player.Box.MoveRect(0,(int)slidePad.CurrentValue.Y,(int)slidePad.CurrentValue.X);
+                this.player.Box.MoveRect(0,0,(int)slidePad.CurrentValue.Y/3,0);
                 
+            }
+            if (this.Box.Contains(this.player.Box.TryMoveRect(0, 0, 0, (int)slidePad.CurrentValue.X)))
+            {
+                this.player.Box.MoveRect(0, 0, 0, (int)slidePad.CurrentValue.X / 3);
+
             }
         }
 

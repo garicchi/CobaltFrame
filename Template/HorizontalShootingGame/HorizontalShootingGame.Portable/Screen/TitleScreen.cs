@@ -1,7 +1,7 @@
 ﻿using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Input;
 using CobaltFrame.Mono.Object;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 using CobaltFrame.Mono.Screen;
 using CobaltFrame.Mono.Transition;
 using HorizontalShootingGame.Portable.Object;

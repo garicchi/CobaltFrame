@@ -1,6 +1,6 @@
 ﻿using CobaltFrame.Core.Common;
 using CobaltFrame.Mono.Input;
-using CobaltFrame.Position;
+using CobaltFrame.Mono.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
@@ -20,7 +20,7 @@ namespace CobaltFrame.Mono.UI
         public Vector2 CurrentValue { get; private set; }
         private int _padTouchId { get; set; }
 
-        public SlidePadObject(Box2 box,string padTexturePath,string backTexturePath)
+        public SlidePadObject(IBox2 box,string padTexturePath,string backTexturePath)
             :base(box)
         {
             this.BackObject = new Texture2DObject(box, backTexturePath);
@@ -76,10 +76,11 @@ namespace CobaltFrame.Mono.UI
                 var location = GameInput.TouchCollection.Where(q => q.Id == _padTouchId).First();
 
                 var box = this.PadObject.Box as RelativeBox2;
+                
                 box.SetAbsoluteLocation(new Vector2(
-                    location.Position.X,
-                    location.Position.Y));
-                var delta = location.Position - this.BackObject.Box.Center;
+                    location.Position.X - box.GetRect().Width / 2,
+                    location.Position.Y - box.GetRect().Height/ 2));
+                var delta = box.GetCenter()- this.BackObject.Box.GetCenter();
                 
                 this.CurrentValue = delta;
             }

@@ -2,7 +2,6 @@
 using CobaltFrame.Mono.Context;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Core.Object;
-using CobaltFrame.Position;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Mono.Input;
+using CobaltFrame.Mono.Position;
 
 namespace CobaltFrame.Mono.Object
 {
@@ -19,10 +19,10 @@ namespace CobaltFrame.Mono.Object
     {
         protected Game _game;
         protected SpriteBatch _spriteBatch;
-        protected Box2 _box;
+        protected IBox2 _box;
 
 
-        public Box2 Box
+        public IBox2 Box
         {
             get { return _box; }
             set { _box = value; }
@@ -61,7 +61,7 @@ namespace CobaltFrame.Mono.Object
             set { _inputs = value; }
         }
         
-        public DrawableGameObject(Box2 box)
+        public DrawableGameObject(IBox2 box)
             : base()
         {
             this._game = GameContext.Game;

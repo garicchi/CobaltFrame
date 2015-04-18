@@ -1,93 +1,155 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CobaltFrame.Core.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Position
+namespace CobaltFrame.Mono.Position
 {
-    public class RelativeBox2:Box2
+    public class RelativeBox2:IBox2
     {
-        private Box2 _sourceBox;
-        
-        protected Box2 SourcePosition
+        private IBox2 _sourceBox;
+        private Rectangle _relativeRect;
+
+        public RelativeBox2(int x, int y, int w, int h, IBox2 source)
         {
-            get { return _sourceBox; }
+            this._sourceBox = source;
+            this._relativeRect = new Rectangle(x,y,w,h);
         }
 
-        public RelativeBox2(Rectangle position,Box2 sourcePosition)
-            :base(position)
+        public RelativeBox2(RelativeBox2 box)
         {
-            this._sourceBox = sourcePosition;
-
+            this._sourceBox = box._sourceBox;
+            this._relativeRect = box.GetRelativeRect();
         }
 
-        public override void SetRect(Rectangle newRect)
+        public RelativeBox2(Rectangle rect,IBox2 source)
         {
-            base.SetRect(newRect);
+            this._sourceBox = source;
+            this._relativeRect = rect;
+        }
+
+        public IBox2 GetSourceBox()
+        {
+            return this._sourceBox;
+        }
+        public Rectangle GetRelativeRect()
+        {
+            return this._relativeRect;
+        }
+
+        public void SetAbsoluteRect(Rectangle rect)
+        {
+            this._relativeRect.X = rect.X - this._sourceBox.GetRect().X;
+            this._relativeRect.Y = rect.Y - this._sourceBox.GetRect().Y;
+            this._relativeRect.Width = rect.Width - this._sourceBox.GetRect().Width;
+            this._relativeRect.Height = rect.Height - this._sourceBox.GetRect().Height;
+        }
+
+        public void SetAbsoluteLocation(Vector2 vec)
+        {
+            this._relativeRect.X = (int)vec.X - this._sourceBox.GetRect().X;
+            this._relativeRect.Y = (int)vec.Y - this._sourceBox.GetRect().Y;
             
         }
-        public override Rectangle GetRect()
+        public void SetRect(Microsoft.Xna.Framework.Rectangle rect)
+        {
+            this._relativeRect = rect;
+        }
+
+        public Microsoft.Xna.Framework.Rectangle GetRect()
         {
             return new Rectangle(
-                this._drawRect.X + this._sourceBox.GetRect().X,
-                this._drawRect.Y + this._sourceBox.GetRect().Y,
-                this._drawRect.Width,
-                this._drawRect.Height
+                this._relativeRect.X+this._sourceBox.GetRect().X,
+                this._relativeRect.Y+this._sourceBox.GetRect().Y,
+                this._relativeRect.Width,
+                this._relativeRect.Height
                 );
         }
 
-        
-        public override Vector2 GetLocation()
+        public void SetLocation(Microsoft.Xna.Framework.Vector2 vec)
         {
-            var relativeRect = base.GetLocation();
+            this._relativeRect.X = (int)vec.X;
+            this._relativeRect.Y = (int)vec.Y;
+
+        }
+
+        public Microsoft.Xna.Framework.Vector2 GetLocation()
+        {
             return new Vector2(
-                relativeRect.X + this._sourceBox.GetRect().X,
-                relativeRect.Y + this._sourceBox.GetRect().Y
+                this._relativeRect.X+this._sourceBox.GetRect().X,
+                this._relativeRect.Y+this._sourceBox.GetRect().Y
+
                 );
         }
 
-        public void SetAbsoluteLocation(Vector2 newPos)
+        public Microsoft.Xna.Framework.Vector2 GetCenter()
         {
-            base.SetLocation(new Vector2((int)newPos.X - this._sourceBox.GetRect().X,
-                (int)newPos.Y - this._sourceBox.GetRect().Y));
-            
+            var center = this.GetRect().Center;
+            return new Vector2(
+                center.X,center.Y
+                );
         }
 
-        public Vector2 GetRelativeLocation()
+        public void SetCenter(Microsoft.Xna.Framework.Vector2 vec)
         {
-            return new Vector2(this._drawRect.X, this._drawRect.Y);
-        }
-        
-
-        public override bool Contains(int x, int y)
-        {
-            return this.GetRect().Contains((float)x, (float)y);
+            this._relativeRect.X = (int)vec.X + this._relativeRect.Width / 2;
+            this._relativeRect.Y = (int)vec.Y + this._relativeRect.Height / 2;
         }
 
-        public override bool Contains(Box2 position)
+        public void MoveRect(int up = 0, int left = 0, int down = 0, int right = 0)
         {
-            return this.GetRect().Contains(position.GetRect());
+            this.SetLocation(new Vector2(this._relativeRect.X + right - left, this._relativeRect.Y + down - up));
         }
 
-        public override bool Contains(Vector2 vec)
+        public IBox2 TryMoveRect(int up = 0, int left = 0, int down = 0, int right = 0)
+        {
+            var box = new RelativeBox2(this);
+            box.MoveRect(up,left,down,right);
+            return box;
+        }
+
+        public bool Contains(int x, int y)
+        {
+            return this.GetRect().Contains(x, y);
+        }
+
+        public bool Contains(Microsoft.Xna.Framework.Vector2 vec)
         {
             return this.GetRect().Contains(vec);
         }
 
-        public override bool Intersects(Box2 position)
+        public bool Contains(IBox2 box)
         {
-            return this.GetRect().Intersects(position.GetRect());
+            return this.GetRect().Contains(box.GetRect());
         }
 
-        public override CobaltFrame.Position.Box2 TryMoveRect(int up = 0, int down = 0, int right = 0, int left = 0)
+        public bool Intersects(IBox2 box)
         {
-            var box = base.TryMoveRect(up,down,right,left);
-            return new RelativeBox2(box.GetRect(),_sourceBox);
+            return this.GetRect().Intersects(box.GetRect());
         }
-        
-        
+
+        public RelativeBox2 GetRelativeBox(Margin margin)
+        {
+            return new RelativeBox2(
+                this.GetRect().X + margin.Left,
+                this.GetRect().Y + margin.Top,
+                this.GetRect().Width - margin.Right,
+                this.GetRect().Height - margin.Bottom
+                , this);
+        }
+
+
+        public Rectangle GetRect(Vector2 origin)
+        {
+            return new Rectangle(
+                this.GetRect().X + (int)origin.X,
+                this.GetRect().Y + (int)origin.Y,
+                this.GetRect().Width,
+                this.GetRect().Height
+                );
+        }
     }
 }
