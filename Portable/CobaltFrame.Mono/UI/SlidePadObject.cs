@@ -18,6 +18,8 @@ namespace CobaltFrame.Mono.UI
         protected Texture2DObject BackObject { get; set; }
 
         public Vector2 CurrentValue { get; private set; }
+        private int _padTouchId { get; set; }
+
         public SlidePadObject(Box2 box,string padTexturePath,string backTexturePath)
             :base(box)
         {
@@ -47,8 +49,15 @@ namespace CobaltFrame.Mono.UI
             {
                 if (GameInput.TouchCollection.IsTouch)
                 {
-                    return GameInput.TouchCollection.First().State == TouchLocationState.Moved
-                        &&this.PadObject.Box.Contains(GameInput.TouchCollection.First().Position);
+                    var touchEnum = GameInput.TouchCollection.Where(q=>this.PadObject.Box.Contains(q.Position));
+                    if(touchEnum.Count()>0){
+                        var location = touchEnum.First();
+                        this._padTouchId = location.Id;
+                        return true;
+                    }else{
+                        return false;
+                    }
+
                 }
                 else
                 {
@@ -62,15 +71,16 @@ namespace CobaltFrame.Mono.UI
             base.Update(context);
             
 
-            if (Inputs.IsInput("_PadSlide"))
+            if (Inputs.IsInput("_PadSlide")&&this.Box.Intersects(this.PadObject.Box))
             {
+                var location = GameInput.TouchCollection.Where(q => q.Id == _padTouchId).First();
+
+                var box = this.PadObject.Box as RelativeBox2;
+                box.SetAbsoluteLocation(new Vector2(
+                    location.Position.X,
+                    location.Position.Y));
+                var delta = location.Position - this.BackObject.Box.Center;
                 
-                var delta=GameInput.TouchCollection.First().Position-GameInput.TouchCollectionPrev.First().Position;
-                var tryBox = this.PadObject.Box.TryMoveRect(0, (int)delta.Y, (int)delta.X, 0);
-                if (this.Box.Intersects(tryBox))
-                {
-                    this.PadObject.Box.MoveRect(0, (int)delta.Y, (int)delta.X, 0);
-                }
                 this.CurrentValue = delta;
             }
             else

@@ -10,7 +10,17 @@ namespace CobaltFrame.Position
 {
     public class Box2
     {
-        private Rectangle _drawRect;
+        protected Rectangle _drawRect;
+
+        public Vector2 Center
+        {
+            get
+            {
+                return new Vector2(
+                    this._drawRect.X + this._drawRect.Width / 2
+                    , this._drawRect.Y + this._drawRect.Height / 2);
+                }
+        }
 
         public Box2(int x,int y,int width,int height)
         {

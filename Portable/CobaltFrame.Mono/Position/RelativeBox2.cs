@@ -31,26 +31,15 @@ namespace CobaltFrame.Position
         }
         public override Rectangle GetRect()
         {
-            var relativeRect = base.GetRect();
             return new Rectangle(
-                relativeRect.X + this._sourceBox.GetRect().X,
-                relativeRect.Y + this._sourceBox.GetRect().Y,
-                relativeRect.Width,
-                relativeRect.Height
+                this._drawRect.X + this._sourceBox.GetRect().X,
+                this._drawRect.Y + this._sourceBox.GetRect().Y,
+                this._drawRect.Width,
+                this._drawRect.Height
                 );
         }
 
-        public Rectangle GetRect(Rectangle source)
-        {
-            var relativeRect = base.GetRect();
-            return new Rectangle(
-                relativeRect.X + source.X,
-                relativeRect.Y + source.Y,
-                relativeRect.Width,
-                relativeRect.Height
-                );
-        }
-
+        
         public override Vector2 GetLocation()
         {
             var relativeRect = base.GetLocation();
@@ -60,6 +49,17 @@ namespace CobaltFrame.Position
                 );
         }
 
+        public void SetAbsoluteLocation(Vector2 newPos)
+        {
+            base.SetLocation(new Vector2((int)newPos.X - this._sourceBox.GetRect().X,
+                (int)newPos.Y - this._sourceBox.GetRect().Y));
+            
+        }
+
+        public Vector2 GetRelativeLocation()
+        {
+            return new Vector2(this._drawRect.X, this._drawRect.Y);
+        }
         
 
         public override bool Contains(int x, int y)

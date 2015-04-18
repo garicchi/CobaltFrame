@@ -18,6 +18,7 @@ namespace HorizontalShootingGame.Portable.Screen
     public class Stage1Screen:GameScreen
     {
         Player player;
+        SlidePadObject slidePad;
         public Stage1Screen()
             : base()
         {
@@ -38,7 +39,7 @@ namespace HorizontalShootingGame.Portable.Screen
             var progress = new ProgressBarObject(new Box2(300,100,400,50),"Texture/progress_frame","Texture/progress_inner");
             this.AddDrawableObject(progress);
 
-            var slidePad = new SlidePadObject(new Box2(400,400,100,100),"Texture/slidepad_pad","Texture/slidepad_back");
+            slidePad = new SlidePadObject(new Box2(400,400,100,100),"Texture/slidepad_pad","Texture/slidepad_back");
             this.AddDrawableObject(slidePad);
 
             this.Inputs.RegisterInput("PlayerUp",
@@ -109,6 +110,11 @@ namespace HorizontalShootingGame.Portable.Screen
             if (this.Inputs.IsInput("PlayerShot"))
             {
                 this.player.Shot();
+            }
+            if (this.Box.Contains(this.player.Box.TryMoveRect(0,(int)slidePad.CurrentValue.Y,(int)slidePad.CurrentValue.X)))
+            {
+                this.player.Box.MoveRect(0,(int)slidePad.CurrentValue.Y,(int)slidePad.CurrentValue.X);
+                
             }
         }
 

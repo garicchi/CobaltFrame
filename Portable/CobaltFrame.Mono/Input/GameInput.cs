@@ -52,6 +52,7 @@ namespace CobaltFrame.Mono.Input
                 KeyboardStatePrev = KeyboardState;
                 AccelStatePrev = AccelState;
             }
+            
 
             if (TouchPanel.GetCapabilities().IsConnected)
             {
