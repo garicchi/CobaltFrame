@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.Input;
 using CobaltFrame.Mono.Input;
 using CobaltFrame.Mono.UI;
 using CobaltFrame.Mono.Position;
+using CobaltFrame.Mono.Animation;
+using CobaltFrame.Core.Animation;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -19,10 +21,11 @@ namespace HorizontalShootingGame.Portable.Screen
     {
         Player player;
         SlidePadObject slidePad;
+        List<EnemyBase> _enemyList;
         public Stage1Screen()
             : base()
         {
-            
+            this._enemyList = new List<EnemyBase>();
         }
 
         public override void Load()
@@ -77,6 +80,9 @@ namespace HorizontalShootingGame.Portable.Screen
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Space) && !GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
                 null
             );
+
+            //var animation1 = new InstantTimeAnimation<Vector2>(new Vector2(300,0),new Vector2(400,800),TimeSpan.FromSeconds(2),(b,e,c)=>((e-b)*c+b));
+            //_enemyList.Add(new Enemy1(animation1,TimeSpan.FromSeconds(5)));
         }
 
         

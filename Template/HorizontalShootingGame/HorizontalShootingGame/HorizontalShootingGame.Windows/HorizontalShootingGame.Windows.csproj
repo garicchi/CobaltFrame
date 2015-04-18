@@ -135,7 +135,12 @@
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Content\Texture\bullet.png" />
-    <Content Include="Content\Texture\player.png" />
+    <Content Include="Content\Texture\enemy1.png" />
+    <Content Include="Content\Texture\enemy2.png" />
+    <Content Include="Content\Texture\enemy3.png" />
+    <Content Include="Content\Texture\player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Texture\progress_frame.png" />
     <Content Include="Content\Texture\progress_inner.png" />
     <Content Include="Content\Texture\slidepad_back.png" />

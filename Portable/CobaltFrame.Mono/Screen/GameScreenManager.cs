@@ -84,8 +84,7 @@ namespace CobaltFrame.Mono.Screen
 
         public override void Update(Core.Context.IFrameContext context)
         {
-            (context as FrameContext).ScreenScale = ScreenScale;
-            (context as FrameContext).ScreenMargin = ScreenMargin;
+            
             GameInput.Update(context as FrameContext);
 
             

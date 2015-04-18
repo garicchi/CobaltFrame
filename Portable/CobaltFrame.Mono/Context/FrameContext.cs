@@ -48,5 +48,7 @@ namespace CobaltFrame.Mono.Context
         {
             get { return this._gameTime.ElapsedGameTime; }
         }
+
+        public TimeSpan ElapsedScreenTime { get; set; }
     }
 }
