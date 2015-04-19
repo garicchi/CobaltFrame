@@ -94,6 +94,19 @@ namespace HorizontalShootingGame.Portable.Screen
 
                 _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i)));
             }
+
+            for (int i = 0; i < 5; i++)
+            {
+                var collection = new TimeProgressCollection<Box2>
+                {
+                    new Box2TimeAnimation(TimeSpan.FromSeconds(3),new Box2(Box.GetRect().Right-100,800,100,100),new Box2(Box.GetRect().Right-200,300,100,100)),
+                    new WaitBox2Animation(TimeSpan.FromSeconds(1), new Box2(Box.GetRect().Right-200, 300, 100, 100)),
+                    new Box2TimeAnimation(TimeSpan.FromSeconds(2), new Box2(Box.GetRect().Right-200, 300, 100, 100),new Box2(500,60,100,100)),
+
+                };
+
+                _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i+2)));
+            }
             foreach (var e in _enemyList)
             {
                 this.AddDrawableObject(e);
