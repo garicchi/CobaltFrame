@@ -1,4 +1,5 @@
-﻿using CobaltFrame.Mono.Animation;
+﻿using CobaltFrame.Core.Progress;
+using CobaltFrame.Mono.Animation;
 using CobaltFrame.Mono.Context;
 using CobaltFrame.Mono.Position;
 using CobaltFrame.Mono.UI;
@@ -28,17 +29,17 @@ namespace HorizontalShootingGame.Portable.Object
             get { return _isStart; }
         }
 
-        protected Box2TimeAnimation Animation { get; set; }
-        public EnemyBase(IBox2 box,string texture,Box2TimeAnimation animation,TimeSpan startTime)
+        protected CobaltFrame.Core.Progress.IProgress<Box2> Animation { get; set; }
+        public EnemyBase(IBox2 box,string texture,CobaltFrame.Core.Progress.IProgress<Box2> animation,TimeSpan startTime)
             :base(box,texture)
         {
             IsVisible = false;
             _isStart = false;
             _startTime = startTime;
             this.Animation = animation;
+            
             this.Animation.OnCompleted += () =>
             {
-                this._isStart = false;
                 this.IsVisible = false;
                 
             };

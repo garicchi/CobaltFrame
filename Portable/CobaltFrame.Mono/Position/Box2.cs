@@ -110,5 +110,10 @@ namespace CobaltFrame.Mono.Position
                 this.GetRect().Height
                 );
         }
+
+        public override string ToString()
+        {
+            return this.GetRect().ToString();
+        }
     }
 }

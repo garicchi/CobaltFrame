@@ -81,12 +81,20 @@ namespace HorizontalShootingGame.Portable.Screen
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Space) && !GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
                 null
             );
-            
-            var animation1 = new Box2TimeAnimation(TimeSpan.FromSeconds(2),new Box2(300,0,100,100),new Box2(300,400,100,100));
-            animation1.Chain(new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(300, 400, 100, 100)), null).Chain(new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(300, 400, 100, 100),new Box2(200,800,100,100)), null);
 
-            _enemyList.Add(new Enemy1(animation1 as Box2TimeAnimation,TimeSpan.FromSeconds(5)));
-            
+            var collection = new TimeProgressCollection<Box2>
+            {
+                new Box2TimeAnimation(TimeSpan.FromSeconds(2),new Box2(Box.GetRect().Right-200,0,100,100),new Box2(Box.GetRect().Right-300,400,100,100)),
+                new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(Box.GetRect().Right-300, 400, 100, 100)),
+                new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(Box.GetRect().Right-300, 400, 100, 100),new Box2(200,600,100,100)),
+
+            };
+
+            _enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection),TimeSpan.FromSeconds(1)));
+            _enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(1.5)));
+            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(2)));
+            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(2.5)));
+            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(3.2)));
 
             foreach (var e in _enemyList)
             {

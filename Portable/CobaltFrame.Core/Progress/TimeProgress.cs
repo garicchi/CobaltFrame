@@ -53,21 +53,11 @@ namespace CobaltFrame.Core.Progress
                 this._isLoop = value;
             }
         }
-        private bool _isChain;
-        public bool IsChain
-        {
-            get { return this._isChain; }
-        }
+
 
         private ProgressState _beforeState;
 
-        private ITimeProgress<T> _nextProgress;
 
-        public ITimeProgress<T> NextProgress
-        {
-            get { return this._nextProgress; }
-            set { this._nextProgress = value; }
-        }
 
         protected T _beginValue;
 
@@ -118,7 +108,6 @@ namespace CobaltFrame.Core.Progress
             this._state = ProgressState.Stop;
             this._isLoop = false;
             this._duration = duration;
-            this._isChain = false;
             this.OnCompleted += () => { };
             this.OnStarted += () => { };
             this._beginValue = begin;
@@ -164,12 +153,6 @@ namespace CobaltFrame.Core.Progress
                  
             }
 
-            
-
-            if (IsChain)
-            {
-                this._currentValue = this._nextProgress.CurrentValue;
-            }
 
             this._beforeState = State;
         }
@@ -177,7 +160,6 @@ namespace CobaltFrame.Core.Progress
         public virtual void Start()
         {
             this._currentProgress = 0.0f;
-            this._isChain = false;
             this._state = ProgressState.Active;
             
         }
@@ -195,41 +177,6 @@ namespace CobaltFrame.Core.Progress
         public virtual void Stop()
         {
             this._state = ProgressState.Stop;
-        }
-
-        public ITimeProgress<T> Chain(ITimeProgress<T> nextProgress, Action<ITimeProgress<T>> onCompleted)
-        {
-            this.OnCompleted += () =>
-            {
-                if (onCompleted != null)
-                {
-                    nextProgress.OnCompleted += () =>
-                    {
-                        onCompleted(nextProgress);
-                    };
-                }
-                
-                this._isChain = true;
-                
-                this._nextProgress.Start();
-                
-            };
-            this._nextProgress = nextProgress;
-            this.AddObject(this._nextProgress);
-            return nextProgress;
-        }
-
-        public void Chain(Action onCompleted)
-        {
-            this.OnCompleted += () =>
-            {
-                if (onCompleted != null)
-                {
-                    onCompleted();
-                    
-                }
-                
-            };
         }
 
 
