@@ -5,6 +5,7 @@ using CobaltFrame.Mono.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,10 @@ namespace HorizontalShootingGame.Portable.Object
             this.Animation.OnCompleted += () =>
             {
                 this._isStart = false;
+                this.IsVisible = false;
+                
             };
+            this.AddObject(animation);
         }
 
         public override void Update(CobaltFrame.Core.Context.IFrameContext context)
@@ -47,8 +51,15 @@ namespace HorizontalShootingGame.Portable.Object
             var fContext = context as FrameContext;
             if (fContext.ElapsedScreenTime > StartTime && IsStart == false)
             {
+                this.IsVisible = true;
                 _isStart = true;
                 Animation.Start();
+            }
+
+            if (IsStart)
+            {
+                this.Box.SetRect(Animation.CurrentValue.GetRect());
+                
             }
         }
     }

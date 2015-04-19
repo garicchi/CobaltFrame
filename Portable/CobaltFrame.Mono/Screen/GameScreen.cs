@@ -78,7 +78,6 @@ namespace CobaltFrame.Mono.Screen
 
         public override void Update(Core.Context.IFrameContext context)
         {
-            this._inputs.Update();
             var fContext = context as FrameContext;
             if (this._firstUpdate)
             {
@@ -87,6 +86,8 @@ namespace CobaltFrame.Mono.Screen
             }
             this._screenElapsedTime = fContext.TotalGameTime - this._screenElapsedTime;
             fContext.ElapsedScreenTime = this._screenElapsedTime;
+            
+            this._inputs.Update();
             
             base.Update(context);
             

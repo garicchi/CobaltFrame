@@ -80,9 +80,17 @@ namespace HorizontalShootingGame.Portable.Screen
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Space) && !GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
                 null
             );
+            
+            var animation1 = new Box2TimeAnimation(TimeSpan.FromSeconds(2),new Box2(300,0,100,100),new Box2(300,400,100,100));
+            animation1.Chain(new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(300, 400, 100, 100)), null).Chain(new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(300, 400, 100, 100),new Box2(200,800,100,100)), null);
 
-            //var animation1 = new InstantTimeAnimation<Vector2>(new Vector2(300,0),new Vector2(400,800),TimeSpan.FromSeconds(2),(b,e,c)=>((e-b)*c+b));
-            //_enemyList.Add(new Enemy1(animation1,TimeSpan.FromSeconds(5)));
+            _enemyList.Add(new Enemy1(animation1 as Box2TimeAnimation,TimeSpan.FromSeconds(5)));
+
+
+            foreach (var e in _enemyList)
+            {
+                this.AddDrawableObject(e);
+            }
         }
 
         

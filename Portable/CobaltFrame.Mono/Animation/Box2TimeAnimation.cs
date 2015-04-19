@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CobaltFrame.Core.Progress;
 using CobaltFrame.Mono.Position;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace CobaltFrame.Mono.Animation
 {
@@ -31,6 +32,7 @@ namespace CobaltFrame.Mono.Animation
                 deltaVec.Y*currentProgress
                 );
             box.SetLocation(multiVec + begin.GetLocation());
+            
             return box;
         }
     }

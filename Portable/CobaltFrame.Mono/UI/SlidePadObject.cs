@@ -53,6 +53,7 @@ namespace CobaltFrame.Mono.UI
                     if(touchEnum.Count()>0){
                         var location = touchEnum.First();
                         this._padTouchId = location.Id;
+                        
                         return true;
                     }else{
                         return false;
@@ -83,6 +84,7 @@ namespace CobaltFrame.Mono.UI
                 var delta = box.GetCenter()- this.BackObject.Box.GetCenter();
                 
                 this.CurrentValue = delta;
+                
             }
             else
             {
