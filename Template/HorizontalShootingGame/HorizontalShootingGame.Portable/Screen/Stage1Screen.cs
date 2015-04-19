@@ -14,6 +14,7 @@ using CobaltFrame.Mono.UI;
 using CobaltFrame.Mono.Position;
 using CobaltFrame.Mono.Animation;
 using CobaltFrame.Core.Animation;
+using CobaltFrame.Core.Progress;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -85,7 +86,7 @@ namespace HorizontalShootingGame.Portable.Screen
             animation1.Chain(new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(300, 400, 100, 100)), null).Chain(new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(300, 400, 100, 100),new Box2(200,800,100,100)), null);
 
             _enemyList.Add(new Enemy1(animation1 as Box2TimeAnimation,TimeSpan.FromSeconds(5)));
-
+            
 
             foreach (var e in _enemyList)
             {

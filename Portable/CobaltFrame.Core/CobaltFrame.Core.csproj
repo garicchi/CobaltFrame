@@ -53,6 +53,7 @@
     <Compile Include="Progress\TimeProgress.cs" />
     <Compile Include="Progress\ProgressState.cs" />
     <Compile Include="Progress\ITimeProgress.cs" />
+    <Compile Include="Progress\TimeProgressCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\IScreen.cs" />
     <Compile Include="Screen\IScreenManager.cs" />
