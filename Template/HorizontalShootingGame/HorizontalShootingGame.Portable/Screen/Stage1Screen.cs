@@ -82,20 +82,18 @@ namespace HorizontalShootingGame.Portable.Screen
                 null
             );
 
-            var collection = new TimeProgressCollection<Box2>
+            for (int i = 0; i < 5; i++)
             {
-                new Box2TimeAnimation(TimeSpan.FromSeconds(2),new Box2(Box.GetRect().Right-200,0,100,100),new Box2(Box.GetRect().Right-300,400,100,100)),
-                new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(Box.GetRect().Right-300, 400, 100, 100)),
-                new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(Box.GetRect().Right-300, 400, 100, 100),new Box2(200,600,100,100)),
+                var collection = new TimeProgressCollection<Box2>
+                {
+                    new Box2TimeAnimation(TimeSpan.FromSeconds(2),new Box2(Box.GetRect().Right-200,0,100,100),new Box2(Box.GetRect().Right-300,400,100,100)),
+                    new WaitBox2Animation(TimeSpan.FromSeconds(3), new Box2(Box.GetRect().Right-300, 400, 100, 100)),
+                    new Box2TimeAnimation(TimeSpan.FromSeconds(5), new Box2(Box.GetRect().Right-300, 400, 100, 100),new Box2(200,600,100,100)),
 
-            };
+                };
 
-            _enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection),TimeSpan.FromSeconds(1)));
-            _enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(1.5)));
-            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(2)));
-            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(2.5)));
-            //_enemyList.Add(new Enemy1(new TimeProgressCollection<Box2>(collection), TimeSpan.FromSeconds(3.2)));
-
+                _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i)));
+            }
             foreach (var e in _enemyList)
             {
                 this.AddDrawableObject(e);
