@@ -8,7 +8,7 @@ namespace CobaltFrame.Core.Common
 {
     public class BindableProperty<T>
     {
-        private List<Action<T>> _bindExpressions;
+        private Dictionary<string,Action<T>> _bindExpressions;
         private T _value;
 
         public T Value
@@ -18,11 +18,16 @@ namespace CobaltFrame.Core.Common
         }
         public BindableProperty()
         {
-            this._bindExpressions = new List<Action<T>>();
+            this._bindExpressions = new Dictionary<string,Action<T>>();
         }
-        public void AddBind(Action<T> updateExpression)
+        public void Bind(string key,Action<T> updateExpression)
         {
-            this._bindExpressions.Add(updateExpression);
+            this._bindExpressions.Add(key,updateExpression);
+        }
+
+        public void UnBind(string key)
+        {
+            this._bindExpressions.Remove(key);
         }
 
         public void ClearBind()
@@ -34,7 +39,7 @@ namespace CobaltFrame.Core.Common
         {
             foreach (var ex in this._bindExpressions)
             {
-                ex(newValue);
+                ex.Value(newValue);
             }
         }
     }

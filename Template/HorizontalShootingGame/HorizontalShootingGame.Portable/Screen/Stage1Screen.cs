@@ -37,7 +37,7 @@ namespace HorizontalShootingGame.Portable.Screen
             this._enemyList = new List<EnemyBase>();
 
             _player = new Player(new Box2(0, 200, 100, 100), "Texture/Player");
-            _player.Energy.AddBind(q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
+            _player.Energy.Bind("playerDamage",q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
             this.AddDrawableObject(_player);
 
             var background = new Texture2DObject(this.Box, "Texture/spaceback", true);
