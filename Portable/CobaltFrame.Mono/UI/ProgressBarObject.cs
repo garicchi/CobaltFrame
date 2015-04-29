@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,14 +27,16 @@ namespace CobaltFrame.Mono.UI
             {
                 this._currentProgress = value;
                 var innerBox = this.InnerObject.Box as RelativeBox2;
-                var width = (int)((float)innerBox.GetRect().Width * value);
+                var width = (int)((float)(this.Box.GetRect().Width - this.InnerMargin.Right) * value);
 
+                 
                 this.InnerObject.Box.SetRect(new Rectangle(
-                    innerBox.GetRelativeRect().X,
-                    innerBox.GetRelativeRect().Y,
+                    this.InnerMargin.Left,
+                    this.InnerMargin.Top,
                     width,
-                    innerBox.GetRect().Height
+                    this.InnerObject.Box.GetRect().Height
                     ));
+                
             }
         }
         public ProgressBarObject(IBox2 box,string frameTexturePath,string innerTexturePath)
@@ -52,7 +55,7 @@ namespace CobaltFrame.Mono.UI
             this.InnerObject = new Texture2DObject(innerBox,innerTexturePath);
             this.AddDrawableObject(this.FrameObject);
             this.AddDrawableObject(this.InnerObject);
-            this.CurrentProgress = 0.5f;
+            this.CurrentProgress = 1.0f;
         }
 
         public override void Load()
@@ -65,16 +68,6 @@ namespace CobaltFrame.Mono.UI
             base.Update(context);
 
             
-            /*
-            Box2 innerBox = this.InnerObject.Box;
-            innerBox = this.Box.GetBox2WithMargin(this.InnerMargin);
-            int marginX = innerBox.GetRect().Width - (int)(innerBox.GetRect().Width * this.CurrentProgress);
-            innerBox.SetRect(new Rectangle(
-                innerBox.GetRect().X-marginX/2,innerBox.GetRect().Y,(int)(innerBox.GetRect().Width*this.CurrentProgress),innerBox.GetRect().Height
-                ));
-             
-            this.InnerObject.Box = innerBox;
-            */
         }
         public override void Draw(Core.Context.IFrameContext context)
         {

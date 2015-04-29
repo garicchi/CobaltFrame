@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using System.Collections;
 using CobaltFrame.Mono.UI;
 using CobaltFrame.Mono.Position;
+using CobaltFrame.Core.Common;
+using CobaltFrame.Core.Animation;
+using CobaltFrame.Core.Progress;
 
 namespace HorizontalShootingGame.Portable.Object
 {
@@ -29,6 +32,15 @@ namespace HorizontalShootingGame.Portable.Object
         }
         private List<Bullet> _bulletList;
 
+        public List<Bullet> BulletList
+        {
+            get { return _bulletList; }
+            set { _bulletList = value; }
+        }
+
+        public BindableProperty<int> Energy { get; set; }
+
+        private TimerAnimation _damageTimer;
         public Player(IBox2 position, string texturePath)
             : base(position, texturePath)
         {
@@ -45,6 +57,13 @@ namespace HorizontalShootingGame.Portable.Object
                 this.AddDrawableObject(bullet);
                 this._bulletList.Add(bullet);
             }
+
+            this.Energy = new BindableProperty<int>();
+            this.Energy.Value = 100;
+
+            this._damageTimer = new TimerAnimation(TimeSpan.FromSeconds(2));
+            this.AddObject(this._damageTimer);
+            
         }
         public override void Init()
         {
@@ -86,6 +105,16 @@ namespace HorizontalShootingGame.Portable.Object
                 bullet.Box.SetLocation(new Vector2(this.Box.GetLocation().X, this.Box.GetLocation().Y + this.Box.GetRect().Height / 2));
                 bullet.Shot();
 
+            }
+        }
+
+        public void Damage()
+        {
+            if (this._damageTimer.State == ProgressState.Stop)
+            {
+                this.Energy.Value -= 2;
+                this._damageTimer.Start();
+                
             }
         }
     }

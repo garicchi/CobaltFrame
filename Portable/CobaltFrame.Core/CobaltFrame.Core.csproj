@@ -38,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation\InstantTimeAnimation.cs" />
+    <Compile Include="Animation\TimerAnimation.cs" />
+    <Compile Include="Common\BindableProperty.cs" />
     <Compile Include="Common\Margin.cs" />
     <Compile Include="Common\ObjectLoadState.cs" />
     <Compile Include="Context\IFrameContext.cs" />

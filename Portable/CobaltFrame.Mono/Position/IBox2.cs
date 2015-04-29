@@ -25,5 +25,7 @@ namespace CobaltFrame.Mono.Position
         bool Intersects(IBox2 box);
 
         RelativeBox2 GetRelativeBox(Margin margin);
+
+        event Action OnChanged;
     }
 }

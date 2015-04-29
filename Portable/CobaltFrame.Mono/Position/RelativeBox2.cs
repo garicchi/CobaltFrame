@@ -17,18 +17,21 @@ namespace CobaltFrame.Mono.Position
         {
             this._sourceBox = source;
             this._relativeRect = new Rectangle(x,y,w,h);
+            this.OnChanged += () => { };
         }
 
         public RelativeBox2(RelativeBox2 box)
         {
             this._sourceBox = box._sourceBox;
             this._relativeRect = box.GetRelativeRect();
+            this.OnChanged += () => { };
         }
 
         public RelativeBox2(Rectangle rect,IBox2 source)
         {
             this._sourceBox = source;
             this._relativeRect = rect;
+            this.OnChanged += () => { };
         }
 
         public IBox2 GetSourceBox()
@@ -46,17 +49,19 @@ namespace CobaltFrame.Mono.Position
             this._relativeRect.Y = rect.Y - this._sourceBox.GetRect().Y;
             this._relativeRect.Width = rect.Width - this._sourceBox.GetRect().Width;
             this._relativeRect.Height = rect.Height - this._sourceBox.GetRect().Height;
+            OnChanged();
         }
 
         public void SetAbsoluteLocation(Vector2 vec)
         {
             this._relativeRect.X = (int)vec.X - this._sourceBox.GetRect().X;
             this._relativeRect.Y = (int)vec.Y - this._sourceBox.GetRect().Y;
-            
+            OnChanged();
         }
         public void SetRect(Microsoft.Xna.Framework.Rectangle rect)
         {
             this._relativeRect = rect;
+            OnChanged();
         }
 
         public Microsoft.Xna.Framework.Rectangle GetRect()
@@ -73,7 +78,7 @@ namespace CobaltFrame.Mono.Position
         {
             this._relativeRect.X = (int)vec.X;
             this._relativeRect.Y = (int)vec.Y;
-
+            OnChanged();
         }
 
         public Microsoft.Xna.Framework.Vector2 GetLocation()
@@ -97,6 +102,7 @@ namespace CobaltFrame.Mono.Position
         {
             this._relativeRect.X = (int)vec.X + this._relativeRect.Width / 2;
             this._relativeRect.Y = (int)vec.Y + this._relativeRect.Height / 2;
+            OnChanged();
         }
 
         public void MoveRect(int up = 0, int left = 0, int down = 0, int right = 0)
@@ -151,5 +157,8 @@ namespace CobaltFrame.Mono.Position
                 this.GetRect().Height
                 );
         }
+
+
+        public event Action OnChanged;
     }
 }

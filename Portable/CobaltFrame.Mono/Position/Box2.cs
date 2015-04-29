@@ -11,24 +11,29 @@ namespace CobaltFrame.Mono.Position
     public class Box2:IBox2
     {
         private Rectangle _rect;
+        
         public Box2(int x, int y, int w, int h)
         {
             this._rect = new Rectangle(x,y,w,h);
+            this.OnChanged += () => { };
         }
 
         public Box2(Box2 box)
         {
             this._rect = box.GetRect();
+            this.OnChanged += () => { };
         }
 
         public Box2(Rectangle rect)
         {
             this._rect = rect;
+            this.OnChanged += () => { };
         }
 
         public void SetRect(Microsoft.Xna.Framework.Rectangle rect)
         {
             this._rect = rect;
+            OnChanged();
         }
 
         public Microsoft.Xna.Framework.Rectangle GetRect()
@@ -40,6 +45,7 @@ namespace CobaltFrame.Mono.Position
         {
             this._rect.X = (int)vec.X;
             this._rect.Y = (int)vec.Y;
+            OnChanged();
         }
 
         public Microsoft.Xna.Framework.Vector2 GetLocation()
@@ -56,6 +62,7 @@ namespace CobaltFrame.Mono.Position
         {
             this._rect.X = (int)vec.X - this._rect.Width;
             this._rect.Y = (int)vec.Y - this._rect.Height;
+            OnChanged();
         }
 
         public void MoveRect(int up = 0, int left = 0, int down = 0, int right = 0)
@@ -115,5 +122,8 @@ namespace CobaltFrame.Mono.Position
         {
             return this.GetRect().ToString();
         }
+
+
+        public event Action OnChanged;
     }
 }

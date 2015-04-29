@@ -22,7 +22,7 @@ namespace CobaltFrame.Mono.UI
 
         private Texture2D _texture;
 
-        protected Texture2D Texture
+        public Texture2D Texture
         {
             get { return _texture; }
         }
@@ -42,11 +42,27 @@ namespace CobaltFrame.Mono.UI
             set { _isRepeat = value; }
         }
 
+        private Rectangle _sourceRect;
+
+        public Rectangle SourceRect
+        {
+            get { return _sourceRect; }
+            set { _sourceRect = value; }
+        }
+
         public Texture2DObject(IBox2 position, string texturePath, bool isRepeat = false)
             : base(position)
         {
             this._texturePath = texturePath;
             this._isRepeat = isRepeat;
+            this.Box.OnChanged += () =>
+            {
+                if (Texture != null)
+                {
+                    this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._texture.Width, (float)this._box.GetRect().Height / (float)this._texture.Height);
+                }
+            };
+
         }
 
         public override void Load()
@@ -55,7 +71,10 @@ namespace CobaltFrame.Mono.UI
             this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
             this._origin = new Vector2(this._texture.Width / 2.0f, this._texture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._texture.Width, (float)this._box.GetRect().Height / (float)this._texture.Height);
+            this.SourceRect = this._texture.Bounds;
+            
         }
+        
 
         public override void Unload()
         {
@@ -65,7 +84,7 @@ namespace CobaltFrame.Mono.UI
 
         public override void Update(Core.Context.IFrameContext context)
         {
-
+            
             base.Update(context);
         }
 
@@ -89,7 +108,7 @@ namespace CobaltFrame.Mono.UI
             }
             else
             {
-                this._spriteBatch.Draw(this._texture, null, this._box.GetRect(this._origin * this._textureScale), null, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+                this._spriteBatch.Draw(this._texture, null, this._box.GetRect(this._origin * this._textureScale),this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
             }
             this._spriteBatch.End();
         }
