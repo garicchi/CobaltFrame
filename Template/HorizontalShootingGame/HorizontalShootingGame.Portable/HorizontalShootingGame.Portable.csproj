@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
@@ -36,11 +36,11 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <ProjectReference Include="..\..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
-      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
+      <Project>{75004A46-CF8C-4E1A-A4A8-92CFE8E95561}</Project>
       <Name>CobaltFrame.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
-      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
+      <Project>{332A0CC4-0D48-448E-B664-815C60CC1DC0}</Project>
       <Name>CobaltFrame.Mono</Name>
     </ProjectReference>
   </ItemGroup>
