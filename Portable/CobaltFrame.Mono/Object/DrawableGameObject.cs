@@ -79,6 +79,7 @@ namespace CobaltFrame.Mono.Object
         {
             base.Load();
             this._spriteBatch = new SpriteBatch(_game.GraphicsDevice);
+
         }
 
         public override void Unload()

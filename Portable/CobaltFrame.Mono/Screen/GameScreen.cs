@@ -43,22 +43,22 @@ namespace CobaltFrame.Mono.Screen
         }
 
 
-        public Box2 Box
-        {
-            get { return new Box2(this._game.GraphicsDevice.Viewport.Bounds); }
-        }
+		public Box2 Box{ get { return new Box2 (0, 0, GameContext.GraphicsManager.PreferredBackBufferWidth, GameContext.GraphicsManager.PreferredBackBufferHeight);} }
         
         public GameScreen()
             : base()
         {
             this._game = GameContext.Game;
             this._inputs = new GameInputCollection();
+
         }
 
         public override void Init()
         {
             base.Init();
             this._firstUpdate = false;
+
+
         }
 
         public override void Load()

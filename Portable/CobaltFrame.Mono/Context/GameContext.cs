@@ -11,5 +11,6 @@ namespace CobaltFrame.Mono.Context
     public static class GameContext
     {
         public static Game Game { get; set; }
+		public static GraphicsDeviceManager  GraphicsManager{ get; set; }
     }
 }

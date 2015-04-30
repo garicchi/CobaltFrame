@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CobaltFrame.Mono.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CobaltFrame.Mono.Screen
 {
@@ -16,7 +17,7 @@ namespace CobaltFrame.Mono.Screen
     {
         protected Vector2 _defaultResolution;
 
-        public Vector2 DefaultResolutionResolution
+        public Vector2 DefaultResolution
         {
             get { return _defaultResolution; }
             set { _defaultResolution = value; }
@@ -62,7 +63,11 @@ namespace CobaltFrame.Mono.Screen
             this._screenScaleMode = screenScaleMode;
             this._game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
-            
+
+			GameContext.GraphicsManager.PreferredBackBufferWidth = (int)this.DefaultResolution.X;
+			GameContext.GraphicsManager.PreferredBackBufferHeight = (int)this.DefaultResolution.Y;
+
+
             this._game.Window.ClientSizeChanged+=(s,e)=>
             {
 				if(this._game.GraphicsDevice!=null)
@@ -75,6 +80,8 @@ namespace CobaltFrame.Mono.Screen
         public override void Init()
         {
             base.Init();
+
+
             ScreenResolutionChanged();
         }
 
@@ -115,55 +122,56 @@ namespace CobaltFrame.Mono.Screen
             float yMargin = 0.0f;
             switch (this._screenScaleMode)
             {
-                case ScaleMode.None:
-                    xMargin=Math.Abs(this._game.GraphicsDevice.Viewport.Width-this.DefaultResolutionResolution.X);
-                    if(xMargin!=0.0f){
-                        xMargin/=2.0f;
-                    }
-                    yMargin=Math.Abs(this._game.GraphicsDevice.Viewport.Height-this.DefaultResolutionResolution.Y);
-                    if(yMargin!=0.0f){
-                        yMargin/=2.0f;
-                    }
-                    marginMatrix=Matrix.CreateTranslation(xMargin,yMargin,0);
+			case ScaleMode.None:
+				scaleX = (float)this._defaultResolution.X/((float)this._game.Window.ClientBounds.Width);
+				scaleY = (float)this._defaultResolution.Y/((float)this._game.Window.ClientBounds.Height);
+
+
+				xMargin = Math.Abs (this._game.Window.ClientBounds.Width - this.DefaultResolution.X);
+				if (xMargin != 0.0f) {
+					xMargin /= 2.0f;
+				}
+				yMargin = Math.Abs (this._game.Window.ClientBounds.Height - this.DefaultResolution.Y);
+				if (yMargin != 0.0f) {
+					yMargin /= 2.0f;
+				}
+
+				marginMatrix = Matrix.CreateTranslation (xMargin, yMargin, 0);
+
                     break;
                 case ScaleMode.Fill:
-                    scaleX = ((float)this._game.GraphicsDevice.Viewport.Width) / (float)this._defaultResolution.X;
-                    scaleY = ((float)this._game.GraphicsDevice.Viewport.Height) / (float)this._defaultResolution.Y;
                     
                     break;
-                case ScaleMode.WidthFit:
-                    scaleX = ((float)this._game.GraphicsDevice.Viewport.Width) / (float)this._defaultResolution.X;
-                    scaleY = (1 / aspectRate) * scaleX;
-                    yMargin = Math.Abs(this._game.GraphicsDevice.Viewport.Height - (float)this._defaultResolution.Y*scaleY);
-                    if (yMargin != 0.0f)
-                    {
-                        yMargin /= 2.0f;
-                    }
-                    if (this._game.GraphicsDevice.Viewport.Height < (float)this._defaultResolution.Y * scaleY)
-                    {
-                        yMargin = -yMargin;
-                    }
-                    marginMatrix=Matrix.CreateTranslation(0,yMargin,0);
+			case ScaleMode.WidthFit:
+                    
+				var height = (1 / aspectRate) * this._game.Window.ClientBounds.Width;
+				scaleY = height / (float)this._game.Window.ClientBounds.Height;
+				yMargin = Math.Abs ((float)this._game.Window.ClientBounds.Height - (float)height);
+				if (yMargin != 0.0f) {
+					yMargin /= 2.0f;
+				}
+				if (this._game.Window.ClientBounds.Height < height) {
+					yMargin = -yMargin;
+				}
+					marginMatrix=Matrix.CreateTranslation(0,yMargin,0);
                     break;
                 case ScaleMode.HeightFit:
-                    scaleY = ((float)this._game.GraphicsDevice.Viewport.Height) / (float)this._defaultResolution.Y;
-                    scaleX = aspectRate * scaleY;
-
-                    xMargin = Math.Abs(this._game.GraphicsDevice.Viewport.Width - ((float)this._defaultResolution.X*scaleX));
-                    if (xMargin != 0.0f)
-                    {
-                        xMargin /= 2.0f;
-                    }
-                    if (this._game.GraphicsDevice.Viewport.Width < ((float)this._defaultResolution.X * scaleX))
-                    {
-                        xMargin = -xMargin;
-                    }
-                    marginMatrix=Matrix.CreateTranslation(xMargin,0,0);
+				var width = aspectRate * this._game.Window.ClientBounds.Height;
+				scaleX = width / (float)this._game.Window.ClientBounds.Width;
+				xMargin = Math.Abs((float)this._game.Window.ClientBounds.Width - (float)width);
+				if (xMargin != 0.0f)
+				{
+					xMargin /= 2.0f;
+				}
+				if (this._game.Window.ClientBounds.Width < width) {
+					xMargin = -xMargin;
+				}
+				marginMatrix=Matrix.CreateTranslation(xMargin,0,0);
                     break;
             }
             
-            this._screenScale = Matrix.CreateScale(scaleX,scaleY,1.0f);
-            this._screenMargin = marginMatrix;
+			this._screenScale = Matrix.CreateScale(scaleX,scaleY,1.0f);
+			this._screenMargin = marginMatrix;
         }
 
         
