@@ -36,7 +36,7 @@
   <ItemGroup>
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen\SampleScreen.cs" />
+    <Compile Include="Screen\Stage1Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -52,10 +52,6 @@
       <Project>{332A0CC4-0D48-448E-B664-815C60CC1DC0}</Project>
       <Name>CobaltFrame.Mono</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Animation\" />
-    <Folder Include="Object\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

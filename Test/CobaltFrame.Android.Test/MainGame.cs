@@ -28,19 +28,19 @@ namespace CobaltFrame.Universal.Test
         protected override void Initialize()
         {
             base.Initialize();
-            this._screenManager.Initialize();
+            this._screenManager.Init();
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
-            this._screenManager.LoadObject();
+            this._screenManager.Load();
         }
 
         protected override void UnloadContent()
         {
             base.UnloadContent();
-            this._screenManager.UnloadObject();
+            this._screenManager.Unload();
         }
         protected override void Update(GameTime gameTime)
         {

@@ -105,6 +105,7 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -142,5 +143,7 @@
     <Content Include="Content\Texture\slidepad_back.png" />
     <Content Include="Content\Texture\slidepad_pad.png" />
     <Content Include="Content\Texture\spaceback.png" />
+    <Content Include="Content\Texture\shotbutton_on.png" />
+    <Content Include="Content\Texture\shotbutton_off.png" />
   </ItemGroup>
 </Project>

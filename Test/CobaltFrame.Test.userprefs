@@ -1,6 +1,6 @@
-﻿<Properties StartupItem="CobaltFrame.Mac/CobaltFrame.Mac.csproj" MonoDevelop.MonoMac.LastXamMacNagTime="2015/04/03 4:09:51">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CobaltFrame.Test/Screen/SampleScreen.cs">
+﻿<Properties StartupItem="CobaltFrame.Android.Test/CobaltFrame.Android.Test.csproj" MonoDevelop.MonoMac.LastXamMacNagTime="2015/04/03 4:09:51">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 5 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CobaltFrame.Android.Test/Activity1.cs">
     <Files>
       <File FileName="CobaltFrame.iOS.Test/Info.plist" />
       <File FileName="CobaltFrame.iOS.Test/MainGame.cs" Line="1" Column="1" />
@@ -10,11 +10,24 @@
       <File FileName="CobaltFrame.Mac/AppDelegate.cs" Line="1" Column="1" />
       <File FileName="CobaltFrame.Mac/Main.cs" Line="1" Column="1" />
       <File FileName="CobaltFrame.iOS.Test/Content/Content.mgcb" Line="1" Column="1" />
-      <File FileName="CobaltFrame.Mac/Content/Content.mgcb" Line="10" Column="1" />
-      <File FileName="../Portable/CobaltFrame.Mono/Object/Texture2DObject.cs" Line="37" Column="1" />
-      <File FileName="../Portable/CobaltFrame.Mono/Sound/SoundObject.cs" Line="26" Column="1" />
-      <File FileName="CobaltFrame.Test/Screen/SampleScreen.cs" Line="30" Column="40" />
+      <File FileName="CobaltFrame.Mac/Content/Content.mgcb" Line="1" Column="1" />
+      <File FileName="../Portable/CobaltFrame.Mono/Sound/SoundObject.cs" Line="1" Column="1" />
+      <File FileName="CobaltFrame.Test/Screen/Stage1Screen.cs" Line="23" Column="3" />
+      <File FileName="CobaltFrame.Android.Test/Activity1.cs" Line="21" Column="13" />
+      <File FileName="CobaltFrame.Android.Test/MainGame.cs" Line="43" Column="39" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="CobaltFrame.Android.Test" expanded="True">
+            <Node name="References" expanded="True" selected="True" />
+          </Node>
+          <Node name="CobaltFrame.Test" expanded="True">
+            <Node name="Screen" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

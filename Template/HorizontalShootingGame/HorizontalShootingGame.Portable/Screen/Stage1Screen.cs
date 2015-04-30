@@ -23,7 +23,10 @@ namespace HorizontalShootingGame.Portable.Screen
         Player _player;
         SlidePadObject _slidePad;
         ProgressBarObject _playerEnergyBar;
-        List<EnemyBase> _enemyList;
+		ButtonObject _shotButton;
+		List<EnemyBase> _enemyList;
+
+
         public Stage1Screen()
             : base()
         {
@@ -40,15 +43,24 @@ namespace HorizontalShootingGame.Portable.Screen
             _player.Energy.Bind("playerDamage",q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
             this.AddDrawableObject(_player);
 
-            var background = new Texture2DObject(this.Box, "Texture/spaceback", true);
+            var background = new Texture2DObject(this.Box, "Texture/progress_frame", false);
             background.LayerDepth = 1.0f;
             this.AddDrawableObject(background);
 
             this._playerEnergyBar = new ProgressBarObject(new Box2(30, 10, 461 ,93), "Texture/progress_frame", "Texture/progress_inner");
             this.AddDrawableObject(this._playerEnergyBar);
 
-            _slidePad = new SlidePadObject(new Box2(50, this.Box.GetRect().Height - 150, 100, 100), "Texture/slidepad_pad", "Texture/slidepad_back");
+            this._slidePad = new SlidePadObject(new Box2(50, this.Box.GetRect().Height - 150, 100, 100), "Texture/slidepad_pad", "Texture/slidepad_back");
             this.AddDrawableObject(_slidePad);
+
+			this._shotButton = new ButtonObject (new Box2(Box.GetRect().Width-100,Box.GetRect().Height-100,100,100),"Texture/shotbutton_on","Texture/shotbutton_off");
+			this._shotButton.OnClick += (sender,pos) => 
+			{
+				this._player.Shot();
+			};
+				
+			this.AddDrawableObject (_shotButton);
+
 
             for (int i = 0; i < 5; i++)
             {
@@ -115,14 +127,14 @@ namespace HorizontalShootingGame.Portable.Screen
                 null
             );
             this.Inputs.RegisterInput("PlayerShot",
-                null,
+				null,
                 null,
                 null,
                 () => GameInput.KeyboardState.IsKeyDown(Keys.Space) && !GameInput.KeyboardStatePrev.IsKeyDown(Keys.Space),
                 null
             );
 
-            
+
         }
 
         
@@ -168,7 +180,7 @@ namespace HorizontalShootingGame.Portable.Screen
 
             }
 
-            if (_enemyList.Where(q => q.Box.Intersects(this._player.Box)).Any())
+			if (_enemyList.Where(q => q.Box.Intersects(this._player.Box)&&q.IsVisible).Any())
             {
                 _player.Damage();
             }

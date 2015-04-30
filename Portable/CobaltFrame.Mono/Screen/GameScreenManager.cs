@@ -65,7 +65,10 @@ namespace CobaltFrame.Mono.Screen
             
             this._game.Window.ClientSizeChanged+=(s,e)=>
             {
-                ScreenResolutionChanged();
+				if(this._game.GraphicsDevice!=null)
+				{
+                	ScreenResolutionChanged();
+				}
             };
             
         }
