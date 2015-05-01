@@ -43,7 +43,7 @@ namespace CobaltFrame.Mono.Screen
         }
 
 
-		public Box2 Box{ get { return new Box2 (0, 0, GameContext.GraphicsManager.PreferredBackBufferWidth, GameContext.GraphicsManager.PreferredBackBufferHeight);} }
+		public Box2 Box{ get { return new Box2 (0, 0, (int)GameContext.DefaultResolution.X, (int)GameContext.DefaultResolution.Y);} }
         
         public GameScreen()
             : base()

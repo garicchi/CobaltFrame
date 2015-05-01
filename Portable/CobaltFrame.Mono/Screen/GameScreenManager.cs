@@ -60,12 +60,10 @@ namespace CobaltFrame.Mono.Screen
         {
             this._defaultResolution = defaultResolution;
             this._game = GameContext.Game;
+			GameContext.DefaultResolution = defaultResolution;
             this._screenScaleMode = screenScaleMode;
             this._game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
-
-			GameContext.GraphicsManager.PreferredBackBufferWidth = (int)this.DefaultResolution.X;
-			GameContext.GraphicsManager.PreferredBackBufferHeight = (int)this.DefaultResolution.Y;
 
 
             this._game.Window.ClientSizeChanged+=(s,e)=>
@@ -83,6 +81,8 @@ namespace CobaltFrame.Mono.Screen
 
 
             ScreenResolutionChanged();
+
+
         }
 
         public override void Load()
@@ -97,7 +97,6 @@ namespace CobaltFrame.Mono.Screen
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
             GameInput.Update(context as FrameContext);
-
             
             base.Update(context);
         }
@@ -123,10 +122,7 @@ namespace CobaltFrame.Mono.Screen
             switch (this._screenScaleMode)
             {
 			case ScaleMode.None:
-				scaleX = (float)this._defaultResolution.X/((float)this._game.Window.ClientBounds.Width);
-				scaleY = (float)this._defaultResolution.Y/((float)this._game.Window.ClientBounds.Height);
-
-
+				
 				xMargin = Math.Abs (this._game.Window.ClientBounds.Width - this.DefaultResolution.X);
 				if (xMargin != 0.0f) {
 					xMargin /= 2.0f;
@@ -139,13 +135,15 @@ namespace CobaltFrame.Mono.Screen
 				marginMatrix = Matrix.CreateTranslation (xMargin, yMargin, 0);
 
                     break;
-                case ScaleMode.Fill:
-                    
+			case ScaleMode.Fill:
+				scaleX = (float)this._game.Window.ClientBounds.Width / this.DefaultResolution.X;
+				scaleY=(float)this._game.Window.ClientBounds.Height / this.DefaultResolution.Y;
                     break;
 			case ScaleMode.WidthFit:
-                    
-				var height = (1 / aspectRate) * this._game.Window.ClientBounds.Width;
-				scaleY = height / (float)this._game.Window.ClientBounds.Height;
+				scaleX = (float)this._game.Window.ClientBounds.Width / this.DefaultResolution.X;
+				scaleY = (1.0f / aspectRate) * scaleX;
+				var height = this.DefaultResolution.Y * scaleY;
+
 				yMargin = Math.Abs ((float)this._game.Window.ClientBounds.Height - (float)height);
 				if (yMargin != 0.0f) {
 					yMargin /= 2.0f;
@@ -155,9 +153,11 @@ namespace CobaltFrame.Mono.Screen
 				}
 					marginMatrix=Matrix.CreateTranslation(0,yMargin,0);
                     break;
-                case ScaleMode.HeightFit:
-				var width = aspectRate * this._game.Window.ClientBounds.Height;
-				scaleX = width / (float)this._game.Window.ClientBounds.Width;
+			case ScaleMode.HeightFit:
+				
+				scaleY = (float)this._game.Window.ClientBounds.Height / this.DefaultResolution.Y;
+				scaleX = aspectRate * scaleY;
+				var width = this.DefaultResolution.X*scaleX;
 				xMargin = Math.Abs((float)this._game.Window.ClientBounds.Width - (float)width);
 				if (xMargin != 0.0f)
 				{

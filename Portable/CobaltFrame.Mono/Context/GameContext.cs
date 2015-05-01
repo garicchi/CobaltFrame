@@ -12,5 +12,6 @@ namespace CobaltFrame.Mono.Context
     {
         public static Game Game { get; set; }
 		public static GraphicsDeviceManager  GraphicsManager{ get; set; }
+		public static Vector2 DefaultResolution{get;set;}
     }
 }

@@ -28,7 +28,7 @@ namespace HorizontalShootingGame
 			GameContext.Game = this;
 			GameContext.GraphicsManager = graphics;
 
-			this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(1366, 568), ScaleMode.HeightFit);
+			this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(800, 600), ScaleMode.Fill);
 
 			SaveDataStore<SaveData>.Setup("savedata", (name) =>
 				{
