@@ -63,5 +63,10 @@ namespace HorizontalShootingGame.Portable.Object
                 
             }
         }
+
+		public void Die()
+		{
+			this.IsVisible = false;
+		}
     }
 }

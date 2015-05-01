@@ -49,6 +49,11 @@ namespace HorizontalShootingGame.Portable.Object
             this.Animation.Start();
         }
 
+		public void Hit()
+		{
+			this.IsVisible = false;
+		}
+
         public override void Update(CobaltFrame.Core.Context.IFrameContext context)
         {
             base.Update(context);

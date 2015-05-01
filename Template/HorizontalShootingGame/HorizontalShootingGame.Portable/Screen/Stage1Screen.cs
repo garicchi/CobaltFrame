@@ -183,8 +183,20 @@ namespace HorizontalShootingGame.Portable.Screen
 
 			if (_enemyList.Where(q => q.Box.Intersects(this._player.Box)&&q.IsVisible).Any())
             {
-                _player.Damage();
+                this._player.Damage();
             }
+
+			foreach (var bullet in _player.BulletList.Where(q=>q.IsVisible).ToList()) 
+			{
+				foreach (var enemy in _enemyList.Where(q=>q.IsVisible).ToList()) 
+				{
+					if (bullet.Box.Intersects (enemy.Box)) 
+					{
+						bullet.Hit ();
+						enemy.Die ();
+					}
+				}
+			}
         }
 
         public override void Draw(CobaltFrame.Core.Context.IFrameContext context)
