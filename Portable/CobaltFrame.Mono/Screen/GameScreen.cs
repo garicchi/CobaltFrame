@@ -48,7 +48,7 @@ namespace CobaltFrame.Mono.Screen
         public GameScreen()
             : base()
         {
-            this._game = GameContext.Game;
+            
             this._inputs = new GameInputCollection();
 
         }
@@ -57,7 +57,7 @@ namespace CobaltFrame.Mono.Screen
         {
             base.Init();
             this._firstUpdate = false;
-
+			this._game = GameContext.Game;
 
         }
 
@@ -71,8 +71,6 @@ namespace CobaltFrame.Mono.Screen
         public override void Unload()
         {
             base.Unload();
-            //現在のスクリーンで読み込まれているコンテンツをアンロード
-            this._game.Content.Unload();
             this._inputs.UnregisterAllInput();
         }
 

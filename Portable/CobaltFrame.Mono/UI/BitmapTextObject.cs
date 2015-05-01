@@ -83,9 +83,16 @@ namespace CobaltFrame.Mono.UI
             this._fontTextures.Clear();
             
             var fontFilePath = Path.Combine(this._game.Content.RootDirectory, this._fontPath+".fnt");
-            using (var stream = TitleContainer.OpenStream(fontFilePath))
-            {
-                this._fontFile = FontLoader.Load(stream);
+ 
+				this._fontFile = ContentContext.LoadWithoutManager<FontFile> (this._fontPath,()=>
+				{
+					FontFile file=null;
+					using (var stream = TitleContainer.OpenStream(fontFilePath))
+					{
+					 	file =FontLoader.Load(stream);
+					}
+					return file;
+				});
                 for(int i=0;i<_fontTextureSize;i++)
                 {
                     var format = "{0:D1}";
@@ -97,10 +104,11 @@ namespace CobaltFrame.Mono.UI
                     {
                         format = "{0:D2}";
                     }
-                    var texture=this._game.Content.Load<Texture2D>(this._fontPath+"_"+string.Format(format,i));
+					var texture=ContentContext.Load<Texture2D>(this._fontPath+"_"+string.Format(format,i));
                     this._fontTextures.Add(texture);
                 }
-            }
+            
+
             this._charactorDic.Clear();
             foreach (var c in this._fontFile.Chars)
             {
@@ -112,7 +120,8 @@ namespace CobaltFrame.Mono.UI
                 }
                 
             }
-            
+
+
         }
 
         public override void Unload()
@@ -138,7 +147,7 @@ namespace CobaltFrame.Mono.UI
                         new Rectangle((int)(charPos.X + fc.XOffset * this._fontScale), (int)(charPos.Y + fc.YOffset * this._fontScale), (int)(fc.Width * this._fontScale), (int)(fc.Height * this._fontScale)),
                         new Rectangle(fc.X,fc.Y,fc.Width,fc.Height), this._drawColor);
                     charPos.X += fc.XAdvance * this._fontScale;
-                    if (charPos.X > this._box.GetRect().Width)
+					if (charPos.X > (this.Box.GetRect().X+this._box.GetRect().Width))
                     {
                         charPos.Y+=fc.Height * this._fontScale+_rowOffset;
                         charPos.X = this._box.GetRect().X;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace CobaltFrame.Core.Screen
 {
@@ -63,20 +64,22 @@ namespace CobaltFrame.Core.Screen
                 UnRegisterScreenEvent();
 
                 this._previousScreenQueue.Enqueue(_currentScreen);
-                
+
                 //キューの画面数がキャッシュサイズに等しくなるまでDequeueし続ける
                 while(this._previousScreenQueue.Count > this._screenChacheSize)
                 {
                     this._previousScreenQueue.Dequeue();
                 }
-                
+
                 this._currentScreen = null;
             }
 
             this._currentScreen = nextScreen;
-            this.AddDrawableObject(this._currentScreen);
-            RegisterScreenEvent(this._currentScreen);
 
+            this.AddDrawableObject(this._currentScreen);
+
+
+            RegisterScreenEvent(this._currentScreen);
             this._currentScreen.NavigateTo(parameter,transition);
 
 

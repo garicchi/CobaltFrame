@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Content\Font\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Content\Texture\bullet.png" />
@@ -104,5 +105,11 @@
     <AndroidAsset Include="Content\Texture\slidepad_pad.png" />
     <AndroidAsset Include="Content\Texture\spaceback.png" />
     <AndroidAsset Include="Content\Texture\frame.png" />
+    <AndroidAsset Include="Content\Font\meiryo_0.mgcontent" />
+    <AndroidAsset Include="Content\Font\meiryo_0.xnb" />
+    <AndroidAsset Include="Content\Font\meiryo_0.png" />
+    <AndroidAsset Include="Content\Font\meiryo.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
 </Project>

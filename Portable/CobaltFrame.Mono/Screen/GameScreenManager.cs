@@ -63,6 +63,9 @@ namespace CobaltFrame.Mono.Screen
 			GameContext.GraphicsManager = new GraphicsDeviceManager(game);
             
 			GameContext.DefaultResolution = defaultResolution;
+
+			ContentContext.Setup (game.Content);
+
             this._screenScaleMode = screenScaleMode;
 			GameContext.Game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);

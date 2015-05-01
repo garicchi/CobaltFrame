@@ -24,9 +24,11 @@ namespace HorizontalShootingGame.Portable.Screen
         Player _player;
         SlidePadObject _slidePad;
         ProgressBarObject _playerEnergyBar;
+		BitmapTextObject _scoreText;
+
 		ButtonObject _shotButton;
 		List<EnemyBase> _enemyList;
-
+		BindableProperty<int> _score;
 
         public Stage1Screen()
             : base()
@@ -59,11 +61,21 @@ namespace HorizontalShootingGame.Portable.Screen
 			{
 				this._player.Shot();
 			};
-				
+
 			this.AddDrawableObject (_shotButton);
 
+			this._score = new BindableProperty<int>();
+			this._score.Value = 0;
 
-            for (int i = 0; i < 5; i++)
+			this._scoreText = new BitmapTextObject (new Box2(Box.GetRect().Width-500,10,800,80),"Font/meiryo",this._score.Value.ToString(),4,Color.White);
+			this.AddDrawableObject (this._scoreText);
+
+			this._score.Bind ("scoreProp", (val) => 
+			{
+					this._scoreText.Text=val.ToString();
+			});
+
+            for (int i = 0; i < 10; i++)
             {
                 var collection = new TimeProgressCollection<Box2>
                 {
@@ -73,10 +85,10 @@ namespace HorizontalShootingGame.Portable.Screen
 
                 };
 
-                _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i)));
+				_enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i)));
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var collection = new TimeProgressCollection<Box2>
                 {
@@ -86,7 +98,7 @@ namespace HorizontalShootingGame.Portable.Screen
 
                 };
 
-                _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i + 2)));
+                _enemyList.Add(new Enemy1(collection, TimeSpan.FromSeconds(i + 7)));
             }
             foreach (var e in _enemyList)
             {
@@ -194,8 +206,14 @@ namespace HorizontalShootingGame.Portable.Screen
 					{
 						bullet.Hit ();
 						enemy.Die ();
+						this._score.Value++;
 					}
 				}
+			}
+
+			if (this._screenElapsedTime > TimeSpan.FromSeconds (7)) 
+			{
+				this.Navigate (new ResultScreen(),this._score.Value);
 			}
         }
 

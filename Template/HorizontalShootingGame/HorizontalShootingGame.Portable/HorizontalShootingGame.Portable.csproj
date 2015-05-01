@@ -54,6 +54,7 @@
     <Compile Include="Screen\MainScreenManager.cs" />
     <Compile Include="Screen\Stage1Screen.cs" />
     <Compile Include="Screen\TitleScreen.cs" />
+    <Compile Include="Screen\ResultScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

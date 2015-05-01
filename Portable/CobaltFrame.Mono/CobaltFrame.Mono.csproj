@@ -63,6 +63,8 @@
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\BitmapTextObject.cs" />
     <Compile Include="UI\UIObject.cs" />
+    <Compile Include="Context\Content.cs" />
+    <Compile Include="Context\ContentContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
