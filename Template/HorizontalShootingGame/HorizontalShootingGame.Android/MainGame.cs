@@ -19,17 +19,14 @@ namespace HorizontalShootingGame
 {
 	public class MainGame:Game
 	{
-		GraphicsDeviceManager graphics;
 		GameScreenManager _screenManager;
 		public MainGame()
 		{
-			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			GameContext.Game = this;
-			GameContext.GraphicsManager = graphics;
 
-			this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(800, 600), ScaleMode.Fill);
 
+			this._screenManager = new GameScreenManager(this,new Stage1Screen(),null, new Vector2(800, 600), ScaleMode.Fill);
+			GameContext.GraphicsManager.IsFullScreen = true;
 			SaveDataStore<SaveData>.Setup("savedata", (name) =>
 				{
 					SaveData data = null;

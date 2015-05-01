@@ -12,8 +12,8 @@ namespace HorizontalShootingGame.Portable.Screen
 {
     public class MainScreenManager:GameScreenManager
     {
-        public MainScreenManager(GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode)
-            : base(firstScreen, param, defaultResolution, screenScaleMode)
+        public MainScreenManager(Game game,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode)
+            : base(game,firstScreen, param, defaultResolution, screenScaleMode)
         {
 
         }

@@ -26,7 +26,8 @@ namespace HorizontalShootingGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             GameContext.Game = this;
-
+			GameContext.GraphicsManager = graphics;
+			GameContext.GraphicsManager.IsFullScreen = true;
 			this._screenManager = new GameScreenManager(new Stage1Screen(),null, new Vector2(1366, 768), ScaleMode.Fill);
             
             SaveDataStore<SaveData>.Setup("savedata", (name) =>

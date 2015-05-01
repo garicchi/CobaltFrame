@@ -15,6 +15,7 @@ using CobaltFrame.Mono.Position;
 using CobaltFrame.Mono.Animation;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Core.Progress;
+using CobaltFrame.Core.Common;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -43,11 +44,11 @@ namespace HorizontalShootingGame.Portable.Screen
             _player.Energy.Bind("playerDamage",q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
             this.AddDrawableObject(_player);
 
-            var background = new Texture2DObject(this.Box, "Texture/progress_frame", false);
+            var background = new Texture2DObject(this.Box, "Texture/frame", false);
             background.LayerDepth = 1.0f;
             this.AddDrawableObject(background);
 
-            this._playerEnergyBar = new ProgressBarObject(new Box2(30, 10, 461 ,93), "Texture/progress_frame", "Texture/progress_inner");
+			this._playerEnergyBar = new ProgressBarObject(new Box2(30, 10, 461 ,93),new Margin(10,10,10,10), "Texture/progress_frame", "Texture/progress_inner");
             this.AddDrawableObject(this._playerEnergyBar);
 
             this._slidePad = new SlidePadObject(new Box2(50, this.Box.GetRect().Height - 150, 100, 100), "Texture/slidepad_pad", "Texture/slidepad_back");

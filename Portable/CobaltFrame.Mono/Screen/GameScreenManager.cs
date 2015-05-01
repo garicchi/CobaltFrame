@@ -54,21 +54,23 @@ namespace CobaltFrame.Mono.Screen
             get { return _backgroundColor; }
             set { _backgroundColor = value; }
         }
-        protected Game _game;
-        public GameScreenManager(GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
+
+        public GameScreenManager(Game game,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
             : base(firstScreen,param,trans)
         {
             this._defaultResolution = defaultResolution;
-            this._game = GameContext.Game;
+			GameContext.Game = game;
+			GameContext.GraphicsManager = new GraphicsDeviceManager(game);
+            
 			GameContext.DefaultResolution = defaultResolution;
             this._screenScaleMode = screenScaleMode;
-            this._game.IsMouseVisible = true;
+			GameContext.Game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
 
 
-            this._game.Window.ClientSizeChanged+=(s,e)=>
+			GameContext.Game.Window.ClientSizeChanged+=(s,e)=>
             {
-				if(this._game.GraphicsDevice!=null)
+				if(GameContext.Game.GraphicsDevice!=null)
 				{
                 	ScreenResolutionChanged();
 				}
@@ -106,7 +108,7 @@ namespace CobaltFrame.Mono.Screen
             (context as FrameContext).ScreenScale = ScreenScale;
             (context as FrameContext).ScreenMargin = ScreenMargin;
 
-            this._game.GraphicsDevice.Clear(this._backgroundColor);
+			GameContext.Game.GraphicsDevice.Clear(this._backgroundColor);
             
             base.Draw(context);
         }
@@ -123,11 +125,11 @@ namespace CobaltFrame.Mono.Screen
             {
 			case ScaleMode.None:
 				
-				xMargin = Math.Abs (this._game.Window.ClientBounds.Width - this.DefaultResolution.X);
+				xMargin = Math.Abs (GameContext.Game.Window.ClientBounds.Width - this.DefaultResolution.X);
 				if (xMargin != 0.0f) {
 					xMargin /= 2.0f;
 				}
-				yMargin = Math.Abs (this._game.Window.ClientBounds.Height - this.DefaultResolution.Y);
+				yMargin = Math.Abs (GameContext.Game.Window.ClientBounds.Height - this.DefaultResolution.Y);
 				if (yMargin != 0.0f) {
 					yMargin /= 2.0f;
 				}
@@ -136,34 +138,34 @@ namespace CobaltFrame.Mono.Screen
 
                     break;
 			case ScaleMode.Fill:
-				scaleX = (float)this._game.Window.ClientBounds.Width / this.DefaultResolution.X;
-				scaleY=(float)this._game.Window.ClientBounds.Height / this.DefaultResolution.Y;
+				scaleX = (float)GameContext.Game.Window.ClientBounds.Width / this.DefaultResolution.X;
+				scaleY=(float)GameContext.Game.Window.ClientBounds.Height / this.DefaultResolution.Y;
                     break;
 			case ScaleMode.WidthFit:
-				scaleX = (float)this._game.Window.ClientBounds.Width / this.DefaultResolution.X;
+				scaleX = (float)GameContext.Game.Window.ClientBounds.Width / this.DefaultResolution.X;
 				scaleY = (1.0f / aspectRate) * scaleX;
 				var height = this.DefaultResolution.Y * scaleY;
 
-				yMargin = Math.Abs ((float)this._game.Window.ClientBounds.Height - (float)height);
+				yMargin = Math.Abs ((float)GameContext.Game.Window.ClientBounds.Height - (float)height);
 				if (yMargin != 0.0f) {
 					yMargin /= 2.0f;
 				}
-				if (this._game.Window.ClientBounds.Height < height) {
+				if (GameContext.Game.Window.ClientBounds.Height < height) {
 					yMargin = -yMargin;
 				}
 					marginMatrix=Matrix.CreateTranslation(0,yMargin,0);
                     break;
 			case ScaleMode.HeightFit:
 				
-				scaleY = (float)this._game.Window.ClientBounds.Height / this.DefaultResolution.Y;
+				scaleY = (float)GameContext.Game.Window.ClientBounds.Height / this.DefaultResolution.Y;
 				scaleX = aspectRate * scaleY;
 				var width = this.DefaultResolution.X*scaleX;
-				xMargin = Math.Abs((float)this._game.Window.ClientBounds.Width - (float)width);
+				xMargin = Math.Abs((float)GameContext.Game.Window.ClientBounds.Width - (float)width);
 				if (xMargin != 0.0f)
 				{
 					xMargin /= 2.0f;
 				}
-				if (this._game.Window.ClientBounds.Width < width) {
+				if (GameContext.Game.Window.ClientBounds.Width < width) {
 					xMargin = -xMargin;
 				}
 				marginMatrix=Matrix.CreateTranslation(xMargin,0,0);

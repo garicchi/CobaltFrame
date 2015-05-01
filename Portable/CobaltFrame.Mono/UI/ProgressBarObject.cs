@@ -27,29 +27,29 @@ namespace CobaltFrame.Mono.UI
             {
                 this._currentProgress = value;
                 var innerBox = this.InnerObject.Box as RelativeBox2;
-                var width = (int)((float)(this.Box.GetRect().Width - this.InnerMargin.Right) * value);
+				var width = (int)((float)(innerBox.GetRect().Width) * value);
 
                  
                 this.InnerObject.Box.SetRect(new Rectangle(
                     this.InnerMargin.Left,
                     this.InnerMargin.Top,
-                    width,
-                    this.InnerObject.Box.GetRect().Height
+					width-InnerMargin.Right,
+					this.FrameObject.Box.GetRect().Height-InnerMargin.Bottom*2
                     ));
-                
+
             }
         }
-        public ProgressBarObject(IBox2 box,string frameTexturePath,string innerTexturePath)
+        public ProgressBarObject(IBox2 box,Margin innerMargin,string frameTexturePath,string innerTexturePath)
             :base(box)
         {
-            this.InnerMargin = new Margin(5, 5, 5, 5);
+			this.InnerMargin = innerMargin;
             this.FrameObject = new Texture2DObject(box,frameTexturePath);
 
             var innerBox = new RelativeBox2(new Rectangle(
                 this.InnerMargin.Left,
                 this.InnerMargin.Top,
                 box.GetRect().Width-this.InnerMargin.Right,
-                box.GetRect().Height - this.InnerMargin.Bottom
+                box.GetRect().Height - this.InnerMargin.Bottom*2
                 ),box);
             
             this.InnerObject = new Texture2DObject(innerBox,innerTexturePath);

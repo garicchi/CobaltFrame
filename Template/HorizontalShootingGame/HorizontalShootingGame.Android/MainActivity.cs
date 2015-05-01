@@ -26,7 +26,7 @@ namespace HorizontalShootingGame.Android
 			
 			base.OnCreate(bundle);
 			var g = new MainGame();
-			GameContext.GraphicsManager.IsFullScreen = true;
+
 			this.Window.AddFlags (WindowManagerFlags.Fullscreen);
 			SetContentView((View)g.Services.GetService(typeof(View)));
 

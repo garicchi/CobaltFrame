@@ -103,5 +103,6 @@
     <AndroidAsset Include="Content\Texture\slidepad_back.png" />
     <AndroidAsset Include="Content\Texture\slidepad_pad.png" />
     <AndroidAsset Include="Content\Texture\spaceback.png" />
+    <AndroidAsset Include="Content\Texture\frame.png" />
   </ItemGroup>
 </Project>
