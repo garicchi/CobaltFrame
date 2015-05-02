@@ -7,6 +7,7 @@ using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Mono.Transition;
 using CobaltFrame.Core.Data;
 using HorizontalShootingGame.Portable.Data;
+using CobaltFrame.Mono;
 
 namespace HorizontalShootingGame.Portable
 {
@@ -55,6 +56,7 @@ namespace HorizontalShootingGame.Portable
 			if (SaveDataStore<SaveData>.Data.PreviousScore < score) 
 			{
 				SaveDataStore<SaveData>.Data.PreviousScore = score;
+				NotificationContext.Notify ("ClearAlert","ハイスコアです "+score);
 			}
 		}
 

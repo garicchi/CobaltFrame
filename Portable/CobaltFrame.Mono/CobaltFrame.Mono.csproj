@@ -65,6 +65,7 @@
     <Compile Include="Context\Content.cs" />
     <Compile Include="Context\ContentContext.cs" />
     <Compile Include="Screen\GameManager.cs" />
+    <Compile Include="Context\NotificationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

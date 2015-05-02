@@ -16,6 +16,8 @@ using CobaltFrame.Mono.Input;
 using System.Diagnostics;
 using HorizontalShootingGame.Portable;
 using Microsoft.Xna.Framework.Storage;
+using CobaltFrame.Mono;
+using UIKit;
 
 namespace HorizontalShootingGame
 {
@@ -89,6 +91,12 @@ namespace HorizontalShootingGame
                 return new AccelerometerState(new Vector3(1,0,0));
             });
             */
+
+			NotificationContext.Register ("ClearAlert",(obj)=>
+			{
+					UIAlertView alert =new UIAlertView("おめでとう",obj.ToString(),null,"");
+					alert.Show();
+			});
 		}
 
 
