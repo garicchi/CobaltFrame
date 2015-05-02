@@ -56,14 +56,16 @@ namespace CobaltFrame.Mono.UI
         {
             this._pressedTexturePath = pressedTexturePath;
             this._releasedTexturePath = releasedTexturePath;
-            this._state = ButtonState.Released;
-            this._beforeState = ButtonState.Released;
+            
             this.OnClick += (s, pos) => { };
         }
 
         public override void Init()
         {
             base.Init();
+
+			this._state = ButtonState.Released;
+			this._beforeState = ButtonState.Released;
         }
 
         public override void Load()

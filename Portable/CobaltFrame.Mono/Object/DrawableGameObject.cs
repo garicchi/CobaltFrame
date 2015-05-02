@@ -64,16 +64,24 @@ namespace CobaltFrame.Mono.Object
         public DrawableGameObject(IBox2 box)
             : base()
         {
-            this._game = GameContext.Game;
-            
-            this._box = box;
-            this._rotation = 0.0f;
-            this._origin = Vector2.Zero;
-            
-            this._drawColor = Color.White;
-
-            this._inputs = new GameInputCollection();
+			this._box = box;
         }
+
+		public override void Init ()
+		{
+			base.Init ();
+
+			this._game = GameContext.Game;
+
+
+			this._rotation = 0.0f;
+			this._origin = Vector2.Zero;
+
+			this._drawColor = Color.White;
+
+			this._inputs = new GameInputCollection();
+
+		}
 
         public override void Load()
         {

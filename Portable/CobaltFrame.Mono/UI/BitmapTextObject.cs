@@ -61,20 +61,21 @@ namespace CobaltFrame.Mono.UI
             this._fontPath = fontPath;
             this._text = text;
 
-            this._fontTextureSize = 1;
-            this._fontTextures = new List<Texture2D>();
-            this._origin = Vector2.Zero;
-            this._charactorDic = new Dictionary<char, FontChar>();
+            
             this._drawColor = color;
             this._fontScale = fontScale;
-            this._rowOffset = 5.0f;
+            
         }
 
         public override void Init()
         {
-            
             base.Init();
-            
+
+			this._fontTextureSize = 1;
+			this._fontTextures = new List<Texture2D>();
+			this._origin = Vector2.Zero;
+			this._charactorDic = new Dictionary<char, FontChar>();
+			this._rowOffset = 5.0f;
         }
 
         public override void Load()
@@ -82,32 +83,23 @@ namespace CobaltFrame.Mono.UI
             base.Load();
             this._fontTextures.Clear();
             
-            var fontFilePath = Path.Combine(this._game.Content.RootDirectory, this._fontPath+".fnt");
+            
  
-				this._fontFile = ContentContext.LoadWithoutManager<FontFile> (this._fontPath,()=>
-				{
-					FontFile file=null;
-					using (var stream = TitleContainer.OpenStream(fontFilePath))
-					{
-					 	file =FontLoader.Load(stream);
-
-					}
-					return file;
-				});
-                for(int i=0;i<_fontTextureSize;i++)
+			this._fontFile = ContentContext.LoadWithoutManager<FontFile> (this._fontPath,()=>FontLoader.Load("Font/meiryo"));
+            for(int i=0;i<_fontTextureSize;i++)
+            {
+                var format = "{0:D1}";
+                if (this._fontTextureSize < 10)
                 {
-                    var format = "{0:D1}";
-                    if (this._fontTextureSize < 10)
-                    {
-                        format = "{0:D1}";
-                    }
-                    else
-                    {
-                        format = "{0:D2}";
-                    }
-					var texture=ContentContext.Load<Texture2D>(this._fontPath+"_"+string.Format(format,i));
-                    this._fontTextures.Add(texture);
+                    format = "{0:D1}";
                 }
+                else
+                {
+                    format = "{0:D2}";
+                }
+				var texture=ContentContext.Load<Texture2D>(this._fontPath+"_"+string.Format(format,i));
+                this._fontTextures.Add(texture);
+            }
             
 
             this._charactorDic.Clear();

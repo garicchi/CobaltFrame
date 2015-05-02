@@ -17,7 +17,6 @@ namespace HorizontalShootingGame.Portable.Screen
 	{
 		Texture2DObject _loadingTexture;
 		InstantTimeAnimation<int> _loadingAnimation;
-		BitmapTextObject _textObj;
 
 		Task _loadingTask;
 		public LoadScreen ()
@@ -30,17 +29,16 @@ namespace HorizontalShootingGame.Portable.Screen
 			this.AddDrawableObject (this._loadingTexture);
 			this._loadingAnimation = new InstantTimeAnimation<int> (255,0,TimeSpan.FromSeconds(2),(start,end,progress)=>
 			{
-					return (int)((float)(end-start)*progress)+start;
+				return (int)((float)(end-start)*progress)+start;
 			});
 			this._loadingAnimation.IsLoop = true;
 			this._loadingAnimation.Start ();
 			this.AddObject (this._loadingAnimation);
 
-			this._textObj = new BitmapTextObject (new Box2(0,0,0,0),"Font/meiryo","",2,Color.White);
+
 			_loadingTask =Task.Run (()=>
 			{
-				_textObj.Init();
-				_textObj.Load();
+				ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
 			});
 			
 			base.Init ();

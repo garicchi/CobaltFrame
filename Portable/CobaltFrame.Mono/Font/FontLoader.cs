@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using CobaltFrame.Mono.Context;
 
 namespace CobaltFrame.Mono.Font
 {
@@ -353,5 +354,17 @@ namespace CobaltFrame.Mono.Font
             FontFile file = (FontFile)deserializer.Deserialize(stream);
             return file;
         }
+
+		public static FontFile Load(string name)
+		{
+			var root = GameContext.Game.Content.RootDirectory;
+			var fontFilePath = Path.Combine(root+"/"+name+".fnt");
+			FontFile file = null;
+			using (var stream = TitleContainer.OpenStream(fontFilePath))
+			{
+				file =FontLoader.Load(stream);
+			}
+			return file;
+		}
     }
 }

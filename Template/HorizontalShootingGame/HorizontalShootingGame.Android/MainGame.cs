@@ -15,6 +15,7 @@ using CobaltFrame.Core.Screen;
 using CobaltFrame.Mono.Input;
 using System.Diagnostics;
 using HorizontalShootingGame.Portable;
+using Microsoft.Xna.Framework.Storage;
 
 namespace HorizontalShootingGame
 {
@@ -30,44 +31,44 @@ namespace HorizontalShootingGame
 			SaveDataStore<SaveData>.Setup("savedata", (name) =>
 				{
 					SaveData data = null;
-					var task = Task.Run(async () =>
-						{
-							/*
-                    StorageFolder folder = ApplicationData.Current.LocalFolder;
-                    var files = await folder.GetFilesAsync();
-                    if (files.Any(q => q.Name == name))
-                    {
-                        StorageFile file = await folder.GetFileAsync(name);
-                        var serializer = new XmlSerializer(typeof(SaveData));
+					var deviceResult = StorageDevice.BeginShowSelector(null,null);
+					deviceResult.AsyncWaitHandle.WaitOne();
+					var device = StorageDevice.EndShowSelector(deviceResult);
+					var containerResult = device.BeginOpenContainer(name,null,null);
+					containerResult.AsyncWaitHandle.WaitOne();
+					var container = device.EndOpenContainer(containerResult);
 
-                        using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                        {
-                            data = (SaveData)serializer.Deserialize(stream.AsStream());
+					if (container.FileExists(name))
+					{
+						var stream = container.OpenFile(name, FileMode.Open);
+						var serializer = new XmlSerializer(typeof(SaveData));
+						data = (SaveData)serializer.Deserialize(stream);
+						stream.Close();
+					}
 
-                        }
-
-                    }
-					*/
-						});
-					task.Wait();
+					container.Dispose();
 					return data;
 
 				}, (name, data) =>
 				{
 					try
 					{
-						var task = Task.Run(async () =>
-							{
-								/*
-                        StorageFolder folder = ApplicationData.Current.LocalFolder;
-                        StorageFile file = await folder.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
-                        var serializer = new XmlSerializer(typeof(SaveData));
-                        using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                        {
-                            serializer.Serialize(stream.AsStream(), data);
-                        }
-						*/                    });
-						task.Wait();
+						var deviceResult = StorageDevice.BeginShowSelector(null,null);
+						deviceResult.AsyncWaitHandle.WaitOne();
+						var device = StorageDevice.EndShowSelector(deviceResult);
+						var containerResult = device.BeginOpenContainer(name,null,null);
+						containerResult.AsyncWaitHandle.WaitOne();
+						var container = device.EndOpenContainer(containerResult);
+						if (container.FileExists(name))
+							container.DeleteFile(name);
+
+						var stream = container.CreateFile(name);
+						var serializer = new XmlSerializer(typeof(SaveData));
+						serializer.Serialize(stream, data);
+						stream.Close();
+
+						container.Dispose();
+
 						return true;
 					}
 					catch (Exception)
@@ -77,7 +78,14 @@ namespace HorizontalShootingGame
 
 
 				});
-
+			this.Activated += (s,e) => 
+			{
+				SaveDataStore<SaveData>.Load(new SaveData());
+			};
+			this.Deactivated += (s,e) => 
+			{
+				SaveDataStore<SaveData>.Save();
+			};
 			/*
             GameInput.SetupAccelState(() =>
             {
@@ -86,6 +94,8 @@ namespace HorizontalShootingGame
             });
             */
 		}
+
+
 
 		protected override void Initialize()
 		{

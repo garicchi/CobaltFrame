@@ -16,10 +16,16 @@ namespace CobaltFrame.Mono.Object
         public UpdatableGameObject()
             : base()
         {
-            this._game = GameContext.Game;
-            this._inputs = new GameInputCollection();
+            
         }
 
+
+		public override void Init ()
+		{
+			base.Init ();
+			this._game = GameContext.Game;
+			this._inputs = new GameInputCollection();
+		}
         public override void Unload()
         {
             this._inputs.UnregisterAllInput();

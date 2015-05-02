@@ -8,5 +8,10 @@ namespace HorizontalShootingGame.Portable.Data
 {
     public class SaveData
     {
+		public SaveData()
+		{
+			PreviousScore = 0;
+		}
+		public int PreviousScore{get;set;}
     }
 }

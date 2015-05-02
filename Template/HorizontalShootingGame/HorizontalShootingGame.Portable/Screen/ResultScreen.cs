@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using CobaltFrame.Mono.Position;
 using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Mono.Transition;
+using CobaltFrame.Core.Data;
+using HorizontalShootingGame.Portable.Data;
 
 namespace HorizontalShootingGame.Portable
 {
@@ -41,6 +43,7 @@ namespace HorizontalShootingGame.Portable
 		{
 			base.Load ();
 
+
 		}
 
 		public override void NavigateTo (object parameter, CobaltFrame.Core.Screen.IScreenTransition transition)
@@ -48,6 +51,11 @@ namespace HorizontalShootingGame.Portable
 			base.NavigateTo (parameter, transition);
 			var score = (int)parameter;
 			this._scoreText.Text = score.ToString ();
+
+			if (SaveDataStore<SaveData>.Data.PreviousScore < score) 
+			{
+				SaveDataStore<SaveData>.Data.PreviousScore = score;
+			}
 		}
 
 		public override void Unload ()

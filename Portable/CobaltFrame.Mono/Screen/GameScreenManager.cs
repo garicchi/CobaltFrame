@@ -78,6 +78,8 @@ namespace CobaltFrame.Mono.Screen
                 	ScreenResolutionChanged();
 				}
             };
+
+
             
         }
         public override void Init()
