@@ -40,9 +40,8 @@ namespace HorizontalShootingGame.Portable.Screen
         {
             base.Init();
 
-            this._enemyList = new List<EnemyBase>();
-
-            this._player = new Player(new Box2(0, 200, 100, 100), "Texture/Player");
+            
+            this._player = new Player(new Box2(0, 200, 100, 100), "Texture/player");
             this._player.Energy.Bind("playerDamage",q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
             this.AddDrawableObject(_player);
 
@@ -74,6 +73,8 @@ namespace HorizontalShootingGame.Portable.Screen
 			{
 					this._scoreText.Text=val.ToString();
 			});
+
+			this._enemyList = new List<EnemyBase>();
 
             for (int i = 0; i < 10; i++)
             {

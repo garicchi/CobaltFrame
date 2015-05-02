@@ -139,53 +139,23 @@
     <BundleResource Include="Content\Font\meiryo.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Content\Texture\bullet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\enemy1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\enemy2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\enemy3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\frame.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\loading.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\player.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\progress_frame.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\progress_inner.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\shotbutton_off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\shotbutton_on.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\slidepad_back.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\slidepad_pad.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\spaceback.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\titlebutton_off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Content\Texture\titlebutton_on.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Texture\bullet.png" />
+    <Content Include="Content\Texture\enemy1.png" />
+    <Content Include="Content\Texture\enemy2.png" />
+    <Content Include="Content\Texture\enemy3.png" />
+    <Content Include="Content\Texture\frame.png" />
+    <Content Include="Content\Texture\loading.png" />
+    <Content Include="Content\Texture\player.png" />
+    <Content Include="Content\Texture\progress_frame.png" />
+    <Content Include="Content\Texture\progress_inner.png" />
+    <Content Include="Content\Texture\shotbutton_off.png" />
+    <Content Include="Content\Texture\shotbutton_on.png" />
+    <Content Include="Content\Texture\slidepad_back.png" />
+    <Content Include="Content\Texture\slidepad_pad.png" />
+    <Content Include="Content\Texture\spaceback.png" />
+    <Content Include="Content\Texture\titlebutton_off.png" />
+    <Content Include="Content\Texture\titlebutton_on.png" />
   </ItemGroup>
 </Project>

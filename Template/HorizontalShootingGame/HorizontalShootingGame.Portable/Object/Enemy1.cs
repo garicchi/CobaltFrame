@@ -12,7 +12,7 @@ namespace HorizontalShootingGame.Portable.Object
     public class Enemy1:EnemyBase
     {
         public Enemy1(CobaltFrame.Core.Progress.IProgress<Box2> animation,TimeSpan startTime)
-            : base(new Box2(-100, -100, 120, 80), "Texture/Enemy1",animation,startTime)
+            : base(new Box2(-100, -100, 120, 80), "Texture/enemy1",animation,startTime)
         {
             
         }

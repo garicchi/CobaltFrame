@@ -51,7 +51,6 @@
     <Compile Include="Object\EnemyBase.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen\MainScreenManager.cs" />
     <Compile Include="Screen\Stage1Screen.cs" />
     <Compile Include="Screen\TitleScreen.cs" />
     <Compile Include="Screen\ResultScreen.cs" />

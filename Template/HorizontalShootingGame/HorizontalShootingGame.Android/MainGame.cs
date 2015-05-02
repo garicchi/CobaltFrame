@@ -21,71 +21,67 @@ namespace HorizontalShootingGame
 {
 	public class MainGame:Game
 	{
-		GameScreenManager _screenManager;
-		public MainGame()
+		GameManager _gameManager;
+
+		public MainGame ()
 		{
 			Content.RootDirectory = "Content";
 
-			this._screenManager = new GameScreenManager(this,new LoadScreen(),null, new Vector2(1360, 768), ScaleMode.Fill);
+			this._gameManager = new GameManager (this, new LoadScreen (), new Vector2 (1360, 768), ScaleMode.Fill);
 			GameContext.GraphicsManager.IsFullScreen = true;
-			SaveDataStore<SaveData>.Setup("savedata", (name) =>
-				{
-					SaveData data = null;
-					var deviceResult = StorageDevice.BeginShowSelector(null,null);
-					deviceResult.AsyncWaitHandle.WaitOne();
-					var device = StorageDevice.EndShowSelector(deviceResult);
-					var containerResult = device.BeginOpenContainer(name,null,null);
-					containerResult.AsyncWaitHandle.WaitOne();
-					var container = device.EndOpenContainer(containerResult);
 
-					if (container.FileExists(name))
-					{
-						var stream = container.OpenFile(name, FileMode.Open);
-						var serializer = new XmlSerializer(typeof(SaveData));
-						data = (SaveData)serializer.Deserialize(stream);
-						stream.Close();
-					}
-
-					container.Dispose();
-					return data;
-
-				}, (name, data) =>
-				{
-					try
-					{
-						var deviceResult = StorageDevice.BeginShowSelector(null,null);
-						deviceResult.AsyncWaitHandle.WaitOne();
-						var device = StorageDevice.EndShowSelector(deviceResult);
-						var containerResult = device.BeginOpenContainer(name,null,null);
-						containerResult.AsyncWaitHandle.WaitOne();
-						var container = device.EndOpenContainer(containerResult);
-						if (container.FileExists(name))
-							container.DeleteFile(name);
-
-						var stream = container.CreateFile(name);
-						var serializer = new XmlSerializer(typeof(SaveData));
-						serializer.Serialize(stream, data);
-						stream.Close();
-
-						container.Dispose();
-
-						return true;
-					}
-					catch (Exception)
-					{
-						return false;
-					}
-
-
-				});
-			this.Activated += (s,e) => 
-			{
-				SaveDataStore<SaveData>.Load(new SaveData());
+			GameContext.Game.Activated += (s, e) => {
+				SaveDataStore<SaveData>.Load (new SaveData ());
 			};
-			this.Deactivated += (s,e) => 
-			{
-				SaveDataStore<SaveData>.Save();
+			GameContext.Game.Deactivated += (s, e) => {
+				SaveDataStore<SaveData>.Save ();
 			};
+
+			SaveDataStore<SaveData>.Setup ("__savedata", (name) => {
+				SaveData data = null;
+				var deviceResult = StorageDevice.BeginShowSelector (null, null);
+				deviceResult.AsyncWaitHandle.WaitOne ();
+				var device = StorageDevice.EndShowSelector (deviceResult);
+				var containerResult = device.BeginOpenContainer (name, null, null);
+				containerResult.AsyncWaitHandle.WaitOne ();
+				using (var container = device.EndOpenContainer (containerResult)) {
+
+					if (container.FileExists (name)) {
+						using (var stream = container.OpenFile (name, FileMode.Open)) {
+							var serializer = new XmlSerializer (typeof(SaveData));
+							data = (SaveData)serializer.Deserialize (stream);
+						}
+
+					}
+				}
+				return data;
+
+			}, (name, data) => {
+				try {
+					var deviceResult = StorageDevice.BeginShowSelector (null, null);
+					deviceResult.AsyncWaitHandle.WaitOne ();
+					var device = StorageDevice.EndShowSelector (deviceResult);
+					var containerResult = device.BeginOpenContainer (name, null, null);
+					containerResult.AsyncWaitHandle.WaitOne ();
+					using (var container = device.EndOpenContainer (containerResult)) {
+						if (container.FileExists (name))
+							container.DeleteFile (name);
+
+						using (var stream = container.CreateFile (name)) {
+							var serializer = new XmlSerializer (typeof(SaveData));
+							serializer.Serialize (stream, data);
+
+						}
+					}
+
+					return true;
+				} catch (Exception) {
+					return false;
+				}
+
+
+			});
+
 			/*
             GameInput.SetupAccelState(() =>
             {
@@ -97,37 +93,38 @@ namespace HorizontalShootingGame
 
 
 
-		protected override void Initialize()
+		protected override void Initialize ()
 		{
-			this._screenManager.Init();
-			base.Initialize();
+			this._gameManager.Init ();
+			base.Initialize ();
 
 
 		}
 
-		protected override void LoadContent()
+		protected override void LoadContent ()
 		{
-			this._screenManager.Load();
-			base.LoadContent();
+			this._gameManager.Load ();
+			base.LoadContent ();
 
 		}
 
-		protected override void UnloadContent()
+		protected override void UnloadContent ()
 		{
-			this._screenManager.Unload();
-			base.UnloadContent();
+			this._gameManager.Unload ();
+			base.UnloadContent ();
 
 		}
-		protected override void Update(GameTime gameTime)
+
+		protected override void Update (GameTime gameTime)
 		{
-			base.Update(gameTime);
-			this._screenManager.Update(new FrameContext(gameTime));
+			base.Update (gameTime);
+			this._gameManager.Update (new FrameContext (gameTime));
 		}
 
-		protected override void Draw(GameTime gameTime)
+		protected override void Draw (GameTime gameTime)
 		{
-			base.Draw(gameTime);
-			this._screenManager.Draw(new FrameContext(gameTime));
+			base.Draw (gameTime);
+			this._gameManager.Draw (new FrameContext (gameTime));
 		}
 
 

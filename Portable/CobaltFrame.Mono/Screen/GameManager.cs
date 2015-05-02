@@ -10,10 +10,14 @@ using CobaltFrame.Mono.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
+using CobaltFrame.Core.Data;
+using Microsoft.Xna.Framework.Storage;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace CobaltFrame.Mono.Screen
 {
-    public class GameScreenManager:ScreenManager
+    public class GameManager:ScreenManager
     {
         protected Vector2 _defaultResolution;
 
@@ -54,9 +58,10 @@ namespace CobaltFrame.Mono.Screen
             get { return _backgroundColor; }
             set { _backgroundColor = value; }
         }
+			
 
-        public GameScreenManager(Game game,GameScreen firstScreen,object param,Vector2 defaultResolution,ScaleMode screenScaleMode,IScreenTransition trans = null)
-            : base(firstScreen,param,trans)
+		public GameManager(Game game,GameScreen firstScreen,Vector2 defaultResolution,ScaleMode screenScaleMode)
+            : base(firstScreen,null,null)
         {
             this._defaultResolution = defaultResolution;
 			GameContext.Game = game;
@@ -85,6 +90,7 @@ namespace CobaltFrame.Mono.Screen
         public override void Init()
         {
             base.Init();
+
 
 
             ScreenResolutionChanged();
