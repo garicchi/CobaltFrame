@@ -211,7 +211,7 @@ namespace HorizontalShootingGame.Portable.Screen
 				}
 			}
 
-			if (this._screenElapsedTime > TimeSpan.FromSeconds (7)) 
+			if (this._screenElapsedTime > TimeSpan.FromSeconds (30)) 
 			{
 				this.Navigate (new ResultScreen(),this._score.Value);
 			}

@@ -111,5 +111,8 @@
     <AndroidAsset Include="Content\Font\meiryo.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
+    <AndroidAsset Include="Content\Texture\titlebutton_on.png" />
+    <AndroidAsset Include="Content\Texture\titlebutton_off.png" />
+    <AndroidAsset Include="Content\Texture\loading.png" />
   </ItemGroup>
 </Project>

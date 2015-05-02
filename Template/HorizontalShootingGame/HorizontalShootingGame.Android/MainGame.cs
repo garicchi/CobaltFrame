@@ -14,6 +14,7 @@ using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
 using CobaltFrame.Mono.Input;
 using System.Diagnostics;
+using HorizontalShootingGame.Portable;
 
 namespace HorizontalShootingGame
 {
@@ -24,8 +25,7 @@ namespace HorizontalShootingGame
 		{
 			Content.RootDirectory = "Content";
 
-
-			this._screenManager = new GameScreenManager(this,new TitleScreen(),null, new Vector2(1360, 768), ScaleMode.Fill);
+			this._screenManager = new GameScreenManager(this,new LoadScreen(),null, new Vector2(1360, 768), ScaleMode.Fill);
 			GameContext.GraphicsManager.IsFullScreen = true;
 			SaveDataStore<SaveData>.Setup("savedata", (name) =>
 				{

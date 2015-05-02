@@ -46,7 +46,7 @@ namespace CobaltFrame.Mono
 				content.Name = name;
 				content.IsUsedPipeline = true;
 				content.OnLoad = onload;
-				var c = (T)content.OnLoad ();
+				var c = (T)onload ();
 				content.Refer = c;
 				_contentList.Add (content);
 				return c;

@@ -90,6 +90,7 @@ namespace CobaltFrame.Mono.UI
 					using (var stream = TitleContainer.OpenStream(fontFilePath))
 					{
 					 	file =FontLoader.Load(stream);
+
 					}
 					return file;
 				});
