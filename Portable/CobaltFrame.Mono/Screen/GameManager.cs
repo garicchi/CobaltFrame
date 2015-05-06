@@ -75,7 +75,7 @@ namespace CobaltFrame.Mono.Screen
 			GameContext.Game.IsMouseVisible = true;
             this._backgroundColor = Color.FromNonPremultiplied(10, 10, 10, 255);
 
-
+            
 			GameContext.Game.Window.ClientSizeChanged+=(s,e)=>
             {
 				if(GameContext.Game.GraphicsDevice!=null)
@@ -83,7 +83,7 @@ namespace CobaltFrame.Mono.Screen
                 	ScreenResolutionChanged();
 				}
             };
-
+            
 
             
         }
