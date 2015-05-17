@@ -68,7 +68,7 @@ namespace CobaltFrame.Mono.UI
         public override void Load()
         {
             base.Load();
-            this._texture = this._game.Content.Load<Texture2D>(this._texturePath);
+            this._texture = ContentContext.Load<Texture2D>(this._texturePath);
             this._origin = new Vector2(this._texture.Width / 2.0f, this._texture.Height / 2.0f);
             this._textureScale = new Vector2((float)this._box.GetRect().Width / (float)this._texture.Width, (float)this._box.GetRect().Height / (float)this._texture.Height);
             this.SourceRect = this._texture.Bounds;

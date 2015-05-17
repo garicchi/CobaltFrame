@@ -50,6 +50,7 @@
     <Compile Include="Position\Box2.cs" />
     <Compile Include="Position\IBox2.cs" />
     <Compile Include="Position\RelativeBox2.cs" />
+    <Compile Include="Sound\SongObject.cs" />
     <Compile Include="UI\ProgressBarObject.cs" />
     <Compile Include="UI\SlidePadObject.cs" />
     <Compile Include="UI\Texture2DObject.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Transition\ScreenTransition.cs" />
-    <Compile Include="Sound\SoundObject.cs" />
+    <Compile Include="Sound\SoundEffectObject.cs" />
     <Compile Include="Transition\FadeColorTransition.cs" />
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\BitmapTextObject.cs" />

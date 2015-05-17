@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85E483E0-1089-4C70-95CF-CEAEA8FC53C9}</ProjectGuid>
+    <ProjectGuid>{526E491F-6800-4E45-B45D-9B3AF33DB7A6}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HorizontalShootingGame</RootNamespace>
@@ -84,18 +84,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
-      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
-      <Name>CobaltFrame.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
-      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
-      <Name>CobaltFrame.Mono</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HorizontalShootingGame.Portable\HorizontalShootingGame.Portable.csproj">
-      <Project>{2a01c06b-897b-412e-847e-2a50ba167de5}</Project>
-      <Name>HorizontalShootingGame.Portable</Name>
-    </ProjectReference>
+    <None Include="Content\Font\meiryo.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,7 +110,9 @@
     <Content Include="Content\Texture\enemy3.png" />
     <Content Include="Content\Texture\frame.png" />
     <Content Include="Content\Texture\loading.png" />
-    <Content Include="Content\Texture\player.png" />
+    <Content Include="Content\Texture\player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Texture\progress_frame.png" />
     <Content Include="Content\Texture\progress_inner.png" />
     <Content Include="Content\Texture\shotbutton_off.png" />
@@ -147,15 +140,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Font\meiryo.fnt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Content\Font\meiryo_0.mgcontent" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Content\Font\meiryo_0.xnb" />
+    <ProjectReference Include="..\..\..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
+      <Project>{75004a46-cf8c-4e1a-a4a8-92cfe8e95561}</Project>
+      <Name>CobaltFrame.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
+      <Project>{332a0cc4-0d48-448e-b664-815c60cc1dc0}</Project>
+      <Name>CobaltFrame.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HorizontalShootingGame.Portable\HorizontalShootingGame.Portable.csproj">
+      <Project>{2a01c06b-897b-412e-847e-2a50ba167de5}</Project>
+      <Name>HorizontalShootingGame.Portable</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\HorizontalShootingGame.Shared\Shared.Application.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

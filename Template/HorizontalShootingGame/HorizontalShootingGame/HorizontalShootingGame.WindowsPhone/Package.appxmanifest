@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="d142f029-31d5-4977-8984-eb68b9d2d554"
+  <Identity Name="08bb6b9f-ea38-4b0a-a14e-093cfc80856e"
             Publisher="CN=Ryota"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="d142f029-31d5-4977-8984-eb68b9d2d554" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="08bb6b9f-ea38-4b0a-a14e-093cfc80856e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>HorizontalShootingGame</DisplayName>

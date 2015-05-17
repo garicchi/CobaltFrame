@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>de53e5cf-3c8f-44e0-aba3-d495b2ccb61f</SharedGUID>
+    <SharedGUID>7206d9c4-b385-429a-81a8-83c0d3b083c2</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>HorizontalShootingGame</Import_RootNamespace>

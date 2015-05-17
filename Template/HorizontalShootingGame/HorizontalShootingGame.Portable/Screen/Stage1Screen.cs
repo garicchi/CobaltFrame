@@ -16,6 +16,7 @@ using CobaltFrame.Mono.Animation;
 using CobaltFrame.Core.Animation;
 using CobaltFrame.Core.Progress;
 using CobaltFrame.Core.Common;
+using CobaltFrame.Mono.Sound;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -30,6 +31,7 @@ namespace HorizontalShootingGame.Portable.Screen
 		List<EnemyBase> _enemyList;
 		BindableProperty<int> _score;
 
+        
         public Stage1Screen()
             : base()
         {
@@ -105,6 +107,7 @@ namespace HorizontalShootingGame.Portable.Screen
             {
                 this.AddDrawableObject(e);
             }
+            
         }
 
         public override void Load()
@@ -148,7 +151,6 @@ namespace HorizontalShootingGame.Portable.Screen
                 null
             );
 
-
         }
 
         
@@ -182,6 +184,7 @@ namespace HorizontalShootingGame.Portable.Screen
             if (this.Inputs.IsInput("PlayerShot"))
             {
                 this._player.Shot();
+                
             }
             if (this.Box.Contains(this._player.Box.TryMoveRect(0, 0, (int)_slidePad.CurrentValue.Y, 0)))
             {
