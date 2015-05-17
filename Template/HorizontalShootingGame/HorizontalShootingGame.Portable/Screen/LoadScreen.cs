@@ -10,6 +10,7 @@ using CobaltFrame.Mono.Transition;
 using CobaltFrame.Core.Animation;
 using Microsoft.Xna.Framework;
 using CobaltFrame.Mono.Context;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -38,7 +39,10 @@ namespace HorizontalShootingGame.Portable.Screen
 
 			_loadingTask =Task.Run (()=>
 			{
-				ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
+                ContentContext.Load<Texture2D>("System/Font/player.png");
+				
+                //XNAのコンテンツじゃない場合はこっち
+                //ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
 			});
 			
 			base.Init ();
@@ -54,14 +58,19 @@ namespace HorizontalShootingGame.Portable.Screen
 		public override void Update (CobaltFrame.Core.Context.IFrameContext context)
 		{
 			base.Update (context);
+
 			if (_loadingTask.IsCompleted) {
+                //ロードが完了したなら
+                //画面遷移
 				this.Navigate (new TitleScreen(),null
 					,new FadeColorTransition(Color.Black,0,255,TimeSpan.FromSeconds(1))
 					,new FadeColorTransition(Color.Black,255,0,TimeSpan.FromSeconds(1))
 				);
 			} else {
+                //ロードが完了してないなら
 				this._loadingTexture.DrawColor = Color.FromNonPremultiplied (255,255,255,this._loadingAnimation.CurrentValue);
 			}
+
 		}
 
 		public override void Draw (CobaltFrame.Core.Context.IFrameContext context)

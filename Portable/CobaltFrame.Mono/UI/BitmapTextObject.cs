@@ -85,7 +85,7 @@ namespace CobaltFrame.Mono.UI
             
             
  
-			this._fontFile = ContentContext.LoadWithoutManager<FontFile> (this._fontPath,()=>FontLoader.Load("Font/meiryo"));
+			this._fontFile = ContentContext.LoadWithoutManager<FontFile> (this._fontPath,()=>FontLoader.Load(this._fontPath));
             for(int i=0;i<_fontTextureSize;i++)
             {
                 var format = "{0:D1}";

@@ -8,5 +8,6 @@ namespace SimpleGame.Portable.Data
 {
     public class SaveData
     {
+        public int score { get; set; }
     }
 }

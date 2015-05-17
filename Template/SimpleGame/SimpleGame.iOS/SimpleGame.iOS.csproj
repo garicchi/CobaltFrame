@@ -100,10 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CobaltFrame.Core">
-      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Core.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Core.dll</HintPath>
     </Reference>
     <Reference Include="CobaltFrame.Mono">
-      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Mono.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Mono.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.iOS.3.4.0.459\lib\XamariniOS\MonoGame.Framework.dll</HintPath>

@@ -11,6 +11,9 @@ using System.Xml.Serialization;
 using CobaltFrame.Core.Screen;
 using System.IO;
 using SimpleGame.Portable.Screen;
+using CobaltFrame.Mono.Input;
+using CobaltFrame.Mono;
+using Windows.UI.Popups;
 
 namespace SimpleGame
 {
@@ -36,6 +39,8 @@ namespace SimpleGame
 
             SaveDataStore<SaveData>.Setup("__savedata", (name) =>
             {
+                //セーブデータロード時
+                //もし初回起動時(セーブデータがない)ならnullを返す
                 SaveData data = null;
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
@@ -59,6 +64,7 @@ namespace SimpleGame
 
             }, (name, data) =>
             {
+                //セーブデータ保存時
                 try
                 {
                     var deviceResult = StorageDevice.BeginShowSelector(null, null);
@@ -92,8 +98,10 @@ namespace SimpleGame
             /*
             GameInput.SetupAccelState(() =>
             {
-
-                return new AccelerometerState(new Vector3(1,0,0));
+                //加速度センサーAPIで加速度情報を取得する
+              * Vector3 accelVec = ;
+              * 
+                return new AccelerometerState(accelVec);
             });
             */
         }
@@ -105,7 +113,11 @@ namespace SimpleGame
             this._gameManager.Init();
             base.Initialize();
 
-
+            NotificationContext.Register("ScoreUpdate", async(score) =>
+            {
+                var dialog = new MessageDialog("My Score is "+score.ToString());
+                await dialog.ShowAsync();
+            });
         }
 
         protected override void LoadContent()

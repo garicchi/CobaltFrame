@@ -111,11 +111,11 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Reference Include="CobaltFrame.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Core.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Core.dll</HintPath>
     </Reference>
     <Reference Include="CobaltFrame.Mono, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Mono.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Mono.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll</HintPath>
@@ -156,7 +156,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Content\System\Font\meiryo.fnt" />
+    <Content Include="Content\powerup.mp3" />
+    <Content Include="Content\System\Font\meiryo.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="SimpleGame.Windows_TemporaryKey.pfx" />
   </ItemGroup>
