@@ -42,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CobaltFrame.Core">
-      <HintPath>..\packages\CobaltFrame.1.0.2\lib\CobaltFrame.Core.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Core.dll</HintPath>
     </Reference>
     <Reference Include="CobaltFrame.Mono">
-      <HintPath>..\packages\CobaltFrame.1.0.2\lib\CobaltFrame.Mono.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.3\lib\CobaltFrame.Mono.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.Portable.3.2.99.1-Beta\lib\portable-net45+win+wpa81+Xamarin.iOS10+MonoAndroid10+MonoTouch10\MonoGame.Framework.dll</HintPath>
