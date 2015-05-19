@@ -1,33 +1,39 @@
 ﻿<Properties StartupItem="HrizontalShootingGame.iOS/HrizontalShootingGame.iOS.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Portable/CobaltFrame.Mono/Context/NotificationContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Portable/CobaltFrame.Core/Data/SaveDataStore.cs">
     <Files>
-      <File FileName="HorizontalShootingGame.Android/MainActivity.cs" Line="18" Column="29" />
-      <File FileName="HorizontalShootingGame.Android/MainGame.cs" Line="84" Column="4" />
+      <File FileName="HorizontalShootingGame.Android/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="HorizontalShootingGame.Android/MainGame.cs" Line="1" Column="1" />
       <File FileName="HorizontalShootingGame.Portable/Screen/LoadScreen.cs" Line="1" Column="1" />
-      <File FileName="HorizontalShootingGame.Portable/Screen/Stage1Screen.cs" Line="89" Column="28" />
-      <File FileName="HorizontalShootingGame.Portable/Screen/TitleScreen.cs" Line="53" Column="40" />
-      <File FileName="../../Portable/CobaltFrame.Mono/Screen/GameManager.cs" Line="87" Column="4" />
+      <File FileName="HorizontalShootingGame.Portable/Screen/Stage1Screen.cs" Line="1" Column="1" />
+      <File FileName="HorizontalShootingGame.Portable/Screen/TitleScreen.cs" Line="1" Column="1" />
+      <File FileName="../../Portable/CobaltFrame.Mono/Screen/GameManager.cs" Line="1" Column="1" />
       <File FileName="HorizontalShootingGame.Portable/Data/SaveData.cs" Line="1" Column="1" />
-      <File FileName="HorizontalShootingGame.Portable/Screen/ResultScreen.cs" Line="59" Column="53" />
+      <File FileName="HorizontalShootingGame.Portable/Screen/ResultScreen.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/Object/DrawableGameObject.cs" Line="1" Column="1" />
-      <File FileName="../../Portable/CobaltFrame.Core/Data/SaveDataStore.cs" Line="54" Column="1" />
+      <File FileName="../../Portable/CobaltFrame.Core/Data/SaveDataStore.cs" Line="92" Column="35" />
       <File FileName="../../Portable/CobaltFrame.Core/Screen/ScreenManager.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Core/Object/DrawableObject.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/Screen/GameScreen.cs" Line="1" Column="1" />
-      <File FileName="../../Portable/CobaltFrame.Mono/UI/Texture2DObject.cs" Line="71" Column="1" />
-      <File FileName="HrizontalShootingGame.iOS/MainGame.cs" Line="98" Column="19" />
+      <File FileName="../../Portable/CobaltFrame.Mono/UI/Texture2DObject.cs" Line="1" Column="1" />
+      <File FileName="HrizontalShootingGame.iOS/MainGame.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/Object/UpdatableGameObject.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Core/Screen/Screen.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/UI/BitmapTextObject.cs" Line="1" Column="1" />
-      <File FileName="../../Portable/CobaltFrame.Mono/UI/ButtonObject.cs" Line="66" Column="4" />
+      <File FileName="../../Portable/CobaltFrame.Mono/UI/ButtonObject.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/UI/ProgressBarObject.cs" Line="1" Column="1" />
-      <File FileName="../../Portable/CobaltFrame.Mono/Font/FontLoader.cs" Line="363" Column="1" />
+      <File FileName="../../Portable/CobaltFrame.Mono/Font/FontLoader.cs" Line="1" Column="1" />
       <File FileName="../../Portable/CobaltFrame.Mono/Context/GameContext.cs" Line="1" Column="1" />
-      <File FileName="HorizontalShootingGame.Portable/Object/Enemy1.cs" Line="13" Column="6" />
+      <File FileName="HorizontalShootingGame.Portable/Object/Enemy1.cs" Line="1" Column="1" />
       <File FileName="HrizontalShootingGame.iOS/Main.cs" Line="1" Column="1" />
-      <File FileName="HorizontalShootingGame/HorizontalShootingGame.Shared/MainGame.cs" Line="35" Column="6" />
-      <File FileName="../../Portable/CobaltFrame.Mono/Context/NotificationContext.cs" Line="22" Column="11" />
+      <File FileName="HorizontalShootingGame/HorizontalShootingGame.Shared/MainGame.cs" Line="1" Column="1" />
+      <File FileName="../../Portable/CobaltFrame.Mono/Context/NotificationContext.cs" Line="5" Column="2" />
+      <File FileName="../../Portable/CobaltFrame.Core/Animation/InstantTimeAnimation.cs" Line="12" Column="21" />
+      <File FileName="../../Portable/CobaltFrame.Core/Animation/TimerAnimation.cs" Line="12" Column="29" />
+      <File FileName="../../Portable/CobaltFrame.Core/Common/BindableProperty.cs" Line="31" Column="41" />
+      <File FileName="../../Portable/CobaltFrame.Core/Common/Margin.cs" Line="1" Column="1" />
+      <File FileName="../../Portable/CobaltFrame.Core/Common/ObjectLoadState.cs" Line="10" Column="20" />
+      <File FileName="../../Portable/CobaltFrame.Core/Context/IFrameContext.cs" Line="10" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

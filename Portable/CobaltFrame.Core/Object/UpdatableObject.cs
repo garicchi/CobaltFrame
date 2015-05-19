@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Object
 {
+	/// <summary>
+	/// 非描画オブジェクト
+	/// </summary>
     public abstract class UpdatableObject : IUpdatable
     {
         public UpdatableObject()
@@ -17,6 +20,12 @@ namespace CobaltFrame.Core.Object
             this._gameObjects = new List<IUpdatable>();
         }
         protected bool _isActive;
+
+		/// <summary>
+		/// 更新するかどうか
+		/// </summary>
+		/// <value>true</value>
+		/// <c>false</c>
         public bool IsActive
         {
             get
@@ -30,17 +39,30 @@ namespace CobaltFrame.Core.Object
         }
         
         protected ObjectLoadState _loadState;
+
+		/// <summary>
+		/// どこまでロードされたか
+		/// </summary>
+		/// <value>The state of the load.</value>
         public ObjectLoadState LoadState
         {
             get { return this._loadState; }
         }
         private List<IUpdatable> _gameObjects;
+
+		/// <summary>
+		/// このObjectにぶら下がる子オブジェクトのリスト
+		/// 描画はされない
+		/// </summary>
+		/// <value>The game objects.</value>
         public List<IUpdatable> GameObjects
         {
             get { return _gameObjects; }
         }
 
-
+		/// <summary>
+		/// 初期化関数
+		/// </summary>
         public virtual void Init()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
@@ -50,6 +72,9 @@ namespace CobaltFrame.Core.Object
             this._loadState = ObjectLoadState.Initialized;
         }
 
+		/// <summary>
+		/// リソース確保関数
+		/// </summary>
         public virtual void Load()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
@@ -59,6 +84,9 @@ namespace CobaltFrame.Core.Object
             this._loadState = ObjectLoadState.Loaded;
         }
 
+		/// <summary>
+		/// リソース解放関数
+		/// </summary>
         public virtual void Unload()
         {
             for (int i = 0; i < this._gameObjects.Count; i++)
@@ -68,6 +96,10 @@ namespace CobaltFrame.Core.Object
             this._loadState = ObjectLoadState.Unloaded;
         }
 
+		/// <summary>
+		/// 更新関数
+		/// </summary>
+		/// <param name="context">Context.</param>
         public virtual void Update(IFrameContext context)
         {
             int beforeObjectCount = this._gameObjects.Count;
@@ -83,6 +115,10 @@ namespace CobaltFrame.Core.Object
             }
         }
 
+		/// <summary>
+		/// 非描画子要素追加
+		/// </summary>
+		/// <param name="obj">Object.</param>
         protected void AddObject(IUpdatable obj)
         {
             if (this._loadState >= ObjectLoadState.Initialized)
@@ -96,6 +132,10 @@ namespace CobaltFrame.Core.Object
             this._gameObjects.Add(obj);
         }
 
+		/// <summary>
+		/// 非描画子要素削除
+		/// </summary>
+		/// <param name="obj">Object.</param>
         protected void RemoveObject(IUpdatable obj)
         {
             if (this._gameObjects.Contains(obj))
