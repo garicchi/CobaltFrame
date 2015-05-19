@@ -8,6 +8,10 @@ using System.Xml.Serialization;
 
 namespace CobaltFrame.Core.Data
 {
+	/// <summary>
+	/// セーブデータを統一的に管理するクラス
+	/// Tはセブデータの型
+	/// </summary>
     public class SaveDataStore<T>
     {
         private static string _saveFileName;
@@ -18,6 +22,10 @@ namespace CobaltFrame.Core.Data
         {
         }
 
+		/// <summary>
+		/// セーブデータの本体
+		/// </summary>
+		/// <value>The data.</value>
         public static T Data
         {
             get
@@ -34,8 +42,17 @@ namespace CobaltFrame.Core.Data
             }
         }
 
+		/// <summary>
+		/// セーブデータがロードされているか
+		/// </summary>
         public static bool IsLoaded { get; private set; }
 
+		/// <summary>
+		/// 初期化 最初に呼ぶ必要がある
+		/// </summary>
+		/// <param name="fileName">セーブデータのファイル名</param>
+		/// <param name="onLoad">データロードの式</param>
+		/// <param name="onSave">データセーブの式</param>
         public static void Setup(string fileName,Func<string,T> onLoad, Func<string, T, bool> onSave)
         {
             IsLoaded = false;
@@ -44,7 +61,10 @@ namespace CobaltFrame.Core.Data
             _onSave = onSave;
             
         }
-
+		/// <summary>
+		/// データロード開始
+		/// </summary>
+		/// <param name="newInstance">初回起動の場合渡される新しいセーブデータのインスタンス</param>
         public static bool Load(T newInstance)
         {
             if (string.IsNullOrEmpty(_saveFileName))
@@ -64,7 +84,9 @@ namespace CobaltFrame.Core.Data
                 return false;
             }
         }
-
+		/// <summary>
+		/// データセーブ
+		/// </summary>
         public static bool Save()
         {
             if (string.IsNullOrEmpty(_saveFileName))
@@ -73,7 +95,10 @@ namespace CobaltFrame.Core.Data
             }
             return _onSave(_saveFileName,_instance);
         }
-
+		/// <summary>
+		/// セーブデータ初期化
+		/// </summary>
+		/// <param name="instance">新しいセーブデータのインスタンス</param>
         public static void Clear(T instance)
         {
             _instance = instance;

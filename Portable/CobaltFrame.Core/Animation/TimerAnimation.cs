@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Animation
 {
+	/// <summary>
+	/// 式がすでに指定されている簡易時間アニメーション
+	/// </summary>
     public class TimerAnimation:TimeProgress<float>
     {
         public TimerAnimation(TimeSpan duration)

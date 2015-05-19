@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Common
 {
+	/// <summary>
+	/// ゲームオブジェクトがどこまでロードされているかの列挙体
+	/// </summary>
     public enum ObjectLoadState
     {
         Created = 0,Initialized = 1,Loaded = 2,Unloaded = 3

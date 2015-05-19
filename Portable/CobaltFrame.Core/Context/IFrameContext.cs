@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Context
 {
+	/// <summary>
+	/// フレーム単位でゲームオブジェクトに渡されるデータ
+	/// </summary>
     public interface IFrameContext
     {
         TimeSpan TotalGameTime { get; }
