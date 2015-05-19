@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
+	/// <summary>
+	/// Progressの状態
+	/// </summary>
     public enum ProgressState
     {
         Active,Pause,Stop

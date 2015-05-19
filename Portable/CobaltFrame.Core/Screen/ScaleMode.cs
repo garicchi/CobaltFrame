@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Screen
 {
+	/// <summary>
+	/// スクリーンの画面モード
+	/// </summary>
     public enum ScaleMode
     {
         None,Fill,WidthFit,HeightFit

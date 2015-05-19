@@ -10,10 +10,17 @@ using System.Diagnostics;
 
 namespace CobaltFrame.Core.Screen
 {
+	/// <summary>
+	/// スクリーンマネージャー
+	/// </summary>
     public abstract class ScreenManager:DrawableObject,IScreenManager,IDisposable
     {
-
         protected int _screenChacheSize;
+
+		/// <summary>
+		/// 過去画面のキャッシュサイズ
+		/// </summary>
+		/// <value>The size of the screen chache.</value>
         public int ScreenChacheSize
         {
             get
@@ -27,18 +34,33 @@ namespace CobaltFrame.Core.Screen
         }
 
         protected Queue<IScreen> _previousScreenQueue;
+
+		/// <summary>
+		/// 過去スクリーンのキュー
+		/// </summary>
+		/// <value>The previous screen queue.</value>
         public Queue<IScreen> PreviousScreenQueue
         {
             get { return this._previousScreenQueue; }
         }
 
         protected IScreen _firstScreen;
+
+		/// <summary>
+		/// 最初のスクリーン
+		/// </summary>
+		/// <value>The first screen.</value>
         public IScreen FirstScreen
         {
             get { return this._firstScreen; }
         }
 
         protected IScreen _currentScreen;
+
+		/// <summary>
+		/// 現在のスクリーン
+		/// </summary>
+		/// <value>The current screen.</value>
         public IScreen CurrentScreen
         {
             get { return this._currentScreen; }
@@ -55,6 +77,12 @@ namespace CobaltFrame.Core.Screen
             this._loadState = ObjectLoadState.Created;
         }
 
+		/// <summary>
+		/// 画面を変更する
+		/// </summary>
+		/// <param name="nextScreen">Next screen.</param>
+		/// <param name="parameter">Parameter.</param>
+		/// <param name="transition">Transition.</param>
         protected void ChangeScreen(IScreen nextScreen, object parameter, IScreenTransition transition)
         {
             if (this._currentScreen != null)
@@ -86,12 +114,19 @@ namespace CobaltFrame.Core.Screen
             
         }
 
+		/// <summary>
+		/// 画面イベントを登録するメソッド
+		/// </summary>
+		/// <param name="screen">Screen.</param>
         private void RegisterScreenEvent(IScreen screen)
         {
             screen.OnNavigate += this.OnNavigateHandler;
             screen.OnNavigatePrevious += this.OnNavigatePreviousHandler;
         }
 
+		/// <summary>
+		/// 画面イベントの登録を解除するメソッド
+		/// </summary>
         private void UnRegisterScreenEvent()
         {
             this._currentScreen.OnNavigate -= this.OnNavigateHandler;
@@ -99,6 +134,12 @@ namespace CobaltFrame.Core.Screen
 
         }
 
+		/// <summary>
+		/// 過去画面に変更するメソッド
+		/// </summary>
+		/// <param name="prevCount">Previous count.</param>
+		/// <param name="parameter">Parameter.</param>
+		/// <param name="transition">Transition.</param>
         protected void ChangePreviousScreen(int prevCount,object parameter,IScreenTransition transition)
         {
             if (prevCount <= this._screenChacheSize)
@@ -123,32 +164,56 @@ namespace CobaltFrame.Core.Screen
             this.ChangeScreen(screen, parameter,transition);
         }
 
+		/// <summary>
+		/// _currentScreenから画面遷移時に呼ばれるハンドラー
+		/// </summary>
+		/// <param name="prevCount">Previous count.</param>
+		/// <param name="parameter">Parameter.</param>
+		/// <param name="transition">Transition.</param>
         private void OnNavigatePreviousHandler(int prevCount, object parameter, IScreenTransition transition)
         {
             this.ChangePreviousScreen(prevCount,parameter,transition);
         }
 
-
+		/// <summary>
+		/// スクリーンマネージャを破棄
+		/// </summary>
+		/// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="CobaltFrame.Core.Screen.ScreenManager"/>.
+		/// The <see cref="Dispose"/> method leaves the <see cref="CobaltFrame.Core.Screen.ScreenManager"/> in an unusable
+		/// state. After calling <see cref="Dispose"/>, you must release all references to the
+		/// <see cref="CobaltFrame.Core.Screen.ScreenManager"/> so the garbage collector can reclaim the memory that the
+		/// <see cref="CobaltFrame.Core.Screen.ScreenManager"/> was occupying.</remarks>
         public void Dispose()
         {
             this.RemoveObject(this._currentScreen);
         }
 
-
+		/// <summary>
+		/// スクリーンの解像度が変更されたとき
+		/// </summary>
         public abstract void ScreenResolutionChanged();
 
+		/// <summary>
+		/// 初期化関数
+		/// </summary>
         public override void Init()
         {
             base.Init();
             this._loadState = ObjectLoadState.Initialized;
         }
 
+		/// <summary>
+		/// リソース確保関数
+		/// </summary>
         public override void Load()
         {
             base.Load();
             this._loadState = ObjectLoadState.Loaded;
         }
 
+		/// <summary>
+		/// リソース解放関数
+		/// </summary>
         public override void Unload()
         {
             base.Unload();

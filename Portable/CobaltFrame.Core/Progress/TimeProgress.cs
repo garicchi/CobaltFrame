@@ -9,39 +9,79 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
+	/// <summary>
+	/// 時間更新式で進むProgress
+	/// </summary>
     public abstract class TimeProgress<T>:UpdatableObject,ITimeProgress<T>
     {
+		/// <summary>
+		/// 終了時イベント
+		/// </summary>
         public event Action OnCompleted;
 
+		/// <summary>
+		/// 開始時イベント
+		/// </summary>
         public event Action OnStarted;
 
         private ProgressState _state;
+
+		/// <summary>
+		/// Progressの状態
+		/// </summary>
+		/// <value>The state.</value>
         public ProgressState State
         {
             get { return _state; }
         }
         private TimeSpan _duration;
+
+		/// <summary>
+		/// 長さ
+		/// </summary>
+		/// <value>The duration.</value>
         public TimeSpan Duration
         {
             get { return _duration; }
         }
         private TimeSpan _elapsedTime;
+
+		/// <summary>
+		/// 経過時間
+		/// </summary>
+		/// <value>The elapsed time.</value>
         public TimeSpan ElapsedTime
         {
             get { return this._elapsedTime; }
         }
         private TimeSpan _beginTime;
+
+		/// <summary>
+		/// 開始時間
+		/// </summary>
+		/// <value>The begin time.</value>
         public TimeSpan BeginTime
         {
             get { return _beginTime; }
         }
         private float _currentProgress;
+
+		/// <summary>
+		/// 現在の進捗(0.0〜1.0)
+		/// </summary>
+		/// <value>The current progress.</value>
         public float CurrentProgress
         {
             get { return this._currentProgress; }
             set { this._currentProgress = value; }
         }
         private bool _isLoop;
+
+		/// <summary>
+		/// ループするかどうか
+		/// </summary>
+		/// <value>true</value>
+		/// <c>false</c>
         public bool IsLoop
         {
             get 
@@ -54,14 +94,14 @@ namespace CobaltFrame.Core.Progress
             }
         }
 
-
         private ProgressState _beforeState;
-
-
 
         protected T _beginValue;
 
-
+		/// <summary>
+		/// 初期値
+		/// </summary>
+		/// <value>The begin value.</value>
         public T BeginValue
         {
             get
@@ -75,6 +115,11 @@ namespace CobaltFrame.Core.Progress
         }
 
         protected T _endValue;
+
+		/// <summary>
+		/// 終了値
+		/// </summary>
+		/// <value>The end value.</value>
         public T EndValue
         {
             get
@@ -88,6 +133,11 @@ namespace CobaltFrame.Core.Progress
         }
 
         protected T _currentValue;
+
+		/// <summary>
+		/// Progressの現在の値
+		/// </summary>
+		/// <value>The current value.</value>
         public T CurrentValue
         {
             get
@@ -115,6 +165,11 @@ namespace CobaltFrame.Core.Progress
             this._currentValue = begin;
         }
 
+		/// <summary>
+		/// 更新関数
+		/// </summary>
+		/// <param name="context">Context.</param>
+		/// <param name="frameContext">Frame context.</param>
         public override void Update(IFrameContext frameContext)
         {
             base.Update(frameContext);
@@ -157,6 +212,9 @@ namespace CobaltFrame.Core.Progress
             this._beforeState = State;
         }
 
+		/// <summary>
+		/// 開始
+		/// </summary>
         public virtual void Start()
         {
             this._currentProgress = 0.0f;
@@ -164,22 +222,37 @@ namespace CobaltFrame.Core.Progress
             
         }
 
+		/// <summary>
+		/// 一時停止
+		/// </summary>
         public virtual void Pause()
         {
             this._state = ProgressState.Pause;
         }
 
+		/// <summary>
+		/// 再開
+		/// </summary>
         public virtual void Resume()
         {
             this._state = ProgressState.Active;
         }
 
+		/// <summary>
+		/// 終了
+		/// </summary>
         public virtual void Stop()
         {
             this._state = ProgressState.Stop;
         }
 
-
+		/// <summary>
+		/// 更新式
+		/// </summary>
+		/// <returns>更新後の値</returns>
+		/// <param name="begin">開始値</param>
+		/// <param name="end">終了値</param>
+		/// <param name="currentProgress">現在の進捗</param>
         protected abstract T UpdateExpression(T begin, T end, float currentProgress);
 
 

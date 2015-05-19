@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Core.Progress
 {
+	/// <summary>
+	/// 条件を指定して進むProgress
+	/// </summary>
     public abstract class ConditionProgress<T>:UpdatableObject,IConditionProgress<T>
     {
         public event Action OnCompleted;
