@@ -39,10 +39,9 @@ namespace HorizontalShootingGame.Portable.Screen
 
 			_loadingTask =Task.Run (()=>
 			{
-                ContentContext.Load<Texture2D>("System/Font/player.png");
-				
+                
                 //XNAのコンテンツじゃない場合はこっち
-                //ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
+                ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
 			});
 			
 			base.Init ();

@@ -27,7 +27,7 @@ namespace CobaltFrame.Mono.Screen
 
         private Color _screenBackgroundColor;
 
-
+        
         public Color ScreenBackgroundColor
         {
             get { return _screenBackgroundColor; }

@@ -10,6 +10,9 @@ using CobaltFrame.Mono.Position;
 
 namespace CobaltFrame.Mono.Animation
 {
+    /// <summary>
+    /// 指定時間Box2座標で待機するアニメーション
+    /// </summary>
     public class WaitBox2Animation:TimeProgress<Box2>
     {
         public WaitBox2Animation(TimeSpan duration, Box2 begin)

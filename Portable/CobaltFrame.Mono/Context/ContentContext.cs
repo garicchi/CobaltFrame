@@ -5,17 +5,36 @@ using System.Linq;
 
 namespace CobaltFrame.Mono
 {
+    /// <summary>
+    /// ゲームリソースを統括的に扱うクラス
+    /// </summary>
 	public static class ContentContext
 	{
+        /// <summary>
+        /// リソースのリスト
+        /// </summary>
 		private static List<Content> _contentList;
+        /// <summary>
+        /// MonoGameのContentManager
+        /// </summary>
 		private static ContentManager _manager;
 
+        /// <summary>
+        /// 初回時に必ず呼ぶ
+        /// </summary>
+        /// <param name="manager"></param>
 		public static void Setup(ContentManager manager)
 		{
 			_manager = manager;
 			_contentList = new List<Content> ();
 		}
 
+        /// <summary>
+        /// リソースをロードするとくい
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
 		public static T Load<T>(string name)
 		{
 			if (_contentList.Any (q => q.Name == name)) {
