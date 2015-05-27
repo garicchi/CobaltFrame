@@ -1,16 +1,15 @@
-﻿using CobaltFrame.Core.Object;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Core.Progress
+namespace CobaltFrame.Animation
 {
 	/// <summary>
-	/// Progressインターフェース
+	/// Animationインターフェース
 	/// </summary>
-    public interface IProgress<T>:IUpdatable
+    public interface IAnimation<T>
     {
 		/// <summary>
 		/// 終了時イベント
@@ -26,7 +25,7 @@ namespace CobaltFrame.Core.Progress
 		/// Progressの状態
 		/// </summary>
 		/// <value>The state.</value>
-        ProgressState State { get; }
+        AnimationState State { get; }
 
 		/// <summary>
 		/// Progressの現在の値

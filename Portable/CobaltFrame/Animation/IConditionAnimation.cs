@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Core.Progress
+namespace CobaltFrame.Animation
 {
 	/// <summary>
-	/// 条件を指定して進むProgressのインターフェース
+	/// 条件を指定して進むAnimationのインターフェース
 	/// </summary>
-    public interface IConditionProgress<T>:IProgress<T>
+    public interface IConditionAnimation<T>:IAnimation<T>
     {
 		/// <summary>
 		/// 開始トリガー

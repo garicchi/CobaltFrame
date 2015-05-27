@@ -1,16 +1,15 @@
-﻿using CobaltFrame.Core.Object;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Core.Progress
+namespace CobaltFrame.Animation
 {
 	/// <summary>
-	/// 時間更新式で進むProgressのインターフェース
+	/// 時間更新式で進むAnimationのインターフェース
 	/// </summary>
-    public interface ITimeProgress<T>:IProgress<T>
+    public interface ITimeAnimation<T>:IAnimation<T>
     {
         /// <summary>
         /// 長さ

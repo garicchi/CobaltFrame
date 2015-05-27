@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{75004A46-CF8C-4E1A-A4A8-92CFE8E95561}</ProjectGuid>
+    <ProjectGuid>{96E9B4BD-49CC-4657-9694-EF801E031577}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CobaltFrame.Core</RootNamespace>
-    <AssemblyName>CobaltFrame.Core</AssemblyName>
+    <RootNamespace>CobaltFrame</RootNamespace>
+    <AssemblyName>CobaltFrame</AssemblyName>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,28 +35,57 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Progress\" />
+    <Content Include="Region.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\ConditionAnimation.cs" />
+    <Compile Include="Animation\IConditionAnimation.cs" />
+    <Compile Include="Animation\IAnimation.cs" />
     <Compile Include="Animation\InstantTimeAnimation.cs" />
+    <Compile Include="Animation\ITimeAnimation.cs" />
+    <Compile Include="Animation\AnimationState.cs" />
+    <Compile Include="Animation\TimeAnimation.cs" />
+    <Compile Include="Animation\TimeAnimationCollection.cs" />
     <Compile Include="Animation\TimerAnimation.cs" />
     <Compile Include="Common\BindableProperty.cs" />
+    <Compile Include="Common\CobaltFrameExtension.cs" />
     <Compile Include="Common\Margin.cs" />
-    <Compile Include="Common\ObjectLoadState.cs" />
-    <Compile Include="Context\IFrameContext.cs" />
-    <Compile Include="Data\SaveDataStore.cs" />
-    <Compile Include="Object\DrawableObject.cs" />
-    <Compile Include="Object\IObject.cs" />
-    <Compile Include="Object\UpdatableObject.cs" />
-    <Compile Include="Object\IDrawable.cs" />
-    <Compile Include="Object\IUpdatable.cs" />
+    <Compile Include="Common\Resource.cs" />
+    <Compile Include="Context\ResourceContext.cs" />
+    <Compile Include="Context\FrameContext.cs" />
+    <Compile Include="Context\GameContext.cs" />
+    <Compile Include="Context\NotificationContext.cs" />
+    <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Input\AccelerometerState.cs" />
+    <Compile Include="Context\InputContext.cs" />
+    <Compile Include="Input\GameInputCollection.cs" />
+    <Compile Include="Input\InputCondition.cs" />
+    <Compile Include="Input\TouchInputCollection.cs" />
+    <Compile Include="Object\GameObject.cs" />
+    <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="Object\ObjectLoadState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen\IScreen.cs" />
-    <Compile Include="Screen\IScreenManager.cs" />
+    <Compile Include="Screen\IGameScreen.cs" />
+    <Compile Include="Screen\IGameManager.cs" />
     <Compile Include="Screen\IScreenTransition.cs" />
     <Compile Include="Screen\ScaleMode.cs" />
-    <Compile Include="Screen\Screen.cs" />
-    <Compile Include="Screen\ScreenManager.cs" />
+    <Compile Include="Screen\GameScreen.cs" />
+    <Compile Include="Screen\GameManager.cs" />
+    <Compile Include="Screen\ScreenTransition.cs" />
+    <Compile Include="Sound\SongObject.cs" />
+    <Compile Include="Sound\SoundEffectObject.cs" />
+    <Compile Include="Transition\FadeColorTransition.cs" />
+    <Compile Include="UI\BitmapTextObject.cs" />
+    <Compile Include="UI\ButtonObject.cs" />
+    <Compile Include="UI\FontLoader.cs" />
+    <Compile Include="UI\ProgressBarObject.cs" />
+    <Compile Include="UI\SlidePadObject.cs" />
+    <Compile Include="UI\Texture2DObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\Lib\MonoGame.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,131 @@
+﻿using CobaltFrame.Object;
+using CobaltFrame.Transition;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CobaltFrame.Screen
+{
+	/// <summary>
+	/// ゲーム画面
+	/// </summary>
+    public abstract class GameScreen:GameObject,IGameScreen
+    {
+		
+        public GameScreen()
+        {
+            this._isNavigateStarted = false;
+            this._firstUpdate = false;
+
+            this.OnNavigate += (sc,obj,trans) => { };
+        }
+        #region Field
+        protected TimeSpan _screenElapsedTime;
+        protected TimeSpan _screenBeginTime;
+
+        private bool _firstUpdate;
+        private Color _backgroundColor;
+        private bool _isNavigateStarted;
+        #endregion
+
+        #region Property
+        public Color BackgroundColor
+        {
+            get
+            {
+                return this._backgroundColor;
+            }
+            set
+            {
+                this._backgroundColor = value;
+            }
+        }
+
+        #endregion
+
+        #region Method
+
+        public override void Update(Context.FrameContext context)
+        {
+            //もし最初の更新なら
+            if (this._firstUpdate)
+            {
+                //スクリーンが始まった時間を記録
+                this._screenBeginTime = context.TotalGameTime;
+                this._firstUpdate = false;
+            }
+            //スクリーンが始まった時間から現在のスクリーンの経過時間を計算
+            this._screenElapsedTime = context.TotalGameTime - this._screenBeginTime;
+            context.ElapsedScreenTime = this._screenElapsedTime;
+            
+            base.Update(context);
+        }
+
+        /// <summary>
+        /// 自身のスクリーンから別のスクリーンへ遷移したいときに自身が呼び出す
+        /// </summary>
+        /// <param name="screen"></param>
+        /// <param name="parameter"></param>
+        /// <param name="fromTrans">From trans.</param>
+        /// <param name="toTrans">To trans.</param>
+        public void Navigate(IGameScreen screen, object parameter, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
+        {
+            if (_isNavigateStarted == false)
+            {
+                if (fromTrans != null)
+                {
+                    var sFromTrans = fromTrans as ScreenTransition;
+                    AddChild(sFromTrans);
+
+                    sFromTrans.OnCompleted += () =>
+                    {
+                        RemoveChild(sFromTrans);
+                    };
+                    sFromTrans.Start();
+                }
+
+                this._isNavigateStarted = true;
+            }
+
+            this.OnNavigate(screen, parameter, toTrans);
+        }
+
+
+        /// <summary>
+        /// 別のスクリーンから自身のスクリーンに来た時に呼び出される
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <param name="transition">Transition.</param>
+        public virtual void NavigateTo(object parameter, IScreenTransition transition = null)
+        {
+            if (transition != null)
+            {
+                var sTransition = transition as ScreenTransition;
+                this.AddChild(sTransition);
+
+                sTransition.Start();
+                sTransition.OnCompleted += () =>
+                {
+                    this.RemoveChild(sTransition);
+                };
+            }
+
+            this._firstUpdate = true;
+        }
+        #endregion
+
+        #region Event
+        /// <summary>
+        /// ナビゲート開始したとき
+        /// </summary>
+        public event Action<IGameScreen, object, IScreenTransition> OnNavigate;
+
+
+        #endregion
+
+        
+    }
+}

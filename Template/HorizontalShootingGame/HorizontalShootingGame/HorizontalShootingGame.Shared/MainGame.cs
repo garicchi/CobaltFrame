@@ -26,7 +26,7 @@ namespace HorizontalShootingGame
 		public MainGame ()
 		{
 			Content.RootDirectory = "Content";
-
+            
 			this._gameManager = new GameManager (this, new LoadScreen (), new Vector2 (1360, 768), ScaleMode.Fill);
 			GameContext.GraphicsManager.IsFullScreen = true;
 

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Core.Progress
+namespace CobaltFrame.Animation
 {
 	/// <summary>
-	/// Progressの状態
+	/// Animationの状態
 	/// </summary>
-    public enum ProgressState
+    public enum AnimationState
     {
         Active,Pause,Stop
     }
