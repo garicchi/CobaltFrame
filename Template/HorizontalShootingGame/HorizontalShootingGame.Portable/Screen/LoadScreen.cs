@@ -1,16 +1,15 @@
 ﻿using System;
-using CobaltFrame.Mono.Screen;
-using CobaltFrame.Mono.UI;
-using CobaltFrame.Mono.Position;
 using System.Threading.Tasks;
 using CobaltFrame.Mono;
-using CobaltFrame.Mono.Font;
 using HorizontalShootingGame.Portable.Screen;
-using CobaltFrame.Mono.Transition;
-using CobaltFrame.Core.Animation;
 using Microsoft.Xna.Framework;
-using CobaltFrame.Mono.Context;
 using Microsoft.Xna.Framework.Graphics;
+using CobaltFrame.Screen;
+using CobaltFrame.Animation;
+using CobaltFrame.Context;
+using CobaltFrame.UI;
+using CobaltFrame.Transition;
+using System.Diagnostics;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -26,22 +25,23 @@ namespace HorizontalShootingGame.Portable.Screen
 
 		public override void Init ()
 		{
-			this._loadingTexture = new Texture2DObject (new Box2(10,10,350,100),"Texture/loading");
-			this.AddDrawableObject (this._loadingTexture);
+			this._loadingTexture = new Texture2DObject ("Texture/loading");
+            this._loadingTexture.SetRect(new Rectangle(10,10,350,100));
+			this.AddChild (this._loadingTexture);
 			this._loadingAnimation = new InstantTimeAnimation<int> (255,0,TimeSpan.FromSeconds(2),(start,end,progress)=>
 			{
 				return (int)((float)(end-start)*progress)+start;
 			});
 			this._loadingAnimation.IsLoop = true;
 			this._loadingAnimation.Start ();
-			this.AddObject (this._loadingAnimation);
+			this.AddChild (this._loadingAnimation);
 
 
 			_loadingTask =Task.Run (()=>
 			{
                 
                 //XNAのコンテンツじゃない場合はこっち
-                ContentContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
+                ResourceContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
 			});
 			
 			base.Init ();
@@ -54,7 +54,7 @@ namespace HorizontalShootingGame.Portable.Screen
 
 		}
 
-		public override void Update (CobaltFrame.Core.Context.IFrameContext context)
+		public override void Update (FrameContext context)
 		{
 			base.Update (context);
 
@@ -65,14 +65,18 @@ namespace HorizontalShootingGame.Portable.Screen
 					,new FadeColorTransition(Color.Black,0,255,TimeSpan.FromSeconds(1))
 					,new FadeColorTransition(Color.Black,255,0,TimeSpan.FromSeconds(1))
 				);
+                
 			} else {
                 //ロードが完了してないなら
-				this._loadingTexture.DrawColor = Color.FromNonPremultiplied (255,255,255,this._loadingAnimation.CurrentValue);
+                this._loadingTexture.DrawColor = Color.FromNonPremultiplied(255, 255, 255, this._loadingAnimation.CurrentValue);
+            
 			}
 
+              
+            
 		}
 
-		public override void Draw (CobaltFrame.Core.Context.IFrameContext context)
+		public override void Draw (FrameContext context)
 		{
 			base.Draw (context);
 		}

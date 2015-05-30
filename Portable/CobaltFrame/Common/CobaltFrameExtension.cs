@@ -9,7 +9,14 @@ namespace CobaltFrame.Common
 {
     public static class CobaltFrameExtension
     {
-        public static Rectangle GetRect(this Rectangle rect,Vector2 origin)
+        public static Rectangle ShiftRect(this Rectangle rect,Point origin)
+        {
+            rect.X += origin.X;
+            rect.Y += origin.Y;
+            return rect;
+        }
+
+        public static Rectangle ShiftRect(this Rectangle rect, Vector2 origin)
         {
             rect.X += (int)origin.X;
             rect.Y += (int)origin.Y;
@@ -25,6 +32,8 @@ namespace CobaltFrame.Common
         {
             return new Point((int)rect.Width/2,(int)rect.Height/2);
         }
+
+        
 
     }
 }

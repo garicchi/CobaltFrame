@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -72,23 +72,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Portable\CobaltFrame.Core\CobaltFrame.Core.csproj">
-      <Project>{75004A46-CF8C-4E1A-A4A8-92CFE8E95561}</Project>
-      <Name>CobaltFrame.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Portable\CobaltFrame.Mono\CobaltFrame.Mono.csproj">
-      <Project>{332A0CC4-0D48-448E-B664-815C60CC1DC0}</Project>
-      <Name>CobaltFrame.Mono</Name>
+    <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
+      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
+      <Name>CobaltFrame</Name>
     </ProjectReference>
     <ProjectReference Include="..\HorizontalShootingGame.Portable\HorizontalShootingGame.Portable.csproj">
       <Project>{2A01C06B-897B-412E-847E-2A50BA167DE5}</Project>
       <Name>HorizontalShootingGame.Portable</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Content\Font\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <AndroidAsset Include="Content\Texture\bullet.png" />
     <AndroidAsset Include="Content\Texture\enemy1.png" />

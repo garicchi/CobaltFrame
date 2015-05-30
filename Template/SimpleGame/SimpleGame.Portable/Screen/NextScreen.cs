@@ -1,4 +1,5 @@
-﻿using CobaltFrame.Mono.Screen;
+﻿using CobaltFrame.Context;
+using CobaltFrame.Screen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,17 +30,17 @@ namespace SimpleGame.Portable.Screen
             base.Unload();
         }
 
-        public override void Update(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Update(FrameContext context)
         {
             base.Update(context);
         }
 
-        public override void Draw(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Draw(FrameContext context)
         {
             base.Draw(context);
         }
 
-        public override void NavigateTo(object parameter, CobaltFrame.Core.Screen.IScreenTransition transition = null)
+        public override void NavigateTo(object parameter,IScreenTransition transition = null)
         {
             base.NavigateTo(parameter, transition);
         }

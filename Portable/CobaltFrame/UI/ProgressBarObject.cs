@@ -1,6 +1,7 @@
 ﻿using CobaltFrame.Common;
 using CobaltFrame.Context;
 using CobaltFrame.Object;
+using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Mono.UI
+namespace CobaltFrame.UI
 {
-    public class ProgressBarObject:GameObject
+    public class ProgressBarObject:GameObject2D
     {
 
         protected Texture2DObject FrameObject { get; private set; }
@@ -26,7 +27,7 @@ namespace CobaltFrame.Mono.UI
             set
             {
                 this._currentProgress = value;
-                var innerBox = this.InnerObject.Rect;
+                var innerBox = this.InnerObject.GetRect();
 				var width = (int)((float)(innerBox.Width) * value);
 
                  
@@ -34,7 +35,7 @@ namespace CobaltFrame.Mono.UI
                     this.InnerMargin.Left,
                     this.InnerMargin.Top,
 					width-InnerMargin.Right,
-					this.FrameObject.Rect.Height-InnerMargin.Bottom*2
+					this.FrameObject.GetRect().Height-InnerMargin.Bottom*2
                     ));
 
             }
@@ -43,21 +44,35 @@ namespace CobaltFrame.Mono.UI
         {
 			this.InnerMargin = innerMargin;
             this.FrameObject = new Texture2DObject(frameTexturePath);
-
-            var innerBox = new Rectangle(
-                this.InnerMargin.Left,
-                this.InnerMargin.Top,
-                this.FrameObject.Rect.Width-this.InnerMargin.Right,
-                this.FrameObject.Rect.Height - this.InnerMargin.Bottom*2
-                );
-            
             this.InnerObject = new Texture2DObject(innerTexturePath);
-            this.SetRect(innerBox);
             this.AddChild(this.FrameObject);
-            this.AddChild(this.InnerObject);
+            this.FrameObject.AddChild(this.InnerObject);
             this.CurrentProgress = 1.0f;
         }
 
+        public override void SetRect(Rectangle rect)
+        {
+            this.FrameObject.SetRect(rect);
+            var innerBox = new Rectangle(
+                this.InnerMargin.Left,
+                this.InnerMargin.Top,
+                this.FrameObject.GetRect().Width - this.InnerMargin.Right,
+                this.FrameObject.GetRect().Height - this.InnerMargin.Bottom * 2
+                );
+            this.InnerObject.SetRect(innerBox);
+            base.SetRect(rect);
+            
+        }
+
+        public override void Load()
+        {
+            base.Load();
+        }
+
+        public override void Update(FrameContext context)
+        {
+            base.Update(context);
+        }
         
     }
 }

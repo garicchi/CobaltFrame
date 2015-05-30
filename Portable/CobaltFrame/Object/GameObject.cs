@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.Object
 {
-    public abstract class GameObject:IGameObject,IComparable
+    public abstract class GameObject:IGameObject
     {
         public GameObject()
         {
@@ -18,36 +18,32 @@ namespace CobaltFrame.Object
             this._loadState = ObjectLoadState.Created;
             
             this._isVisible = true;
-            this._layerDepth = 0.5f;
-            this._isObjectLayerChanged = false;
+            
             this._children = new List<IGameObject>();
             this._inputs = new GameInputCollection();
-            this._rect = new Rectangle(0,0,100,100);
 
-            this.OnPositionChanged += (pos) => { };
-            this.OnSizeChanged += (size) => { };
+            this._layerDepth = 0.5f;
+            this._isObjectLayerChanged = false;
+
         }
 
         #region Event
 
-        public event Action<Point> OnPositionChanged;
-
-        public event Action<Point> OnSizeChanged;
+        
         #endregion
 
         #region Field
 
         protected ObjectLoadState _loadState;
         protected bool _isActive;
-        protected float _layerDepth;
         protected bool _isVisible;
-        protected Rectangle _rect;
         protected Game _game;
         protected IGameObject _parent;
+        protected List<IGameObject> _children;
+        protected GameInputCollection _inputs;
 
-        private bool _isObjectLayerChanged;
-        private List<IGameObject> _children;
-        private GameInputCollection _inputs;
+        protected float _layerDepth;
+        protected bool _isObjectLayerChanged;
 
         #endregion
 
@@ -82,47 +78,14 @@ namespace CobaltFrame.Object
             }
         }
 
-        public float LayerDepth
-        {
-            get
-            {
-                return this._layerDepth;
-            }
-            set
-            {
-                if (value <= 1.0f && value >= 0.0f)
-                {
-                    this._layerDepth = value;
-                    //自分のレイヤーに変更があったとき、親要素にソートしてもらうために
-                    //フラグを立てる
-                    this._isObjectLayerChanged = true;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("LayerDepth","0.0f~1.0f");
-                }
-            }
-        }
+        
 
         public List<IGameObject> Children
         {
             get { return this._children; }
         }
 
-        public bool IsObjectLayerChanged
-        {
-            get { return this._isObjectLayerChanged; }
-            set { this._isObjectLayerChanged = value; }
-        }
-
-        public Rectangle Rect
-        {
-            get
-            {
-                return this._rect;
-            }
-            
-        }
+        
 
         public GameInputCollection Inputs
         {
@@ -141,6 +104,36 @@ namespace CobaltFrame.Object
                 this._parent = value;
             }
         }
+
+        public float LayerDepth
+        {
+            get
+            {
+                return this._layerDepth;
+            }
+            set
+            {
+                if (value <= 1.0f && value >= 0.0f)
+                {
+                    this._layerDepth = value;
+                    //自分のレイヤーに変更があったとき、親要素にソートしてもらうために
+                    //フラグを立てる
+                    this._isObjectLayerChanged = true;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("LayerDepth", "0.0f~1.0f");
+                }
+            }
+        }
+
+
+        public bool IsObjectLayerChanged
+        {
+            get { return this._isObjectLayerChanged; }
+            set { this._isObjectLayerChanged = value; }
+        }
+
 
         #endregion
 
@@ -208,18 +201,7 @@ namespace CobaltFrame.Object
 
         public virtual void Draw(Context.FrameContext context)
         {
-            //もし子要素に一つでもレイヤー変更があったなら
-            if (this._children.Any(q => q.IsObjectLayerChanged))
-            {
-                //子要素をソート
-                this._children.Sort();
-
-                //ソートが完了したら子要素のフラグを戻す
-                for (int i = 0; i < this._children.Count; i++)
-                {
-                    this._children.ElementAt(i).IsObjectLayerChanged = false;
-                }
-            }
+            
 
             //子要素の数を記録しておく
             int beforeObjectCount = this._children.Count;
@@ -277,62 +259,8 @@ namespace CobaltFrame.Object
             }
         }
 
-        /// <summary>
-        /// レイヤーソートをするための比較関数
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public int CompareTo(object obj)
-        {
-            //LayerDepthの数が大きくなるほど後に描画されるようにする
-            var gObj = (IGameObject)obj;
-            if (gObj.LayerDepth < this.LayerDepth) { return -1; }
-            if (gObj.LayerDepth > this.LayerDepth) { return 1; }
-            if (gObj.LayerDepth == this.LayerDepth) { return 0; }
 
-            return 0;
-        }
-
-        public virtual void SetPosition(Point pos)
-        {
-            this._rect.X = pos.X;
-            this._rect.Y = pos.Y;
-
-            this.OnPositionChanged(pos);
-        }
-
-        public virtual void SetSize(Point size)
-        {
-            this._rect.Width = size.X;
-            this._rect.Height = size.Y;
-
-            this.OnSizeChanged(size);
-        }
-
-        public void SetRect(Rectangle rect)
-        {
-            this.SetPosition(rect.GetPosition());
-            this.SetSize(rect.Size);
-        }
-
-        public Rectangle GetAbsoluteRect()
-        {
-            if(this._parent==null)
-            {
-                //親要素がないならそのまま座標を返す
-                return this._rect;
-            }
-            else
-            {
-                //親要素があるなら親要素の座標と足して絶対座標を作る
-                return new Rectangle(
-                    this._parent.GetAbsoluteRect().X+this._rect.X,
-                    this._parent.GetAbsoluteRect().Y+this._rect.Y,
-                    this._rect.Width,
-                    this._rect.Height
-                    );
-            }
-        }
+        
 
         #endregion
 

@@ -1,8 +1,6 @@
-﻿using CobaltFrame.Mono.Animation;
-using CobaltFrame.Mono.Context;
-using CobaltFrame.Mono.Object;
-using CobaltFrame.Mono.Position;
-using CobaltFrame.Mono.UI;
+﻿using CobaltFrame.Animation;
+using CobaltFrame.Context;
+using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,28 +12,28 @@ namespace HorizontalShootingGame.Portable.Object
 {
     public class Bullet:Texture2DObject
     {
-        protected Box2ConditionAnimation Animation { get; set; }
+        protected PointConditionAnimation Animation { get; set; }
 
 
-        public Bullet(IBox2 pos,string texturePath)
-            :base(pos,texturePath)
+        public Bullet(string texturePath)
+            :base(texturePath)
         {
-            this.Animation = new Box2ConditionAnimation(pos, (current, time) =>
+            this.Animation = new PointConditionAnimation(this.GetPosition(),(current, time) =>
             {
-                current.MoveRect(0,0,0,40);
+                current.X += 40;
                 return current;
             });
             this.Animation.StopTriggers.Add((current) =>
             {
-                int width = this._game.GraphicsDevice.Viewport.Width;
-                return (current.GetLocation().X > width);
+                int width = GameContext.DefaultResolution.X;
+                return (current.X > width);
                 
             });
             this.Animation.OnCompleted += () =>
             {
                 this.IsVisible = false;
             };
-            this.AddObject(Animation);
+            this.AddChild(Animation);
         }
 
         public override void Init()
@@ -43,9 +41,10 @@ namespace HorizontalShootingGame.Portable.Object
             base.Init();
             this.IsVisible = false;
         }
-        public void Shot()
+        public void Shot(Point init)
         {
             this.IsVisible = true;
+            this.Animation.BeginValue = init;
             this.Animation.Start();
         }
 
@@ -54,10 +53,13 @@ namespace HorizontalShootingGame.Portable.Object
 			this.IsVisible = false;
 		}
 
-        public override void Update(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Update(FrameContext context)
         {
             base.Update(context);
-            this.Box.SetLocation(this.Animation.CurrentValue.GetLocation());
+            if (this.Animation.State != AnimationState.Stop)
+            {
+                this.SetPosition(this.Animation.CurrentValue);
+            }
         }
     }
 }

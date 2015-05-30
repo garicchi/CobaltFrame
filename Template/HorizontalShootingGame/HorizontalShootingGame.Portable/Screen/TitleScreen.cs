@@ -1,10 +1,4 @@
-﻿using CobaltFrame.Mono.Context;
-using CobaltFrame.Mono.Input;
-using CobaltFrame.Mono.Object;
-using CobaltFrame.Mono.Position;
-using CobaltFrame.Mono.Screen;
-using CobaltFrame.Mono.Transition;
-using HorizontalShootingGame.Portable.Object;
+﻿using HorizontalShootingGame.Portable.Object;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
@@ -13,9 +7,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CobaltFrame.Mono.UI;
-using CobaltFrame.Core.Data;
 using HorizontalShootingGame.Portable.Data;
+using CobaltFrame.Screen;
+using CobaltFrame.Common;
+using CobaltFrame.Input;
+using CobaltFrame.Context;
+using CobaltFrame.Transition;
+using CobaltFrame.UI;
 
 namespace HorizontalShootingGame.Portable.Screen
 {
@@ -32,15 +30,17 @@ namespace HorizontalShootingGame.Portable.Screen
 		public override void Init ()
 		{
 			base.Init ();
-			this._startButton = new BitmapTextObject (new Box2((int)Box.GetCenter().X,(int)Box.GetCenter().Y,500,100),"Font/meiryo","start",4,Color.White);
-			this.AddDrawableObject(this._startButton);
+			this._startButton = new BitmapTextObject ("Font/meiryo","start",4,Color.White);
+            this._startButton.SetRect(new Rectangle((int)this.GetRect().GetCenter().X, (int)this.GetRect().GetCenter().Y, 500, 100));
+			this.AddChild(this._startButton);
 
-			this._scoreText = new BitmapTextObject (new Box2(10,10,500,100),"Font/meiryo","high score ",4,Color.White);
-			this.AddDrawableObject(this._scoreText);
+			this._scoreText = new BitmapTextObject ("Font/meiryo","high score ",4,Color.White);
+            this._scoreText.SetRect(new Rectangle(10,10,500,100));
+			this.AddChild(this._scoreText);
 
 
 			this.Inputs.RegisterInput("start",
-				()=>GameInput.TouchCollection.IsTouch&&this._startButton.Box.Contains(GameInput.TouchCollection.First().Position),
+				(current,prev)=>current.IsTouch&&this._startButton.GetRect().Contains(current.First().Position),
 				null,
 				null,
 				null,
@@ -50,10 +50,10 @@ namespace HorizontalShootingGame.Portable.Screen
         public override void Load()
         {
             base.Load();
-			this._scoreText.Text ="high score "+ SaveDataStore<SaveData>.Data.PreviousScore.ToString();
+			this._scoreText.Text ="high score "+ DataContext<SaveData>.Data.PreviousScore.ToString();
             
         }
-        public override void Update(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Update(FrameContext context)
         {
             base.Update(context);
 			if (this.Inputs.IsInput ("start")) 
@@ -65,7 +65,7 @@ namespace HorizontalShootingGame.Portable.Screen
 			}
         }
 
-        public override void Draw(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Draw(FrameContext context)
         {
             base.Draw(context);
         }

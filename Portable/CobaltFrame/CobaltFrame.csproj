@@ -44,9 +44,12 @@
     <Compile Include="Animation\InstantTimeAnimation.cs" />
     <Compile Include="Animation\ITimeAnimation.cs" />
     <Compile Include="Animation\AnimationState.cs" />
+    <Compile Include="Animation\PointConditionAnimation.cs" />
+    <Compile Include="Animation\PointTimeAnimation.cs" />
     <Compile Include="Animation\TimeAnimation.cs" />
     <Compile Include="Animation\TimeAnimationCollection.cs" />
     <Compile Include="Animation\TimerAnimation.cs" />
+    <Compile Include="Animation\WaitAnimation.cs" />
     <Compile Include="Common\BindableProperty.cs" />
     <Compile Include="Common\CobaltFrameExtension.cs" />
     <Compile Include="Common\Margin.cs" />
@@ -62,7 +65,9 @@
     <Compile Include="Input\InputCondition.cs" />
     <Compile Include="Input\TouchInputCollection.cs" />
     <Compile Include="Object\GameObject.cs" />
+    <Compile Include="Object\GameObject2D.cs" />
     <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="Object\IGameObject2D.cs" />
     <Compile Include="Object\ObjectLoadState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\IGameScreen.cs" />

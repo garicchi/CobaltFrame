@@ -20,11 +20,11 @@ namespace CobaltFrame.Input
         }
         public void RegisterInput(
             string stateName,
-            Func<bool> touchCondition = null,
-            Func<bool> mouseCondition = null,
-            Func<bool> gamePadCondition = null,
-            Func<bool> keyboardCondition = null,
-            Func<bool> accelCondition = null
+            Func<TouchInputCollection, TouchInputCollection, bool> touchCondition = null,
+            Func<MouseState,MouseState,bool> mouseCondition = null,
+            Func<GamePadState[],GamePadState[],bool> gamePadCondition = null,
+            Func<KeyboardState,KeyboardState,bool> keyboardCondition = null,
+            Func<AccelerometerState,AccelerometerState,bool> accelCondition = null
             )
         {
             if (!_inputConditions.Any(q => q.StateName == stateName))
@@ -77,23 +77,23 @@ namespace CobaltFrame.Input
                 var inputAccel = false;
                 if (TouchPanel.GetCapabilities().IsConnected && condition.TouchCondition != null)
                 {
-                    inputTouch = condition.TouchCondition();
+                    inputTouch = condition.TouchCondition(InputContext.TouchCollection,InputContext.TouchCollectionPrev);
                 }
                 if (condition.KeyboardCondition != null)
                 {
-                    inputKeyboard = condition.KeyboardCondition();
+                    inputKeyboard = condition.KeyboardCondition(InputContext.KeyboardState, InputContext.KeyboardStatePrev);
                 }
                 if (condition.MouseCondition != null)
                 {
-                    inputMouse = condition.MouseCondition();
+                    inputMouse = condition.MouseCondition(InputContext.MouseState, InputContext.MouseStatePrev);
                 }
                 if (GamePad.GetCapabilities(PlayerIndex.One).IsConnected && condition.GamePadCondition != null)
                 {
-                    inputPad = condition.GamePadCondition();
+                    inputPad = condition.GamePadCondition(InputContext.GamePadState,InputContext.GamePadStatePrev);
                 }
                 if (InputContext.IsAccelEnable && condition.AccelCondition != null)
                 {
-                    inputAccel = condition.AccelCondition();
+                    inputAccel = condition.AccelCondition(InputContext.AccelState,InputContext.AccelStatePrev);
                 }
 
                 condition.IsInput = inputTouch || inputKeyboard || inputMouse || inputPad || inputAccel;

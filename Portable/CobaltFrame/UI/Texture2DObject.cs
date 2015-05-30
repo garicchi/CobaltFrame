@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Common;
 using CobaltFrame.UI;
+using System.Diagnostics;
 
-namespace CobaltFrame.Mono.UI
+namespace CobaltFrame.UI
 {
     /// <summary>
     /// Texture2Dを描画するゲームオブジェクト
     /// </summary>
-    public class Texture2DObject : GameObject
+    public class Texture2DObject : GameObject2D
     {
         public Texture2DObject(string texturePath)
         {
@@ -150,9 +151,9 @@ namespace CobaltFrame.Mono.UI
 
             this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
             //描画
-            this._spriteBatch.Draw(this._texture, null, this.GetAbsoluteRect().GetRect(this._origin * this._textureScale), this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
-            
+            this._spriteBatch.Draw(this._texture, null, this.GetRect().ShiftRect(this._origin * this._textureScale), this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
             this._spriteBatch.End();
+            
         }
 
         public override void SetSize(Point size)
@@ -170,7 +171,7 @@ namespace CobaltFrame.Mono.UI
             if (Texture != null)
             {
                 //現在のサイズに対してどれだけ引き延ばせばいいか計算
-                this._textureScale = new Vector2((float)this.Rect.Width / (float)this._texture.Width, (float)this.Rect.Height / (float)this._texture.Height);
+                this._textureScale = new Vector2((float)this.GetRect().Width / (float)this._texture.Width, (float)this.GetRect().Height / (float)this._texture.Height);
             }
         }
 

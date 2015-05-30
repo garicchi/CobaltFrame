@@ -99,12 +99,6 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CobaltFrame.Core">
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CobaltFrame.Mono">
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Mono.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.iOS.3.4.0.459\lib\XamariniOS\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -119,6 +113,10 @@
     <Content Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
+      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
+      <Name>CobaltFrame</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleGame.Portable\SimpleGame.Portable.csproj">
       <Project>{e3825366-cdfb-46ff-af0f-a5ea1f5888c4}</Project>
       <Name>SimpleGame.Portable</Name>

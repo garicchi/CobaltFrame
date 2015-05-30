@@ -48,14 +48,6 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CobaltFrame.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CobaltFrame.Mono, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Mono.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="OpenTK" />
@@ -75,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\System\Font\meiryo.fnt" />
-    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -103,6 +94,10 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
+      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
+      <Name>CobaltFrame</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleGame.Portable\SimpleGame.Portable.csproj">
       <Project>{e3825366-cdfb-46ff-af0f-a5ea1f5888c4}</Project>
       <Name>SimpleGame.Portable</Name>

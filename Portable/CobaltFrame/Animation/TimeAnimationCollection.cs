@@ -264,6 +264,7 @@ namespace CobaltFrame.Animation
             this._animationCollection.Add(item);
             this.BeginValue = this._animationCollection.ElementAt(0).BeginValue;
             this.CurrentValue = this._animationCollection.ElementAt(0).CurrentValue;
+            this.AddChild(item);
         }
 
 		/// <summary>
@@ -272,6 +273,7 @@ namespace CobaltFrame.Animation
         public void Clear()
         {
             this._animationCollection.Clear();
+            this.Children.Clear();
         }
 
 		/// <Docs>The object to locate in the current collection.</Docs>
@@ -321,6 +323,7 @@ namespace CobaltFrame.Animation
 		/// <param name="item">Item.</param>
         public bool Remove(TimeAnimation<T> item)
         {
+            this.RemoveChild(item);
             return this._animationCollection.Remove(item);
 
         }

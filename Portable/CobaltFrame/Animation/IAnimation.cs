@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CobaltFrame.Object;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CobaltFrame.Animation
 	/// <summary>
 	/// Animationインターフェース
 	/// </summary>
-    public interface IAnimation<T>
+    public interface IAnimation<T>:IGameObject
     {
 		/// <summary>
 		/// 終了時イベント

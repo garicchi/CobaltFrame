@@ -1,8 +1,4 @@
-﻿using CobaltFrame.Mono.Context;
-using CobaltFrame.Core.Context;
-using CobaltFrame.Mono.Input;
-using CobaltFrame.Mono.Object;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
@@ -12,11 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-using CobaltFrame.Mono.UI;
-using CobaltFrame.Mono.Position;
-using CobaltFrame.Core.Common;
-using CobaltFrame.Core.Animation;
-using CobaltFrame.Core.Progress;
+using CobaltFrame.Common;
+using CobaltFrame.Animation;
+using CobaltFrame.Context;
+using CobaltFrame.UI;
 
 namespace HorizontalShootingGame.Portable.Object
 {
@@ -41,20 +36,20 @@ namespace HorizontalShootingGame.Portable.Object
         public BindableProperty<int> Energy { get; set; }
 
         private TimerAnimation _damageTimer;
-        public Player(IBox2 position, string texturePath)
-            : base(position, texturePath)
+        public Player(string texturePath)
+            : base(texturePath)
         {
             this._bulletList = new List<Bullet>();
             for (int i = 0; i < 10;i++ )
             {
-                Bullet bullet = new Bullet(new Box2(
-                    this.Box.GetRect().X,
-                    this.Box.GetRect().Y + this.Box.GetRect().Height / 2,
+                Bullet bullet = new Bullet(
+                    "Texture/bullet");
+                bullet.SetRect(new Rectangle(
+                    this.GetRect().X,
+                    this.GetRect().Y + this.GetRect().Height / 2,
                     80,
-                    10)
-                    ,"Texture/bullet");
-                
-                this.AddDrawableObject(bullet);
+                    10));
+                this.AddChild(bullet);
                 this._bulletList.Add(bullet);
             }
 
@@ -62,7 +57,7 @@ namespace HorizontalShootingGame.Portable.Object
             this.Energy.Value = 100;
 
             this._damageTimer = new TimerAnimation(TimeSpan.FromSeconds(2));
-            this.AddObject(this._damageTimer);
+            this.AddChild(this._damageTimer);
             
         }
         public override void Init()
@@ -84,14 +79,14 @@ namespace HorizontalShootingGame.Portable.Object
             
         }
 
-        public override void Update(IFrameContext context)
+        public override void Update(FrameContext context)
         {
             base.Update(context);
 
             
         }
 
-        public override void Draw(IFrameContext context)
+        public override void Draw(FrameContext context)
         {
             base.Draw(context);
         }
@@ -101,16 +96,17 @@ namespace HorizontalShootingGame.Portable.Object
             if (this._bulletList.Any(q => q.IsVisible == false))
             {
 
-                Bullet bullet = this._bulletList.Where(q => q.IsVisible == false).First();
-                bullet.Box.SetLocation(new Vector2(this.Box.GetLocation().X, this.Box.GetLocation().Y + this.Box.GetRect().Height / 2));
-                bullet.Shot();
+                var bullet = this._bulletList.Where(q => q.IsVisible == false).First();
+                var init = new Point(this.GetSize().X, this.GetSize().Y / 2);
+                bullet.SetPosition(init);
+                bullet.Shot(init);
 
             }
         }
 
         public void Damage()
         {
-            if (this._damageTimer.State == ProgressState.Stop)
+            if (this._damageTimer.State == AnimationState.Stop)
             {
                 this.Energy.Value -= 2;
                 this._damageTimer.Start();

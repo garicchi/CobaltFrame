@@ -1,8 +1,6 @@
-﻿using CobaltFrame.Core.Progress;
-using CobaltFrame.Mono.Animation;
-using CobaltFrame.Mono.Context;
-using CobaltFrame.Mono.Position;
-using CobaltFrame.Mono.UI;
+﻿using CobaltFrame.Animation;
+using CobaltFrame.Context;
+using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -29,9 +27,9 @@ namespace HorizontalShootingGame.Portable.Object
             get { return _isStart; }
         }
 
-        protected CobaltFrame.Core.Progress.IProgress<Box2> Animation { get; set; }
-        public EnemyBase(IBox2 box,string texture,CobaltFrame.Core.Progress.IProgress<Box2> animation,TimeSpan startTime)
-            :base(box,texture)
+        protected IAnimation<Point> Animation { get; set; }
+        public EnemyBase(string texture,IAnimation<Point> animation,TimeSpan startTime)
+            :base(texture)
         {
             IsVisible = false;
             _isStart = false;
@@ -43,14 +41,13 @@ namespace HorizontalShootingGame.Portable.Object
                 this.IsVisible = false;
                 
             };
-            this.AddObject(animation);
+            this.AddChild(animation);
         }
 
-        public override void Update(CobaltFrame.Core.Context.IFrameContext context)
+        public override void Update(FrameContext context)
         {
             base.Update(context);
-            var fContext = context as FrameContext;
-            if (fContext.ElapsedScreenTime > StartTime && IsStart == false)
+            if (context.ElapsedScreenTime > StartTime && IsStart == false)
             {
                 this.IsVisible = true;
                 _isStart = true;
@@ -59,9 +56,9 @@ namespace HorizontalShootingGame.Portable.Object
 
             if (IsStart)
             {
-                this.Box.SetRect(Animation.CurrentValue.GetRect());
-                
+                this.SetPosition(Animation.CurrentValue);
             }
+            
         }
 
 		public void Die()

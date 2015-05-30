@@ -109,14 +109,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Reference Include="CobaltFrame.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CobaltFrame.Mono, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.4\lib\CobaltFrame.Mono.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -160,7 +152,6 @@
     <Content Include="Content\System\Font\meiryo.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
     <None Include="SimpleGame.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +180,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
+      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
+      <Name>CobaltFrame</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleGame.Portable\SimpleGame.Portable.csproj">
       <Project>{e3825366-cdfb-46ff-af0f-a5ea1f5888c4}</Project>
       <Name>SimpleGame.Portable</Name>

@@ -55,8 +55,8 @@ namespace CobaltFrame.Transition
         public override void Load()
         {
             base.Load();
-            int width = this._game.GraphicsDevice.Viewport.Width;
-            int height = this._game.GraphicsDevice.Viewport.Height;
+            int width = GameContext.DefaultResolution.X;
+            int height = GameContext.DefaultResolution.Y;
             this.Texture = new Texture2D(this._game.GraphicsDevice,width,height);
             this.Texture.SetData<Color>(
                 Enumerable.Repeat<Color>(TextureColor, width * height).ToArray()
@@ -82,8 +82,8 @@ namespace CobaltFrame.Transition
         {
             
             base.Draw(context);
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, (context as FrameContext).ScreenTrans);
-            this._spriteBatch.Draw(this.Texture, new Rectangle(0, 0, this._game.GraphicsDevice.Viewport.Width, this._game.GraphicsDevice.Viewport.Height),
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, context.ScreenTrans);
+            this._spriteBatch.Draw(this.Texture, new Rectangle(0, 0, GameContext.DefaultResolution.X,GameContext.DefaultResolution.Y),
                 new Color(TextureColor.R, TextureColor.G, TextureColor.B, Animation.CurrentValue));
             this._spriteBatch.End();
             

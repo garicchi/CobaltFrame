@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,11 @@ namespace CobaltFrame.Input
     {
         public InputCondition(
             string stateName,
-            Func<bool> touchCondition,
-            Func<bool> mouseCondition,
-            Func<bool> gamePadCondition,
-            Func<bool> keyboardCondition,
-            Func<bool> accelCondition
+            Func<TouchInputCollection, TouchInputCollection, bool> touchCondition = null,
+            Func<MouseState, MouseState, bool> mouseCondition = null,
+            Func<GamePadState[], GamePadState[], bool> gamePadCondition = null,
+            Func<KeyboardState, KeyboardState, bool> keyboardCondition = null,
+            Func<AccelerometerState, AccelerometerState, bool> accelCondition = null
             )
         {
             this.TouchCondition = touchCondition;
@@ -26,11 +27,11 @@ namespace CobaltFrame.Input
             this.StateName = stateName;
         }
         public string StateName{get;set;}
-        public Func<bool> TouchCondition { get; set; }
-        public Func<bool> MouseCondition { get; set; }
-        public Func<bool> GamePadCondition { get; set; }
-        public Func<bool> KeyboardCondition { get; set; }
-        public Func<bool> AccelCondition { get; set; }
+        public Func<TouchInputCollection, TouchInputCollection, bool> TouchCondition { get; set; }
+        public Func<MouseState, MouseState, bool> MouseCondition { get; set; }
+        public Func<GamePadState[], GamePadState[], bool> GamePadCondition { get; set; }
+        public Func<KeyboardState, KeyboardState, bool> KeyboardCondition { get; set; }
+        public Func<AccelerometerState, AccelerometerState, bool> AccelCondition { get; set; }
        public bool IsInput { get; set; }
     }
 }

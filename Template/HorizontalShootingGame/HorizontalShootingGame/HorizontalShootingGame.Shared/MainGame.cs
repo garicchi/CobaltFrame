@@ -1,7 +1,4 @@
-﻿using CobaltFrame.Mono.Context;
-using CobaltFrame.Core.Data;
-using CobaltFrame.Mono.Screen;
-using HorizontalShootingGame.Portable.Data;
+﻿using HorizontalShootingGame.Portable.Data;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,10 +9,11 @@ using System.IO;
 using System.Linq;
 using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
-using CobaltFrame.Mono.Input;
 using System.Diagnostics;
 using HorizontalShootingGame.Portable;
 using Microsoft.Xna.Framework.Storage;
+using CobaltFrame.Screen;
+using CobaltFrame.Context;
 
 namespace HorizontalShootingGame
 {
@@ -27,17 +25,17 @@ namespace HorizontalShootingGame
 		{
 			Content.RootDirectory = "Content";
             
-			this._gameManager = new GameManager (this, new LoadScreen (), new Vector2 (1360, 768), ScaleMode.Fill);
+			this._gameManager = new GameManager (this, new Point (1360, 768), ScaleMode.Fill);
 			GameContext.GraphicsManager.IsFullScreen = true;
 
 			GameContext.Game.Activated += (s, e) => {
-				SaveDataStore<SaveData>.Load (new SaveData ());
+				DataContext<SaveData>.Load (new SaveData ());
 			};
 			GameContext.Game.Deactivated += (s, e) => {
-				SaveDataStore<SaveData>.Save ();
+				DataContext<SaveData>.Save ();
 			};
 
-			SaveDataStore<SaveData>.Setup ("__savedata", (name) => {
+			DataContext<SaveData>.Setup ("__savedata", (name) => {
 				SaveData data = null;
 				var deviceResult = StorageDevice.BeginShowSelector (null, null);
 				deviceResult.AsyncWaitHandle.WaitOne ();
@@ -89,6 +87,7 @@ namespace HorizontalShootingGame
                 return new AccelerometerState(new Vector3(1,0,0));
             });
             */
+            this._gameManager.ChangeScreen(new LoadScreen(),null,null);
 		}
 
 

@@ -1,15 +1,17 @@
-using CobaltFrame.Core.Data;
-using CobaltFrame.Mono.Context;
-using CobaltFrame.Mono.Screen;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Storage;
-using SimpleGame.Portable.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-using CobaltFrame.Core.Screen;
 using System.IO;
+using System.Linq;
+using CobaltFrame.Core.Screen;
+using System.Diagnostics;
+using Microsoft.Xna.Framework.Storage;
+using CobaltFrame.Screen;
+using CobaltFrame.Context;
+using SimpleGame.Portable.Data;
 using SimpleGame.Portable.Screen;
 
 namespace SimpleGame
@@ -22,19 +24,19 @@ namespace SimpleGame
         {
             Content.RootDirectory = "Content";
 
-            this._gameManager = new GameManager(this, new TitleScreen(), new Vector2(1360, 768), ScaleMode.Fill);
+            this._gameManager = new GameManager(this, new Point(1360, 768), ScaleMode.Fill);
             GameContext.GraphicsManager.IsFullScreen = true;
 
             GameContext.Game.Activated += (s, e) =>
             {
-                SaveDataStore<SaveData>.Load(new SaveData());
+                DataContext<SaveData>.Load(new SaveData());
             };
             GameContext.Game.Deactivated += (s, e) =>
             {
-                SaveDataStore<SaveData>.Save();
+                DataContext<SaveData>.Save();
             };
 
-            SaveDataStore<SaveData>.Setup("__savedata", (name) =>
+            DataContext<SaveData>.Setup("__savedata", (name) =>
             {
                 SaveData data = null;
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
@@ -96,6 +98,7 @@ namespace SimpleGame
                 return new AccelerometerState(new Vector3(1,0,0));
             });
             */
+            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
         }
 
 

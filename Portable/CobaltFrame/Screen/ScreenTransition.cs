@@ -11,7 +11,7 @@ using CobaltFrame.Screen;
 
 namespace CobaltFrame.Transition
 {
-    public abstract class ScreenTransition:GameObject,IScreenTransition
+    public abstract class ScreenTransition:GameObject2D,IScreenTransition
     {
         
         public ScreenTransition()

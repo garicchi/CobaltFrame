@@ -1,4 +1,5 @@
-﻿using CobaltFrame.Object;
+﻿using CobaltFrame.Context;
+using CobaltFrame.Object;
 using CobaltFrame.Transition;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,7 +13,7 @@ namespace CobaltFrame.Screen
 	/// <summary>
 	/// ゲーム画面
 	/// </summary>
-    public abstract class GameScreen:GameObject,IGameScreen
+    public abstract class GameScreen:GameObject2D,IGameScreen
     {
 		
         public GameScreen()
@@ -21,6 +22,7 @@ namespace CobaltFrame.Screen
             this._firstUpdate = false;
 
             this.OnNavigate += (sc,obj,trans) => { };
+            this.SetRect(new Rectangle(0, 0, GameContext.DefaultResolution.X, GameContext.DefaultResolution.Y));
         }
         #region Field
         protected TimeSpan _screenElapsedTime;
@@ -47,6 +49,11 @@ namespace CobaltFrame.Screen
         #endregion
 
         #region Method
+        public override void Init()
+        {
+            base.Init();
+            
+        }
 
         public override void Update(Context.FrameContext context)
         {
@@ -71,26 +78,31 @@ namespace CobaltFrame.Screen
         /// <param name="parameter"></param>
         /// <param name="fromTrans">From trans.</param>
         /// <param name="toTrans">To trans.</param>
-        public void Navigate(IGameScreen screen, object parameter, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
+        public void Navigate(IGameScreen screen, object parameter = null, IScreenTransition fromTrans = null, IScreenTransition toTrans = null)
         {
             if (_isNavigateStarted == false)
             {
                 if (fromTrans != null)
                 {
-                    var sFromTrans = fromTrans as ScreenTransition;
-                    AddChild(sFromTrans);
+                    this.AddChild(fromTrans);
 
-                    sFromTrans.OnCompleted += () =>
+                    fromTrans.OnCompleted += () =>
                     {
-                        RemoveChild(sFromTrans);
+                        RemoveChild(fromTrans);
+                        this.OnNavigate(screen, parameter, toTrans);
                     };
-                    sFromTrans.Start();
+
+                    fromTrans.Start();
+                }
+                else
+                {
+                    this.OnNavigate(screen, parameter, toTrans);
                 }
 
                 this._isNavigateStarted = true;
             }
 
-            this.OnNavigate(screen, parameter, toTrans);
+            
         }
 
 
@@ -103,13 +115,12 @@ namespace CobaltFrame.Screen
         {
             if (transition != null)
             {
-                var sTransition = transition as ScreenTransition;
-                this.AddChild(sTransition);
+                this.AddChild(transition);
 
-                sTransition.Start();
-                sTransition.OnCompleted += () =>
+                transition.Start();
+                transition.OnCompleted += () =>
                 {
-                    this.RemoveChild(sTransition);
+                    this.RemoveChild(transition);
                 };
             }
 

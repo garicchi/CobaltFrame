@@ -12,13 +12,14 @@ using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Common;
 using CobaltFrame.Context;
+using CobaltFrame.UI;
 
-namespace CobaltFrame.Mono.UI
+namespace CobaltFrame.UI
 {
     /// <summary>
     /// PressとReleaseでテクスチャを変えるボタンゲームオブジェクト
     /// </summary>
-    public class ButtonObject:GameObject
+    public class ButtonObject:GameObject2D
     {
         public ButtonObject(string pressedTexturePath, string releasedTexturePath)
         {
@@ -68,10 +69,10 @@ namespace CobaltFrame.Mono.UI
             
             //ボタンが押されたときの条件を登録
             this.Inputs.RegisterInput("_ButtonObjectOnClick",
-                () =>
+                (current,prev) =>
                 {
-                    if (InputContext.TouchCollection.Where(q => q.State == TouchLocationState.Pressed).Count() != 0
-                        && InputContext.TouchCollection.Where(q => this._rect.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                    if (current.Where(q => q.State == TouchLocationState.Pressed).Count() != 0
+                        && current.Where(q => this._rect.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
                     {
                         return true;
                     }
@@ -81,16 +82,16 @@ namespace CobaltFrame.Mono.UI
                     }
 
                 },
-                () => InputContext.MouseState.LeftButton == ButtonState.Pressed
-                    && InputContext.MouseStatePrev.LeftButton == ButtonState.Released
-                    && this._rect.Contains(InputContext.MouseState.Position.X, InputContext.MouseState.Position.Y)
+                (current,prev) => current.LeftButton == ButtonState.Pressed
+                    && prev.LeftButton == ButtonState.Released
+                    && this._rect.Contains(current.Position.X, current.Position.Y)
             );
 
             this.Inputs.RegisterInput("_ButtonObjectPressed",
-                () =>
+                (current,prev) =>
                 {
-                    if (InputContext.TouchCollection.Where(q => q.State == TouchLocationState.Pressed || q.State == TouchLocationState.Moved).Count() != 0
-                        && InputContext.TouchCollection.Where(q => this._rect.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
+                    if (current.Where(q => q.State == TouchLocationState.Pressed || q.State == TouchLocationState.Moved).Count() != 0
+                        && current.Where(q => this._rect.Contains((int)q.Position.X, (int)q.Position.Y)).Count() != 0)
                     {
                         return true;
                     }
@@ -100,8 +101,8 @@ namespace CobaltFrame.Mono.UI
                     }
 
                 },
-                () => InputContext.MouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed
-                    && this._rect.Contains(InputContext.MouseState.Position.X, InputContext.MouseState.Position.Y)
+                (current,prev) => current.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed
+                    && this._rect.Contains(current.Position.X, current.Position.Y)
             );
         }
 
@@ -130,12 +131,7 @@ namespace CobaltFrame.Mono.UI
             {
                 this._state = ButtonState.Released;
             }
-        }
 
-        public override void Draw(FrameContext context)
-        {
-            base.Draw(context);
-            
             switch (this._state)
             {
                 case ButtonState.Released:
@@ -147,7 +143,12 @@ namespace CobaltFrame.Mono.UI
                     this._pressedObject.IsVisible = true;
                     break;
             }
-            
+        }
+
+        public override void Draw(FrameContext context)
+        {
+            base.Draw(context);
+
         }
 
         public override void SetSize(Point size)

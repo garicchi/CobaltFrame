@@ -12,12 +12,12 @@ using CobaltFrame.Object;
 using CobaltFrame.Context;
 using CobaltFrame.Common;
 
-namespace CobaltFrame.Mono.UI
+namespace CobaltFrame.UI
 {
     /// <summary>
     /// ビットマップフォントでテキストを描画するオブジェクト
     /// </summary>
-    public class BitmapTextObject:GameObject
+    public class BitmapTextObject:GameObject2D
     {
         public BitmapTextObject(string fontPath, string text, float fontScale, Color color)
         {
@@ -152,9 +152,9 @@ namespace CobaltFrame.Mono.UI
         {
             base.Draw(context);
 
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, (context as FrameContext).ScreenTrans);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
             //初期座標を保持
-            var charPos = this.Rect.GetPosition();
+            var charPos = this.GetRect().GetPosition();
             //描画テキストを1文字ずつ取り出して
             foreach (var c in this._text)
             {

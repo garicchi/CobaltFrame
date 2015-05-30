@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CobaltFrame.Object;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CobaltFrame.Screen
 	/// <summary>
 	/// スクリーントランジションのインターフェース
 	/// </summary>
-    public interface IScreenTransition
+    public interface IScreenTransition:IGameObject2D
     {
 		/// <summary>
 		/// トランジション完了時のイベント
