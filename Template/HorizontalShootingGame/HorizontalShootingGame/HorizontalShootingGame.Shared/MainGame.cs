@@ -49,7 +49,7 @@ namespace CobaltFrame
             {
                 //データロード時
                 SaveData data = null;
-                /*
+                
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
                 var device = StorageDevice.EndShowSelector(deviceResult);
@@ -68,7 +68,7 @@ namespace CobaltFrame
 
                     }
                 }
-                */
+                
                 return data;
 
             }, (name, data) =>
