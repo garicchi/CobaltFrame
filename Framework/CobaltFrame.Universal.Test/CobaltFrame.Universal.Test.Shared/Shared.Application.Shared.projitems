@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c7878b0a-a427-4aae-9a65-daf2f4e0b3df</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CobaltFrame.Universal.Test</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MainGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SaveData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TitleScreen.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

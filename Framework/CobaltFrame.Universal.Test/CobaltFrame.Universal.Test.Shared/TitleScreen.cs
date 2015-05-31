@@ -14,7 +14,7 @@ namespace CobaltFrame
     {
         public TitleScreen()
         {
-            var sound = new SoundEffectObject("sound2",true);
+            var sound = new SoundEffectObject("sound",true);
             this.AddChild(sound);
             var obj = new TextButtonObject("press!", "System/Font/ipagothic", "System/Texture/button_on", "System/Texture/button_off");
             obj.OnClick += (pos) =>

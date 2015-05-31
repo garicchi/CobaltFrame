@@ -26,7 +26,6 @@ namespace HorizontalShootingGame.Portable.Screen
 		ButtonObject _shotButton;
 		List<EnemyBase> _enemyList;
 		BindableProperty<int> _score;
-
         
         public Stage1Screen()
             : base()
@@ -109,7 +108,7 @@ namespace HorizontalShootingGame.Portable.Screen
             {
                 this.AddChild(e);
             }
-            
+
         }
 
         public override void Load()

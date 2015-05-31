@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\sound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sound2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\System\Font\ipagothic_0.png" />
     <Content Include="Content\System\Texture\button_off.png" />
     <Content Include="Content\System\Texture\button_on.png" />
