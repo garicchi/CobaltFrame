@@ -53,7 +53,7 @@
     <Folder Include="Object\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Portable\CobaltFrame\CobaltFrame.csproj">
+    <ProjectReference Include="..\..\..\Framework\CobaltFrame\CobaltFrame.csproj">
       <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
       <Name>CobaltFrame</Name>
     </ProjectReference>

@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame", "CobaltFrame\CobaltFrame.csproj", "{96E9B4BD-49CC-4657-9694-EF801E031577}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A5C4B73E-1C1E-4B2C-83A5-54F7F8EA31FC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		Ad-Hoc|Mixed Platforms = Ad-Hoc|Mixed Platforms
+		AppStore|Any CPU = AppStore|Any CPU
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		AppStore|Mixed Platforms = AppStore|Mixed Platforms
+		Debug|Any CPU = Debug|Any CPU
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|Any CPU = Release|Any CPU
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Ad-Hoc|Mixed Platforms.Build.0 = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.AppStore|Mixed Platforms.Build.0 = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{96E9B4BD-49CC-4657-9694-EF801E031577}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

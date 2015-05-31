@@ -43,7 +43,7 @@ namespace HorizontalShootingGame.Portable.Screen
             this._player.Energy.Bind("playerDamage",q => this._playerEnergyBar.CurrentProgress = (float)q / 100.0f);
             this.AddChild(this._player);
 
-            var background = new Texture2DObject("Texture/frame");
+            var background = new RepeatableTexure2DObject("Texture/spaceback");
             background.SetRect(this.GetRect());
             background.LayerDepth = 1.0f;
             this.AddChild(background);

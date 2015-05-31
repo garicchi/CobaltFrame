@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{96E9B4BD-49CC-4657-9694-EF801E031577}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CobaltFrame</RootNamespace>
+    <AssemblyName>CobaltFrame</AssemblyName>
+    <DefaultLanguage>ja-JP</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="Region.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animation\ConditionAnimation.cs" />
+    <Compile Include="Animation\IConditionAnimation.cs" />
+    <Compile Include="Animation\IAnimation.cs" />
+    <Compile Include="Animation\InstantTimeAnimation.cs" />
+    <Compile Include="Animation\ITimeAnimation.cs" />
+    <Compile Include="Animation\AnimationState.cs" />
+    <Compile Include="Animation\PointConditionAnimation.cs" />
+    <Compile Include="Animation\PointTimeAnimation.cs" />
+    <Compile Include="Animation\TimeAnimation.cs" />
+    <Compile Include="Animation\TimeAnimationCollection.cs" />
+    <Compile Include="Animation\TimerAnimation.cs" />
+    <Compile Include="Animation\WaitAnimation.cs" />
+    <Compile Include="Common\BindableProperty.cs" />
+    <Compile Include="Common\CobaltFrameExtension.cs" />
+    <Compile Include="Common\Margin.cs" />
+    <Compile Include="Common\Resource.cs" />
+    <Compile Include="Context\ResourceContext.cs" />
+    <Compile Include="Context\FrameContext.cs" />
+    <Compile Include="Context\GameContext.cs" />
+    <Compile Include="Context\NotificationContext.cs" />
+    <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Input\AccelerometerState.cs" />
+    <Compile Include="Context\InputContext.cs" />
+    <Compile Include="Input\GameInputCollection.cs" />
+    <Compile Include="Input\InputCondition.cs" />
+    <Compile Include="Input\TouchInputCollection.cs" />
+    <Content Include="Template\MainGame.txt" />
+    <Compile Include="Object\GameObject.cs" />
+    <Compile Include="Object\GameObject2D.cs" />
+    <Compile Include="Object\IGameObject.cs" />
+    <Compile Include="Object\IGameObject2D.cs" />
+    <Compile Include="Object\ObjectLoadState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screen\IGameScreen.cs" />
+    <Compile Include="Screen\IGameManager.cs" />
+    <Compile Include="Screen\IScreenTransition.cs" />
+    <Compile Include="Screen\ScaleMode.cs" />
+    <Compile Include="Screen\GameScreen.cs" />
+    <Compile Include="Screen\GameManager.cs" />
+    <Compile Include="Screen\ScreenTransition.cs" />
+    <Compile Include="Sound\SongObject.cs" />
+    <Compile Include="Sound\SoundEffectObject.cs" />
+    <Compile Include="Transition\FadeColorTransition.cs" />
+    <Compile Include="UI\BitmapTextObject.cs" />
+    <Compile Include="UI\ButtonObject.cs" />
+    <Compile Include="UI\FontLoader.cs" />
+    <Compile Include="UI\ProgressBarObject.cs" />
+    <Compile Include="UI\RepeatableTexure2DObject.cs" />
+    <Compile Include="UI\SlidePadObject.cs" />
+    <Compile Include="UI\Texture2DObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.Portable.3.2.99.1-Beta\lib\portable-net45+win+wpa81+Xamarin.iOS10+MonoAndroid10+MonoTouch10\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューターにはない NuGet パッケージを参照しています。これらをダウンロードするには、NuGet パッケージの復元を有効にしてください。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。不足しているファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -17,7 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizontalShootingGame.Wind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizontalShootingGame.WindowsPhone", "HorizontalShootingGame\HorizontalShootingGame.WindowsPhone\HorizontalShootingGame.WindowsPhone.csproj", "{526E491F-6800-4E45-B45D-9B3AF33DB7A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame", "..\..\Portable\CobaltFrame\CobaltFrame.csproj", "{96E9B4BD-49CC-4657-9694-EF801E031577}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame", "..\..\Framework\CobaltFrame\CobaltFrame.csproj", "{96E9B4BD-49CC-4657-9694-EF801E031577}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5B960CA9-22C1-4DD2-BD35-9D318785DCF1}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

@@ -1,5 +1,4 @@
-﻿using HorizontalShootingGame.Portable.Data;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,39 +6,51 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
 using System.Linq;
-using HorizontalShootingGame.Portable.Screen;
 using CobaltFrame.Core.Screen;
 using System.Diagnostics;
-using HorizontalShootingGame.Portable;
 using Microsoft.Xna.Framework.Storage;
 using CobaltFrame.Screen;
 using CobaltFrame.Context;
+using CobaltFrame.Input;
+using HorizontalShootingGame.Portable.Data;
+using HorizontalShootingGame.Portable.Screen;
 
-namespace HorizontalShootingGame
+namespace CobaltFrame
 {
     public class MainGame : Game
     {
+        //ゲーム全体を管理するクラス
         GameManager _gameManager;
 
         public MainGame()
         {
             Content.RootDirectory = "Content";
 
-            this._gameManager = new GameManager(this, new Point(1360, 768), ScaleMode.Fill);
+            this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
             GameContext.GraphicsManager.IsFullScreen = true;
-
+            //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
             {
                 DataContext<SaveData>.Load(new SaveData());
             };
+            //アプリが無効になったときにセーブデータをセーブ
             GameContext.Game.Deactivated += (s, e) =>
             {
                 DataContext<SaveData>.Save();
             };
 
+            //ウインドウサイズの変更を通知
+            this.Window.ClientSizeChanged += (s, e) =>
+            {
+                this._gameManager.WindowSizeChanged(this.Window.ClientBounds);
+            };
+
+            //DataContextをセットアップ
             DataContext<SaveData>.Setup("__savedata", (name) =>
             {
+                //データロード時
                 SaveData data = null;
+
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
                 var device = StorageDevice.EndShowSelector(deviceResult);
@@ -58,10 +69,12 @@ namespace HorizontalShootingGame
 
                     }
                 }
+
                 return data;
 
             }, (name, data) =>
             {
+                //データセーブ時
                 try
                 {
                     var deviceResult = StorageDevice.BeginShowSelector(null, null);
@@ -93,13 +106,16 @@ namespace HorizontalShootingGame
             });
 
             /*
-            GameInput.SetupAccelState(() =>
+			//加速度センサーを使う場合はここでAPIを呼ぶ
+            InputContext.SetupAccelState(() =>
             {
 
                 return new AccelerometerState(new Vector3(1,0,0));
             });
             */
-            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
+
+            //最初の画面に遷移
+            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
         }
 
 

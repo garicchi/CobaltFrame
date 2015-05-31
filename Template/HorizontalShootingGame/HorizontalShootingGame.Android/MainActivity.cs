@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
-using CobaltFrame.Mono.Context;
+using CobaltFrame;
 
 namespace HorizontalShootingGame.Android
 {

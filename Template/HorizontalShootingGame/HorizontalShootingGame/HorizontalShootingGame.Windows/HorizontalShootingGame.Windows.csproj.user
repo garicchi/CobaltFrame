@@ -6,4 +6,7 @@
     <UseAuthentication>true</UseAuthentication>
     <RemoteDebugEnabled>true</RemoteDebugEnabled>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <UseSimulator>true</UseSimulator>
+  </PropertyGroup>
 </Project>

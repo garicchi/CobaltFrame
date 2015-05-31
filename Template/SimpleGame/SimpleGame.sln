@@ -11,14 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame.Portable", "Simp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame.Android", "SimpleGame.Android\SimpleGame.Android.csproj", "{DAFECB7F-3295-4123-A147-EA2D792A018D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame", "..\..\Portable\CobaltFrame\CobaltFrame.csproj", "{96E9B4BD-49CC-4657-9694-EF801E031577}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B6494A5A-971A-4EED-BB71-087C72274FBE}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame", "..\..\Framework\CobaltFrame\CobaltFrame.csproj", "{96E9B4BD-49CC-4657-9694-EF801E031577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

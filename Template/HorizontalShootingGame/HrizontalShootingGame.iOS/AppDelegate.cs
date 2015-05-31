@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using HorizontalShootingGame;
+using CobaltFrame;
 
 namespace HrizontalShootingGame.iOS
 {

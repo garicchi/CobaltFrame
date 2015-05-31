@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using MonoGame.Framework;
 using Windows.ApplicationModel.Activation;
+using CobaltFrame;
 
 
 namespace SimpleGame.Windows

@@ -11,34 +11,46 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Storage;
 using CobaltFrame.Screen;
 using CobaltFrame.Context;
+using CobaltFrame.Input;
 using SimpleGame.Portable.Data;
 using SimpleGame.Portable.Screen;
 
-namespace SimpleGame
+namespace CobaltFrame
 {
     public class MainGame : Game
     {
+        //ゲーム全体を管理するクラス
         GameManager _gameManager;
 
         public MainGame()
         {
             Content.RootDirectory = "Content";
 
-            this._gameManager = new GameManager(this, new Point(1360, 768), ScaleMode.Fill);
+            this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
             GameContext.GraphicsManager.IsFullScreen = true;
-
+            //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
             {
                 DataContext<SaveData>.Load(new SaveData());
             };
+            //アプリが無効になったときにセーブデータをセーブ
             GameContext.Game.Deactivated += (s, e) =>
             {
                 DataContext<SaveData>.Save();
             };
 
+            //ウインドウサイズの変更を通知
+            this.Window.ClientSizeChanged += (s, e) =>
+            {
+                this._gameManager.WindowSizeChanged(this.Window.ClientBounds);
+            };
+
+            //DataContextをセットアップ
             DataContext<SaveData>.Setup("__savedata", (name) =>
             {
+                //データロード時
                 SaveData data = null;
+
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
                 var device = StorageDevice.EndShowSelector(deviceResult);
@@ -57,10 +69,12 @@ namespace SimpleGame
 
                     }
                 }
+
                 return data;
 
             }, (name, data) =>
             {
+                //データセーブ時
                 try
                 {
                     var deviceResult = StorageDevice.BeginShowSelector(null, null);
@@ -92,12 +106,15 @@ namespace SimpleGame
             });
 
             /*
-            GameInput.SetupAccelState(() =>
+			//加速度センサーを使う場合はここでAPIを呼ぶ
+            InputContext.SetupAccelState(() =>
             {
 
                 return new AccelerometerState(new Vector3(1,0,0));
             });
             */
+
+            //最初の画面に遷移
             this._gameManager.ChangeScreen(new TitleScreen(), null, null);
         }
 
