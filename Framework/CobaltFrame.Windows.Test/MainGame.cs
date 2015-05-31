@@ -1,4 +1,4 @@
-ï»¿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,14 +12,12 @@ using Microsoft.Xna.Framework.Storage;
 using CobaltFrame.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Input;
-using HorizontalShootingGame.Portable.Data;
-using HorizontalShootingGame.Portable.Screen;
 
 namespace CobaltFrame
 {
     public class MainGame : Game
     {
-        //ã‚²ãƒ¼ãƒ å…¨ä½“ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
+        //ƒQ[ƒ€‘S‘Ì‚ğŠÇ—‚·‚éƒNƒ‰ƒX
         GameManager _gameManager;
 
         public MainGame()
@@ -27,29 +25,29 @@ namespace CobaltFrame
             Content.RootDirectory = "Content";
 
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
-            //ã‚¢ãƒ—ãƒªãŒæœ‰åŠ¹ã«ãªã£ãŸã¨ãã«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
+            //ƒAƒvƒŠ‚ª—LŒø‚É‚È‚Á‚½‚Æ‚«‚ÉƒZ[ƒuƒf[ƒ^‚ğƒ[ƒh
             GameContext.Game.Activated += (s, e) =>
             {
                 DataContext<SaveData>.Load(new SaveData());
             };
-            //ã‚¢ãƒ—ãƒªãŒç„¡åŠ¹ã«ãªã£ãŸã¨ãã«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
+            //ƒAƒvƒŠ‚ª–³Œø‚É‚È‚Á‚½‚Æ‚«‚ÉƒZ[ƒuƒf[ƒ^‚ğƒZ[ƒu
             GameContext.Game.Deactivated += (s, e) =>
             {
                 DataContext<SaveData>.Save();
             };
 
-            //ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®å¤‰æ›´ã‚’é€šçŸ¥
-            this.Window.ClientSizeChanged += (s, e) =>
+            //ƒEƒCƒ“ƒhƒEƒTƒCƒY‚Ì•ÏX‚ğ’Ê’m
+            this.Window.ClientSizeChanged+=(s,e)=>
             {
                 this._gameManager.WindowSizeChanged(this.Window.ClientBounds);
             };
 
-            //DataContextã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+            //DataContext‚ğƒZƒbƒgƒAƒbƒv
             DataContext<SaveData>.Setup("__savedata", (name) =>
             {
-                //ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰æ™‚
+                //ƒf[ƒ^ƒ[ƒh
                 SaveData data = null;
-                /*
+
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
                 var device = StorageDevice.EndShowSelector(deviceResult);
@@ -68,12 +66,12 @@ namespace CobaltFrame
 
                     }
                 }
-                */
+
                 return data;
 
             }, (name, data) =>
             {
-                //ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–æ™‚
+                //ƒf[ƒ^ƒZ[ƒu
                 try
                 {
                     var deviceResult = StorageDevice.BeginShowSelector(null, null);
@@ -105,7 +103,7 @@ namespace CobaltFrame
             });
 
             /*
-			//åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã‚’ä½¿ã†å ´åˆã¯ã“ã“ã§APIã‚’å‘¼ã¶
+			//‰Á‘¬“xƒZƒ“ƒT[‚ğg‚¤ê‡‚Í‚±‚±‚ÅAPI‚ğŒÄ‚Ô
             InputContext.SetupAccelState(() =>
             {
 
@@ -113,8 +111,8 @@ namespace CobaltFrame
             });
             */
 
-            //æœ€åˆã®ç”»é¢ã«é·ç§»
-            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
+            //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
+            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
         }
 
 

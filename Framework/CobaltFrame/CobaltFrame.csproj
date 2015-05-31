@@ -127,6 +127,7 @@
     <Compile Include="UI\ProgressBarObject.cs" />
     <Compile Include="UI\RepeatableTexure2DObject.cs" />
     <Compile Include="UI\SlidePadObject.cs" />
+    <Compile Include="UI\TextButtonObject.cs" />
     <Compile Include="UI\Texture2DObject.cs" />
   </ItemGroup>
   <ItemGroup>

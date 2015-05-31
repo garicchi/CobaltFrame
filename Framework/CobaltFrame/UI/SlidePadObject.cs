@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CobaltFrame.Common;
 using CobaltFrame.UI;
+using Microsoft.Xna.Framework.Input;
 
 namespace CobaltFrame.UI
 {
@@ -47,11 +48,10 @@ namespace CobaltFrame.UI
         public override void Load()
         {
             base.Load();
-            Inputs.RegisterInput("_PadSlide", (current,prev) =>
+            Inputs.RegisterInput("_PadTouch", (current,prev) =>
             {
                 if (current.IsTouch)
                 {
-                    
                     var touchEnum = current.Where(q=>this.PadObject.GetRect().Contains(q.Position));
                     
                     if(touchEnum.Count()>0){
@@ -69,6 +69,19 @@ namespace CobaltFrame.UI
                     return false;
                 }
             });
+
+            Inputs.RegisterInput("_PadClick", null,(current, prev) =>
+            {
+                if (current.LeftButton==ButtonState.Pressed)
+                {
+                    return this.PadObject.GetRect().Contains(current.Position);
+
+                }
+                else
+                {
+                    return false;
+                }
+            });
         }
 
         public override void Update(FrameContext context)
@@ -76,7 +89,7 @@ namespace CobaltFrame.UI
             base.Update(context);
             
 
-            if (Inputs.IsInput("_PadSlide")&&this.BackObject.GetRect().Intersects(this.PadObject.GetRect()))
+            if (Inputs.IsInput("_PadTouch")&&this.BackObject.GetRect().Intersects(this.PadObject.GetRect()))
             {
                 var location = InputContext.TouchCollection.Where(q => q.Id == _padTouchId).First();
                 
@@ -90,6 +103,20 @@ namespace CobaltFrame.UI
                 
                 this.CurrentValue = delta;
                 
+            }else if (Inputs.IsInput("_PadClick") && this.BackObject.GetRect().Intersects(this.PadObject.GetRect()))
+            {
+                var location = InputContext.MouseState.Position;
+
+                this.PadObject.SetAbsolutePosition(
+                    new Point(
+                        (int)(location.X - this.PadObject.GetRect().Width / 2),
+                        (int)(location.Y - this.PadObject.GetRect().Height / 2)
+                        )
+                    );
+                var delta = this.PadObject.GetCenter() - this.BackObject.GetCenter();
+
+                this.CurrentValue = delta;
+
             }
             else
             {

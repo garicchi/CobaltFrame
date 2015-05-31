@@ -25,7 +25,7 @@ namespace CobaltFrame.UI
         {
             this._pressedObject = new Texture2DObject(pressedTexturePath);
             this._releasedObject = new Texture2DObject(releasedTexturePath);
-
+            this.SetSize(new Point(240,80));
             this.AddChild(this._pressedObject);
             this.AddChild(this._releasedObject);
 

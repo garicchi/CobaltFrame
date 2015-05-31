@@ -1,4 +1,5 @@
 ﻿using CobaltFrame.Screen;
+using CobaltFrame.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace CobaltFrame
     {
         public TitleScreen()
         {
+            //var obj = new TextButtonObject("press!", "System/Font/ipagothic", "System/Texture/button_on", "System/Texture/button_off");
+            //this.AddChild(obj);
 
+            var slidepad = new SlidePadObject("System/Texture/slidepad_pad","System/Texture/slidepad_back");
+            this.AddChild(slidepad);
         }
 
         /// <summary>
