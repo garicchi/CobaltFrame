@@ -114,7 +114,7 @@ namespace CobaltFrame
             */
 
             //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
-            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 

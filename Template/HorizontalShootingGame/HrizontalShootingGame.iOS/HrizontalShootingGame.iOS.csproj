@@ -91,7 +91,7 @@
   <ItemGroup>
     <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.7\lib\CobaltFrame.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.9\lib\CobaltFrame.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -110,7 +110,9 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\System\Font\ipagothic.fnt" />
+    <Content Include="Content\System\Font\ipagothic.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
@@ -129,6 +131,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Content\System\Texture\slidepad_pad.png" />
+    <BundleResource Include="Content\System\Texture\slidepad_back.png" />
+    <BundleResource Include="Content\System\Texture\progress_value.png" />
+    <BundleResource Include="Content\System\Texture\progress_frame.png" />
+    <BundleResource Include="Content\System\Texture\circlebutton_on.png" />
+    <BundleResource Include="Content\System\Texture\circlebutton_off.png" />
+    <BundleResource Include="Content\System\Texture\button_on.png" />
+    <BundleResource Include="Content\System\Texture\button_off.png" />
+    <BundleResource Include="Content\System\Font\ipagothic_0.png" />
     <Content Include="Content\Texture\bullet.png" />
     <Content Include="Content\Texture\enemy1.png" />
     <Content Include="Content\Texture\enemy2.png" />
@@ -141,17 +152,6 @@
     <Content Include="Content\Texture\spaceback.png" />
     <Content Include="Content\Texture\titlebutton_off.png" />
     <Content Include="Content\Texture\titlebutton_on.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Content\System\Texture\slidepad_pad.png" />
-    <BundleResource Include="Content\System\Texture\slidepad_back.png" />
-    <BundleResource Include="Content\System\Texture\progress_value.png" />
-    <BundleResource Include="Content\System\Texture\progress_frame.png" />
-    <BundleResource Include="Content\System\Texture\circlebutton_on.png" />
-    <BundleResource Include="Content\System\Texture\circlebutton_off.png" />
-    <BundleResource Include="Content\System\Texture\button_on.png" />
-    <BundleResource Include="Content\System\Texture\button_off.png" />
-    <BundleResource Include="Content\System\Font\ipagothic_0.png" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

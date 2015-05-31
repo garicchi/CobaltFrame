@@ -12,8 +12,8 @@ using Microsoft.Xna.Framework.Storage;
 using CobaltFrame.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Input;
-using HorizontalShootingGame.Portable.Data;
 using HorizontalShootingGame.Portable.Screen;
+using HorizontalShootingGame.Portable.Data;
 
 namespace CobaltFrame
 {
@@ -114,7 +114,7 @@ namespace CobaltFrame
             */
 
             //ç≈èâÇÃâÊñ Ç…ëJà⁄
-            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 

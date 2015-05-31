@@ -135,7 +135,7 @@
   <ItemGroup>
     <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\CobaltFrame.1.0.7\lib\CobaltFrame.dll</HintPath>
+      <HintPath>..\..\packages\CobaltFrame.1.0.9\lib\CobaltFrame.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\WindowsPhone81\MonoGame.Framework.dll</HintPath>

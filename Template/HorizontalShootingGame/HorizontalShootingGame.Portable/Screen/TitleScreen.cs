@@ -30,6 +30,7 @@ namespace HorizontalShootingGame.Portable.Screen
 		public override void Init ()
 		{
 			base.Init ();
+            
             this._startButton = new BitmapTextObject("System/Font/ipagothic", "start", 4, Color.White);
             this._startButton.SetRect(new Rectangle((int)this.GetRect().GetCenter().X, (int)this.GetRect().GetCenter().Y, 500, 100));
 			this.AddChild(this._startButton);

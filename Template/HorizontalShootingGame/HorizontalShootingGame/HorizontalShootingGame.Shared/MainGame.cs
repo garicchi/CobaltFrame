@@ -25,7 +25,7 @@ namespace CobaltFrame
         public MainGame()
         {
             Content.RootDirectory = "Content";
-
+            
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
             //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>

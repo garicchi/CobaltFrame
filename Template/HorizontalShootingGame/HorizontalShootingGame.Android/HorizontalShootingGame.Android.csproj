@@ -42,7 +42,7 @@
   <ItemGroup>
     <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.7\lib\CobaltFrame.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.9\lib\CobaltFrame.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -59,7 +59,9 @@
     <Compile Include="MainGame.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\System\Font\ipagothic.fnt" />
+    <Content Include="Content\System\Font\ipagothic.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
