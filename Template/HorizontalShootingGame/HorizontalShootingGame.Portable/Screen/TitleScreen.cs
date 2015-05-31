@@ -30,11 +30,11 @@ namespace HorizontalShootingGame.Portable.Screen
 		public override void Init ()
 		{
 			base.Init ();
-			this._startButton = new BitmapTextObject ("Font/meiryo","start",4,Color.White);
+            this._startButton = new BitmapTextObject("System/Font/ipagothic", "start", 4, Color.White);
             this._startButton.SetRect(new Rectangle((int)this.GetRect().GetCenter().X, (int)this.GetRect().GetCenter().Y, 500, 100));
 			this.AddChild(this._startButton);
 
-			this._scoreText = new BitmapTextObject ("Font/meiryo","high score ",4,Color.White);
+            this._scoreText = new BitmapTextObject("System/Font/ipagothic", "high score ", 4, Color.White);
             this._scoreText.SetRect(new Rectangle(10,10,500,100));
 			this.AddChild(this._scoreText);
 

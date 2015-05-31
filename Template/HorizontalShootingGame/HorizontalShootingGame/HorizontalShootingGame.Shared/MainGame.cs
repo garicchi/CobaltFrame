@@ -27,7 +27,6 @@ namespace CobaltFrame
             Content.RootDirectory = "Content";
 
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
-            GameContext.GraphicsManager.IsFullScreen = true;
             //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
             {

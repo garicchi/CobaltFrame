@@ -37,6 +37,33 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="Content\System\Font\ipagothic_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\button_off.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\button_on.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\circlebutton_off.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\circlebutton_on.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\progress_frame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\progress_value.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\slidepad_back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\slidepad_pad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Region.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +93,12 @@
     <Compile Include="Input\GameInputCollection.cs" />
     <Compile Include="Input\InputCondition.cs" />
     <Compile Include="Input\TouchInputCollection.cs" />
-    <Content Include="Template\MainGame.txt" />
+    <Content Include="Content\System\Font\ipagothic.fnt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Template\MainGame.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Object\GameObject.cs" />
     <Compile Include="Object\GameObject2D.cs" />
     <Compile Include="Object\IGameObject.cs" />
@@ -82,6 +114,12 @@
     <Compile Include="Screen\ScreenTransition.cs" />
     <Compile Include="Sound\SongObject.cs" />
     <Compile Include="Sound\SoundEffectObject.cs" />
+    <None Include="Template\SaveData.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\TitleScreen.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Transition\FadeColorTransition.cs" />
     <Compile Include="UI\BitmapTextObject.cs" />
     <Compile Include="UI\ButtonObject.cs" />
@@ -99,6 +137,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

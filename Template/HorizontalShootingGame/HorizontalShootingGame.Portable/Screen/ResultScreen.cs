@@ -23,11 +23,11 @@ namespace HorizontalShootingGame.Portable
 		public override void Init ()
 		{
 			base.Init ();
-			this._yourResultText = new BitmapTextObject ("Font/meiryo","your score is",3,Color.White);
+            this._yourResultText = new BitmapTextObject("System/Font/ipagothic", "your score is", 3, Color.White);
             this._yourResultText.SetRect(new Rectangle(this.GetCenter().X - 250, this.GetCenter().Y - 200, 600, 200));
 			this.AddChild (this._yourResultText);
 
-			this._scoreText = new BitmapTextObject ("Font/meiryo","0",6,Color.White);
+            this._scoreText = new BitmapTextObject("System/Font/ipagothic", "0", 6, Color.White);
             this._scoreText.SetRect(new Rectangle(this.GetCenter().X-100,this.GetCenter().Y+20,200,200));
             this.AddChild (this._scoreText);
 

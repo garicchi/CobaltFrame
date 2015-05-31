@@ -40,6 +40,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CobaltFrame.1.0.7\lib\CobaltFrame.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -55,6 +59,7 @@
     <Compile Include="MainGame.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\System\Font\ipagothic.fnt" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
@@ -74,41 +79,33 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Framework\CobaltFrame\CobaltFrame.csproj">
-      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
-      <Name>CobaltFrame</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HorizontalShootingGame.Portable\HorizontalShootingGame.Portable.csproj">
       <Project>{2A01C06B-897B-412E-847E-2A50BA167DE5}</Project>
       <Name>HorizontalShootingGame.Portable</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <AndroidAsset Include="Content\Texture\bullet.png" />
-    <AndroidAsset Include="Content\Texture\enemy1.png" />
-    <AndroidAsset Include="Content\Texture\enemy2.png" />
-    <AndroidAsset Include="Content\Texture\enemy3.png" />
-    <AndroidAsset Include="Content\Texture\player.png">
+    <Content Include="Content\System\Font\ipagothic_0.png" />
+    <Content Include="Content\System\Texture\button_off.png" />
+    <Content Include="Content\System\Texture\button_on.png" />
+    <Content Include="Content\System\Texture\circlebutton_off.png" />
+    <Content Include="Content\System\Texture\circlebutton_on.png" />
+    <Content Include="Content\System\Texture\progress_frame.png" />
+    <Content Include="Content\System\Texture\progress_value.png" />
+    <Content Include="Content\System\Texture\slidepad_back.png" />
+    <Content Include="Content\System\Texture\slidepad_pad.png" />
+    <Content Include="Content\Texture\bullet.png" />
+    <Content Include="Content\Texture\enemy1.png" />
+    <Content Include="Content\Texture\enemy2.png" />
+    <Content Include="Content\Texture\enemy3.png" />
+    <Content Include="Content\Texture\frame.png" />
+    <Content Include="Content\Texture\loading.png" />
+    <Content Include="Content\Texture\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="Content\Texture\progress_frame.png" />
-    <AndroidAsset Include="Content\Texture\progress_inner.png" />
-    <AndroidAsset Include="Content\Texture\shotbutton_off.png" />
-    <AndroidAsset Include="Content\Texture\shotbutton_on.png" />
-    <AndroidAsset Include="Content\Texture\slidepad_back.png" />
-    <AndroidAsset Include="Content\Texture\slidepad_pad.png" />
-    <AndroidAsset Include="Content\Texture\spaceback.png" />
-    <AndroidAsset Include="Content\Texture\frame.png" />
-    <AndroidAsset Include="Content\Font\meiryo_0.mgcontent" />
-    <AndroidAsset Include="Content\Font\meiryo_0.xnb" />
-    <AndroidAsset Include="Content\Font\meiryo_0.png" />
-    <AndroidAsset Include="Content\Font\meiryo.fnt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="Content\Texture\titlebutton_on.png" />
-    <AndroidAsset Include="Content\Texture\titlebutton_off.png" />
-    <AndroidAsset Include="Content\Texture\loading.png" />
+    </Content>
+    <Content Include="Content\Texture\spaceback.png" />
+    <Content Include="Content\Texture\titlebutton_off.png" />
+    <Content Include="Content\Texture\titlebutton_on.png" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

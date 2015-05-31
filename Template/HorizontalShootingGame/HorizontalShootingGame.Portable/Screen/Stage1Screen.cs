@@ -48,15 +48,15 @@ namespace HorizontalShootingGame.Portable.Screen
             background.LayerDepth = 1.0f;
             this.AddChild(background);
 
-			this._playerEnergyBar = new ProgressBarObject(new Margin(10,10,10,10), "Texture/progress_frame", "Texture/progress_inner");
+            this._playerEnergyBar = new ProgressBarObject(new Margin(10, 10, 10, 10), "System/Texture/progress_frame", "System/Texture/progress_value");
             this._playerEnergyBar.SetRect(new Rectangle(30, 10, 461 ,93));
             this.AddChild(this._playerEnergyBar);
 
-            this._slidePad = new SlidePadObject("Texture/slidepad_pad", "Texture/slidepad_back");
+            this._slidePad = new SlidePadObject("System/Texture/slidepad_pad", "System/Texture/slidepad_back");
             this._slidePad.SetRect(new Rectangle(50, this.GetRect().Height - 150, 100, 100));
             this.AddChild(this._slidePad);
 
-			this._shotButton = new ButtonObject ("Texture/shotbutton_on","Texture/shotbutton_off");
+            this._shotButton = new ButtonObject("System/Texture/circlebutton_on", "System/Texture/circlebutton_off");
             this._shotButton.SetRect(new Rectangle(this.GetRect().Width-100,this.GetRect().Height-100,100,100));
             this._shotButton.OnClick += (pos) => 
 			{
@@ -68,7 +68,7 @@ namespace HorizontalShootingGame.Portable.Screen
 			this._score = new BindableProperty<int>();
 			this._score.Value = 0;
 
-			this._scoreText = new BitmapTextObject ("Font/meiryo",this._score.Value.ToString(),4,Color.White);
+            this._scoreText = new BitmapTextObject("System/Font/ipagothic", this._score.Value.ToString(), 4, Color.White);
             this._scoreText.SetRect(new Rectangle(this.GetRect().Width-500,10,800,80));
             this.AddChild(this._scoreText);
 

@@ -41,7 +41,7 @@ namespace HorizontalShootingGame.Portable.Screen
 			{
                 
                 //XNAのコンテンツじゃない場合はこっち
-                ResourceContext.LoadWithoutManager<FontFile> ("Font/meiryo",()=>FontLoader.Load("Font/meiryo"));
+                ResourceContext.LoadWithoutManager<FontFile>("System/Font/ipagothic", () => FontLoader.Load("System/Font/ipagothic"));
 			});
 			
 			base.Init ();
