@@ -19,6 +19,8 @@
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -106,19 +108,23 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\CobaltFrame\CobaltFrame.csproj">
-      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
-      <Name>CobaltFrame</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Content\System\Font\ipagothic_0.png" />
+    <Content Include="Content\System\Texture\button_off.png" />
+    <Content Include="Content\System\Texture\button_on.png" />
+    <Content Include="Content\System\Texture\circlebutton_off.png" />
+    <Content Include="Content\System\Texture\circlebutton_on.png" />
+    <Content Include="Content\System\Texture\loading.png" />
+    <Content Include="Content\System\Texture\progress_frame.png" />
+    <Content Include="Content\System\Texture\progress_value.png" />
+    <Content Include="Content\System\Texture\sample_player.png" />
+    <Content Include="Content\System\Texture\slidepad_back.png" />
+    <Content Include="Content\System\Texture\slidepad_pad.png" />
     <None Include="CobaltFrame.Universal.Test.Windows_TemporaryKey.pfx" />
     <Content Include="Content\sound2.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -126,6 +132,7 @@
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
@@ -135,15 +142,6 @@
     <Content Include="Content\sound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\System\Font\ipagothic_0.png" />
-    <Content Include="Content\System\Texture\button_off.png" />
-    <Content Include="Content\System\Texture\button_on.png" />
-    <Content Include="Content\System\Texture\circlebutton_off.png" />
-    <Content Include="Content\System\Texture\circlebutton_on.png" />
-    <Content Include="Content\System\Texture\progress_frame.png" />
-    <Content Include="Content\System\Texture\progress_value.png" />
-    <Content Include="Content\System\Texture\slidepad_back.png" />
-    <Content Include="Content\System\Texture\slidepad_pad.png" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\CobaltFrame.Universal.Test.Shared\Content\Content.mgcb">
@@ -151,6 +149,9 @@
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CobaltFrame">
+      <HintPath>..\..\packages\CobaltFrame.1.0.25\lib\CobaltFrame.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -161,6 +162,13 @@
   <Import Project="..\CobaltFrame.Universal.Test.Shared\Shared.Application.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューターにはない NuGet パッケージを参照しています。これらをダウンロードするには、NuGet パッケージの復元を有効にしてください。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。不足しているファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

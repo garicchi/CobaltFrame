@@ -18,7 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)LoadScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResultScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SaveData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TitleScreen.cs" />
   </ItemGroup>
