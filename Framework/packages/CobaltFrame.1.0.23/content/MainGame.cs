@@ -13,6 +13,11 @@ using CobaltFrame.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Input;
 
+#if WINDOWS_PHONE_APP||WINDOWS_APP
+using Windows.Storage;
+using Windows.Storage.Streams;
+#endif
+
 namespace CobaltFrame
 {
     public class MainGame : Game
@@ -37,7 +42,7 @@ namespace CobaltFrame
             };
 
             //ウインドウサイズの変更を通知
-            this.Window.ClientSizeChanged+=(s,e)=>
+            this.Window.ClientSizeChanged += (s, e) =>
             {
                 this._gameManager.WindowSizeChanged(this.Window.ClientBounds);
             };
@@ -48,11 +53,26 @@ namespace CobaltFrame
                 //データロード時
                 SaveData data = null;
 
+#if WINDOWS_PHONE_APP||WINDOWS_APP
+                var folder = ApplicationData.Current.LocalFolder;
+                var files = folder.GetFilesAsync().AsTask<IReadOnlyList<StorageFile>>().Result;
+                if (files.Any(q => q.Name == name))
+                {
+                    using (var stream = files.First(q => q.Name == name).OpenReadAsync().AsTask<IRandomAccessStreamWithContentType>().Result.AsStream())
+                    {
+                        var serializer = new XmlSerializer(typeof(SaveData));
+                        data = (SaveData)serializer.Deserialize(stream);
+                    }
+                }
+                
+#else
+
                 var deviceResult = StorageDevice.BeginShowSelector(null, null);
                 deviceResult.AsyncWaitHandle.WaitOne();
                 var device = StorageDevice.EndShowSelector(deviceResult);
                 var containerResult = device.BeginOpenContainer(name, null, null);
                 containerResult.AsyncWaitHandle.WaitOne();
+
                 using (var container = device.EndOpenContainer(containerResult))
                 {
 
@@ -66,7 +86,7 @@ namespace CobaltFrame
 
                     }
                 }
-
+#endif
                 return data;
 
             }, (name, data) =>
@@ -74,6 +94,16 @@ namespace CobaltFrame
                 //データセーブ時
                 try
                 {
+#if WINDOWS_PHONE_APP||WINDOWS_APP
+                    var folder = ApplicationData.Current.LocalFolder;
+
+                    var file = folder.CreateFileAsync(name,CreationCollisionOption.ReplaceExisting).AsTask<StorageFile>().Result;
+                    using (var stream = file.OpenAsync(FileAccessMode.ReadWrite).AsTask<IRandomAccessStream>().Result.AsStream())
+                    {
+                        var serializer = new XmlSerializer(typeof(SaveData));
+                        serializer.Serialize(stream, data);
+                    }
+#else
                     var deviceResult = StorageDevice.BeginShowSelector(null, null);
                     deviceResult.AsyncWaitHandle.WaitOne();
                     var device = StorageDevice.EndShowSelector(deviceResult);
@@ -92,9 +122,10 @@ namespace CobaltFrame
                         }
                     }
 
+#endif
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }

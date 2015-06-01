@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CobaltFrame.Template
+namespace CobaltFrame
 {
     //最初のゲーム画面
     public class TitleScreen:GameScreen

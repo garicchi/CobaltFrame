@@ -13,7 +13,7 @@ using CobaltFrame.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Input;
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
 using Windows.Storage;
 using Windows.Storage.Streams;
 #endif
@@ -53,7 +53,7 @@ namespace CobaltFrame
                 //データロード時
                 SaveData data = null;
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
                 var folder = ApplicationData.Current.LocalFolder;
                 var files = folder.GetFilesAsync().AsTask<IReadOnlyList<StorageFile>>().Result;
                 if (files.Any(q => q.Name == name))
@@ -94,7 +94,7 @@ namespace CobaltFrame
                 //データセーブ時
                 try
                 {
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
                     var folder = ApplicationData.Current.LocalFolder;
 
                     var file = folder.CreateFileAsync(name,CreationCollisionOption.ReplaceExisting).AsTask<StorageFile>().Result;
