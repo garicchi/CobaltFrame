@@ -44,16 +44,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LoadScreen.cs" />
     <Compile Include="MainGame.cs" />
+    <Compile Include="PlayScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultScreen.cs" />
     <Compile Include="SaveData.cs" />
     <Compile Include="TitleScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.23\lib\CobaltFrame.dll</HintPath>
+      <HintPath>..\packages\CobaltFrame.1.0.24\lib\CobaltFrame.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
@@ -62,21 +65,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\sound.wav">
+    <Content Include="Content\System\Texture\sample_player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound2.wav">
+    <Content Include="Content\System\Font\ipagothic_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\System\Font\ipagothic_0.png" />
-    <Content Include="Content\System\Texture\button_off.png" />
-    <Content Include="Content\System\Texture\button_on.png" />
-    <Content Include="Content\System\Texture\circlebutton_off.png" />
-    <Content Include="Content\System\Texture\circlebutton_on.png" />
-    <Content Include="Content\System\Texture\progress_frame.png" />
-    <Content Include="Content\System\Texture\progress_value.png" />
-    <Content Include="Content\System\Texture\slidepad_back.png" />
-    <Content Include="Content\System\Texture\slidepad_pad.png" />
+    <Content Include="Content\System\Texture\button_off.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\button_on.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\circlebutton_off.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\circlebutton_on.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\loading.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\progress_frame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\progress_value.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\slidepad_back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\System\Texture\slidepad_pad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

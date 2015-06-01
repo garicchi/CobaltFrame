@@ -20,6 +20,9 @@ using Windows.Storage.Streams;
 
 namespace CobaltFrame
 {
+    /// <summary>
+    /// すべての親となるゲームクラス
+    /// </summary>
     public class MainGame : Game
     {
         //ゲーム全体を管理するクラス
@@ -29,7 +32,9 @@ namespace CobaltFrame
         {
             Content.RootDirectory = "Content";
 
+            //ゲーム画面の解像度を指定
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
+
             //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
             {
@@ -134,7 +139,7 @@ namespace CobaltFrame
             });
 
             /*
-			//加速度センサーを使う場合はここでAPIを呼ぶ
+			//加速度センサーを使う場合はここでAPIを呼んで加速度情報を返す
             InputContext.SetupAccelState(() =>
             {
 
@@ -143,7 +148,7 @@ namespace CobaltFrame
             */
 
             //最初の画面に遷移
-            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 
@@ -153,7 +158,9 @@ namespace CobaltFrame
             this._gameManager.Init();
             base.Initialize();
 
-
+#if WINDOWS
+            GameContext.Game.IsMouseVisible = true;
+#endif
         }
 
         protected override void LoadContent()

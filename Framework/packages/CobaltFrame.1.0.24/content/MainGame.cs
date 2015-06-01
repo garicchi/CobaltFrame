@@ -143,7 +143,7 @@ namespace CobaltFrame
             */
 
             //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
-            this._gameManager.ChangeScreen(new TitleScreen(), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 
@@ -153,7 +153,9 @@ namespace CobaltFrame
             this._gameManager.Init();
             base.Initialize();
 
-
+#if WINDOWS
+            GameContext.Game.IsMouseVisible = true;
+#endif
         }
 
         protected override void LoadContent()

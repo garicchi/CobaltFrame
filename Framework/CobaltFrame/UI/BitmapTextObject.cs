@@ -170,10 +170,10 @@ namespace CobaltFrame.UI
                         new Rectangle(fc.X, fc.Y, fc.Width, fc.Height), this._drawColor);
                     //次の文字を描画するために座標を移動
                     charPos.X += (int)(fc.XAdvance * this._fontScale);
-                    if (charPos.X > (this._rect.X + this._rect.Width))
+                    if (charPos.X > (this.GetRect().X + this.GetRect().Width))
                     {
                         charPos.Y += (int)(fc.Height * this._fontScale + _rowOffset);
-                        charPos.X = this._rect.X;
+                        charPos.X = this.GetRect().X;
                     }
                 }
             }

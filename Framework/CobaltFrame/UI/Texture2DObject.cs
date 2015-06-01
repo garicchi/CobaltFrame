@@ -26,6 +26,7 @@ namespace CobaltFrame.UI
             this._rotation = 0.0f;
             this._drawColor = Color.White;
             this._sourceRect = new Rectangle(0, 0, 100, 100);
+            this._isAbsolutePosition = false;
         }
 
         #region Field
@@ -43,7 +44,10 @@ namespace CobaltFrame.UI
         /// テクスチャ
         /// </summary>
         protected Texture2D _texture;
-        
+        /// <summary>
+        /// 絶対座標で描画するかどうか(相対なら親の座標に依存する)
+        /// </summary>
+        protected bool _isAbsolutePosition;
         #endregion
 
         #region Property
@@ -107,6 +111,15 @@ namespace CobaltFrame.UI
         {
             get { return this._sourceRect; }
         }
+
+        /// <summary>
+        /// 絶対座標で描画するかどうか(相対なら親の座標に依存する)
+        /// </summary>
+        public bool IsAbsolutePosition
+        {
+            get { return this._isAbsolutePosition; }
+            set { this._isAbsolutePosition = value; }
+        }
         
         #endregion
 
@@ -151,7 +164,17 @@ namespace CobaltFrame.UI
 
             this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
             //描画
-            this._spriteBatch.Draw(this._texture, null, this.GetRect().ShiftRect(this._origin * this._textureScale), this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+
+            //絶対座標で描画するかどうか
+            if (this._isAbsolutePosition)
+            {
+                this._spriteBatch.Draw(this._texture, null, this.GetRelativeRect().ShiftRect(this._origin * this._textureScale), this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+            }
+            else
+            {
+                this._spriteBatch.Draw(this._texture, null, this.GetRect().ShiftRect(this._origin * this._textureScale), this._sourceRect, this._origin, this._rotation, null, this._drawColor, SpriteEffects.None, 0.0f);
+            }
+            
             this._spriteBatch.End();
             
         }
