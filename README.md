@@ -8,4 +8,4 @@ CobaltFrame can help creating it.
 for example, game screen,custom animation,game object management etc...
 
 # WebSite
-[shiztex.com](http://shiztex.com/?p=91)
+[CobaltFrame](http://cobaltframe.garicchi.com/)
