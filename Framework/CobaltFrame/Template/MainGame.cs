@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+ï»¿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,41 +21,41 @@ using Windows.Storage.Streams;
 namespace CobaltFrame
 {
     /// <summary>
-    /// ‚·‚×‚Ä‚Ìe‚Æ‚È‚éƒQ[ƒ€ƒNƒ‰ƒX
+    /// ã™ã¹ã¦ã®è¦ªã¨ãªã‚‹ã‚²ãƒ¼ãƒ ã‚¯ãƒ©ã‚¹
     /// </summary>
     public class MainGame : Game
     {
-        //ƒQ[ƒ€‘S‘Ì‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+        //ã‚²ãƒ¼ãƒ å…¨ä½“ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
         GameManager _gameManager;
 
         public MainGame()
         {
             Content.RootDirectory = "Content";
 
-            //ƒQ[ƒ€‰æ–Ê‚Ì‰ğ‘œ“x‚ğw’è
+            //ã‚²ãƒ¼ãƒ ç”»é¢ã®è§£åƒåº¦ã‚’æŒ‡å®š
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
 
-            //ƒAƒvƒŠ‚ª—LŒø‚É‚È‚Á‚½‚Æ‚«‚ÉƒZ[ƒuƒf[ƒ^‚ğƒ[ƒh
+            //ã‚¢ãƒ—ãƒªãŒæœ‰åŠ¹ã«ãªã£ãŸã¨ãã«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
             GameContext.Game.Activated += (s, e) =>
             {
                 DataContext<SaveData>.Load(new SaveData());
             };
-            //ƒAƒvƒŠ‚ª–³Œø‚É‚È‚Á‚½‚Æ‚«‚ÉƒZ[ƒuƒf[ƒ^‚ğƒZ[ƒu
+            //ã‚¢ãƒ—ãƒªãŒç„¡åŠ¹ã«ãªã£ãŸã¨ãã«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
             GameContext.Game.Deactivated += (s, e) =>
             {
                 DataContext<SaveData>.Save();
             };
 
-            //ƒEƒCƒ“ƒhƒEƒTƒCƒY‚Ì•ÏX‚ğ’Ê’m
+            //ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®å¤‰æ›´ã‚’é€šçŸ¥
             this.Window.ClientSizeChanged += (s, e) =>
             {
                 this._gameManager.WindowSizeChanged(this.Window.ClientBounds);
             };
 
-            //DataContext‚ğƒZƒbƒgƒAƒbƒv
+            //DataContextã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
             DataContext<SaveData>.Setup("__savedata", (name) =>
             {
-                //ƒf[ƒ^ƒ[ƒh
+                //ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰æ™‚
                 SaveData data = null;
 
 #if WINDOWS_PHONE_APP||WINDOWS_APP||WINDOWS_UAP
@@ -96,7 +96,7 @@ namespace CobaltFrame
 
             }, (name, data) =>
             {
-                //ƒf[ƒ^ƒZ[ƒu
+                //ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–æ™‚
                 try
                 {
 #if WINDOWS_PHONE_APP||WINDOWS_APP||WINDOWS_UAP
@@ -139,7 +139,7 @@ namespace CobaltFrame
             });
 
             /*
-			//‰Á‘¬“xƒZƒ“ƒT[‚ğg‚¤ê‡‚Í‚±‚±‚ÅAPI‚ğŒÄ‚ñ‚Å‰Á‘¬“xî•ñ‚ğ•Ô‚·
+			//åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã‚’ä½¿ã†å ´åˆã¯ã“ã“ã§APIã‚’å‘¼ã‚“ã§åŠ é€Ÿåº¦æƒ…å ±ã‚’è¿”ã™
             InputContext.SetupAccelState(() =>
             {
 
@@ -147,7 +147,7 @@ namespace CobaltFrame
             });
             */
 
-            //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
+            //æœ€åˆã®ç”»é¢ã«é·ç§»
             this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
