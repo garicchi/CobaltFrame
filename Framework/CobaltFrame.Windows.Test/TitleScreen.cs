@@ -41,6 +41,8 @@ namespace CobaltFrame
             };
 
             this.AddChild(this._startButton);
+
+           
         }
 
         public override void Init()

@@ -140,6 +140,7 @@
     <Compile Include="UI\BitmapTextObject.cs" />
     <Compile Include="UI\ButtonObject.cs" />
     <Compile Include="UI\FontLoader.cs" />
+    <Compile Include="UI\ModelObject.cs" />
     <Compile Include="UI\ProgressBarObject.cs" />
     <Compile Include="UI\RepeatableTexure2DObject.cs" />
     <Compile Include="UI\SlidePadObject.cs" />

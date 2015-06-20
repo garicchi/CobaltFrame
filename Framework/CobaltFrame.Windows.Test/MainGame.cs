@@ -138,6 +138,8 @@ namespace CobaltFrame
 
             });
 
+            //サポートするデバイスの向きを横に限定
+            GameContext.GraphicsManager.SupportedOrientations = DisplayOrientation.LandscapeLeft|DisplayOrientation.LandscapeRight;
             /*
 			//加速度センサーを使う場合はここでAPIを呼んで加速度情報を返す
             InputContext.SetupAccelState(() =>

@@ -54,10 +54,6 @@
     <Compile Include="TitleScreen.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CobaltFrame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CobaltFrame.1.0.24\lib\CobaltFrame.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -108,7 +104,14 @@
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\dude.fbx" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CobaltFrame\CobaltFrame.csproj">
+      <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
+      <Name>CobaltFrame</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
