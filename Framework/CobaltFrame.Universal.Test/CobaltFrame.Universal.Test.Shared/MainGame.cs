@@ -16,6 +16,7 @@ using CobaltFrame.Input;
 #if WINDOWS_PHONE_APP||WINDOWS_APP
 using Windows.Storage;
 using Windows.Storage.Streams;
+using CobaltFrame.Universal.Test;
 #endif
 
 namespace CobaltFrame
@@ -152,7 +153,7 @@ namespace CobaltFrame
             */
 
             //ç≈èâÇÃâÊñ Ç…ëJà⁄
-            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
+            this._gameManager.ChangeScreen(new Physics2DScreen(), null, null);
         }
 
 

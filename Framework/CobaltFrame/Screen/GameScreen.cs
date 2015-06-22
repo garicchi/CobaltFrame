@@ -66,7 +66,7 @@ namespace CobaltFrame.Screen
 
         public override void Update(Context.FrameContext context)
         {
-            context.CameraTrans = this._camera2D.GetTransMatrix();
+            context.CameraTrans = this._camera2D.GetTransMatrix(this._game.GraphicsDevice.Viewport);
             //もし最初の更新なら
             if (this._firstUpdate)
             {

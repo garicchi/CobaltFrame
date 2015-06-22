@@ -50,13 +50,13 @@ namespace CobaltFrame.Common
             _position = Vector2.Zero;
         }
 
-        public Matrix GetTransMatrix()
+        public Matrix GetTransMatrix(Viewport v)
         {
             Transform =       // Thanks to o KB o for this solution
               Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *
                                          Matrix.CreateRotationZ(Rotation) *
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-                                         Matrix.CreateTranslation(new Vector3(0, 0, 0));
+                                         Matrix.CreateTranslation(new Vector3(v.Width * 0.5f, v.Height * 0.5f, 0));
             return Transform;
         }
     }

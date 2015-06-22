@@ -15,7 +15,7 @@ using CobaltFrame.Physics;
 
 namespace CobaltFrame.Screen
 {
-    public class FarseerPhysicsScreen:GameScreen
+    public abstract class FarseerPhysicsScreen:GameScreen
     {
         private DebugViewXNA _debugView;
 
