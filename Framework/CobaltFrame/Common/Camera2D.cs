@@ -12,8 +12,8 @@ namespace CobaltFrame.Common
     public class Camera2D
     {
         protected float _zoom; // Camera Zoom
-        public Matrix _transform; // Matrix Transform
-        public Vector2  _pos; // Camera Position
+        public Matrix Transform{ get; set; } // Matrix Transform
+        public Vector2 _position; // Camera Position
         protected float _rotation; // Camera Rotation
 
 
@@ -29,33 +29,35 @@ namespace CobaltFrame.Common
             set { _rotation = value; }
         }
 
+        public Vector2 Position
+        {
+            get { return _position; }
+            set { _position = value; }
+        }
+
         // Auxiliary function to move the camera
         public void Move(Vector2 amount)
         {
-            _pos += amount;
+            Position += amount;
         }
         // Get set position
-        public Vector2 Pos
-        {
-            get { return _pos; }
-            set { _pos = value; }
-        }
+        
 
         public Camera2D()
         {
             _zoom = 1.0f;
-            _rotation = 0.0f;
-            _pos = Vector2.Zero;
+            _rotation = 0;
+            _position = Vector2.Zero;
         }
 
-        public Matrix get_transformation(Viewport viewport)
+        public Matrix GetTransMatrix()
         {
-            _transform =       // Thanks to o KB o for this solution
-              Matrix.CreateTranslation(new Vector3(-_pos.X, -_pos.Y, 0)) *
+            Transform =       // Thanks to o KB o for this solution
+              Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *
                                          Matrix.CreateRotationZ(Rotation) *
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-                                         Matrix.CreateTranslation(new Vector3(viewport.Width * 0.5f, viewport.Height * 0.5f, 0));
-            return _transform;
+                                         Matrix.CreateTranslation(new Vector3(0, 0, 0));
+            return Transform;
         }
     }
 }

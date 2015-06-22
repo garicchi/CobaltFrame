@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CobaltFrame.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,45 +10,36 @@ namespace CobaltFrame.Context
 {
     public class FrameContext
     {
-        private GameTime _gameTime;
-
         
-        public FrameContext(GameTime gameTime)
+        public FrameContext()
         {
-            this._gameTime = gameTime;
-            
+            this.CameraTrans = Matrix.Identity;
         }
-
+        public GameTime GameTime { get; set; }
         public Matrix ScreenScale { get; set; }
 
         public Matrix ScreenMargin { get; set; }
 
-        public Matrix ScreenTrans
-        {
-            get
-            {
-                return ScreenScale * ScreenMargin;
-            }
-        }
+        public Matrix CameraTrans { get; set; }
 
         public Matrix GetScreenTrans()
         {
-            return ScreenScale * ScreenMargin;
+            return ScreenScale * ScreenMargin * CameraTrans;
         }
 
         public Matrix GetScreenTransInvert()
         {
-            return Matrix.Invert(ScreenScale * ScreenMargin);
+            return Matrix.Invert(GetScreenTrans());
         }
 
         public TimeSpan TotalGameTime
         {
-            get { return this._gameTime.TotalGameTime; }
+            get { return this.GameTime.TotalGameTime; }
         }
 
         public TimeSpan ElapsedGameTime
         {
-            get { return this._gameTime.ElapsedGameTime; }
+            get { return this.GameTime.ElapsedGameTime; }
         }
 
         public TimeSpan ElapsedScreenTime { get; set; }

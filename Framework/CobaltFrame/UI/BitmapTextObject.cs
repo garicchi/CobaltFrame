@@ -152,7 +152,7 @@ namespace CobaltFrame.UI
         {
             base.Draw(context);
 
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.GetScreenTrans());
             //初期座標を保持
             var charPos = this.GetRect().GetPosition();
             //描画テキストを1文字ずつ取り出して

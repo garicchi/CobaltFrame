@@ -32,7 +32,6 @@ namespace CobaltFrame.Core.Screen
             GameContext.ScreenScaleMode = scaleMode;
             //ContentContextのセットアップ
             ResourceContext.Setup(game.Content);
-
             
         }
 
@@ -44,7 +43,7 @@ namespace CobaltFrame.Core.Screen
         protected Matrix _screenScale;
         //DefaultResolutionからデバイス解像度へのマージン変換行列
         protected Matrix _screenMargin;
-
+        protected FrameContext _frameContext;
         #endregion
 
         #region Property

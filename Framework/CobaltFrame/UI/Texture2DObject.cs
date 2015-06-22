@@ -161,8 +161,7 @@ namespace CobaltFrame.UI
         public override void Draw(FrameContext context)
         {
             base.Draw(context);
-
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.GetScreenTrans());
             //描画
 
             //絶対座標で描画するかどうか

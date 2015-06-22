@@ -13,7 +13,7 @@ using CobaltFrame.Screen;
 using CobaltFrame.Context;
 using CobaltFrame.Input;
 
-#if WINDOWS_PHONE_APP||WINDOWS_APP||WINDOWS_UAP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
 using Windows.Storage;
 using Windows.Storage.Streams;
 #endif
@@ -27,13 +27,14 @@ namespace CobaltFrame
     {
         //ゲーム全体を管理するクラス
         GameManager _gameManager;
-
+        FrameContext _frameContext;
         public MainGame()
         {
             Content.RootDirectory = "Content";
 
             //ゲーム画面の解像度を指定
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
+            this._frameContext = new FrameContext();
 
             //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
@@ -58,7 +59,7 @@ namespace CobaltFrame
                 //データロード時
                 SaveData data = null;
 
-#if WINDOWS_PHONE_APP||WINDOWS_APP||WINDOWS_UAP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
                 var folder = ApplicationData.Current.LocalFolder;
                 var files = folder.GetFilesAsync().AsTask<IReadOnlyList<StorageFile>>().Result;
                 if (files.Any(q => q.Name == name))
@@ -99,7 +100,7 @@ namespace CobaltFrame
                 //データセーブ時
                 try
                 {
-#if WINDOWS_PHONE_APP||WINDOWS_APP||WINDOWS_UAP
+#if WINDOWS_PHONE_APP||WINDOWS_APP
                     var folder = ApplicationData.Current.LocalFolder;
 
                     var file = folder.CreateFileAsync(name,CreationCollisionOption.ReplaceExisting).AsTask<StorageFile>().Result;
@@ -183,13 +184,15 @@ namespace CobaltFrame
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            this._gameManager.Update(new FrameContext(gameTime));
+            this._frameContext.GameTime = gameTime;
+            this._gameManager.Update(this._frameContext);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            this._gameManager.Draw(new FrameContext(gameTime));
+            this._frameContext.GameTime = gameTime;
+            this._gameManager.Draw(this._frameContext);
         }
 
 

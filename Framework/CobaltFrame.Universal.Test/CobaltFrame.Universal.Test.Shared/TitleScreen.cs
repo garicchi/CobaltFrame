@@ -4,6 +4,7 @@ using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace CobaltFrame
         {
             //ここを自分のゲームのタイトルに変えてください
             var gameTitle = "GameTitle";
-            /*
+            
             this._titleText = new BitmapTextObject("System/Font/ipagothic", gameTitle, 6, Color.White);
             this._titleText.SetRect(new Rectangle(this.GetCenter().X / 2, this.GetCenter().Y / 2, 800, 100));
             this.AddChild(this._titleText);
@@ -41,7 +42,7 @@ namespace CobaltFrame
             };
 
             this.AddChild(this._startButton);
-            */
+            
             //var model = new ModelObject("testmodel");
             //AddChild(model);
 

@@ -1,4 +1,5 @@
-﻿using CobaltFrame.Context;
+﻿using CobaltFrame.Common;
+using CobaltFrame.Context;
 using CobaltFrame.Object;
 using CobaltFrame.Transition;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,7 @@ namespace CobaltFrame.Screen
 	/// </summary>
     public abstract class GameScreen:GameObject2D,IGameScreen
     {
-		
+        
         public GameScreen()
         {
             this._isNavigateStarted = false;
@@ -23,6 +24,7 @@ namespace CobaltFrame.Screen
 
             this.OnNavigate += (sc,obj,trans) => { };
             this.SetRect(new Rectangle(0, 0, GameContext.DefaultResolution.X, GameContext.DefaultResolution.Y));
+            this._camera2D = new Camera2D();
         }
         #region Field
         protected TimeSpan _screenElapsedTime;
@@ -31,6 +33,7 @@ namespace CobaltFrame.Screen
         private bool _firstUpdate;
         private Color _backgroundColor;
         private bool _isNavigateStarted;
+        protected Camera2D _camera2D;
         #endregion
 
         #region Property
@@ -46,6 +49,12 @@ namespace CobaltFrame.Screen
             }
         }
 
+        public Camera2D Camera2D
+        {
+            get { return _camera2D; }
+            set { _camera2D = value; }
+        }
+
         #endregion
 
         #region Method
@@ -57,6 +66,7 @@ namespace CobaltFrame.Screen
 
         public override void Update(Context.FrameContext context)
         {
+            context.CameraTrans = this._camera2D.GetTransMatrix();
             //もし最初の更新なら
             if (this._firstUpdate)
             {

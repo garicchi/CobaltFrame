@@ -27,13 +27,14 @@ namespace CobaltFrame
     {
         //ゲーム全体を管理するクラス
         GameManager _gameManager;
-
+        FrameContext _frameContext;
         public MainGame()
         {
             Content.RootDirectory = "Content";
 
             //ゲーム画面の解像度を指定
             this._gameManager = new GameManager(this, new Point(1360, 768), this.Window.ClientBounds, ScaleMode.Fill);
+            this._frameContext = new FrameContext();
 
             //アプリが有効になったときにセーブデータをロード
             GameContext.Game.Activated += (s, e) =>
@@ -151,7 +152,7 @@ namespace CobaltFrame
             */
 
             //最初の画面に遷移
-            this._gameManager.ChangeScreen(new FarseerPhysicsScreen(new Vector2(0f,0.09f)), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 
@@ -183,13 +184,15 @@ namespace CobaltFrame
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            this._gameManager.Update(new FrameContext(gameTime));
+            this._frameContext.GameTime = gameTime;
+            this._gameManager.Update(this._frameContext);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            this._gameManager.Draw(new FrameContext(gameTime));
+            this._frameContext.GameTime = gameTime;
+            this._gameManager.Draw(this._frameContext);
         }
 
 

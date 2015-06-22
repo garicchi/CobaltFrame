@@ -82,7 +82,7 @@ namespace CobaltFrame.Transition
         {
             
             base.Draw(context);
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, context.ScreenTrans);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, context.GetScreenTrans());
             this._spriteBatch.Draw(this.Texture, new Rectangle(0, 0, GameContext.DefaultResolution.X,GameContext.DefaultResolution.Y),
                 new Color(TextureColor.R, TextureColor.G, TextureColor.B, Animation.CurrentValue));
             this._spriteBatch.End();

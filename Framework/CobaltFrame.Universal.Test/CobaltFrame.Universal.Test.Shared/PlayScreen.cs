@@ -1,9 +1,11 @@
-﻿using CobaltFrame.Screen;
+﻿using CobaltFrame.Input;
+using CobaltFrame.Screen;
 using CobaltFrame.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,8 +86,11 @@ namespace CobaltFrame
                 //プレイヤーを右に動かす
                 var pos = this._player.GetPosition();
                 this._player.SetPosition(new Point(pos.X + 1, pos.Y));
-            }
 
+                
+            }
+            
+            
             //15秒経過したらResult画面に遷移する
             if (context.ElapsedScreenTime > TimeSpan.FromSeconds(15))
             {

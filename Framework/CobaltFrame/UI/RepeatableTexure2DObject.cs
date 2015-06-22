@@ -18,7 +18,7 @@ namespace CobaltFrame.UI
 
         public override void Draw(Context.FrameContext context)
         {
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.ScreenTrans);
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, context.GetScreenTrans());
 
             int texW = (int)this._texture.Bounds.Width;
             int texH = (int)this._texture.Bounds.Height;
