@@ -42,8 +42,10 @@ namespace CobaltFrame
 
             this.AddChild(this._startButton);
             */
-            var model = new ModelObject("testmodel");
-            AddChild(model);
+            //var model = new ModelObject("testmodel");
+            //AddChild(model);
+
+
         }
 
         public override void Init()

@@ -134,12 +134,17 @@
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\System\Font\arial.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CobaltFrame\CobaltFrame.csproj">
       <Project>{96e9b4bd-49cc-4657-9694-ef801e031577}</Project>
       <Name>CobaltFrame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FarseerPhysics.Portable\FarseerPhysics.Portable.csproj">
+      <Project>{a1807d3f-3546-4c28-b713-c4f767383b61}</Project>
+      <Name>FarseerPhysics.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\CobaltFrame.Universal.Test.Shared\Shared.Application.Shared.projitems" Label="Shared" />

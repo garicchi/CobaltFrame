@@ -87,6 +87,7 @@
     <Compile Include="Animation\TimerAnimation.cs" />
     <Compile Include="Animation\WaitAnimation.cs" />
     <Compile Include="Common\BindableProperty.cs" />
+    <Compile Include="Common\Camera2D.cs" />
     <Compile Include="Common\CobaltFrameExtension.cs" />
     <Compile Include="Common\Margin.cs" />
     <Compile Include="Common\Resource.cs" />
@@ -103,6 +104,7 @@
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\System\Font\arial.spritefont" />
     <None Include="Template\MainGame.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -111,10 +113,14 @@
     <Compile Include="Object\IGameObject.cs" />
     <Compile Include="Object\IGameObject2D.cs" />
     <Compile Include="Object\ObjectLoadState.cs" />
+    <Compile Include="Physics\PhysicsCamera2D.cs" />
+    <Compile Include="Physics\DebugViewXNA.cs" />
+    <Compile Include="Physics\PrimitiveBatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen\IGameScreen.cs" />
     <Compile Include="Screen\IGameManager.cs" />
     <Compile Include="Screen\IScreenTransition.cs" />
+    <Compile Include="Screen\FarseerPhysicsScreen.cs" />
     <Compile Include="Screen\ScaleMode.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\GameManager.cs" />
@@ -150,12 +156,18 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.Portable.3.2.99.1-Beta\lib\portable-net45+win+wpa81+Xamarin.iOS10+MonoAndroid10+MonoTouch10\MonoGame.Framework.dll</HintPath>
+      <Aliases>global</Aliases>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FarseerPhysics.Portable\FarseerPhysics.Portable.csproj">
+      <Project>{a1807d3f-3546-4c28-b713-c4f767383b61}</Project>
+      <Name>FarseerPhysics.Portable</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

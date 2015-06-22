@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResultScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SamplePhysicsScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SaveData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TitleScreen.cs" />
   </ItemGroup>

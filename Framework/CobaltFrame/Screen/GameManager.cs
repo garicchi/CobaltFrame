@@ -179,7 +179,7 @@ namespace CobaltFrame.Core.Screen
             float scaleY = 1.0f;
             //アスペクト比を計算
             float aspectRate = (float)GameContext.DefaultResolution.X / (float)GameContext.DefaultResolution.Y;
-
+            
             Matrix marginMatrix = Matrix.CreateTranslation(0, 0, 0);
             float xMargin = 0.0f;
             float yMargin = 0.0f;

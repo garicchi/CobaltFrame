@@ -151,7 +151,7 @@ namespace CobaltFrame
             */
 
             //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
-            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
+            this._gameManager.ChangeScreen(new FarseerPhysicsScreen(new Vector2(0f,0.09f)), null, null);
         }
 
 

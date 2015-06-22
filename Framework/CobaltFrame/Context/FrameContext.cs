@@ -9,7 +9,9 @@ namespace CobaltFrame.Context
 {
     public class FrameContext
     {
-        protected GameTime _gameTime;
+        private GameTime _gameTime;
+
+        
         public FrameContext(GameTime gameTime)
         {
             this._gameTime = gameTime;

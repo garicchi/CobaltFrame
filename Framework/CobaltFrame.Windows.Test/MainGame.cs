@@ -139,7 +139,8 @@ namespace CobaltFrame
             });
 
             //サポートするデバイスの向きを横に限定
-            GameContext.GraphicsManager.SupportedOrientations = DisplayOrientation.LandscapeLeft|DisplayOrientation.LandscapeRight;
+            GameContext.GraphicsManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+
             /*
 			//加速度センサーを使う場合はここでAPIを呼んで加速度情報を返す
             InputContext.SetupAccelState(() =>
@@ -150,7 +151,7 @@ namespace CobaltFrame
             */
 
             //最初の画面に遷移
-            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
+            this._gameManager.ChangeScreen(new FarseerPhysicsScreen(new Vector2(0f,9.8f)), null, null);
         }
 
 

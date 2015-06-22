@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame.Android.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobaltFrame.iOS.Test", "CobaltFrame.iOS.Test\CobaltFrame.iOS.Test.csproj", "{DA6784DF-3600-4E01-A6A9-F390738FB19F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarseerPhysics.Portable", "FarseerPhysics.Portable\FarseerPhysics.Portable.csproj", "{A1807D3F-3546-4C28-B713-C4F767383B61}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CobaltFrame.Universal.Test\CobaltFrame.Universal.Test.Shared\Shared.Application.Shared.projitems*{c7878b0a-a427-4aae-9a65-daf2f4e0b3df}*SharedItemsImports = 13
@@ -347,6 +349,42 @@ Global
 		{DA6784DF-3600-4E01-A6A9-F390738FB19F}.Release|Mixed Platforms.Build.0 = Release|iPhone
 		{DA6784DF-3600-4E01-A6A9-F390738FB19F}.Release|x64.ActiveCfg = Release|iPhone
 		{DA6784DF-3600-4E01-A6A9-F390738FB19F}.Release|x86.ActiveCfg = Release|iPhone
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|ARM.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|Mixed Platforms.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|x64.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Ad-Hoc|x86.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|ARM.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|Mixed Platforms.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|x64.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1807D3F-3546-4C28-B713-C4F767383B61}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
