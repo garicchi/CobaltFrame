@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CobaltFrame.UI
 {
-    public class Texture2DPhysicsObject:Texture2DObject
+    public class Texture2DCirclePhysicsObject:Texture2DObject
     {
         protected Body _body;
 
@@ -20,10 +20,14 @@ namespace CobaltFrame.UI
             get { return _body; }
             set { _body = value; }
         }
-        public Texture2DPhysicsObject(string texturePath,Body body)
+
+        public Texture2DCirclePhysicsObject(string texturePath,World world,int radius,float dencity)
             :base(texturePath)
         {
-            this._body = body;
+            
+            this.SetSize(new Point(radius*2,radius*2));
+
+            this._body = BodyFactory.CreateCircle(world, ConvertUnits.ToSimUnits(radius),dencity);
         }
 
         public override void Update(Context.FrameContext context)
@@ -33,7 +37,6 @@ namespace CobaltFrame.UI
             float posY = ConvertUnits.ToDisplayUnits(Body.Position.Y);
             this.Rotation = this.Body.Rotation;
             this.SetPosition(new Point((int)posX - this.GetSize().X / 2, (int)posY - this.GetSize().Y / 2));
-
             
         }
     }

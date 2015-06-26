@@ -24,13 +24,7 @@ namespace CobaltFrame.Screen
             get { return _debugView; }
             set { _debugView = value; }
         }
-        private PhysicsCamera2D _camera;
 
-        protected PhysicsCamera2D Camera
-        {
-            get { return _camera; }
-            set { _camera = value; }
-        }
 
         protected World _world;
         public World World
@@ -38,12 +32,35 @@ namespace CobaltFrame.Screen
             get { return _world; }
             set { _world = value; }
         }
+
+        protected Matrix _simProjection;
+
+        public bool IsDebugViewEnabled 
+        {
+            get
+            {
+                return this.DebugView.Enabled;
+            }
+            set
+            {
+                this.DebugView.Enabled = value;
+            }
+        }
+        
         public FarseerPhysicsScreen(Microsoft.Xna.Framework.Vector2 gravity)
         {
             this._world = new World(gravity);
             this._debugView = new DebugViewXNA(this._world);
             this._debugView.DefaultShapeColor = Color.White;
             this._debugView.SleepingShapeColor = Color.LightGray;
+            
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            this._simProjection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_game.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(_game.GraphicsDevice.Viewport.Height), 0f, 0f, 1f);
+            
         }
 
         public override void Load()
@@ -52,7 +69,7 @@ namespace CobaltFrame.Screen
             
             this._debugView.LoadContent(this._game.GraphicsDevice,this._game.Content);
             
-            this._camera = new PhysicsCamera2D(this._game.GraphicsDevice);
+            
         }
 
         public override void Update(Context.FrameContext context)
@@ -60,14 +77,17 @@ namespace CobaltFrame.Screen
             base.Update(context);
             
             this._world.Step(Math.Min((float)context.ElapsedGameTime.TotalSeconds, (1f / 30f)));
-            this._camera.Update(context.TotalGameTime);
-            
+             
         }
 
         public override void Draw(Context.FrameContext context)
         {
             base.Draw(context);
-            this._debugView.RenderDebugData(ref this._camera.SimProjection, ref this._camera.SimView);
+            Matrix simView = Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(-this.Camera2D.Position.X), ConvertUnits.ToSimUnits(-this.Camera2D.Position.Y), 0)) *
+                                         Matrix.CreateRotationZ(this._camera2D.Rotation) *
+                                         Matrix.CreateScale(new Vector3(this._camera2D.Zoom, this._camera2D.Zoom, 1)) *
+                                         Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(this._game.GraphicsDevice.Viewport.Width * 0.5f),ConvertUnits.ToSimUnits( this._game.GraphicsDevice.Viewport.Height * 0.5f), 0));
+            this._debugView.RenderDebugData(ref this._simProjection, ref simView);
         }
     }
 }

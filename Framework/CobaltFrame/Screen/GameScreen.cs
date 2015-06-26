@@ -25,6 +25,7 @@ namespace CobaltFrame.Screen
             this.OnNavigate += (sc,obj,trans) => { };
             this.SetRect(new Rectangle(0, 0, GameContext.DefaultResolution.X, GameContext.DefaultResolution.Y));
             this._camera2D = new Camera2D();
+            this._camera2D.Position+= GameContext.DefaultResolution.ToVector2()/2;
         }
         #region Field
         protected TimeSpan _screenElapsedTime;

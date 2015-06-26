@@ -153,7 +153,7 @@ namespace CobaltFrame
             */
 
             //Å‰‚Ì‰æ–Ê‚É‘JˆÚ
-            this._gameManager.ChangeScreen(new Physics2DScreen(), null, null);
+            this._gameManager.ChangeScreen(new LoadScreen(), null, null);
         }
 
 

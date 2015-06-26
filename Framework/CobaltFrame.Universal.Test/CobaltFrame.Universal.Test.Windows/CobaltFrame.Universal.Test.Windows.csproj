@@ -125,14 +125,15 @@
     <Content Include="Content\System\Texture\sample_player.png" />
     <Content Include="Content\System\Texture\slidepad_back.png" />
     <Content Include="Content\System\Texture\slidepad_pad.png" />
+    <Content Include="README.txt" />
     <None Include="CobaltFrame.Universal.Test.Windows_TemporaryKey.pfx" />
     <Content Include="Content\sound2.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\System\Font\arial.xnb" />
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\System\Font\arial.xnb" />
     <None Include="Content\testmodel.fbx" />
     <Content Include="Content\testmodel.xnb" />
     <None Include="packages.config" />

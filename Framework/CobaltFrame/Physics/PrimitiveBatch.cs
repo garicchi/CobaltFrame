@@ -82,7 +82,6 @@ namespace CobaltFrame.Physics
             _basicEffect.Projection = projection;
             _basicEffect.View = view;
             _basicEffect.CurrentTechnique.Passes[0].Apply();
-
             // flip the error checking boolean. It's now ok to call AddVertex, Flush,
             // and End.
             _hasBegun = true;

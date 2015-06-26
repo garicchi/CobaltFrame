@@ -72,6 +72,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Region.txt" />
+    <Content Include="Content\System\Font\arial.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Template\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation\ConditionAnimation.cs" />
@@ -101,7 +107,11 @@
     <Compile Include="Input\GameInputCollection.cs" />
     <Compile Include="Input\InputCondition.cs" />
     <Compile Include="Input\TouchInputCollection.cs" />
-    <Compile Include="UI\Texture2DPhysicsObject.cs" />
+    <None Include="Template\Physics2DScreen.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="UI\Texture2DRectanglePhysicsObject.cs" />
+    <Compile Include="UI\Texture2DCirclePhysicsObject.cs" />
     <Content Include="Content\System\Font\ipagothic.fnt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
